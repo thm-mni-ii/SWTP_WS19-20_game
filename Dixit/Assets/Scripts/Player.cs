@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
+[Serializable]
 public class Player
 {
     //player und user ID werden jetzt zusammengelegt
@@ -43,18 +44,6 @@ public class Player
     {
     }
 
-    /// <summary>
-    /// A constructor for Player, using a PlayerData Object.
-    /// </summary>
-    /// <param name="playerData">D PlayerData Object which members are used to initialize the Player Object.</param>
-    public Player(PlayerData playerData)
-    {
-        this.playerID = playerData.playerID;
-        this.score = playerData.Score;
-        this.roomID = playerData.RoomID;
-        this.level = playerData.Level;
-        this.playerName = playerData.PlayerName;
-    }
 
     /// <summary>
     /// Getter/Setter for score.
@@ -142,7 +131,7 @@ public class Player
     /// This method is not final, it will be changed so it can work with mirror and firebase.
     /// </summary>
     /// <param name="path">The path to the JSON File</param>
-    /// <returns></returns>
+    /// <returns>Returns a Playerobject repersantion of the JSON file.</returns>
     public Player LoadPlayerData(string path)
     {
 
@@ -150,12 +139,13 @@ public class Player
         {
             JObject on = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
             string json = on.ToString();
-            Debug.Log("playerjson:" + json);
-            PlayerData playerData = new PlayerData();
-            playerData= JsonConvert.DeserializeObject<PlayerData>(json);
+           // Debug.Log("playerjson:" + json);
+           
+         
             Debug.Log("level:" + playerData.Level);
-            playerData.Score = 0;
-            Player player = new Player(playerData);
+            Player player = new Player();
+            player = JsonConvert.DeserializeObject<Player>(json);
+            player.Score = 0;
             return player;
 
 
@@ -165,6 +155,16 @@ public class Player
 
     }
 
+
+    /// <summary>
+    /// A method returns a Player Object converted to a string in JSON format. 
+    /// </summary>
+    /// <returns>json as a string</returns>
+    public string PlayerToJSONString()
+    {
+        string output = JsonConvert.SerializeObject(this);
+            return output;
+    }
     /// <summary>
     /// A simple method to print out the a Player Object as a string in JSON format.
     /// This method may be used for debugging purposes.

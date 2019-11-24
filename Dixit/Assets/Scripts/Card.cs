@@ -2,8 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-public class Card : MonoBehaviour
+[Serializable]
+public class Card 
 {
     /// <summary>
     /// The identifation of the card
@@ -22,7 +26,7 @@ public class Card : MonoBehaviour
     /// </summary>
     private int correctVotes;
     /// <summary>
-    ///  Boolean to show if the Player chose for the correct answer.
+    ///  Boolean to show it is the correct answer.
     /// </summary>
     private bool isCorrect;
     /// <summary>
@@ -35,6 +39,13 @@ public class Card : MonoBehaviour
     /// This Constructor initializes the List playerGuesses.
     /// </summary>
     /// <param name="cardID">The identification number of this card.</param>
+    /// 
+
+    public Card()
+    {
+        this.playerGuesses = new List<Player>();
+
+    }
     public Card(int cardID)
     {
         this.cardID = cardID;
@@ -120,6 +131,38 @@ public class Card : MonoBehaviour
 
 
 
-    
+    /// <summary>
+    /// Method to add a specific Player to the playerGuesses List of the Card Object.
+    /// </summary>
+    /// <param name="player">The player that will be added.</param>
+    public void AddPlayerToPlayerGuesses(Player player)
+    {
+        this.PlayerGuesses.Add(player);
+    }
+
+    /// <summary>
+    /// A method returns an Object converted to a string in JSON format. 
+    /// </summary>
+    /// <returns>json as a string</returns>
+    public string CardToJsonString()
+    {
+        string output = JsonConvert.SerializeObject(this);
+        return output;
+    }
+    /// <summary>
+    /// A method that reruns a new Card from a string in JSON format.
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns>Card object representation of the JSON file</returns>
+    public Card JsonToCard(string json)
+    {
+        Card tempCard = new Card();
+        tempCard = JsonConvert.DeserializeObject<Card>(json);
+        return tempCard;
+    }
+
+
+
+
 
 }
