@@ -9,13 +9,34 @@ using Newtonsoft.Json.Linq;
 [Serializable]
 public class PlayerData 
 {
+    /// <summary>
+    /// The identfication of the player.
+    /// </summary>
     public int playerID;
+    /// <summary>
+    /// The current score the the player.
+    /// </summary>
     private int score;
-  
+    /// <summary>
+    /// The roomID of the current game.
+    /// </summary>
     private int roomID;
+    /// <summary>
+    /// The experience of the player.
+    /// </summary>
     private int experience;
+    /// <summary>
+    /// The current level of the player
+    /// </summary>
     private int level;
+    /// <summary>
+    /// The name of the player.
+    /// </summary>
     private string playerName;
+
+    /// <summary>
+    /// Getter/Setter for score.
+    /// </summary>
     public int Score
     {
         get
@@ -27,6 +48,10 @@ public class PlayerData
             score = value;
         }
     }
+
+    /// <summary>
+    /// Getter/Setter for roomID.
+    /// </summary>
     public int RoomID
     {
         get
@@ -39,6 +64,9 @@ public class PlayerData
         }
     }
 
+    /// <summary>
+    /// Getter/Setter for experience.
+    /// </summary>
     public int Experience
     {
         get
@@ -51,6 +79,9 @@ public class PlayerData
         }
     }
 
+    /// <summary>
+    /// Getter/Setter for level.
+    /// </summary>
     public int Level
     {
         get
@@ -62,6 +93,9 @@ public class PlayerData
             level = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for playerName.
+    /// </summary>
     public string PlayerName
     {
         get

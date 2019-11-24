@@ -8,21 +8,32 @@ using System;
 [Serializable]
 public class CardData
 {
-    //the identifation of the card
+    /// <summary>
+    /// The identifation of the card
+    /// </summary>
     public int cardID;
-    //the answer of the player
+    /// <summary>
+    /// The answer of the player
+    /// </summary>
     private string answer;
-    //the corresponding player bject
+    /// <summary>
+    /// The corresponding player object
+    /// </summary>
     private Player playerObject;
-    //is the answer equal to the correct answer
-    //
+    /// <summary>
+    /// Number of votes, concerning if the given answer is equal to the correct answer.
+    /// </summary>
     private int correctVotes;
-    //is the vote of the player correct
+    /// <summary>
+    ///  Boolean to show if the Player chose for the correct answer.
+    /// </summary>
     private bool isCorrect;
-    //A list of which players havevoted for this card.
+    /// <summary>
+    /// A list of players who chose this card as the correct answer.
+    /// </summary>
     private List<Player> playerGuesses;
 
-   public CardData(int cardID)
+    public CardData(int cardID)
     {
         this.cardID = cardID;
         this.playerGuesses = new List<Player>();
@@ -30,7 +41,9 @@ public class CardData
 
 
 
-
+    /// <summary>
+    /// Getter/Setter for answer.
+    /// </summary>
     public string Answer
     {
         get
@@ -43,7 +56,9 @@ public class CardData
             answer = value;
         }
     }
-
+    /// <summary>
+    /// Getter/Setter for playerObject.
+    /// </summary>
     public Player PlayerObject
     {
         get
@@ -56,6 +71,9 @@ public class CardData
             playerObject = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for correctVotes.
+    /// </summary>
     public int CorrectVotes
     {
         get
@@ -68,6 +86,9 @@ public class CardData
             correctVotes = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for IsCorrect.
+    /// </summary>
     public bool IsCorrect
     {
         get
@@ -80,6 +101,9 @@ public class CardData
             isCorrect = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for playerGuesses.
+    /// </summary>
     public List<Player> PlayerGuesses
     {
         get
@@ -94,9 +118,13 @@ public class CardData
     }
 
 
-    public void AddPlayerToPlayerGuesses(CardData cardData, Player player)
+    /// <summary>
+    /// Method to add a specific Player to the playerGuesses List of the CardData Object.
+    /// </summary>
+    /// <param name="player">The player that will be added.</param>
+    public void AddPlayerToPlayerGuesses(Player player)
     {
-        cardData.PlayerGuesses.Add(player);
+        this.PlayerGuesses.Add(player);
     }
 
 

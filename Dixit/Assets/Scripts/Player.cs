@@ -10,18 +10,43 @@ using UnityEngine;
 public class Player
 {
     //player und user ID werden jetzt zusammengelegt
-   
+    /// <summary>
+    /// The identfication of the player.
+    /// </summary>
     public int playerID;
+    /// <summary>
+    /// The current score the the player.
+    /// </summary>
     private int score;
+    /// <summary>
+    /// The roomID of the current game.
+    /// </summary>
     private int roomID;
+    /// <summary>
+    /// The experience of the player.
+    /// </summary>
     private int experience;
+    /// <summary>
+    /// The current level of the player
+    /// </summary>
     private int level;
+    /// <summary>
+    /// The name of the player.
+    /// </summary>
     private string playerName;
-    //playerobject fällt hier auch weg.
 
+
+    /// <summary>
+    /// An empty constructor for Player.
+    /// </summary>
     public Player()
     {
     }
+
+    /// <summary>
+    /// A constructor for Player, using a PlayerData Object.
+    /// </summary>
+    /// <param name="playerData">D PlayerData Object which members are used to initialize the Player Object.</param>
     public Player(PlayerData playerData)
     {
         this.playerID = playerData.playerID;
@@ -31,6 +56,9 @@ public class Player
         this.playerName = playerData.PlayerName;
     }
 
+    /// <summary>
+    /// Getter/Setter for score.
+    /// </summary>
     public int Score
     {
         get
@@ -42,6 +70,9 @@ public class Player
             score = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for roomID.
+    /// </summary>
     public int RoomID
     {
         get
@@ -54,6 +85,9 @@ public class Player
         }
     }
 
+    /// <summary>
+    /// Getter/Setter for experience.
+    /// </summary>
     public int Experience
     {
         get
@@ -66,6 +100,9 @@ public class Player
         }
     }
 
+    /// <summary>
+    /// Getter/Setter for level.
+    /// </summary>
     public int Level
     {
         get
@@ -77,6 +114,9 @@ public class Player
             level = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for playerName.
+    /// </summary>
     public string PlayerName
     {
         get
@@ -95,6 +135,14 @@ public class Player
     //LoadPlayerData has a path to a json file as its parameter
     //it sets the score of a player to 0
     //it returns a player objekt.
+
+    /// <summary>
+    /// A method that uses a path to a JSON File to load the data of a player, create a Player Object and resets its score.
+    /// This method will be invoked at the beginning of a game.
+    /// This method is not final, it will be changed so it can work with mirror and firebase.
+    /// </summary>
+    /// <param name="path">The path to the JSON File</param>
+    /// <returns></returns>
     public Player LoadPlayerData(string path)
     {
 
@@ -117,7 +165,11 @@ public class Player
 
     }
 
-
+    /// <summary>
+    /// A simple method to print out the a Player Object as a string in JSON format.
+    /// This method may be used for debugging purposes.
+    /// </summary>
+    /// <param name="player">The specific Player Object.</param>
     public void PrintOutPlayer(Player player)
     {
         string output;

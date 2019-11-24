@@ -5,25 +5,50 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-
+    /// <summary>
+    /// The identifation of the card
+    /// </summary>
     public int cardID;
+    /// <summary>
+    /// The answer of the player
+    /// </summary>
     private string answer;
+    /// <summary>
+    /// The corresponding player object
+    /// </summary>
     private Player playerObject;
+    /// <summary>
+    /// Number of votes, concerning if the given answer is equal to the correct answer.
+    /// </summary>
     private int correctVotes;
+    /// <summary>
+    ///  Boolean to show if the Player chose for the correct answer.
+    /// </summary>
     private bool isCorrect;
+    /// <summary>
+    /// A list of players who chose this card as the correct answer.
+    /// </summary>
     private List<Player> playerGuesses;
 
+    /// <summary>
+    /// Constructor for a Card Object.
+    /// This Constructor initializes the List playerGuesses.
+    /// </summary>
+    /// <param name="cardID">The identification number of this card.</param>
     public Card(int cardID)
     {
         this.cardID = cardID;
         this.playerGuesses = new List<Player>();
     }
-
+    /// <summary>
+    /// Getter/Setter for answer. 
+    /// The Setter automatically converts the String to UpperCase.
+    /// </summary>
     public string Answer
     {
         get
         {
-            return answer;
+            return answer.ToUpper();
         }
         
         set
@@ -31,7 +56,9 @@ public class Card : MonoBehaviour
             answer = value;
         }
     }
-
+    /// <summary>
+    /// Getter/Setter for playerObject.
+    /// </summary>
     public Player PlayerObject
     {
         get
@@ -44,6 +71,9 @@ public class Card : MonoBehaviour
             playerObject = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for correctVotes.
+    /// </summary>
     public int CorrectVotes
     {
         get
@@ -56,6 +86,9 @@ public class Card : MonoBehaviour
             correctVotes = value;
         }
     }
+    /// <summary>
+    /// Getter/Setter for IsCorrect.
+    /// </summary>
     public bool IsCorrect
     {
         get
@@ -68,6 +101,10 @@ public class Card : MonoBehaviour
             isCorrect = value;
         }
     }
+
+    /// <summary>
+    /// Getter/Setter for playerGuesses.
+    /// </summary>
     public List<Player> PlayerGuesses
     {
         get
@@ -83,5 +120,6 @@ public class Card : MonoBehaviour
 
 
 
-    //alle klein zu groß buchstaben funktion toUpper();
+    
+
 }
