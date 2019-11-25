@@ -142,7 +142,7 @@ public class Player
            // Debug.Log("playerjson:" + json);
            
          
-            Debug.Log("level:" + playerData.Level);
+            //Debug.Log("level:" + player.Level);
             Player player = new Player();
             player = JsonConvert.DeserializeObject<Player>(json);
             player.Score = 0;
