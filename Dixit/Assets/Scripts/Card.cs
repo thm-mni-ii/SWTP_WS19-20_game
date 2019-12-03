@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TMPro;
 
 [Serializable]
 public class Card : MonoBehaviour
@@ -33,7 +34,10 @@ public class Card : MonoBehaviour
     /// A list of players who chose this card as the correct answer.
     /// </summary>
     private List<Player> playerGuesses;
-
+    /// <summary>
+    /// Textfield to display this cards Answe text.
+    /// </summary>
+    public TMP_Text textField;
     /// <summary>
     /// Constructor for a Card Object.
     /// This Constructor initializes the List playerGuesses.
@@ -163,7 +167,20 @@ public class Card : MonoBehaviour
     }
 
 
+    void Update()
+    {
+        
 
+        foreach (char c in Input.inputString)
+        {
+            if (Input.inputString == "\b") 
+                answer = answer.Substring(0, answer.Length - 1);
+            else
+                answer = answer + c;
+            textField.text = Answer;
+            Debug.Log(answer);
+        }
 
-
+        
+    }
 }
