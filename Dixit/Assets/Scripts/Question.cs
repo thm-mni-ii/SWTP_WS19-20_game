@@ -8,14 +8,14 @@ using System.IO;
 public class Question
 {
 
-    public Question(int questionID, string question, string tempCorrectAnswer) {
+    public Question(int questionID, string question, string answer) {
         this.questionID = questionID;
         this.question = question;
-        this.tempCorrectAnswer = tempCorrectAnswer;
+        correctAnswer = new Card();
+        correctAnswer.Answer = answer;
     }
     public int questionID;
     public string question;
-    public string tempCorrectAnswer;
     public Card correctAnswer;
     //  List<string> playerGuesses;
 
