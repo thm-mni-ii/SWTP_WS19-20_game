@@ -7,6 +7,7 @@ using System.IO;
 [Serializable]
 public class Question
 {
+    
 
     public Question(int questionID, string question, string answer) {
         this.questionID = questionID;
