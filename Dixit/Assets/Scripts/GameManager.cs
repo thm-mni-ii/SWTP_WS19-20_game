@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         playerList.Add(new Player(1,0,2,0,2,"Marc"));
         playerList.Add(new Player(2, 0, 2, 0, 2, "Tom"));
         playerList.Add(new Player(3, 0, 2, 0, 2, "Robert"));
-        //playerList.Add(new Player(4, 0, 2, 0, 2, "Herzberg"));
+        playerList.Add(new Player(4, 0, 2, 0, 2, "Herzberg"));
         //playerList.Add(new Player(1, 0, 2, 0, 2, "Priefer"));
         List<Card> voteList = new List<Card>();
       //   Test ob bei tippen auf richtige Karte punkt everteilt werden
@@ -29,20 +29,20 @@ public class GameManager : MonoBehaviour
         allCards[0].PlayerObject = null;
         allCards[0].Answer = "Richtig";
         allCards[0].cardID = 42;
-        allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
+        //allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
         allCards.Add(new Card());
         allCards[1].CorrectVotes = 2;
         allCards[1].IsCorrect = false;
         allCards[1].PlayerObject = new Player(2, 0, 2, 0, 2, "Tom");
         allCards[1].Answer = "Richtig";
         allCards[1].cardID = 1;
-        allCards[1].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Marc"));
+        //allCards[1].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Marc"));
         allCards.Add(new Card());
         allCards[2].IsCorrect = false;
         allCards[2].PlayerObject = new Player(3, 0, 2, 0, 2, "Robert");
         allCards[2].Answer = "Richtig";
         allCards[2].cardID = 3;
-        allCards[2].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0, 2, "Tom"));
+        //allCards[2].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0, 2, "Tom"));
         allCards.Add(new Card());
         allCards[3].IsCorrect = false;
         allCards[3].PlayerObject = new Player(1, 0, 2, 0, 2, "Marc");
@@ -58,11 +58,12 @@ public class GameManager : MonoBehaviour
         //vote test
         voteList[0].cardID = 1;
         voteList[0].IsCorrect = false;
-        voteList[0].PlayerObject = playerList[0];
+        voteList[0].PlayerObject = playerList[1];
         //voteList[0].AddPlayerToPlayerGuesses(new Player(1,50,2,0,2,"Marc"));
         voteList[0].CorrectVotes = 1;
         voteList[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0,2, "Tom"));
         voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));
+
         RegisterEqualVotes(voteList);
         RegisterVotes(voteList);
         Debug.Log("" + allCards[1].PlayerObject.Score);
@@ -170,12 +171,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < allCards.Count; i++)
         {
             //wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist
-            if ((allCards[i].PlayerObject != null && allCards[i].CorrectVotes <= allCards.Count) && allCards[i].IsCorrect == false)
+            if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count/2) && allCards[i].IsCorrect == false)
             {
                 //Schleife über alle Player 
                 for (int k = 0; k < playerList.Count; k++)
                 {
-                  if ( playerList[k].playerID == allCards[i].PlayerObject.playerID && allCards[i].CorrectVotes <= playerList.Count / 2)
+                  if ( playerList[k].playerID == allCards[i].PlayerObject.playerID )
                     {
                         //schleife über alle Playerguesses
                         for (int j = 0; j < allCards[i].PlayerGuesses.Count; j++)
@@ -270,32 +271,55 @@ public class GameManager : MonoBehaviour
             //For Schleife die die Player nahc ihrem Score sortiert
             for(int i = 0; i < playerList.Count; i++)
             {
-                winner.Add(playerList[i]);
-                if (i > 0) {
-                    if (playerList[i].Score > winner[i - 1].Score)
+                //winner=playerList
+                /*   winner.Add(playerList[i]);
+                   if (i > 0) {
+                       if (playerList[i].Score > winner[i - 1].Score)
+                       {
+                           winner[i] = winner[i - 1];
+                           winner[i - 1] = playerList[i];
+                       }
+                   }*/
+
+                
+
+
+            }
+            bool sorted;
+            do
+            {
+                sorted = true;
+                Player temp = new Player();
+                for (int i = 0; i < playerList.Count - 1; i++)
+                {
+                    if (playerList[i].Score < playerList[i + 1].Score)
                     {
-                        winner[i] = winner[i - 1];
-                        winner[i - 1] = playerList[i];
+
+                        temp = playerList[i];
+                        playerList[i] = playerList[i + 1];
+                        playerList[i + 1] = temp;
+                        sorted = false;
                     }
                 }
 
-            }
+            } while (!sorted);
+
             int place = 1;
-            for (int i=0;i<winner.Count;i++)
+            for (int i=0;i<playerList.Count;i++)
             {
                 if (i == 0)
                 {
-                    scoreBoard = "" + place + ". Platz: " + winner[i].PlayerName + " Score:" + winner[i].Score + "\n";
+                    scoreBoard = "" + place + ". Platz: " + playerList[i].PlayerName + " Score:" + playerList[i].Score + "\n";
                 }
                 else{
-                    if (winner[i].Score != winner[i - 1].Score) { 
+                    if (playerList[i].Score != playerList[i - 1].Score) { 
                     
                         place += 1;
                  
 
                     }
 
-                    scoreBoard += "" + place + ". Platz: " + winner[i].PlayerName + " Score:" + winner[i].Score + "\n";
+                    scoreBoard += "" + place + ". Platz: " + playerList[i].PlayerName + " Score:" + playerList[i].Score + "\n";
 
                 }
 
