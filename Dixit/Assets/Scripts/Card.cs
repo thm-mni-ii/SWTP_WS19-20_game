@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 [Serializable]
-public class Card : MonoBehaviour
+public class Card
 {
     /// <summary>
     /// The identifation of the card
@@ -41,6 +41,8 @@ public class Card : MonoBehaviour
     /// <param name="cardID">The identification number of this card.</param>
     /// 
 
+    
+
     public Card()
     {
         this.playerGuesses = new List<Player>();
@@ -65,7 +67,7 @@ public class Card : MonoBehaviour
         set
         {
             answer = value;
-            Debug.Log(answer);
+           // Debug.Log(answer);
         }
     }
     /// <summary>
