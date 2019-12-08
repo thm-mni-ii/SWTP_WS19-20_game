@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
         playerList.Add(new Player(1,0,2,0,2,"Marc"));
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
         allCards[0].PlayerObject = null;
         allCards[0].Answer = "Richtig";
         allCards[0].cardID = 42;
-        //allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
+        allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
+        allCards[0].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
         allCards.Add(new Card());
         allCards[1].CorrectVotes = 2;
         allCards[1].IsCorrect = false;
@@ -63,16 +65,18 @@ public class GameManager : MonoBehaviour
         voteList[0].CorrectVotes = 1;
         voteList[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0,2, "Tom"));
         voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));
+        //voteList[1].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
+        //voteList[1].cardID = 42;
 
         RegisterEqualVotes(voteList);
         RegisterVotes(voteList);
-        Debug.Log("" + allCards[1].PlayerObject.Score);
+        //Debug.Log("" + allCards[1].PlayerObject.Score);
         numberOfRounds = 0;
         RoundEnd();
 
 
         //Player(int playerID, int score, int roomID, int experience, int level, string playerName)
-        Debug.Log("hallo");
+        //Debug.Log("hallo");
 
 
         //überarbeiten da correct answer in questionScript vom ytp card ist, -> einlesen geht nicht so einfahc wie mit vorherigen question 
@@ -90,13 +94,15 @@ public class GameManager : MonoBehaviour
         questionSet.QuestionList[2].questionID = 0;
         questionSet.QuestionList[2].correctAnswer.answer = "42";
         questionSet.QuestionList[2].question = "Wie lautet die Antwort auf alle Fragen?";*/
-        questionSet.PrintOutQuestions();
+        //questionSet.PrintOutQuestions();
 
         questionSet = questionSet.LoadQuestionSet(questionPath);
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+
+
         questionScript.GetQuestionFromQuestionSet(questionSet);
-        Debug.Log("OK");
+       // Debug.Log("OK");
         questionSet.PrintOutQuestions();
     }
 
@@ -195,16 +201,7 @@ public class GameManager : MonoBehaviour
                 //schleife über playerList
                 for (int j = 0; j < playerList.Count; j++)
                 {
-                    /*doNotIncrease = false;
-                    for (int g = 0; g < noIncreaseScoreList.Count; g++)
-                    {
-                        if (noIncreaseScoreList[j].playerID == playerList[g].playerID)
-                        {
-                            doNotIncrease = true;
-                            Debug.Log("pid:" + noIncreaseScoreList[j].playerID + ":" + doNotIncrease);
-                        }
-                    }*/
-                    //schleife über playerguesses
+                  
                     for (int k = 0; k < allCards[i].PlayerGuesses.Count; k++)
                     {
                         if (playerList[j].playerID == allCards[i].PlayerGuesses[k].playerID )
@@ -216,7 +213,6 @@ public class GameManager : MonoBehaviour
                                     playerList[j].Score += 50;
 
                             }
-                            //schleif über karten
 
                         }
                     }
@@ -224,7 +220,7 @@ public class GameManager : MonoBehaviour
                 }
             }
     }
-      // BroadCastScoresViaPM();
+       BroadCastScoresViaPM();
 
     }
 
@@ -264,32 +260,15 @@ public class GameManager : MonoBehaviour
             //display player scores
             // display winner
             string scoreBoard = "ScoreBoard\n";
-            List<Player> winner = new List<Player>();
             
-           // Player temp = new Player();
+            Player temp = new Player();
 
             //For Schleife die die Player nahc ihrem Score sortiert
-            for(int i = 0; i < playerList.Count; i++)
-            {
-                //winner=playerList
-                /*   winner.Add(playerList[i]);
-                   if (i > 0) {
-                       if (playerList[i].Score > winner[i - 1].Score)
-                       {
-                           winner[i] = winner[i - 1];
-                           winner[i - 1] = playerList[i];
-                       }
-                   }*/
-
-                
-
-
-            }
+            
             bool sorted;
             do
             {
                 sorted = true;
-                Player temp = new Player();
                 for (int i = 0; i < playerList.Count - 1; i++)
                 {
                     if (playerList[i].Score < playerList[i + 1].Score)
