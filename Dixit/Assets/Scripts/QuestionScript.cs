@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestionScript : MonoBehaviourS
+public class QuestionScript : MonoBehaviour
 {
    
     public Text question;
