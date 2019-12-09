@@ -47,7 +47,15 @@ public class Player : MonoBehaviour
     public Player()
     {
     }
-
+    public Player(int pID,int score,int roomID, int xp, int lvl, string name)
+    {
+        this.playerID = pID;
+        this.score = score;
+        this.roomID = roomID;
+        this.experience = xp;
+        this.level = lvl;
+        this.playerName = name;
+    }
 
     /// <summary>
     /// Getter/Setter for score.

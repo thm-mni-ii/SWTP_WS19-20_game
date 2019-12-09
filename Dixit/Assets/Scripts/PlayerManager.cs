@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     /// <param name="player">The Card Object from the player.</param>
    public static void RegisterAnswer(Card answer){
 
-       answers.Add(answers);
+       answers.Add(answer);
        if (answers.Count == players.Count)
        {
            // GameManager.HandleAnswer(answers);
@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
     /// Sends the new list of players to the player to update scores.
     /// </summary>
     /// <param name="player">A List of Player Objects.</param>
-   void BroadcastScores(List<Player> players2){
+   public void BroadcastScores(List<Player> players2){
        foreach (Player p in players)
        {
            p.UpdateScores(players2);
