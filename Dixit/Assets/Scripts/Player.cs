@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 [Serializable]
-public class Player
+public class Player : MonoBehaviour
 {
     //player und user ID werden jetzt zusammengelegt
     /// <summary>
@@ -36,6 +36,10 @@ public class Player
     /// </summary>
     private string playerName;
 
+    public QuestionScript question;
+    public Card card;
+    private Text scoreboard;
+
 
     /// <summary>
     /// An empty constructor for Player.
@@ -57,7 +61,15 @@ public class Player
         this.level = level;
         this.playerName = playerName;
     }
-
+    public Player(int pID,int score,int roomID, int xp, int lvl, string name)
+    {
+        this.playerID = pID;
+        this.score = score;
+        this.roomID = roomID;
+        this.experience = xp;
+        this.level = lvl;
+        this.playerName = name;
+    }
 
     /// <summary>
     /// Getter/Setter for score.
@@ -191,5 +203,30 @@ public class Player
         output = JsonConvert.SerializeObject(player);
         Debug.Log(" " + player + " :" + output);
 
+    }
+
+    void Awake(){
+        question = GameObject.FindGameObjectWithTag("Question").GetComponent<QuestionScript>();
+        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Text>();
+    }
+
+
+    public void ShowAnswers(List<Card> answers){
+        foreach (Card answer in answers)
+        {
+            Card c = Instantiate(card, new Vector3(0,0,0), Quaternion.identity);
+            c.cardID = answer.cardID;
+            c.textField.text = answer.Answer;
+            c.PlayerObject = answer.PlayerObject;
+            c.votePhase = true;
+            c.IsCorrect = answer.IsCorrect;
+        }
+    }
+
+    public void UpdateScores(List<Player> players){
+        foreach (Player p in players)
+        {
+            scoreboard.text += p.Score + "\t" + p.PlayerName + "\n";
+        }
     }
 }
