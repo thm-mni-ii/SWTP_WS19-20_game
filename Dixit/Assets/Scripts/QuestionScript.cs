@@ -7,7 +7,7 @@ public class QuestionScript : MonoBehaviour
 {   
     Text question;
     //Card correctAnswer;
-    //ArrayList<Player> players;
+    List<Player> players;
     TimerScript timer;
     Color textcolor;
 
@@ -17,8 +17,7 @@ public class QuestionScript : MonoBehaviour
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
 
-        //Zu Testzwecken
-        startQuestion(20f);
+        startQuestion(4, "scuur scurr");
     }
 
     void Update()
@@ -29,11 +28,12 @@ public class QuestionScript : MonoBehaviour
         }
     }
 
-    void startQuestion(float time/*, Question question*/)
+    public void startQuestion(float time, string question)
     {
         timer.setTimer(time);
         textcolor.a = 1f;
-        question.color = textcolor;
+        this.question.text = question;
+        this.question.color = textcolor;
     }
 
     void endQuestion()

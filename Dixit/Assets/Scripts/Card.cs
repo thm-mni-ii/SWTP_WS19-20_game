@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
     /// <summary>
     /// The answer of the player
     /// </summary>
-    private string answer;
+    private string answer = "";
     /// <summary>
     /// The corresponding player object
     /// </summary>
@@ -38,6 +38,16 @@ public class Card : MonoBehaviour
     /// Textfield to display this cards Answe text.
     /// </summary>
     public TMP_Text textField;
+    /// <summary>
+    /// Flag if input is finished.
+    /// </summary>
+    private Boolean answerGiven = false;
+    /// <summary>
+    /// Flag if card is clickable.
+    /// </summary>
+    public Boolean votePhase = false;
+
+
     /// <summary>
     /// Constructor for a Card Object.
     /// This Constructor initializes the List playerGuesses.
@@ -166,21 +176,27 @@ public class Card : MonoBehaviour
         return tempCard;
     }
 
-
     void Update()
     {
         
-
         foreach (char c in Input.inputString)
         {
-            if (Input.inputString == "\b") 
-                answer = answer.Substring(0, answer.Length - 1);
-            else
-                answer = answer + c;
-            textField.text = Answer;
-            Debug.Log(answer);
-        }
+            if(!answerGiven && !votePhase){
+                if (Input.inputString == "\r"){
+                    answerGiven = true;
+                    PlayerManager.RegisterAnswer(this);
+                } else if (Input.inputString == "\b" && answer.Length>0) 
+                    answer = answer.Substring(0, answer.Length - 1);
+                else
+                    answer = answer + c;
+                textField.text = Answer;
+                Debug.Log(answer);
+            }
+        }   
+    }
 
-        
+    void TimeUP(){
+        answerGiven = true;
+        PlayerManager.RegisterAnswer(this);
     }
 }
