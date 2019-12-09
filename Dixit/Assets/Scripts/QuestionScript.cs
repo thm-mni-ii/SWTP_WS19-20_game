@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestionScript : MonoBehaviour
-{   
-    Text question;
-    //Card correctAnswer;
-    List<Player> players;
+public class QuestionScript : MonoBehaviourS
+{
+   
+    public Text question;
     TimerScript timer;
     Color textcolor;
+    Question currentQuestion;
 
+  
+  
     void Awake()
     {
+
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -49,4 +52,20 @@ public class QuestionScript : MonoBehaviour
             }
         }*/
     }
+
+
+
+    public void GetQuestionFromQuestionSet(QuestionSet questionSet)
+    {
+
+        question.text = questionSet.QuestionList[0].question;
+        //Debug.Log(questionSet.QuestionList.Count);
+        questionSet.RemoveQuestionFromSet(0);
+        //Debug.Log(questionSet.QuestionList.Count);
+
+    }
+
+
 }
+
+
