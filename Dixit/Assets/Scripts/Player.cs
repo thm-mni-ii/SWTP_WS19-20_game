@@ -61,15 +61,6 @@ public class Player : MonoBehaviour
         this.level = level;
         this.playerName = playerName;
     }
-    public Player(int pID,int score,int roomID, int xp, int lvl, string name)
-    {
-        this.playerID = pID;
-        this.score = score;
-        this.roomID = roomID;
-        this.experience = xp;
-        this.level = lvl;
-        this.playerName = name;
-    }
 
     /// <summary>
     /// Getter/Setter for score.
@@ -214,12 +205,12 @@ public class Player : MonoBehaviour
     public void ShowAnswers(List<Card> answers){
         foreach (Card answer in answers)
         {
-            Card c = Instantiate(card, new Vector3(0,0,0), Quaternion.identity);
-            c.cardID = answer.cardID;
-            c.textField.text = answer.Answer;
-            c.PlayerObject = answer.PlayerObject;
-            c.votePhase = true;
-            c.IsCorrect = answer.IsCorrect;
+            //Card c = Instantiate(card, new Vector3(0,0,0), Quaternion.identity);
+            //c.cardID = answer.cardID;
+            //c.textField.text = answer.Answer;
+            //c.PlayerObject = answer.PlayerObject;
+            //c.votePhase = true;
+            //c.IsCorrect = answer.IsCorrect;
         }
     }
 

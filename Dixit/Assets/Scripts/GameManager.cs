@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     void NextQuestion()
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
-        pm.BroadcastQuestion(currentQuestion);
+        pm.BroadcastQuestion(currentQuestion,30f);
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()
@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BroadCastScoresViaPM()
     {
-        pm.BoradCastAnswers(playerList);
+        pm.BroadcastScores(playerList);
         RoundEnd();
     }
 

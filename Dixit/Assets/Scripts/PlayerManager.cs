@@ -7,7 +7,6 @@ public class PlayerManager : MonoBehaviour
     public static List<Player> players = new List<Player>();
     public static List<Card> answers = new List<Card>();
     public Player player;
-    static private bool allPlayersAnswered = true;
 
 
     /// <summary>
