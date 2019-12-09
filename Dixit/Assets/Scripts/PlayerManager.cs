@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public static List<Player> players = new List<Player>();
-    public static Dictionary<Player, bool> answered = new Dictionary<Player, bool>();
+    public static List<Card> answers = new List<Card>();
     public Player player;
     static private bool allPlayersAnswered = true;
 
@@ -15,11 +15,6 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void Start(){
         players.Add(player);
-        foreach (Player p in players)
-       {
-          answered.Add(p,false);
-
-       }
     }
 
     /// <summary>
@@ -38,17 +33,12 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">The Card Object from the player.</param>
    public static void RegisterAnswer(Card answer){
-        //GameManager.HandleAnswer(answer);
-    //     foreach (KeyValuePair<Player, bool> p in answered)
-    //    {
-    //       if(p.Key.playerID == answer.PlayerObject.playerID)
-    //         answered[answer.PlayerObject] = true;
-    //       if(p.Value ==false){
-    //           allPlayersAnswered = false;
-    //       }
-    //    }
-    //    if(allPlayersAnswered){}
-    //     //do when all players answered
+
+       answers.Add(answers);
+       if (answers.Count == players.Count)
+       {
+           // GameManager.HandleAnswer(answers);
+       }
    }
 
     /// <summary>
