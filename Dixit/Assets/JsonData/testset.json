@@ -1,0 +1,65 @@
+{
+    "questionSetID": 1,
+    "QuestionList": [
+        {
+            "questionID": 0,
+            "question": "Wie lautet die antwort auf alle fragen",
+            "correctAnswer": {
+                "cardID": 999,
+                "Answer": "42",
+                "PlayerObject": null,
+                "CorrectVotes": 0,
+                "IsCorrect": false,
+                "PlayerGuesses": []
+            }
+        },
+        {
+            "questionID": 1,
+            "question": "CSS ist die Abkürzung für?",
+            "correctAnswer": {
+                "cardID": 999,
+                "Answer": "Cascading Style Sheets",
+                "PlayerObject": null,
+                "CorrectVotes": 0,
+                "IsCorrect": false,
+                "PlayerGuesses": []
+            }
+        },
+        {
+            "questionID": 2,
+            "question": "Unity ist..?",
+            "correctAnswer": {
+                "cardID": 999,
+                "Answer": "Eine Laufzeit- und Entwicklungsumgebung zur Spieleentwicklung",
+                "PlayerObject": null,
+                "CorrectVotes": 0,
+                "IsCorrect": false,
+                "PlayerGuesses": []
+            }
+        },
+        {
+            "questionID": 3,
+            "question": "Wofür steht CIA innerhalb der Domäne der IT Security",
+            "correctAnswer": {
+                "cardID": 999,
+                "Answer": "confidentiality, integrity, availability",
+                "PlayerObject": null,
+                "CorrectVotes": 0,
+                "IsCorrect": false,
+                "PlayerGuesses": []
+            }
+        },
+        {
+            "questionID": 4,
+            "question": "Wie viele Byte hat ein Bit?",
+            "correctAnswer": {
+                "cardID": 999,
+                "Answer": "Keins, ein Byte hat 8 Bit",
+                "PlayerObject": null,
+                "CorrectVotes": 0,
+                "IsCorrect": false,
+                "PlayerGuesses": []
+            }
+        }
+    ]
+}
