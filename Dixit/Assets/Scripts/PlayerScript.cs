@@ -20,8 +20,8 @@ public class PlayerScript : MonoBehaviour
     }
     void Awake()
     {
-        question = GameObject.FindGameObjectWithTag("Question").GetComponent<QuestionScript>();
-        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Text>();
+        question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+        scoreboard = GetComponent<Text>();
     }
 
 

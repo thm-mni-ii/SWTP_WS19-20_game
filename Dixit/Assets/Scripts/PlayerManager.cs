@@ -15,7 +15,8 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void Start(){
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        player = GameObject.FindWithTag<PlayerScript>();
+        player = GetComponent<PlayerScript>();
+       // player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         players.Add(player);
     }
 

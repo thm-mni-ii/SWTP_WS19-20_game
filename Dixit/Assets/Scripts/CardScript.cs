@@ -22,11 +22,12 @@ public class CardScript : MonoBehaviour
     /// Flag if card is clickable.
     /// </summary>
     public Boolean votePhase = false;
-
+    public PlayerManager pm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class CardScript : MonoBehaviour
                 if (Input.inputString == "\r")
                 {
                     answerGiven = true;
-                    PlayerManager.RegisterAnswer(card);
+                    pm.RegisterAnswer(card);
                 }
                 else if (Input.inputString == "\b" && card.Answer.Length > 0)
                     card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);
@@ -55,6 +56,6 @@ public class CardScript : MonoBehaviour
     void TimeUP()
     {
         answerGiven = true;
-        PlayerManager.RegisterAnswer(card);
+        pm.RegisterAnswer(card);
     }
 }

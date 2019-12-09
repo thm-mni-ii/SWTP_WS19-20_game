@@ -36,7 +36,7 @@ public class Player
     /// </summary>
     private string playerName;
 
-    public Card card;
+  //  public Card card;
   
 
 
@@ -48,7 +48,6 @@ public class Player
     {
 
     }
-
 
 
     public Player(int playerID, int score, int roomID, int experience, int level, string playerName)
