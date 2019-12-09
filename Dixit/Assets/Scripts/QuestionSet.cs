@@ -125,6 +125,12 @@ public class QuestionSet
         return questionSet;
     }
 
+    public Question GetNextQuestion()
+    {
+        Question nextQuestion = QuestionList[0];
+        RemoveQuestionFromSet(0);
 
+        return nextQuestion;
+    }
 
 }

@@ -8,11 +8,20 @@ public class GameManager : MonoBehaviour
     public string questionPath;
     public QuestionSet questionSet = new QuestionSet();
     QuestionScript questionScript;
+    Question currentQuestion;
+    List<Card> currentAnswers;
     PlayerManager pm;
     List<Card> allCards;
     List<Player> playerList;
     public int numberOfRounds;
 
+
+    void NextQuestion()
+    {
+        currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        pm.BroadcastQuestion(currentQuestion,30f);
+        //Debug.Log("NextQuestion aufgerufen");
+    }
     void Start()
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
@@ -97,13 +106,13 @@ public class GameManager : MonoBehaviour
         //questionSet.PrintOutQuestions();
 
         questionSet = questionSet.LoadQuestionSet(questionPath);
-        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-        questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
-
-
-        questionScript.GetQuestionFromQuestionSet(questionSet);
-       // Debug.Log("OK");
         questionSet.PrintOutQuestions();
+        
+        questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+        //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        NextQuestion();
+        Debug.Log("OK");
+        
     }
 
     // Update is called once per frame
@@ -220,7 +229,7 @@ public class GameManager : MonoBehaviour
                 }
             }
     }
-       BroadCastScoresViaPM();
+        BroadCastScoresViaPM();
 
     }
 
@@ -244,7 +253,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BroadCastScoresViaPM()
     {
-        pm.BoradCastAnswers(playerList);
+        pm.BroadcastScores(playerList);
         RoundEnd();
     }
 
@@ -311,14 +320,12 @@ public class GameManager : MonoBehaviour
             NextQuestion();
         }
 
+    }
 
 
-
-        void NextQuestion()
-        {
-            Debug.Log("NextQuestion aufgerufen");
-        }
-
+    void HandleAnswers(List<Card> answers)
+    {
+        currentAnswers = answers;
     }
 
 }
