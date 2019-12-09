@@ -178,27 +178,5 @@ public class Card
         return tempCard;
     }
 
-    void Update()
-    {
-        
-        foreach (char c in Input.inputString)
-        {
-            if(!answerGiven && !votePhase){
-                if (Input.inputString == "\r"){
-                    answerGiven = true;
-                    PlayerManager.RegisterAnswer(this);
-                } else if (Input.inputString == "\b" && answer.Length>0) 
-                    answer = answer.Substring(0, answer.Length - 1);
-                else
-                    answer = answer + c;
-                textField.text = Answer;
-                Debug.Log(answer);
-            }
-        }   
-    }
-
-    void TimeUP(){
-        answerGiven = true;
-        PlayerManager.RegisterAnswer(this);
-    }
+   
 }
