@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 [Serializable]
-public class Card : MonoBehaviour
+public class Card
 {
     /// <summary>
     /// The identifation of the card

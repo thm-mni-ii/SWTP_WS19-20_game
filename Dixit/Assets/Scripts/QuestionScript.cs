@@ -55,14 +55,15 @@ public class QuestionScript : MonoBehaviour
 
 
 
-    public void GetQuestionFromQuestionSet(QuestionSet questionSet)
+    public Question GetQuestionFromQuestionSet(QuestionSet questionSet)
     {
 
-        question.text = questionSet.QuestionList[0].question;
+        currentQuestion = questionSet.GetNextQuestion();
+        question.text = currentQuestion.question;
         //Debug.Log(questionSet.QuestionList.Count);
-        questionSet.RemoveQuestionFromSet(0);
+        //questionSet.RemoveQuestionFromSet(0);
         //Debug.Log(questionSet.QuestionList.Count);
-
+        return currentQuestion;
     }
 
 

@@ -40,8 +40,22 @@ public class Player
     /// <summary>
     /// An empty constructor for Player.
     /// </summary>
+    /// 
     public Player()
     {
+
+    }
+
+
+
+    public Player(int playerID, int score, int roomID, int experience, int level, string playerName)
+    {
+        this.playerID = playerID;
+        this.score = score;
+        this.roomID = roomID;
+        this.experience = experience;
+        this.level = level;
+        this.playerName = playerName;
     }
 
 

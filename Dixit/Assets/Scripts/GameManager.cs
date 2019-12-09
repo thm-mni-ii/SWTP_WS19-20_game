@@ -8,13 +8,23 @@ public class GameManager : MonoBehaviour
     public string questionPath;
     public QuestionSet questionSet = new QuestionSet();
     QuestionScript questionScript;
+    Question currentQuestion;
+    List<Card> currentAnswers;
     PlayerManager pm;
     List<Card> allCards;
     List<Player> playerList;
     public int numberOfRounds;
 
+
+    void NextQuestion()
+    {
+        currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        pm.BroadcastQuestion(currentQuestion);
+        //Debug.Log("NextQuestion aufgerufen");
+    }
     void Start()
     {
+        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
         playerList.Add(new Player(1,0,2,0,2,"Marc"));
@@ -89,14 +99,16 @@ public class GameManager : MonoBehaviour
         questionSet.QuestionList[2].questionID = 0;
         questionSet.QuestionList[2].correctAnswer.answer = "42";
         questionSet.QuestionList[2].question = "Wie lautet die Antwort auf alle Fragen?";*/
-        questionSet.PrintOutQuestions();
+        //questionSet.PrintOutQuestions();
 
         questionSet = questionSet.LoadQuestionSet(questionPath);
-        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-        questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
-        questionScript.GetQuestionFromQuestionSet(questionSet);
-        Debug.Log("OK");
         questionSet.PrintOutQuestions();
+        
+        questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+        //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        NextQuestion();
+        Debug.Log("OK");
+        
     }
 
     // Update is called once per frame
@@ -223,7 +235,7 @@ public class GameManager : MonoBehaviour
                 }
             }
     }
-      // BroadCastScoresViaPM();
+        BroadCastScoresViaPM();
 
     }
 
@@ -308,14 +320,12 @@ public class GameManager : MonoBehaviour
             NextQuestion();
         }
 
+    }
 
 
-
-        void NextQuestion()
-        {
-            Debug.Log("NextQuestion aufgerufen");
-        }
-
+    void HandleAnswers(List<Card> answers)
+    {
+        currentAnswers = answers;
     }
 
 }
