@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static List<Player> players = new List<Player>();
+    public static List<PlayerScript> players = new List<PlayerScript>();
     public static List<Card> answers = new List<Card>();
-    public Player player;
+    public PlayerScript player;
+    public GameManager gm;
 
 
     /// <summary>
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        player = GameObject.FindWithTag<PlayerScript>();
         players.Add(player);
     }
 
@@ -20,8 +23,8 @@ public class PlayerManager : MonoBehaviour
     /// Recieves a question and a timer to send to all Players.
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
-   public static void BroadcastQuestion(Question question, float time){
-       foreach (Player p in players)
+   public void BroadcastQuestion(Question question, float time){
+       foreach (PlayerScript p in players)
        {
           p.question.startQuestion(time,question.question);
        }
@@ -31,12 +34,12 @@ public class PlayerManager : MonoBehaviour
     /// Recieves the Answer from the players and marks them in the dictionary.
     /// </summary>
     /// <param name="player">The Card Object from the player.</param>
-   public static void RegisterAnswer(Card answer){
+   public void RegisterAnswer(Card answer){
 
        answers.Add(answer);
        if (answers.Count == players.Count)
        {
-           // GameManager.HandleAnswer(answers);
+            gm.HandleAnswers(answers);
        }
    }
 
@@ -45,7 +48,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A List of Card Objects.</param>
    public void BroadcastAnswers(List<Card> answers){
-        foreach (Player p in players)
+        foreach (PlayerScript p in players)
        {
           p.ShowAnswers(answers);
        }
@@ -56,9 +59,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
    void RegisterEqualVote(List<Card> vote){
-       foreach (Player p in players)
+       foreach (PlayerScript p in players)
        {
-          //GameManager.RegisterEqualVotes(List<Card> votes);
+          gm.RegisterEqualVotes(vote);
        }
    }
 
@@ -67,7 +70,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A List of Player Objects.</param>
    public void BroadcastScores(List<Player> players2){
-       foreach (Player p in players)
+       foreach (PlayerScript p in players)
        {
            p.UpdateScores(players2);
        }

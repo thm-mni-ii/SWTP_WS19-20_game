@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public string questionPath;
     public QuestionSet questionSet = new QuestionSet();
+    public PlayerManager pm;
     QuestionScript questionScript;
     Question currentQuestion;
     List<Card> currentAnswers;
-    PlayerManager pm;
     List<Card> allCards;
     List<Player> playerList;
     public int numberOfRounds;
@@ -323,7 +323,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void HandleAnswers(List<Card> answers)
+    public void HandleAnswers(List<Card> answers)
     {
         currentAnswers = answers;
     }
