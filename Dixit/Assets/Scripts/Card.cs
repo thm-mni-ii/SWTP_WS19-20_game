@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TMPro;
 
 [Serializable]
 public class Card
@@ -16,7 +17,7 @@ public class Card
     /// <summary>
     /// The answer of the player
     /// </summary>
-    private string answer;
+    private string answer = "";
     /// <summary>
     /// The corresponding player object
     /// </summary>
@@ -33,6 +34,19 @@ public class Card
     /// A list of players who chose this card as the correct answer.
     /// </summary>
     private List<Player> playerGuesses;
+    /// <summary>
+    /// Textfield to display this cards Answe text.
+    /// </summary>
+    public TMP_Text textField;
+    /// <summary>
+    /// Flag if input is finished.
+    /// </summary>
+    private Boolean answerGiven = false;
+    /// <summary>
+    /// Flag if card is clickable.
+    /// </summary>
+    public Boolean votePhase = false;
+
 
     /// <summary>
     /// Constructor for a Card Object.
@@ -164,8 +178,27 @@ public class Card
         return tempCard;
     }
 
+    void Update()
+    {
+        
+        foreach (char c in Input.inputString)
+        {
+            if(!answerGiven && !votePhase){
+                if (Input.inputString == "\r"){
+                    answerGiven = true;
+                    PlayerManager.RegisterAnswer(this);
+                } else if (Input.inputString == "\b" && answer.Length>0) 
+                    answer = answer.Substring(0, answer.Length - 1);
+                else
+                    answer = answer + c;
+                textField.text = Answer;
+                Debug.Log(answer);
+            }
+        }   
+    }
 
-
-
-
+    void TimeUP(){
+        answerGiven = true;
+        PlayerManager.RegisterAnswer(this);
+    }
 }

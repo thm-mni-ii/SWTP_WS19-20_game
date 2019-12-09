@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Menu
   - Timer
+  - Question
+  - Scoreboard
   layers:
   - Default
   - TransparentFX
