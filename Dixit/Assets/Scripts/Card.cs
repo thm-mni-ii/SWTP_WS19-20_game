@@ -35,28 +35,13 @@ public class Card
     /// </summary>
     private List<Player> playerGuesses;
     /// <summary>
-    /// Textfield to display this cards Answe text.
-    /// </summary>
-    public TMP_Text textField;
-    /// <summary>
-    /// Flag if input is finished.
-    /// </summary>
-    private Boolean answerGiven = false;
-    /// <summary>
-    /// Flag if card is clickable.
-    /// </summary>
-    public Boolean votePhase = false;
-
-
-    /// <summary>
     /// Constructor for a Card Object.
     /// This Constructor initializes the List playerGuesses.
     /// </summary>
     /// <param name="cardID">The identification number of this card.</param>
     /// 
 
-    
-
+ 
     public Card()
     {
         this.playerGuesses = new List<Player>();
@@ -178,5 +163,19 @@ public class Card
         return tempCard;
     }
 
-   
+
+    public List<Card> AddOneAndShuffle(List<Card> cardList)
+    {
+        cardList.Add(this);
+        for (int i = 0; i < cardList.Count; i++)
+        {
+            Card temp = cardList[i];
+            int index = UnityEngine.Random.Range(i, cardList.Count);
+            cardList[i] = cardList[index];
+            cardList[index] = temp;
+        }
+        return cardList;
+    }
+
 }
+

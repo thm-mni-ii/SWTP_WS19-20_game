@@ -41,7 +41,14 @@ public class PlayerManager : MonoBehaviour
        answers.Add(answer);
        if (answers.Count == players.Count)
        {
+            
             gm.HandleAnswers(answers);
+            for(int i = 0; i < answers.Count; i++)
+            {
+                Debug.Log("answer "+i+": "+answers[i].Answer);
+
+            }
+            //Debug.Log("gm.HandleAnswers(answers");
        }
    }
 
@@ -53,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerScript p in players)
        {
           p.ShowAnswers(answers);
+            //Debug.Log(""+p.)
        }
    }
 
@@ -64,6 +72,7 @@ public class PlayerManager : MonoBehaviour
        foreach (PlayerScript p in players)
        {
           gm.RegisterEqualVotes(vote);
+
        }
    }
 

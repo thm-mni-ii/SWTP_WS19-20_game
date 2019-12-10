@@ -17,20 +17,30 @@ public class CardScript : MonoBehaviour
     /// <summary>
     /// Flag if input is finished.
     /// </summary>
-    private Boolean answerGiven = false;
+    public Boolean answerGiven = false;
     /// <summary>
     /// Flag if card is clickable.
     /// </summary>
     public Boolean votePhase = false;
     public PlayerManager pm;
+    PlayerScript ps;
     // Start is called before the first frame update
     void Start()
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+        ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
         card = new Card();
+        SetCardFromPlayerScript(ps, card);
         textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
 
     }
+    public void SetCardFromPlayerScript(PlayerScript ps,Card card)
+    {
+        card.cardID = ps.player.playerID;
+        card.PlayerObject = ps.player;
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -55,9 +65,11 @@ public class CardScript : MonoBehaviour
         }
     }
 
-    void TimeUP()
+    public void TimeUP()
     {
         answerGiven = true;
         pm.RegisterAnswer(card);
+        //Destroy(gameObject);
+        Destroy(GameObject.FindGameObjectWithTag("Card"));
     }
 }

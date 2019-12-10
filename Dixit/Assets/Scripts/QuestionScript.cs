@@ -10,12 +10,12 @@ public class QuestionScript : MonoBehaviour
     TimerScript timer;
     Color textcolor;
     Question currentQuestion;
-
+    CardScript cs;
   
   
     void Awake()
     {
-
+        cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -25,7 +25,7 @@ public class QuestionScript : MonoBehaviour
 
     void Update()
     {
-        if(timer.timeleft <= 0)
+        if(timer.timeleft <= 0 ||cs.answerGiven==true)
         {
             endQuestion();
         }
@@ -43,7 +43,8 @@ public class QuestionScript : MonoBehaviour
     {
         textcolor.a = 0f;
         question.color = textcolor;
-
+        timer.setTimer(0);
+        cs.TimeUP();
         /*for(Player player in players)
         {
             if(player.answer == correctAnswer)

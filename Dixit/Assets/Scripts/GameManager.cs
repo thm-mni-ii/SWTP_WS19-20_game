@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     Question currentQuestion;
     List<Card> currentAnswers;
     List<Card> allCards;
-    List<Player> playerList;
+    public List<Player> playerList;
     public int numberOfRounds;
 
 
@@ -263,7 +263,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void RoundEnd()
     {
-        if(questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
+        questionSet.RemoveQuestionFromSet(0);
+        if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
         {
             //spiel beenden
             //hud 
@@ -327,8 +328,19 @@ public class GameManager : MonoBehaviour
     public void HandleAnswers(List<Card> answers)
     {
         currentAnswers = answers;
+        for (int i = 0; i < answers.Count; i++)
+        {
+            Debug.Log("answer " + i + ": " + currentAnswers[i].Answer);
+
+        }
+        Debug.Log("answers handled");
+        questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(currentAnswers);
+        pm.BroadcastAnswers(currentAnswers);
     }
 
 }
+
+
+
 
 
