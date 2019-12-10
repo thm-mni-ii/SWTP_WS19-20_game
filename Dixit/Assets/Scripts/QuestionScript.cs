@@ -20,7 +20,7 @@ public class QuestionScript : MonoBehaviour
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
 
-        startQuestion(4, "scuur scurr");
+       // startQuestion(4, "scuur scurr");
     }
 
     void Update()

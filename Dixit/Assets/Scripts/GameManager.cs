@@ -27,14 +27,15 @@ public class GameManager : MonoBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
-        playerList.Add(new Player(1,0,2,0,2,"Marc"));
+       /* playerList.Add(new Player(1,0,2,0,2,"Marc"));
         playerList.Add(new Player(2, 0, 2, 0, 2, "Tom"));
         playerList.Add(new Player(3, 0, 2, 0, 2, "Robert"));
         playerList.Add(new Player(4, 0, 2, 0, 2, "Herzberg"));
+        */
         //playerList.Add(new Player(1, 0, 2, 0, 2, "Priefer"));
-        List<Card> voteList = new List<Card>();
+        //List<Card> voteList = new List<Card>();
       //   Test ob bei tippen auf richtige Karte punkt everteilt werden
-        allCards.Add(new Card());
+        /*allCards.Add(new Card());
         allCards[0].IsCorrect = true;
         allCards[0].PlayerObject = null;
         allCards[0].Answer = "Richtig";
@@ -63,25 +64,25 @@ public class GameManager : MonoBehaviour
         voteList.Add(new Card());
         voteList.Add(new Card());
         voteList.Add(new Card());
-        voteList.Add(new Card());
+        voteList.Add(new Card());*/
         //vote equal test
 
         //vote test
-        voteList[0].cardID = 1;
+       /* voteList[0].cardID = 1;
         voteList[0].IsCorrect = false;
         voteList[0].PlayerObject = playerList[1];
         //voteList[0].AddPlayerToPlayerGuesses(new Player(1,50,2,0,2,"Marc"));
         voteList[0].CorrectVotes = 1;
         voteList[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0,2, "Tom"));
-        voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));
+        voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));*/
         //voteList[1].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
         //voteList[1].cardID = 42;
 
-        RegisterEqualVotes(voteList);
-        RegisterVotes(voteList);
+        //RegisterEqualVotes(voteList);
+        //RegisterVotes(voteList);
         //Debug.Log("" + allCards[1].PlayerObject.Score);
         numberOfRounds = 0;
-        RoundEnd();
+        //RoundEnd();
 
 
         //Player(int playerID, int score, int roomID, int experience, int level, string playerName)
