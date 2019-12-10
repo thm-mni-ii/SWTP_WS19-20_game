@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+    CardScript c;
     public void ShowAnswers(List<Card> answers)
     {
         int i = 0;
@@ -34,20 +35,22 @@ public class PlayerScript : MonoBehaviour
         foreach (Card answer in answers)
         {
             
-            CardScript c = Instantiate(card, card.transform.position, Quaternion.identity);
+             c = Instantiate(card, card.transform.position, Quaternion.identity);
             c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
             c.transform.Rotate(new Vector3(270,0,0));
             c.card.cardID = answer.cardID;
             Debug.Log("vorher :" + answer.Answer);
+           // textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+
             c.textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
             //GetComponent<TMP_Text>();
             c.textField.text = answer.Answer;
             c.answerGiven = true;
             Debug.Log("Textfield: " + c.textField.text);
-            //c.card = answer;
-           // c.card.PlayerObject = answer.PlayerObject;
+            c.card = answer;
+            c.card.PlayerObject = answer.PlayerObject;
             c.votePhase = true;
-            //c.card.IsCorrect = answer.IsCorrect;
+            c.card.IsCorrect = answer.IsCorrect;
             if (answers.Count == 2)
             {
                 offset += 7;

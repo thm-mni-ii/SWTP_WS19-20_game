@@ -30,9 +30,9 @@ public class CardScript : MonoBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
         card = new Card();
-        SetCardFromPlayerScript(ps, card);
         textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
 
+        Debug.Log("tst:" + textField.text);
     }
     public void SetCardFromPlayerScript(PlayerScript ps,Card card)
     {
@@ -45,6 +45,11 @@ public class CardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (votePhase == true)
+        {
+            //textField.text = card.Answer;
+
+        }
 
         foreach (char c in Input.inputString)
         {
@@ -67,9 +72,16 @@ public class CardScript : MonoBehaviour
 
     public void TimeUP()
     {
+        SetCardFromPlayerScript(ps, card);
         answerGiven = true;
         pm.RegisterAnswer(card);
         //Destroy(gameObject);
         Destroy(GameObject.FindGameObjectWithTag("Card"));
+    }
+
+public void GetAndSetTMP_Text(string text)
+    {
+        textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+        textField.text = card.Answer;
     }
 }
