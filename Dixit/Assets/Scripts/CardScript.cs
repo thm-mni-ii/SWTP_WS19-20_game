@@ -27,6 +27,8 @@ public class CardScript : MonoBehaviour
     void Start()
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+        card = new Card();
+        textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
 
     }
 
