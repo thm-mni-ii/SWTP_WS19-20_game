@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     public CardScript card;
     public Player player;
     public Dictionary<int, TMP_Text> allPlayerScripts;
+    public TextMeshProUGUI phaseText;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +66,10 @@ void Awake()
             }
             
         }
+        phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
+        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+
+
     }
 
     public void UpdateScores(List<Player> players)
@@ -74,4 +79,8 @@ void Awake()
             scoreboard.text += p.Score + "\t" + p.PlayerName + "\n";
         }
     }
+
+
+
 }
+

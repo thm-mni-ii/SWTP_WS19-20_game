@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
     /// Sends the votes to remove a 
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
-   void RegisterEqualVote(List<Card> vote){
+   public void RegisterEqualVote(List<Card> vote){
        foreach (PlayerScript p in players)
        {
           gm.RegisterEqualVotes(vote);

@@ -23,7 +23,9 @@ public class CardScript : MonoBehaviour
     /// </summary>
     public Boolean votePhase = false;
     public PlayerManager pm;
+    Boolean isAllreadyVoted = false;
     PlayerScript ps;
+    List<Card> vote;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
+            vote = new List<Card>();
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
             textField.text = card.Answer;
@@ -58,6 +61,14 @@ public class CardScript : MonoBehaviour
     {
         if (votePhase == true)
         {
+           if (Input.GetKeyDown(KeyCode.Return))
+           {
+                pm.RegisterEqualVote(vote);
+                Debug.Log("ENTER");
+                votePhase = false;
+           }
+            
+
             //textField.text=
             //textField.text = card.Answer;
             Debug.Log(textField.text);
@@ -99,4 +110,26 @@ public void GetAndSetTMP_Text(string text)
         textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
         textField.text = card.Answer;
     }
+
+    void OnMouseOver()
+    {
+        if (votePhase)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (isAllreadyVoted == false)
+                {
+                    vote.Add(card);
+                    Debug.Log("add");
+                    Debug.Log(isAllreadyVoted);
+                    isAllreadyVoted = true;
+                }
+            }
+        }
+    }
+
+    
+
+
+
 }
