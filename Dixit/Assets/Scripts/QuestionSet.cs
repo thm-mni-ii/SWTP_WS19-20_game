@@ -128,7 +128,6 @@ public class QuestionSet
     public Question GetNextQuestion()
     {
         Question nextQuestion = QuestionList[0];
-        RemoveQuestionFromSet(0);
 
         return nextQuestion;
     }

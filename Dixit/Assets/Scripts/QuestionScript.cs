@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class QuestionScript : MonoBehaviour
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
-
+        
        // startQuestion(4, "scuur scurr");
     }
 
@@ -44,6 +45,7 @@ public class QuestionScript : MonoBehaviour
         textcolor.a = 0f;
         question.color = textcolor;
         timer.setTimer(0);
+        if(cs!=null)
         cs.TimeUP();
         /*for(Player player in players)
         {

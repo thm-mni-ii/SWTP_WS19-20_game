@@ -29,9 +29,20 @@ public class CardScript : MonoBehaviour
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
-        card = new Card();
-        textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
-
+        if (card == null)
+        {
+            card = new Card();
+            SetCardFromPlayerScript(ps, card);
+        }
+        if(votePhase==false)
+            textField =  GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+        //textField = GetComponentInChildren<TMP_Text>();
+        if (votePhase == true)
+        {
+            textField = GetComponentInChildren<TMP_Text>();
+            //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
+            textField.text = card.Answer;
+        }
         Debug.Log("tst:" + textField.text);
     }
     public void SetCardFromPlayerScript(PlayerScript ps,Card card)
@@ -47,25 +58,29 @@ public class CardScript : MonoBehaviour
     {
         if (votePhase == true)
         {
+            //textField.text=
             //textField.text = card.Answer;
-
+            Debug.Log(textField.text);
         }
-
-        foreach (char c in Input.inputString)
+        else
         {
-            if (!answerGiven && !votePhase)
+
+            foreach (char c in Input.inputString)
             {
-                if (Input.inputString == "\r")
+                if (!answerGiven && !votePhase)
                 {
-                    answerGiven = true;
-                    pm.RegisterAnswer(card);
+                    if (Input.inputString == "\r")
+                    {
+                        answerGiven = true;
+                        pm.RegisterAnswer(card);
+                    }
+                    else if (Input.inputString == "\b" && card.Answer.Length > 0)
+                        card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);
+                    else
+                        card.Answer = card.Answer + c;
+                    textField.text = card.Answer;
+                    Debug.Log(card.Answer);
                 }
-                else if (Input.inputString == "\b" && card.Answer.Length > 0)
-                    card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);
-                else
-                    card.Answer = card.Answer + c;
-                textField.text = card.Answer;
-                Debug.Log(card.Answer);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,11 +44,11 @@ public class PlayerManager : MonoBehaviour
        {
             
             gm.HandleAnswers(answers);
-            for(int i = 0; i < answers.Count; i++)
+          /*  for(int i = 0; i < answers.Count; i++)
             {
                 Debug.Log("answer "+i+": "+answers[i].Answer);
 
-            }
+            }*/
             //Debug.Log("gm.HandleAnswers(answers");
        }
    }
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
    public void BroadcastAnswers(List<Card> answers){
         foreach (PlayerScript p in players)
        {
+            Debug.Log("before show pid"+p.player.playerID);
           p.ShowAnswers(answers);
             //Debug.Log(""+p.)
        }

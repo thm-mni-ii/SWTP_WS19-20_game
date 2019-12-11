@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -14,47 +15,55 @@ public class PlayerScript : MonoBehaviour
     public QuestionScript question;
     public CardScript card;
     public Player player;
-
+    public Dictionary<int, TMP_Text> allPlayerScripts;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-    void Awake()
+     allPlayerScripts = new Dictionary<int, TMP_Text>();
+
+}
+void Awake()
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         scoreboard = GetComponent<Text>();
     }
 
 
-    CardScript c;
     public void ShowAnswers(List<Card> answers)
     {
         int i = 0;
         float offset = -4;
         foreach (Card answer in answers)
         {
-            
-             c = Instantiate(card, card.transform.position, Quaternion.identity);
+            CardScript c;
+
+            c = Instantiate(card, card.transform.position, Quaternion.identity);
+            //c.textField = GetComponent<TMP_Text>();
+            //if(i==0)
+            c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
+           /* if(i==1)
+            c.textField = GameObject.FindGameObjectWithTag("Text2").GetComponent<TMP_Text>();
+            */
             c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
             c.transform.Rotate(new Vector3(270,0,0));
-            c.card.cardID = answer.cardID;
+            c.card = answer;
+            //c.card.cardID = answer.cardID;
+            Debug.Log("cardid: "+c.card.cardID);
+            if(c.card.PlayerObject!=null)
+            Debug.Log("pid: " + c.card.PlayerObject.playerID);
             Debug.Log("vorher :" + answer.Answer);
-           // textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+            //c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
 
-            c.textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
             //GetComponent<TMP_Text>();
-            c.textField.text = answer.Answer;
+            //c.textField.text = answer.Answer;
             c.answerGiven = true;
             Debug.Log("Textfield: " + c.textField.text);
-            c.card = answer;
-            c.card.PlayerObject = answer.PlayerObject;
             c.votePhase = true;
-            c.card.IsCorrect = answer.IsCorrect;
             if (answers.Count == 2)
             {
                 offset += 7;
             }
+            
         }
     }
 
