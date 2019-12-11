@@ -41,19 +41,24 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">The Card Object from the player.</param>
    public void RegisterAnswer(Card answer){
+        if (player.votePhase == false)
+        {
+            answers.Add(answer);
+            Debug.Log("Answercount in registeranswer: " + answers.Count);
 
-       answers.Add(answer);
-       if (answers.Count == players.Count)
-       {
-            Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
-            gm.HandleAnswers(answers);
-          /*  for(int i = 0; i < answers.Count; i++)
+            if (answers.Count == players.Count)
             {
-                Debug.Log("answer "+i+": "+answers[i].Answer);
+                Debug.Log(players.Count + ":pc");
+                Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
+                gm.HandleAnswers(answers);
+                /*  for(int i = 0; i < answers.Count; i++)
+                  {
+                      Debug.Log("answer "+i+": "+answers[i].Answer);
 
-            }*/
-            //Debug.Log("gm.HandleAnswers(answers");
-       }
+                  }*/
+                //Debug.Log("gm.HandleAnswers(answers");
+            }
+        }
    }
 
     /// <summary>

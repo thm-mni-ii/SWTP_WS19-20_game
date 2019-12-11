@@ -26,7 +26,7 @@ public class QuestionScript : MonoBehaviour
 
     void Update()
     {
-        if(timer.timeleft <= 0 ||cs.answerGiven==true)
+        if((timer.timeleft <= 0 ||cs.answerGiven==true ))
         {
             endQuestion();
         }
@@ -47,6 +47,8 @@ public class QuestionScript : MonoBehaviour
         timer.setTimer(0);
         if(cs!=null)
         cs.TimeUP();
+        Debug.Log("time up called in endwustion");
+
         /*for(Player player in players)
         {
             if(player.answer == correctAnswer)

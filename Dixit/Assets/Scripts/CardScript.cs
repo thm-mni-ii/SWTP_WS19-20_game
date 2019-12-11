@@ -28,7 +28,7 @@ public class CardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log(PlayerManager.answers.Count + "start cs");
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
         Debug.Log(PlayerManager.answers.Count + "start cs");
@@ -96,11 +96,17 @@ public class CardScript : MonoBehaviour
 
     public void TimeUP()
     {
-        SetCardFromPlayerScript(ps, card);
-        answerGiven = true;
-        pm.RegisterAnswer(card);
-        //Destroy(gameObject);
-        Destroy(GameObject.FindGameObjectWithTag("Card"));
+
+       
+            SetCardFromPlayerScript(ps, card);
+            answerGiven = true;
+            pm.RegisterAnswer(card);
+            Debug.Log(PlayerManager.answers.Count);
+            Debug.Log("time up called in timeup");
+
+            //Destroy(gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("Card"));
+        
     }
 
 public void GetAndSetTMP_Text(string text)
@@ -122,6 +128,7 @@ public void GetAndSetTMP_Text(string text)
                     Debug.Log("add");
                     Debug.Log(isAllreadyVoted);
                     Debug.Log(card.CorrectVotes);
+                    Debug.Log(card.Answer+" added");
                     isAllreadyVoted = true;
                 }
             }
