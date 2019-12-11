@@ -15,15 +15,29 @@ public class PlayerScript : MonoBehaviour
     public QuestionScript question;
     public CardScript card;
     public Player player;
-    public Dictionary<int, TMP_Text> allPlayerScripts;
     public TextMeshProUGUI phaseText;
+    public PlayerManager pm;
+    public List<Card> vote;
+    public Boolean votePhase;
     // Start is called before the first frame update
     void Start()
     {
-     allPlayerScripts = new Dictionary<int, TMP_Text>();
+     pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+     vote = new List<Card>();
 
-}
-void Awake()
+    }
+
+    void Update()
+    {
+       if(votePhase==true)
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            pm.RegisterEqualVote(vote, this.player);
+            Debug.Log("ENTER");
+            votePhase = false;
+        }
+    }
+    void Awake()
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         scoreboard = GetComponent<Text>();
@@ -34,6 +48,7 @@ void Awake()
     {
         int i = 0;
         float offset = -4;
+        Debug.Log(answers.Count + ":answercount show answers");
         foreach (Card answer in answers)
         {
             CardScript c;
@@ -57,6 +72,7 @@ void Awake()
 
             //GetComponent<TMP_Text>();
             //c.textField.text = answer.Answer;
+            c.card.CorrectVotes = 0;
             c.answerGiven = true;
             Debug.Log("Textfield: " + c.textField.text);
             c.votePhase = true;
@@ -68,6 +84,8 @@ void Awake()
         }
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+        votePhase = true;
+        Debug.Log(PlayerManager.answers.Count + ":answercount show answers ende ");
 
 
     }

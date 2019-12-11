@@ -25,12 +25,14 @@ public class CardScript : MonoBehaviour
     public PlayerManager pm;
     Boolean isAllreadyVoted = false;
     PlayerScript ps;
-    List<Card> vote;
     // Start is called before the first frame update
     void Start()
     {
+
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
+        Debug.Log(PlayerManager.answers.Count + "start cs");
+
         if (card == null)
         {
             card = new Card();
@@ -41,10 +43,11 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
-            vote = new List<Card>();
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
             textField.text = card.Answer;
+            Debug.Log(PlayerManager.answers.Count + "start cs");
+
         }
         Debug.Log("tst:" + textField.text);
     }
@@ -61,17 +64,12 @@ public class CardScript : MonoBehaviour
     {
         if (votePhase == true)
         {
-           if (Input.GetKeyDown(KeyCode.Return))
-           {
-                pm.RegisterEqualVote(vote);
-                Debug.Log("ENTER");
-                votePhase = false;
-           }
+           
             
 
             //textField.text=
             //textField.text = card.Answer;
-            Debug.Log(textField.text);
+          //  Debug.Log(textField.text);
         }
         else
         {
@@ -119,9 +117,11 @@ public void GetAndSetTMP_Text(string text)
             {
                 if (isAllreadyVoted == false)
                 {
-                    vote.Add(card);
+                    card.CorrectVotes = 1;
+                    ps.vote.Add(card);
                     Debug.Log("add");
                     Debug.Log(isAllreadyVoted);
+                    Debug.Log(card.CorrectVotes);
                     isAllreadyVoted = true;
                 }
             }

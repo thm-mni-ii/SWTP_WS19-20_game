@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     List<Card> allCards;
     public List<Player> playerList;
     public int numberOfRounds;
+    int equalVotesCounter;
 
 
     void NextQuestion()
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
+        equalVotesCounter = 0;
        /* playerList.Add(new Player(1,0,2,0,2,"Marc"));
         playerList.Add(new Player(2, 0, 2, 0, 2, "Tom"));
         playerList.Add(new Player(3, 0, 2, 0, 2, "Robert"));
@@ -125,7 +127,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// This method is to register the player guesses concerning which answer is the correct one.
+    /// This method is to register the player guesses concerning which answer is equal to the correct one.
     /// To annul an answer, more than half of the players must vote for it.
     /// </summary>
     /// <param name="answers"></param>
@@ -150,7 +152,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// This method is to register the player guesses concerning which answer is the correct one.
     /// Calls the method GiveOutPoints
     /// </summary>
     public void RegisterVotes(List<Card> answer)
@@ -178,7 +180,7 @@ public class GameManager : MonoBehaviour
         GiveOutPoints();
     }
     /// <summary>
-    /// 
+    /// This method increases the player scores acording to the rules of the game.
     /// Calls the Method BroadCastScoresViaPM.
     /// </summary>
     void GiveOutPoints()

@@ -9,7 +9,8 @@ public class PlayerManager : MonoBehaviour
     public static List<Card> answers = new List<Card>();
     public PlayerScript player;
     public GameManager gm;
-
+    private int voteCounter;
+    //List<Card> voteList;
 
     /// <summary>
     /// Adds players to the dictionary.
@@ -18,9 +19,11 @@ public class PlayerManager : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
         player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        voteCounter = 0;
         gm.playerList.Add(player.player);
         players.Add(player);
     }
+
 
     /// <summary>
     /// Recieves a question and a timer to send to all Players.
@@ -42,7 +45,7 @@ public class PlayerManager : MonoBehaviour
        answers.Add(answer);
        if (answers.Count == players.Count)
        {
-            
+            Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
             gm.HandleAnswers(answers);
           /*  for(int i = 0; i < answers.Count; i++)
             {
@@ -60,23 +63,52 @@ public class PlayerManager : MonoBehaviour
    public void BroadcastAnswers(List<Card> answers){
         foreach (PlayerScript p in players)
        {
-            Debug.Log("before show pid"+p.player.playerID);
-          p.ShowAnswers(answers);
+            Debug.Log(answers.Count + ":answercount before show answers anfang registerequalvote");
+            p.ShowAnswers(answers);
             //Debug.Log(""+p.)
        }
    }
 
+
+
+    int aufruf = 0;
+
+
     /// <summary>
-    /// Sends the votes to remove a 
+    /// ´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers.
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
-   public void RegisterEqualVote(List<Card> vote){
-       foreach (PlayerScript p in players)
-       {
-          gm.RegisterEqualVotes(vote);
+   public void RegisterEqualVote(List<Card> vote,Player player){
+        //foreach (PlayerScript p in players)
+        //{
+        // Debug.Log(answers.Count);
+        aufruf += 1;
 
-       }
+
+        Debug.Log(aufruf+".aufruf");
+        for (int i = 0; i < answers.Count; i++)
+        {
+            for (int j=0;j<vote.Count;j++)
+            {
+                if (answers[i].cardID == vote[j].cardID  )
+                {
+                    answers[i].CorrectVotes += vote[j].CorrectVotes;
+                    if(answers[i].CorrectVotes!=0)
+                    Debug.Log("Correct Votes:" + answers[i].CorrectVotes);
+                   // answers[i].PlayerGuesses.Add(player);
+                }
+            }
+        }
+
+       //}
    }
+
+    public void RegisterEqualVotesOnGM(List<Card> vote)
+    {
+        gm.RegisterEqualVotes(vote);
+    }
+
+
 
     /// <summary>
     /// Sends the new list of players to the player to update scores.
