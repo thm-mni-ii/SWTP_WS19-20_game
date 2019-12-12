@@ -30,88 +30,9 @@ public class GameManager : MonoBehaviour
         allCards = new List<Card>();
         playerList = new List<Player>();
         equalVotesCounter = 0;
-       /* playerList.Add(new Player(1,0,2,0,2,"Marc"));
-        playerList.Add(new Player(2, 0, 2, 0, 2, "Tom"));
-        playerList.Add(new Player(3, 0, 2, 0, 2, "Robert"));
-        playerList.Add(new Player(4, 0, 2, 0, 2, "Herzberg"));
-        */
-        //playerList.Add(new Player(1, 0, 2, 0, 2, "Priefer"));
-        //List<Card> voteList = new List<Card>();
-      //   Test ob bei tippen auf richtige Karte punkt everteilt werden
-        /*allCards.Add(new Card());
-        allCards[0].IsCorrect = true;
-        allCards[0].PlayerObject = null;
-        allCards[0].Answer = "Richtig";
-        allCards[0].cardID = 42;
-        allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
-        allCards[0].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
-        allCards.Add(new Card());
-        allCards[1].CorrectVotes = 2;
-        allCards[1].IsCorrect = false;
-        allCards[1].PlayerObject = new Player(2, 0, 2, 0, 2, "Tom");
-        allCards[1].Answer = "Richtig";
-        allCards[1].cardID = 1;
-        //allCards[1].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Marc"));
-        allCards.Add(new Card());
-        allCards[2].IsCorrect = false;
-        allCards[2].PlayerObject = new Player(3, 0, 2, 0, 2, "Robert");
-        allCards[2].Answer = "Richtig";
-        allCards[2].cardID = 3;
-        //allCards[2].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0, 2, "Tom"));
-        allCards.Add(new Card());
-        allCards[3].IsCorrect = false;
-        allCards[3].PlayerObject = new Player(1, 0, 2, 0, 2, "Marc");
-        allCards[3].Answer = "Richtig";
-        allCards[3].CorrectVotes = 2;
-        allCards[3].cardID = 3;
-        voteList.Add(new Card());
-        voteList.Add(new Card());
-        voteList.Add(new Card());
-        voteList.Add(new Card());*/
-        //vote equal test
-
-        //vote test
-       /* voteList[0].cardID = 1;
-        voteList[0].IsCorrect = false;
-        voteList[0].PlayerObject = playerList[1];
-        //voteList[0].AddPlayerToPlayerGuesses(new Player(1,50,2,0,2,"Marc"));
-        voteList[0].CorrectVotes = 1;
-        voteList[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0,2, "Tom"));
-        voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));*/
-        //voteList[1].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
-        //voteList[1].cardID = 42;
-
-        //RegisterEqualVotes(voteList);
-        //RegisterVotes(voteList);
-        //Debug.Log("" + allCards[1].PlayerObject.Score);
         numberOfRounds = 0;
-        //RoundEnd();
-
-
-        //Player(int playerID, int score, int roomID, int experience, int level, string playerName)
-        //Debug.Log("hallo");
-
-
-        //überarbeiten da correct answer in questionScript vom ytp card ist, -> einlesen geht nicht so einfahc wie mit vorherigen question 
-        //abfangen falls questionpath null;
-
-        /*
-        questionSet.QuestionList[0].questionID = 0;
-        Debug.Log("hallo2");
-        questionSet.QuestionList[0].correctAnswer.answer = "42";
-        Debug.Log("hallo3");
-        questionSet.QuestionList[0].question = "Wie lautet die Antwort auf alle Fragen?";
-        questionSet.QuestionList[1].questionID = 0;
-        questionSet.QuestionList[1].correctAnswer.answer = "42";
-        questionSet.QuestionList[1].question = "Wie lautet die Antwort auf alle Fragen?";
-        questionSet.QuestionList[2].questionID = 0;
-        questionSet.QuestionList[2].correctAnswer.answer = "42";
-        questionSet.QuestionList[2].question = "Wie lautet die Antwort auf alle Fragen?";*/
-        //questionSet.PrintOutQuestions();
-
         questionSet = questionSet.LoadQuestionSet(questionPath);
         questionSet.PrintOutQuestions();
-        
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         NextQuestion();
@@ -134,21 +55,33 @@ public class GameManager : MonoBehaviour
     /// votes[j].CorrectVotes > voteLimit 
     public void RegisterEqualVotes(List<Card> votes)
     {
+        Debug.Log("in gm equal");
+        Debug.Log(allCards.Count);
         for (int j = 0; j < votes.Count; j++) {
+           
+
             for (int i = 0; i< allCards.Count; i++) {
+                Debug.Log("i+"+allCards[i].PlayerObject);
                 if (allCards[i].PlayerObject != null && votes[j].PlayerObject!=null && allCards[i].PlayerObject.playerID == votes[j].PlayerObject.playerID )
                 {
                     allCards[i].CorrectVotes = votes[j].CorrectVotes;
+                    Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
+                Debug.Log("xaxa");
+
                 }
-                    }
-            
             }
-        /*AUfgabe der Correct VOtes zum Debuggen
+            
+
+        }
+        Debug.Log("in nach gm equal");
+
+        //AUfgabe der Correct VOtes zum Debuggen
         for (int j = 0; j < allCards.Count; j++)
         {
             if(allCards[j].PlayerObject!=null)
             Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName+" Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
-        }*/
+        }
+        pm.StartAnswerPhaseForAllPlayers();
     }
 
     /// <summary>
@@ -330,15 +263,16 @@ public class GameManager : MonoBehaviour
 
     public void HandleAnswers(List<Card> answers)
     {
-        currentAnswers = answers;
+        allCards = answers;
         for (int i = 0; i < answers.Count; i++)
         {
-            Debug.Log("answer " + i + ": " + currentAnswers[i].Answer);
+            Debug.Log("answer " + i + ": " + allCards[i].Answer);
 
         }
         Debug.Log("answers handled");
-        questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(currentAnswers);
-        pm.BroadcastAnswers(currentAnswers);
+        Debug.Log("allcardcount:"+allCards.Count);
+        questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(allCards);
+        pm.BroadcastAnswers(allCards);
     }
 
 }

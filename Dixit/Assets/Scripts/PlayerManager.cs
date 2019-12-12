@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerScript player;
     public GameManager gm;
     private int voteCounter;
-    //List<Card> voteList;
+    int equalVotes;
 
     /// <summary>
     /// Adds players to the dictionary.
@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
         voteCounter = 0;
         gm.playerList.Add(player.player);
         players.Add(player);
+        equalVotes = 0;
     }
 
 
@@ -30,27 +31,45 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
    public void BroadcastQuestion(Question question, float time){
+        //int i = 0;
        foreach (PlayerScript p in players)
        {
+            
           p.question.startQuestion(time,question.question);
        }
    }
+
+    public void StartAnswerPhaseForAllPlayers()
+    {
+        foreach (PlayerScript player in players)
+        {
+            player.StartAnswerPhase();
+        }
+    }
+
 
     /// <summary>
     /// Recieves the Answer from the players and marks them in the dictionary.
     /// </summary>
     /// <param name="player">The Card Object from the player.</param>
    public void RegisterAnswer(Card answer){
+        //if: wird hier benötigt da sonst eine zusätzliche instanz von Card in answers hinzugefügt wird
+        //woher dieser aufruf stammt kann ich noch nicht sagen
         if (player.votePhase == false)
         {
+            if(answer.cardID!=99)
             answers.Add(answer);
-            Debug.Log("Answercount in registeranswer: " + answers.Count);
 
+            if (answer.PlayerObject != null)
+                Debug.Log("pid"+answer.PlayerObject.playerID);
+            if (answer.PlayerObject == null)
+                Debug.Log("error");
             if (answers.Count == players.Count)
             {
                 Debug.Log(players.Count + ":pc");
-                Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
+                //Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
                 gm.HandleAnswers(answers);
+
                 /*  for(int i = 0; i < answers.Count; i++)
                   {
                       Debug.Log("answer "+i+": "+answers[i].Answer);
@@ -66,9 +85,17 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A List of Card Objects.</param>
    public void BroadcastAnswers(List<Card> answers){
+        foreach(Card answer in answers)
+        {
+            answer.CorrectVotes = 0;
+            if(answer.PlayerObject!=null)
+            Debug.Log("player:" + answer.PlayerObject.playerID);
+
+        }
+        PlayerManager.answers = answers;
+
         foreach (PlayerScript p in players)
        {
-            Debug.Log(answers.Count + ":answercount before show answers anfang registerequalvote");
             p.ShowAnswers(answers);
             //Debug.Log(""+p.)
        }
@@ -76,7 +103,6 @@ public class PlayerManager : MonoBehaviour
 
 
 
-    int aufruf = 0;
 
 
     /// <summary>
@@ -87,31 +113,31 @@ public class PlayerManager : MonoBehaviour
         //foreach (PlayerScript p in players)
         //{
         // Debug.Log(answers.Count);
-        aufruf += 1;
-
-
-        Debug.Log(aufruf+".aufruf");
-        for (int i = 0; i < answers.Count; i++)
+        equalVotes++;
+        for (int i = 0; i < vote.Count; i++)
         {
-            for (int j=0;j<vote.Count;j++)
+            for (int j=0;j<answers.Count;j++)
             {
-                if (answers[i].cardID == vote[j].cardID  )
+                if (answers[j].cardID == vote[i].cardID  )
                 {
-                    answers[i].CorrectVotes += vote[j].CorrectVotes;
-                    if(answers[i].CorrectVotes!=0)
-                    Debug.Log("Correct Votes:" + answers[i].CorrectVotes);
+                    if (answers[j].PlayerObject != null)
+                        Debug.Log("playerregeq:" + answers[j].PlayerObject);
+                    answers[j].CorrectVotes++;
                    // answers[i].PlayerGuesses.Add(player);
                 }
             }
         }
+        if (equalVotes == players.Count)
+        {
+            Debug.Log("call gm.equalvotes");
+            gm.RegisterEqualVotes(answers);
 
-       //}
-   }
+        }
 
-    public void RegisterEqualVotesOnGM(List<Card> vote)
-    {
-        gm.RegisterEqualVotes(vote);
+        //}
     }
+
+    
 
 
 

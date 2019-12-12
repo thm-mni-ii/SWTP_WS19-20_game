@@ -166,6 +166,7 @@ public class Card
 
     public List<Card> AddOneAndShuffle(List<Card> cardList)
     {
+        this.correctVotes = 0;
         cardList.Add(this);
         for (int i = 0; i < cardList.Count; i++)
         {

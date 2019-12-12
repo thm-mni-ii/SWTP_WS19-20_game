@@ -28,15 +28,14 @@ public class CardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(PlayerManager.answers.Count + "start cs");
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
-        Debug.Log(PlayerManager.answers.Count + "start cs");
 
         if (card == null)
         {
             card = new Card();
             SetCardFromPlayerScript(ps, card);
+           // Debug.Log("setcardfromplayeryscxirpt");
         }
         if(votePhase==false)
             textField =  GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
@@ -46,7 +45,7 @@ public class CardScript : MonoBehaviour
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
             textField.text = card.Answer;
-            Debug.Log(PlayerManager.answers.Count + "start cs");
+           // Debug.Log(PlayerManager.answers.Count + "start cs");
 
         }
         Debug.Log("tst:" + textField.text);
@@ -55,6 +54,8 @@ public class CardScript : MonoBehaviour
     {
         card.cardID = ps.player.playerID;
         card.PlayerObject = ps.player;
+        if (ps.player == null)
+            Debug.Log("error play 404");
     }
 
 
@@ -81,6 +82,7 @@ public class CardScript : MonoBehaviour
                     if (Input.inputString == "\r")
                     {
                         answerGiven = true;
+                        card.PlayerObject = ps.player;
                         pm.RegisterAnswer(card);
                     }
                     else if (Input.inputString == "\b" && card.Answer.Length > 0)
@@ -97,13 +99,18 @@ public class CardScript : MonoBehaviour
     public void TimeUP()
     {
 
-       
+        if (!answerGiven && !votePhase)
+        {
+
             SetCardFromPlayerScript(ps, card);
             answerGiven = true;
             pm.RegisterAnswer(card);
-            Debug.Log(PlayerManager.answers.Count);
-            Debug.Log("time up called in timeup");
-
+            //Debug.Log(PlayerManager.answers.Count);
+            /*   for (int i = 0; i < PlayerManager.answers.Count; i++)
+           {
+               Debug.Log("TimeUP: answers." + PlayerManager.answers[i].cardID + ", correctvotes:" + PlayerManager.answers[i].CorrectVotes);
+           }*/
+        }
             //Destroy(gameObject);
             Destroy(GameObject.FindGameObjectWithTag("Card"));
         
@@ -123,13 +130,14 @@ public void GetAndSetTMP_Text(string text)
             {
                 if (isAllreadyVoted == false)
                 {
-                    card.CorrectVotes = 1;
-                    ps.vote.Add(card);
-                    Debug.Log("add");
-                    Debug.Log(isAllreadyVoted);
-                    Debug.Log(card.CorrectVotes);
-                    Debug.Log(card.Answer+" added");
+
+                    if (ps.player != null)
+                        Debug.Log("player:" + ps.player.playerID);
                     isAllreadyVoted = true;
+                    answerGiven = true; 
+                    ps.vote.Add(card);
+                 
+                   
                 }
             }
         }

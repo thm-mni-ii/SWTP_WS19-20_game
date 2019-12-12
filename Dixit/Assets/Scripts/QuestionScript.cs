@@ -28,6 +28,7 @@ public class QuestionScript : MonoBehaviour
     {
         if((timer.timeleft <= 0 ||cs.answerGiven==true ))
         {
+            Debug.Log("questionend");
             endQuestion();
         }
     }
@@ -38,6 +39,7 @@ public class QuestionScript : MonoBehaviour
         textcolor.a = 1f;
         this.question.text = question;
         this.question.color = textcolor;
+        Debug.Log("questionstart");
     }
 
     void endQuestion()
@@ -45,10 +47,11 @@ public class QuestionScript : MonoBehaviour
         textcolor.a = 0f;
         question.color = textcolor;
         timer.setTimer(0);
-        if(cs!=null)
-        cs.TimeUP();
-        Debug.Log("time up called in endwustion");
-
+        if (cs != null)
+        {
+            Debug.Log("time up called in endquestion");
+            cs.TimeUP();
+        }
         /*for(Player player in players)
         {
             if(player.answer == correctAnswer)
@@ -64,6 +67,8 @@ public class QuestionScript : MonoBehaviour
     {
 
         currentQuestion = questionSet.GetNextQuestion();
+        currentQuestion.correctAnswer.cardID = 99;
+        currentQuestion.correctAnswer.CorrectVotes = 0;
         question.text = currentQuestion.question;
         //Debug.Log(questionSet.QuestionList.Count);
         //questionSet.RemoveQuestionFromSet(0);
