@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     public List<Card> vote;
     public Boolean votePhase;
     int aufruf = 1;
+    //List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +51,14 @@ public class PlayerScript : MonoBehaviour
 
     public void StartAnswerPhase()
     {
-
+        phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
+        CardScript[] cs = GetComponents<CardScript>();
+        foreach (CardScript card in cs)
+        {
+            Debug.Log(cs);
+            card.answerPhase = true;
+            card.isAllreadyVoted = false;
+        }
     }
 
 

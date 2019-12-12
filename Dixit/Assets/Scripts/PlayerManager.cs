@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     public void StartAnswerPhaseForAllPlayers()
     {
+        Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
             player.StartAnswerPhase();

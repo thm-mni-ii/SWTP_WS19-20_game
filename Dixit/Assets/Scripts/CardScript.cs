@@ -22,8 +22,9 @@ public class CardScript : MonoBehaviour
     /// Flag if card is clickable.
     /// </summary>
     public Boolean votePhase = false;
+    public Boolean answerPhase = false;
     public PlayerManager pm;
-    Boolean isAllreadyVoted = false;
+    public Boolean isAllreadyVoted = false;
     PlayerScript ps;
     // Start is called before the first frame update
     void Start()
@@ -140,6 +141,20 @@ public void GetAndSetTMP_Text(string text)
                    
                 }
             }
+        }
+        if (answerPhase)
+        {
+            Debug.Log("Answerphase");
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (isAllreadyVoted == false)
+                {
+                    card.PlayerGuesses.Add(ps.player);
+                    Debug.Log(card.PlayerGuesses[0].playerID);
+                    Debug.Log(PlayerManager.answers[0].PlayerGuesses);
+                }
+            }
+
         }
     }
 
