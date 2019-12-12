@@ -109,8 +109,9 @@ public class GameManager : MonoBehaviour
             if (allCards[j].PlayerObject != null)
                 Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " PlayerGuesses: " + allCards[j].PlayerGuesses.Count);
         }*/
-        
-        GiveOutPoints();
+        Debug.Log("registervotes");
+
+      //  GiveOutPoints();
     }
     /// <summary>
     /// This method increases the player scores acording to the rules of the game.

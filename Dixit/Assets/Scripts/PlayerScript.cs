@@ -18,9 +18,10 @@ public class PlayerScript : MonoBehaviour
     public TextMeshProUGUI phaseText;
     public PlayerManager pm;
     public List<Card> vote;
+    public Card voteCard;
     public Boolean votePhase;
-    int aufruf = 1;
-    //List<CardScript> answerCards;
+    public Boolean answerPhase;
+    public List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,15 +32,29 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-       if(votePhase==true)
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (votePhase == true)
         {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
 
-                aufruf += 1;
-                pm.RegisterEqualVote(vote, this.player); 
+                pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
                 votePhase = false;
+            }
+        }
+        else if (answerPhase)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Debug.Log("Clearcount:" + vote.Count);
+
+                Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                pm.RegisterVote(voteCard);
+                //Debug.Log(vote[0].CorrectVotes);
+                //Debug.Log(vote[1].CorrectVotes);
+                answerPhase = false;
+            }
         }
     }
     void Awake()
@@ -51,26 +66,37 @@ public class PlayerScript : MonoBehaviour
 
     public void StartAnswerPhase()
     {
+        voteCard = new Card();
+        answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
-        CardScript[] cs = GetComponents<CardScript>();
-        foreach (CardScript card in cs)
+        //CardScript[] cs = GetComponents<CardScript>();
+        for(int i = 0; i < answerCards.Count; i++){
+
+            Debug.Log(answerCards[i]);
+            answerCards[i].votePhase = false;
+            answerCards[i].answerPhase = true;
+            answerCards[i].isAllreadyVoted = false;
+        }
+
+       /* foreach (CardScript card in answerCards)
         {
-            Debug.Log(cs);
+            Debug.Log(card);
             card.answerPhase = true;
             card.isAllreadyVoted = false;
-        }
+        }*/
     }
 
 
     public void ShowAnswers(List<Card> answers)
     {
-
+        answerCards = new List<CardScript>();
         int i = 0;
         float offset = -4;
         foreach (Card answer in answers)
         {
             CardScript c;
             c = Instantiate(card, card.transform.position, Quaternion.identity);
+
             //c.textField = GetComponent<TMP_Text>();
             //if(i==0)
             c.card = new Card();
@@ -100,6 +126,8 @@ public class PlayerScript : MonoBehaviour
             c.answerGiven = true;
            // Debug.Log("Textfield: " + c.textField.text);
             c.votePhase = true;
+            //answerCards.Add(c);
+            Debug.Log("countof cardskript from answercards"+answerCards.Count);
             if (answers.Count == 2)
             {
                 offset += 7;

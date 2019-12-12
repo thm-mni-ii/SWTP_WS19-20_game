@@ -43,6 +43,7 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
+            ps.answerCards.Add(this);
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
             textField.text = card.Answer;
@@ -64,6 +65,10 @@ public class CardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (answerPhase)
+        {
+            Debug.Log("answerphase!");
+        }
         if (votePhase == true)
         {
            
@@ -141,17 +146,28 @@ public void GetAndSetTMP_Text(string text)
                    
                 }
             }
-        }
+        }else
         if (answerPhase)
         {
             Debug.Log("Answerphase");
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log(isAllreadyVoted);
+
                 if (isAllreadyVoted == false)
                 {
+                   // ps.vote = new List<Card>();
+                    //ps.vote.Clear();
                     card.PlayerGuesses.Add(ps.player);
+                    Debug.Log(ps.player);
                     Debug.Log(card.PlayerGuesses[0].playerID);
-                    Debug.Log(PlayerManager.answers[0].PlayerGuesses);
+                    ps.voteCard = card;
+                    for (int i = 0; i < ps.answerCards.Count; i++)
+                    {
+                        ps.answerCards[i].answerPhase = false;
+                    }
+                    Debug.Log(card.PlayerGuesses[0].playerID);
+                    Debug.Log(PlayerManager.answers[0].PlayerGuesses[0].playerID);
                 }
             }
 

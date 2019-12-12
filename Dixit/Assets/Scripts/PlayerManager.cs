@@ -110,7 +110,37 @@ public class PlayerManager : MonoBehaviour
     /// ´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers.
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
-   public void RegisterEqualVote(List<Card> vote,Player player){
+    /// 
+    public void RegisterVote(Card vote)
+    {
+        Debug.Log("registervotes");
+
+        for (int i = 0; i < answers.Count; i++)
+        {
+            Debug.Log("registervotes2");
+            if (answers[i].cardID == vote.cardID)
+            {
+                Debug.Log("registervotes3");
+                if (answers[i].PlayerGuesses.Count == 0)
+                {
+                    Debug.Log("registervotes4");
+                    answers[i].PlayerGuesses = new List<Player>();
+                    Debug.Log("registervotes5");
+                }
+                answers[i].PlayerGuesses.Add(vote.PlayerGuesses[0]);
+                Debug.Log("registervotes3");
+            }
+        }
+        Debug.Log("registervotes");
+        gm.RegisterVotes(answers);
+    }
+
+    /// <summary>
+    /// This method registers the which card is voted as an equal anser by alle the players.
+    /// It calls the method RegisterEqualVotes on the GameManager if all player have voted.
+    /// </summary>
+    /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal.</param>
+    public void RegisterEqualVote(List<Card> vote){
         //foreach (PlayerScript p in players)
         //{
         // Debug.Log(answers.Count);
