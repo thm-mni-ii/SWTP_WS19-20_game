@@ -18,10 +18,15 @@ public class PlayerManager : MonoBehaviour
     public void Start(){
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
+       
         player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         voteCounter = 0;
         gm.playerList.Add(player.player);
         players.Add(player);
+        /*foreach (PlayerScript p in players)
+        {
+            Debug.Log("player:" + p.player.PlayerName);
+        }*/
         equalVotes = 0;
     }
 
@@ -56,7 +61,7 @@ public class PlayerManager : MonoBehaviour
    public void RegisterAnswer(Card answer){
         //if: wird hier benötigt da sonst eine zusätzliche instanz von Card in answers hinzugefügt wird
         //woher dieser aufruf stammt kann ich noch nicht sagen
-        if (player.votePhase == false)
+        if (true)
         {
             if(answer.cardID!=99)
             answers.Add(answer);
@@ -114,7 +119,7 @@ public class PlayerManager : MonoBehaviour
     public void RegisterVote(Card vote)
     {
         Debug.Log("registervotes");
-
+        Debug.Log("votecard:" + vote.PlayerGuesses.Count);
         for (int i = 0; i < answers.Count; i++)
         {
             Debug.Log("registervotes2");
@@ -127,6 +132,7 @@ public class PlayerManager : MonoBehaviour
                     answers[i].PlayerGuesses = new List<Player>();
                     Debug.Log("registervotes5");
                 }
+                Debug.Log("registervotes5");
                 answers[i].PlayerGuesses.Add(vote.PlayerGuesses[0]);
                 Debug.Log("registervotes3");
             }

@@ -12,7 +12,7 @@ public class QuestionScript : MonoBehaviour
     Color textcolor;
     Question currentQuestion;
     CardScript cs;
-  
+    bool questionEnd;
   
     void Awake()
     {
@@ -20,15 +20,17 @@ public class QuestionScript : MonoBehaviour
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        questionEnd = false;
         
        // startQuestion(4, "scuur scurr");
     }
 
     void Update()
     {
-        if((timer.timeleft <= 0 ||cs.answerGiven==true ))
+        if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
             Debug.Log("questionend");
+            questionEnd = true;
             endQuestion();
         }
     }

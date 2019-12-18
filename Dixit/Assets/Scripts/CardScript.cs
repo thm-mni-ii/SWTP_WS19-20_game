@@ -31,25 +31,32 @@ public class CardScript : MonoBehaviour
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
-
         if (card == null)
         {
             card = new Card();
             SetCardFromPlayerScript(ps, card);
-           // Debug.Log("setcardfromplayeryscxirpt");
+            // Debug.Log("setcardfromplayeryscxirpt");
         }
-        if(votePhase==false)
-            textField =  GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+         if (votePhase == false)
+        {
+            textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
+            Debug.Log("falseflase");
+        }
+        //ps.answerCards.Add(this);
+
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
-            ps.answerCards.Add(this);
+            //ps.answerCards.Add(this);
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
-            textField.text = card.Answer;
-           // Debug.Log(PlayerManager.answers.Count + "start cs");
-
         }
+        textField.text = card.Answer;
+
+            Debug.Log("trueeeeeeee");
+            // Debug.Log(PlayerManager.answers.Count + "start cs");
+
+        
         Debug.Log("tst:" + textField.text);
     }
     public void SetCardFromPlayerScript(PlayerScript ps,Card card)
@@ -69,14 +76,14 @@ public class CardScript : MonoBehaviour
         {
             Debug.Log("answerphase!");
         }
-        if (votePhase == true)
+        else if (votePhase )
         {
-           
-            
+            //textField.text = card.Answer;
+
 
             //textField.text=
             //textField.text = card.Answer;
-          //  Debug.Log(textField.text);
+            //  Debug.Log(textField.text);
         }
         else
         {
@@ -130,7 +137,7 @@ public void GetAndSetTMP_Text(string text)
 
     void OnMouseOver()
     {
-        if (votePhase)
+        if (votePhase==true)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -140,15 +147,18 @@ public void GetAndSetTMP_Text(string text)
                     if (ps.player != null)
                         Debug.Log("player:" + ps.player.playerID);
                     isAllreadyVoted = true;
-                    answerGiven = true; 
+                    answerGiven = true;
+                    Debug.Log("OnMouseOver");
                     ps.vote.Add(card);
                  
                    
                 }
             }
-        }else
-        if (answerPhase)
+        }
+        else if (answerPhase==true)
         {
+            if (ps.player != null)
+                Debug.Log("player:" + ps.player.playerID);
             Debug.Log("Answerphase");
             if (Input.GetMouseButtonDown(0))
             {
@@ -156,18 +166,19 @@ public void GetAndSetTMP_Text(string text)
 
                 if (isAllreadyVoted == false)
                 {
-                   // ps.vote = new List<Card>();
+                    // ps.vote = new List<Card>();
                     //ps.vote.Clear();
                     card.PlayerGuesses.Add(ps.player);
                     Debug.Log(ps.player);
                     Debug.Log(card.PlayerGuesses[0].playerID);
                     ps.voteCard = card;
+                    isAllreadyVoted = true;
                     for (int i = 0; i < ps.answerCards.Count; i++)
                     {
                         ps.answerCards[i].answerPhase = false;
                     }
-                    Debug.Log(card.PlayerGuesses[0].playerID);
-                    Debug.Log(PlayerManager.answers[0].PlayerGuesses[0].playerID);
+                    //Debug.Log(card.PlayerGuesses[0].playerID);
+                    //Debug.Log(PlayerManager.answers[0].PlayerGuesses[0].playerID);
                 }
             }
 

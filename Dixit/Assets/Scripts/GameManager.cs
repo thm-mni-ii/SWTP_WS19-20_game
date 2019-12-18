@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     void NextQuestion()
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         pm.BroadcastQuestion(currentQuestion,30f);
         //Debug.Log("NextQuestion aufgerufen");
     }
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
         }*/
         Debug.Log("registervotes");
 
-      //  GiveOutPoints();
+        GiveOutPoints();
     }
     /// <summary>
     /// This method increases the player scores acording to the rules of the game.
@@ -167,7 +168,9 @@ public class GameManager : MonoBehaviour
                 }
             }
     }
-        BroadCastScoresViaPM();
+
+        Debug.Log("After points giveout");
+        //BroadCastScoresViaPM();
 
     }
 

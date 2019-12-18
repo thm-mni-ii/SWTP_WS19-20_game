@@ -19,8 +19,9 @@ public class PlayerScript : MonoBehaviour
     public PlayerManager pm;
     public List<Card> vote;
     public Card voteCard;
-    public Boolean votePhase;
-    public Boolean answerPhase;
+    public Boolean startPhase = true;
+    Boolean votePhase = false;
+    Boolean answerPhase = false;
     public List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
@@ -32,24 +33,32 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (votePhase == true)
+        if (startPhase)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
 
+        }
+        else if (votePhase == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                phaseText.text = "";
+                Debug.Log("update votephase");
                 pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
                 votePhase = false;
+
             }
         }
-        else if (answerPhase)
+        else if (answerPhase==true && voteCard.cardID!=0)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                Debug.Log("Clearcount:" + vote.Count);
+                Debug.Log("update answerphase");
+                //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
+                phaseText.text = "";
 
-                Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                //Debug.Log(voteCard.PlayerGuesses[0].playerID);
                 pm.RegisterVote(voteCard);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
@@ -60,19 +69,29 @@ public class PlayerScript : MonoBehaviour
     void Awake()
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+        phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
+
         scoreboard = GetComponent<Text>();
     }
 
 
     public void StartAnswerPhase()
     {
+        votePhase = false;
+        answerPhase = true;
+        Debug.Log("satrtphase:card.card.Answer");
+
+        foreach ( CardScript card in answerCards)
+        {
+            Debug.Log("satrtphase"+card.card.Answer);
+        }
         voteCard = new Card();
         answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
 
-            Debug.Log(answerCards[i]);
+            Debug.Log("Answercard i"+answerCards[i]);
             answerCards[i].votePhase = false;
             answerCards[i].answerPhase = true;
             answerCards[i].isAllreadyVoted = false;
@@ -89,12 +108,21 @@ public class PlayerScript : MonoBehaviour
 
     public void ShowAnswers(List<Card> answers)
     {
-        answerCards = new List<CardScript>();
+        startPhase = false;
+
+        Debug.Log("not null" + phaseText);
+        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+        Debug.Log("not null"+phaseText.text);
+
+
+answerCards = new List<CardScript>();
+
         int i = 0;
         float offset = -4;
         foreach (Card answer in answers)
         {
             CardScript c;
+
             c = Instantiate(card, card.transform.position, Quaternion.identity);
 
             //c.textField = GetComponent<TMP_Text>();
@@ -109,10 +137,15 @@ public class PlayerScript : MonoBehaviour
             c.card = answer;
             c.card.cardID = answer.cardID;
             c.card.Answer = answer.Answer;
+            c.votePhase = true;
             c.card.PlayerObject = answer.PlayerObject;
             if(c.card.PlayerObject!=null)
             Debug.Log("player:" + c.card.PlayerObject);
-
+            Debug.Log("showanser: " + c.card.Answer);
+            for (int g= 0; g < answerCards.Count; g++)
+            {
+                Debug.Log("AC:"+answerCards[g].card.Answer);
+            }
 
             //c.card.cardID = answer.cardID;
             // if(c.card.PlayerObject!=null)
@@ -132,12 +165,16 @@ public class PlayerScript : MonoBehaviour
             {
                 offset += 7;
             }
-            
+            answerCards.Add(c);
+
         }
+
+        Debug.Log("pphase");
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
+        Debug.Log("not null + phaseText");
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
-        votePhase = true;
         vote = new List<Card>();
+        votePhase = true;
 
 
     }
