@@ -11,11 +11,14 @@ using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
-    private Text scoreboard;
+    private TextMeshProUGUI scoreboard;
     public QuestionScript question;
     public CardScript card;
+    public CardScript playerCard;
     public Player player;
     public TextMeshProUGUI phaseText;
+    public TextMeshProUGUI nameText;
+
     public PlayerManager pm;
     public List<Card> vote;
     public Card voteCard;
@@ -27,8 +30,24 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
      pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-     vote = new List<Card>();
 
+    }
+
+    public void CreateNewCard()
+    {
+
+        CardScript c;
+        startPhase=true;
+        c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
+        c.transform.Rotate(new Vector3(270, 0, 0));
+
+        c.textField = GetComponent<TMP_Text>();
+        //if(i==0)
+        c.card = new Card();
+      //  question.cs = c;
+       // question = Instantiate(question, question.transform, 0);
+        question.cs = c;
+        question.InitializeQuestion();
     }
 
     void Update()
@@ -50,10 +69,14 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
-        else if (answerPhase==true && voteCard.cardID!=0)
+        else if (answerPhase==true && voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                if (voteCard.IsCorrect)
+                {
+                    Debug.Log("correctcard answer");
+                }
                 Debug.Log("update answerphase");
                 //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
                 phaseText.text = "";
@@ -70,8 +93,8 @@ public class PlayerScript : MonoBehaviour
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-
-        scoreboard = GetComponent<Text>();
+        nameText = GameObject.FindGameObjectWithTag("NamesUI").GetComponent<TextMeshProUGUI>();
+        scoreboard = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -88,6 +111,7 @@ public class PlayerScript : MonoBehaviour
         voteCard = new Card();
         answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
+        Debug.Log(phaseText.text);
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
 
@@ -108,6 +132,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ShowAnswers(List<Card> answers)
     {
+        vote = new List<Card>();
         startPhase = false;
 
         Debug.Log("not null" + phaseText);
@@ -115,9 +140,9 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("not null"+phaseText.text);
 
 
-answerCards = new List<CardScript>();
+        answerCards = new List<CardScript>();
 
-        int i = 0;
+        //int i = 0;
         float offset = -4;
         foreach (Card answer in answers)
         {
@@ -171,7 +196,7 @@ answerCards = new List<CardScript>();
 
         Debug.Log("pphase");
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        Debug.Log("not null + phaseText");
+        Debug.Log("not null"+ phaseText);
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
         vote = new List<Card>();
         votePhase = true;
@@ -181,10 +206,33 @@ answerCards = new List<CardScript>();
 
     public void UpdateScores(List<Player> players)
     {
+        scoreboard.text = "";
+        nameText.text = "";
         foreach (Player p in players)
         {
-            scoreboard.text += p.Score + "\t" + p.PlayerName + "\n";
+            scoreboard.text += p.Score + "\n";//"\t"+ p.PlayerName + "\n";
+            nameText.text += p.PlayerName + "\n";
         }
+    }
+
+    public void CleanUp() 
+    {
+        GameObject[] gameObjects;
+
+      
+        answerPhase = false;
+        answerCards = null;
+
+
+      
+         gameObjects = GameObject.FindGameObjectsWithTag("AnswerCard");
+
+            for (int i = 0; i < gameObjects.Length; i++)
+            {
+                Destroy(gameObjects[i]);
+            }
+        
+
     }
 
 

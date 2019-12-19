@@ -11,12 +11,16 @@ public class QuestionScript : MonoBehaviour
     TimerScript timer;
     Color textcolor;
     Question currentQuestion;
-    CardScript cs;
+    public CardScript cs;
     bool questionEnd;
-  
+
+
+   
     void Awake()
     {
+        Debug.Log("awake");
         cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+        Debug.Log(cs);
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -25,8 +29,23 @@ public class QuestionScript : MonoBehaviour
        // startQuestion(4, "scuur scurr");
     }
 
+   public void InitializeQuestion()
+    {
+        //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+        Debug.Log(cs);
+        question = GetComponent<Text>();
+        textcolor = question.color;
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        questionEnd = false;
+    }
     void Update()
     {
+        if (cs != null)
+        {
+            Debug.Log("questionENd:" + questionEnd);
+            Debug.Log(cs.card.Answer);
+  
+        }
         if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
             Debug.Log("questionend");
@@ -42,10 +61,13 @@ public class QuestionScript : MonoBehaviour
         this.question.text = question;
         this.question.color = textcolor;
         Debug.Log("questionstart");
+        
     }
 
     void endQuestion()
     {
+        Debug.Log("time up called in endquestion");
+
         textcolor.a = 0f;
         question.color = textcolor;
         timer.setTimer(0);

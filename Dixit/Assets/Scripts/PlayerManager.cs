@@ -31,15 +31,21 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+
+
+
     /// <summary>
     /// Recieves a question and a timer to send to all Players.
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
+    /// 
    public void BroadcastQuestion(Question question, float time){
         //int i = 0;
+        answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
-            
+          
+          p.CreateNewCard();
           p.question.startQuestion(time,question.question);
        }
    }
@@ -175,7 +181,11 @@ public class PlayerManager : MonoBehaviour
     }
 
     
-
+    public void CleanUp()
+    {
+        player.CleanUp();
+       
+    }
 
 
     /// <summary>

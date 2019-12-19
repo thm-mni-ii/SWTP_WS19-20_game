@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     List<Card> allCards;
     public List<Player> playerList;
     public int numberOfRounds;
-    int equalVotesCounter;
 
 
     void NextQuestion()
@@ -30,8 +29,8 @@ public class GameManager : MonoBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
-        equalVotesCounter = 0;
-        numberOfRounds = 0;
+        //equalVotesCounter = 0;
+        numberOfRounds = 5;
         questionSet = questionSet.LoadQuestionSet(questionPath);
         questionSet.PrintOutQuestions();
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
@@ -93,6 +92,8 @@ public class GameManager : MonoBehaviour
     {
         for (int j = 0; j < answer.Count; j++)
         {
+            if (answer[j].IsCorrect)
+                Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
             for (int i = 0; i < allCards.Count; i++)
             {
                
@@ -120,13 +121,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void GiveOutPoints()
     {
-
+        Debug.Log(playerList.Count);
         //for schleife über player cards
         for (int i = 0; i < allCards.Count; i++)
         {
             //wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist
             if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count/2) && allCards[i].IsCorrect == false)
             {
+                Debug.Log("wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist");
                 //Schleife über alle Player 
                 for (int k = 0; k < playerList.Count; k++)
                 {
@@ -157,9 +159,12 @@ public class GameManager : MonoBehaviour
 
                             for(int cardCount = 0; cardCount < allCards.Count;cardCount++)
                             {
-                                if(allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID==allCards[cardCount].PlayerObject.playerID  && allCards[cardCount].CorrectVotes< playerList.Count/2)
-                                    playerList[j].Score += 50;
-
+                                //1 + wieder entfernen wenn nicht mehr single player mode
+                                if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1+playerList.Count / 2)
+                                {
+                                    playerList[j].Score = +50;
+                                    Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
+                                }
                             }
 
                         }
@@ -169,8 +174,9 @@ public class GameManager : MonoBehaviour
             }
     }
 
+
         Debug.Log("After points giveout");
-        //BroadCastScoresViaPM();
+        BroadCastScoresViaPM();
 
     }
 
@@ -203,9 +209,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void RoundEnd()
     {
+
+
         questionSet.RemoveQuestionFromSet(0);
+        Debug.Log("");
         if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
         {
+            //Debug.Log("count null");
             //spiel beenden
             //hud 
             //display player scores
@@ -259,11 +269,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            CleanUp();
             NextQuestion();
         }
 
     }
 
+    public void CleanUp()
+    {
+        pm.CleanUp();
+    }
 
     public void HandleAnswers(List<Card> answers)
     {

@@ -72,11 +72,11 @@ public class CardScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (answerPhase)
+         if (answerPhase)
         {
             Debug.Log("answerphase!");
         }
-        else if (votePhase )
+        else if (votePhase)
         {
             //textField.text = card.Answer;
 
@@ -112,6 +112,7 @@ public class CardScript : MonoBehaviour
     public void TimeUP()
     {
 
+        Debug.Log("timeup");
         if (!answerGiven && !votePhase)
         {
 
@@ -124,7 +125,8 @@ public class CardScript : MonoBehaviour
                Debug.Log("TimeUP: answers." + PlayerManager.answers[i].cardID + ", correctvotes:" + PlayerManager.answers[i].CorrectVotes);
            }*/
         }
-            //Destroy(gameObject);
+        //Destroy(gameObject);
+            Debug.Log("timeup");
             Destroy(GameObject.FindGameObjectWithTag("Card"));
         
     }
