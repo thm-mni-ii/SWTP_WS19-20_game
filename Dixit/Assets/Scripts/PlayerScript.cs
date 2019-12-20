@@ -54,6 +54,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (startPhase)
         {
+            //Debug.Log("votecount:" +vote.Count);
 
         }
         else if (votePhase == true)
@@ -134,6 +135,7 @@ public class PlayerScript : MonoBehaviour
     {
         vote = new List<Card>();
         startPhase = false;
+        votePhase = true;
 
         Debug.Log("not null" + phaseText);
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
@@ -167,6 +169,8 @@ public class PlayerScript : MonoBehaviour
             if(c.card.PlayerObject!=null)
             Debug.Log("player:" + c.card.PlayerObject);
             Debug.Log("showanser: " + c.card.Answer);
+            Debug.Log("countof cardskript from answercards" + answerCards.Count);
+
             for (int g= 0; g < answerCards.Count; g++)
             {
                 Debug.Log("AC:"+answerCards[g].card.Answer);
@@ -199,7 +203,6 @@ public class PlayerScript : MonoBehaviour
         Debug.Log("not null"+ phaseText);
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
         vote = new List<Card>();
-        votePhase = true;
 
 
     }

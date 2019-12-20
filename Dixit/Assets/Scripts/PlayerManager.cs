@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
     /// 
    public void BroadcastQuestion(Question question, float time){
         //int i = 0;
+        equalVotes = 0;
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
@@ -69,6 +70,7 @@ public class PlayerManager : MonoBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
+
             if(answer.cardID!=99)
             answers.Add(answer);
 
@@ -79,15 +81,8 @@ public class PlayerManager : MonoBehaviour
             if (answers.Count == players.Count)
             {
                 Debug.Log(players.Count + ":pc");
-                //Debug.Log("HIIIIIIIIIIIIIIIIIIIIIIIER");
                 gm.HandleAnswers(answers);
 
-                /*  for(int i = 0; i < answers.Count; i++)
-                  {
-                      Debug.Log("answer "+i+": "+answers[i].Answer);
-
-                  }*/
-                //Debug.Log("gm.HandleAnswers(answers");
             }
         }
    }
