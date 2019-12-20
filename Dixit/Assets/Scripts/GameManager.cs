@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
         for (int j = 0; j < answer.Count; j++)
         {
             if (answer[j].IsCorrect)
-                Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
+                //Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
             for (int i = 0; i < allCards.Count; i++)
             {
                
@@ -162,7 +162,10 @@ public class GameManager : MonoBehaviour
                                 //1 + wieder entfernen wenn nicht mehr single player mode
                                 if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1+playerList.Count / 2)
                                 {
-                                    playerList[j].Score = +50;
+                                    Debug.Log(allCards[i].PlayerGuesses.Count);
+                                    playerList[j].Score += 50;
+                                    Debug.Log("pg"+allCards[i].PlayerGuesses.Count);
+
                                     Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
                                 }
                             }
@@ -264,6 +267,7 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+            pm.ShowScoreBoard(scoreBoard);
             Debug.Log(scoreBoard);
 
         }

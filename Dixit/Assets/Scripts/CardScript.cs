@@ -148,13 +148,14 @@ public void GetAndSetTMP_Text(string text)
 
                     if (ps.player != null)
                         Debug.Log("player:" + ps.player.playerID);
+                    votePhase = false;
                     isAllreadyVoted = true;
                     answerGiven = true;
                     Debug.Log("OnMouseOver");
                     if(ps.vote!=null)
-                    Debug.Log("votecount" + ps.vote.Count);
+                    //Debug.Log("votecount" + ps.vote.Count);
                     ps.vote.Add(card);
-                    Debug.Log("votecount" + ps.vote.Count);
+                    //Debug.Log("votecount" + ps.vote.Count);
 
 
                 }

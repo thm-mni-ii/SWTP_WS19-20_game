@@ -23,17 +23,34 @@ public class PlayerManager : MonoBehaviour
         voteCounter = 0;
         gm.playerList.Add(player.player);
         players.Add(player);
+        BroadCastPlayers();
         /*foreach (PlayerScript p in players)
         {
             Debug.Log("player:" + p.player.PlayerName);
         }*/
         equalVotes = 0;
+        voteCounter = 0;
     }
 
 
 
-
-
+    /// <summary>
+    /// Broadcasts all PlayerNames to all all Playscripts in players.
+    /// </summary>
+    public void BroadCastPlayers()
+    {
+        string playerScores = "";
+        string playerList = "";
+        foreach (PlayerScript player in players)
+        {
+            playerList += player.player.PlayerName + "\n";
+            playerScores += "0\n";
+        }
+        foreach(PlayerScript player in players)
+        {
+            player.DisplayPlayers(playerList,playerScores);
+        }
+    }
     /// <summary>
     /// Recieves a question and a timer to send to all Players.
     /// </summary>
@@ -42,6 +59,7 @@ public class PlayerManager : MonoBehaviour
    public void BroadcastQuestion(Question question, float time){
         //int i = 0;
         equalVotes = 0;
+        voteCounter = 0;
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
@@ -53,6 +71,11 @@ public class PlayerManager : MonoBehaviour
 
     public void StartAnswerPhaseForAllPlayers()
     {
+       /* foreach(Card answer in answers)
+        {
+            answer.PlayerGuesses = new List<Player>();
+            answer.PlayerGuesses.Clear();
+        }*/
         Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
@@ -117,33 +140,66 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
     /// 
-    public void RegisterVote(Card vote)
+    public void RegisterVote(Card vote,Player p)
     {
+        voteCounter++;
+        Debug.Log("answerscountxx:"+answers.Count);
         Debug.Log("registervotes");
         Debug.Log("votecard:" + vote.PlayerGuesses.Count);
-        for (int i = 0; i < answers.Count; i++)
+
+
+        //auskommentiert solange hier mit shallow copy von answer gearbietet wird, wenn das ganze über das netzwerk laufne sollen müssen hie ränderungen vorgenommen werden
+     /*   for (int i = 0; i < answers.Count; i++)
         {
+            Debug.Log("answer in reg:" + answers[i].Answer);
             Debug.Log("registervotes2");
             if (answers[i].cardID == vote.cardID)
             {
                 Debug.Log("registervotes3");
+                /*for (int g=0;g< answers[i].PlayerGuesses.Count; i++) 
+                {
+                    if (answers[i].PlayerGuesses[g].playerID==vote.PlayerGuesses[0].playerID)
+                    {
+                        i = answers.Count-1;
+                        break;
+                    }
+                }
                 if (answers[i].PlayerGuesses.Count == 0)
                 {
                     Debug.Log("registervotes4");
                     answers[i].PlayerGuesses = new List<Player>();
+                    Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
+                    //answers[i].PlayerGuesses.Clear();
                     Debug.Log("registervotes5");
                 }
-                Debug.Log("registervotes5");
-                answers[i].PlayerGuesses.Add(vote.PlayerGuesses[0]);
-                Debug.Log("registervotes3");
+               
+                
+                    Debug.Log("registervotes5");
+                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count); 
+                    Debug.Log("answerspgpre:" + answers[i].PlayerGuesses.Count);
+
+                    answers[i].PlayerGuesses.Add(vote.PlayerGuesses[0]);
+                    Debug.Log("pgpost:" + vote.PlayerGuesses.Count);
+                    Debug.Log("registervotes3");
+                    Debug.Log("answerspg:" + answers[i].PlayerGuesses.Count);
+                    break;
             }
-        }
+
+        }*/
         Debug.Log("registervotes");
-        gm.RegisterVotes(answers);
+        Debug.Log("votecounter:" + voteCounter);
+        Debug.Log("playerCount" + players.Count);
+        if (voteCounter == players.Count)
+        {
+            Debug.Log("registervotes");
+
+
+            gm.RegisterVotes(answers);
+        }
     }
 
     /// <summary>
-    /// This method registers the which card is voted as an equal anser by alle the players.
+    /// This method registers  which card is voted as an equal answer by  the players.
     /// It calls the method RegisterEqualVotes on the GameManager if all player have voted.
     /// </summary>
     /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal.</param>
@@ -193,4 +249,10 @@ public class PlayerManager : MonoBehaviour
            p.UpdateScores(players2);
        }
    }
+
+   public void ShowScoreBoard(string scoreboard)
+    {
+        player.ShowScoreBoard(scoreboard);
+    }
 }
+

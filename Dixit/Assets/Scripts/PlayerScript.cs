@@ -83,7 +83,7 @@ public class PlayerScript : MonoBehaviour
                 phaseText.text = "";
 
                 //Debug.Log(voteCard.PlayerGuesses[0].playerID);
-                pm.RegisterVote(voteCard);
+                pm.RegisterVote(voteCard,this.player);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
                 answerPhase = false;
@@ -99,6 +99,12 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+
+    public void DisplayPlayers(string playerList,string playerScores)
+    {
+        nameText.text = playerList;
+        scoreboard.text = playerScores;
+    }
     public void StartAnswerPhase()
     {
         votePhase = false;
@@ -236,6 +242,12 @@ public class PlayerScript : MonoBehaviour
             }
         
 
+    }
+
+
+    public void ShowScoreBoard(string scoreboard)
+    {
+        phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
 
 
