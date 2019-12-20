@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
     public List<Player> playerList;
     public int numberOfRounds;
 
-
+    /// <summary>
+    /// This method gets the next question from questionscript and calls the BroadcastQuestion method on PlayerManager pm.
+    /// </summary>
     void NextQuestion()
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
@@ -183,6 +185,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This Method updates all the Player Objects in allCards
+    /// 
+    /// </summary>
+    /// <param name="allCards">The List of cards,which cards contain the playerobjects.</param>
     public void UpdatePlayersInCardList(List<Card> allCards)
     {
         for(int i = 0; i < allCards.Count; i++)
@@ -208,7 +215,8 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// This method checks if there are still rounds to be played or questions ind questionSet.
+    /// If one of those is true a NextQuestionwill be called, else the scoreboard will be broadcastet via ShowScoreBoard.
     /// </summary>
     void RoundEnd()
     {
@@ -279,11 +287,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This method acalls the CleanUp method on PlayerManager pm.
+    /// </summary>
     public void CleanUp()
     {
         pm.CleanUp();
     }
 
+    /// <summary>
+    /// This method recieves all the answers, saves them in allCards, adds the correctcard and broadcasts allCards via BroadCastAnswers on PlayerManager pm.
+    /// </summary>
+    /// <param name="answers">The list of answer cards</param>
     public void HandleAnswers(List<Card> answers)
     {
         allCards = answers;

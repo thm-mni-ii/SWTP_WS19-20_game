@@ -108,7 +108,9 @@ public class CardScript : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// This method destroys a "Card" tagged gameobject. If the game is neither in the votePhase nor is an answer given by the player, the SetCardFromPlayerScript method and the RegisterAnswer method are called. 
+    /// </summary>
     public void TimeUP()
     {
 
@@ -130,13 +132,23 @@ public class CardScript : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Card"));
         
     }
-
-public void GetAndSetTMP_Text(string text)
+    /*
+    /// <summary>
+    /// This method gets the TMP_Text component of textfield and sets in
+    /// </summary>
+    /// <param name="text"></param>
+public void GetAndSetTMP_Text()
     {
         textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
         textField.text = card.Answer;
-    }
+    }*/
 
+
+    /// <summary>
+    /// This method adds card to ps.vote if  votephase is true and if it is leftclicked by the mouse.
+    /// If in answerphase and leftclicked by the mouse, it sets ps.voteCard = card.
+
+    /// </summary>
     void OnMouseOver()
     {
         if (votePhase==true)

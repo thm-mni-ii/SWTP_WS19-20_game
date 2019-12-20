@@ -232,6 +232,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     
+    /// <summary>
+    /// This method calls the CleanUp method on PlayerScript player.
+    /// </summary>
     public void CleanUp()
     {
         player.CleanUp();
@@ -250,7 +253,11 @@ public class PlayerManager : MonoBehaviour
        }
    }
 
-   public void ShowScoreBoard(string scoreboard)
+    /// <summary>
+    /// This method calls the ShowScoreBoard method on PlayerScript player.
+    /// </summary>
+    /// <param name="scoreboard"></param>
+    public void ShowScoreBoard(string scoreboard)
     {
         player.ShowScoreBoard(scoreboard);
     }

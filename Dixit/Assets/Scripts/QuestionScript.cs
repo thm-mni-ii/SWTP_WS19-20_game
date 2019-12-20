@@ -29,6 +29,10 @@ public class QuestionScript : MonoBehaviour
        // startQuestion(4, "scuur scurr");
     }
 
+
+    /// <summary>
+    /// This method sets the QuestionScript object to the same state as it was when awake was called. 
+    /// </summary>
    public void InitializeQuestion()
     {
         //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
@@ -54,6 +58,11 @@ public class QuestionScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method starts the question and its corresponding timer.
+    /// </summary>
+    /// <param name="time">The starting time of the timer.</param>
+    /// <param name="question">the question, which is to be answered.</param>
     public void startQuestion(float time, string question)
     {
         timer.setTimer(time);
@@ -64,6 +73,9 @@ public class QuestionScript : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// This method sets the timer to null and calls, if not null, the timeUP method in CardScript.
+    /// </summary>
     void endQuestion()
     {
         Debug.Log("time up called in endquestion");

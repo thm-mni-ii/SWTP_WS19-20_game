@@ -33,6 +33,9 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This Method instantiates a new CardScript Object and calls the InitializeQuestion method in QuestionScript.
+    /// </summary>
     public void CreateNewCard()
     {
 
@@ -99,12 +102,23 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text.
+    /// 
+    /// </summary>
+    /// <param name="playerList">A string cotaining the players and a newline after every playername</param>
+    /// <param name="playerScores">A string containing the score and a newline for every player</param>
     public void DisplayPlayers(string playerList,string playerScores)
     {
         nameText.text = playerList;
         scoreboard.text = playerScores;
+
     }
+
+
+    /// <summary>
+    /// This method starts the answerphase, setting the corresponding booleans directing which phase it is.
+    /// </summary>
     public void StartAnswerPhase()
     {
         votePhase = false;
@@ -137,6 +151,10 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// This method shows all instantiates new CardScripts for the given answers and displays them for the player.
+    /// </summary>
+    /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
         vote = new List<Card>();
@@ -213,6 +231,10 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
+    /// </summary>
+    /// <param name="players">A List of players, used for their score and name field.</param>
     public void UpdateScores(List<Player> players)
     {
         scoreboard.text = "";
@@ -224,6 +246,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method destorys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
+    /// </summary>
     public void CleanUp() 
     {
         GameObject[] gameObjects;
@@ -245,6 +270,10 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
+    /// </summary>
+    /// <param name="scoreboard">a string containg the scoreboard and the ending game message.</param>
     public void ShowScoreBoard(string scoreboard)
     {
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;

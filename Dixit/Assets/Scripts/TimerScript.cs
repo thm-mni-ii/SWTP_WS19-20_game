@@ -45,6 +45,10 @@ public class TimerScript : MonoBehaviour
         text.color = textcolor;
     }
 
+    /// <summary>
+    /// This method sets timeleft.
+    /// </summary>
+    /// <param name="i">The value that timeleft is set to.</param>
     public void setTimer(float i)
     {
         timeleft = i;

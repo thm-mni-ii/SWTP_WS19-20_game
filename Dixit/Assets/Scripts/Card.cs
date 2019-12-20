@@ -41,12 +41,17 @@ public class Card
     /// <param name="cardID">The identification number of this card.</param>
     /// 
 
- 
+     
     public Card()
     {
         this.playerGuesses = new List<Player>();
 
     }
+    /// <summary>
+    /// Constructor for a card Object.
+    /// This Constructor initializes the List playerGuesses.
+    /// </summary>
+    /// <param name="cardID">The object will be initilized with this cardID.</param>
     public Card(int cardID)
     {
         this.cardID = cardID;
@@ -163,7 +168,11 @@ public class Card
         return tempCard;
     }
 
-
+    /// <summary>
+    /// This method adds the Card to cardList and Shuffles the List. This method should only be called on Cards which are correct.
+    /// </summary>
+    /// <param name="cardList">The List to to which the cards will be added.</param>
+    /// <returns></returns>
     public List<Card> AddOneAndShuffle(List<Card> cardList)
     {
         this.IsCorrect = true;

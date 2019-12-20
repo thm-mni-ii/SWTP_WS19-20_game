@@ -50,7 +50,15 @@ public class Player
 
     }
 
-
+    /// <summary>
+    /// A constructor for Player
+    /// </summary>
+    /// <param name="playerID">playerID</param>
+    /// <param name="score">score</param>
+    /// <param name="roomID">roomID</param>
+    /// <param name="experience">experience</param>
+    /// <param name="level">level</param>
+    /// <param name="playerName">playerName</param>
     public Player(int playerID, int score, int roomID, int experience, int level, string playerName)
     {
         this.playerID = playerID;

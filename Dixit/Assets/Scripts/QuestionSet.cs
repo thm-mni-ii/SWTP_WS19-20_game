@@ -97,7 +97,7 @@ public class QuestionSet
     /// This method may not be final, because it might be changed according to use with Mirror.
     /// </summary>
     /// <param name="path">A pathto the json file.</param>
-    /// <returns></returns>
+    /// <returns>The QuestionSet questenSet</returns>
     QuestionSet JsonToQuestionSet(string path)
     {
         using (StreamReader reader = File.OpenText(@"" + path))
@@ -117,7 +117,7 @@ public class QuestionSet
     /// The QuestionSet will also be shuffled.
     /// </summary>
     /// <param name="path">The path to the JSOn File.</param>
-    /// <returns></returns>
+    /// <returns>The loaded QuestionSet questionSet.</returns>
     public QuestionSet LoadQuestionSet(string path)
     {
         QuestionSet questionSet = JsonToQuestionSet(path);
@@ -125,6 +125,10 @@ public class QuestionSet
         return questionSet;
     }
 
+    /// <summary>
+    /// Gets the next Question from questionList.
+    /// </summary>
+    /// <returns>The next Question.</returns>
     public Question GetNextQuestion()
     {
         Question nextQuestion = QuestionList[0];
