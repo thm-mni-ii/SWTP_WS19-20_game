@@ -282,6 +282,7 @@ public class GameManager : MonoBehaviour
         else
         {
             CleanUp();
+            pm.CreateNewCardForPlayers();
             NextQuestion();
         }
 

@@ -51,6 +51,16 @@ public class PlayerManager : MonoBehaviour
             player.DisplayPlayers(playerList,playerScores);
         }
     }
+
+
+    public void CreateNewCardForPlayers()
+    {
+        foreach (PlayerScript p in players)
+        {
+
+            p.CreateNewCard();
+        }
+    }
     /// <summary>
     /// Recieves a question and a timer to send to all Players.
     /// </summary>
@@ -64,7 +74,7 @@ public class PlayerManager : MonoBehaviour
        foreach (PlayerScript p in players)
        {
           
-          p.CreateNewCard();
+          //p.CreateNewCard();
           p.question.startQuestion(time,question.question);
        }
    }
