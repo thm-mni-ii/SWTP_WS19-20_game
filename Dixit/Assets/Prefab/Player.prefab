@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: {fileID: 0}
   card: {fileID: 2982977886748935059, guid: 200b23d0cec64f94480628823be5c736, type: 3}
-  playerCard: {fileID: 7900292137278224579, guid: 40eb1a20e9c8fcc4d8949c1e5a4e164d,
+  playerCard: {fileID: 7900292137278224579, guid: 81460c40e66ee1349a10b6cd9ebf91b8,
     type: 3}
   player:
     playerID: 0
@@ -56,6 +56,9 @@ MonoBehaviour:
   vote: []
   voteCard:
     cardID: 0
+    answer: 
+    correctVotes: 0
+    isCorrect: 0
   startPhase: 1
   answerCards: []
 --- !u!114 &402468564285185494

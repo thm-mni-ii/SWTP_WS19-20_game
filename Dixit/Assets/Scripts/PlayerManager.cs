@@ -16,7 +16,6 @@ public class PlayerManager : MonoBehaviour
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
         //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
@@ -281,7 +280,10 @@ public class PlayerManager : MonoBehaviour
     /// <param name="scoreboard"></param>
     public void ShowScoreBoard(string scoreboard)
     {
-        player.ShowScoreBoard(scoreboard);
+        foreach (PlayerScript p in players)
+       {
+            p.ShowScoreBoard(scoreboard);
+       }
     }
 }
 
