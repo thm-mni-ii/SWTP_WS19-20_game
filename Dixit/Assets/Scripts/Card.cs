@@ -17,7 +17,7 @@ public class Card
     /// <summary>
     /// The answer of the player
     /// </summary>
-    private string answer = "";
+    public string answer = "";
     /// <summary>
     /// The corresponding player object
     /// </summary>
@@ -25,11 +25,11 @@ public class Card
     /// <summary>
     /// Number of votes, concerning if the given answer is equal to the correct answer.
     /// </summary>
-    private int correctVotes;
+    public int correctVotes;
     /// <summary>
     ///  Boolean to show it is the correct answer.
     /// </summary>
-    private bool isCorrect;
+    public bool isCorrect;
     /// <summary>
     /// A list of players who chose this card as the correct answer.
     /// </summary>
