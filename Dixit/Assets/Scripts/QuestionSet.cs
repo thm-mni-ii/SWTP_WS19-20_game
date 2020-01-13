@@ -119,7 +119,7 @@ public class QuestionSet
             //qs = new QuestionSet();
             RestClient.Get<QuestionSet>("https://dixit-db.firebaseio.com/QuestionSets/" + setName + ".json").Then(response =>
             {
-                EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
+                //EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
                 Debug.Log("response list length " + response.questionList.Count);
                 //Debug.Log("questionset list length " + active_qs.QuestionList.Count);
                 Debug.Log("SETNAME: " + setName);
