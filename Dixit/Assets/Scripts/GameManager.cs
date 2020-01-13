@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public string questionPath;
+    public string questionSetName;
     public QuestionSet questionSet = new QuestionSet();
     public PlayerManager pm;
     QuestionScript questionScript;
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     List<Card> allCards;
     public List<Player> playerList;
     public int numberOfRounds;
+    private bool nextQuestion = false;
 
     /// <summary>
     /// This method gets the next question from questionscript and calls the BroadcastQuestion method on PlayerManager pm.
@@ -33,11 +34,15 @@ public class GameManager : MonoBehaviour
         playerList = new List<Player>();
         //equalVotesCounter = 0;
         numberOfRounds = 5;
-        questionSet = questionSet.LoadQuestionSet(questionPath);
+        //questionSet = questionSet.LoadQuestionSet(questionSetName);
+        Debug.Log("GM QS " + questionSet.questionList.Count);
+        questionSet.JsonToQuestionSet(questionSetName);
+        Debug.Log("GM QS2 " + questionSet.questionList.Count);
         questionSet.PrintOutQuestions();
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
-        NextQuestion();
+        nextQuestion = true;
+        //NextQuestion();
         Debug.Log("OK");
         
     }
@@ -45,7 +50,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log("GM QS " + questionSet.questionList.Count);
+        if(nextQuestion)
+        {
+            if(questionSet.questionList.Count > 0)
+            {
+                nextQuestion = false;
+                NextQuestion();
+            }
+        }
     }
 
 
@@ -283,7 +296,8 @@ public class GameManager : MonoBehaviour
         {
             CleanUp();
             pm.CreateNewCardForPlayers();
-            NextQuestion();
+            nextQuestion = true;
+            //NextQuestion();
         }
 
     }

@@ -40,15 +40,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5232060219217133616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 211e238c48864394b99d961ec9de8903, type: 3}
+  m_Script: {fileID: 11500000, guid: e0f38f3dffcaa4d4c81847c4bbf503f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   question: {fileID: 0}
   card: {fileID: 6323949714128501291, guid: 200b23d0cec64f94480628823be5c736, type: 3}
-  playerCard: {fileID: 6311275074099503190, guid: 40eb1a20e9c8fcc4d8949c1e5a4e164d,
+  playerCard: {fileID: 7098472694121879417, guid: 81460c40e66ee1349a10b6cd9ebf91b8,
     type: 3}
   player:
-    playerID: 1
+    playerID: 0
   phaseText: {fileID: 0}
   nameText: {fileID: 0}
   pm: {fileID: 0}
