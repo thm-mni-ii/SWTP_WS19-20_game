@@ -121,7 +121,7 @@ public class QuestionSet
             {
                 EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
                 Debug.Log("response list length " + response.questionList.Count);
-                Debug.Log("questionset list length " + active_qs.QuestionList.Count);
+                //Debug.Log("questionset list length " + active_qs.QuestionList.Count);
                 Debug.Log("SETNAME: " + setName);
                 ShuffleList(response);
                 GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
