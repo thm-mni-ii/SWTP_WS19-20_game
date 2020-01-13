@@ -162,7 +162,7 @@ public class PlayerScript : MonoBehaviour
         votePhase = true;
 
         Debug.Log("not null" + phaseText);
-        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+        phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
         Debug.Log("not null"+phaseText.text);
 
 
