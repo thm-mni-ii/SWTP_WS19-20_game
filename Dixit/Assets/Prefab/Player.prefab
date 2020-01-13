@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1246461325512774334
+--- !u!1 &8036359168941673251
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1246461325512774328}
-  - component: {fileID: 1246461325512774329}
+  - component: {fileID: 7462872827917216705}
+  - component: {fileID: 6856017276596047479}
+  - component: {fileID: 402468564285185494}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerScript
@@ -17,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1246461325512774328
+--- !u!4 &7462872827917216705
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246461325512774334}
+  m_GameObject: {fileID: 8036359168941673251}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,24 +32,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1246461325512774329
+--- !u!114 &6856017276596047479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246461325512774334}
+  m_GameObject: {fileID: 8036359168941673251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 211e238c48864394b99d961ec9de8903, type: 3}
+  m_Script: {fileID: 11500000, guid: a6e74493826622f4ca926e859b7f3c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   question: {fileID: 0}
-  card: {fileID: 6323949714128501291, guid: 200b23d0cec64f94480628823be5c736, type: 3}
-  playerCard: {fileID: 6311275074099503190, guid: 40eb1a20e9c8fcc4d8949c1e5a4e164d,
+  card: {fileID: 2982977886748935059, guid: 200b23d0cec64f94480628823be5c736, type: 3}
+  playerCard: {fileID: 7900292137278224579, guid: 40eb1a20e9c8fcc4d8949c1e5a4e164d,
     type: 3}
   player:
-    playerID: 1
+    playerID: 0
   phaseText: {fileID: 0}
   nameText: {fileID: 0}
   pm: {fileID: 0}
@@ -57,3 +58,18 @@ MonoBehaviour:
     cardID: 0
   startPhase: 1
   answerCards: []
+--- !u!114 &402468564285185494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036359168941673251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverOnly: 0
+  m_AssetId: 
+  m_SceneId: 0

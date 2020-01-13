@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         NextQuestion();
         Debug.Log("OK");
-        
+
     }
 
     // Update is called once per frame

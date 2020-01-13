@@ -17,12 +17,12 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void Start(){
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
+        //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
-        player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         voteCounter = 0;
-        gm.playerList.Add(player.player);
-        players.Add(player);
+        //gm.playerList.Add(player.player);
+        //players.Add(player);
         BroadCastPlayers();
         /*foreach (PlayerScript p in players)
         {
@@ -30,6 +30,15 @@ public class PlayerManager : MonoBehaviour
         }*/
         equalVotes = 0;
         voteCounter = 0;
+    }
+
+    /// <summary>
+    /// Used by player to join the list of players
+    /// </summary>
+    public void RecievePlayer(PlayerScript player){
+        player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        gm.playerList.Add(player.player);
+        players.Add(player);
     }
 
 
@@ -247,7 +256,10 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void CleanUp()
     {
-        player.CleanUp();
+        foreach (PlayerScript p in players)
+       {
+            p.CleanUp();
+       }
        
     }
 
