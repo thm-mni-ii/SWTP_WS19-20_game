@@ -25,12 +25,11 @@ public class CardScript : MonoBehaviour
     public Boolean answerPhase = false;
     public PlayerManager pm;
     public Boolean isAllreadyVoted = false;
-    PlayerScript ps;
+    public PlayerScript ps;
     // Start is called before the first frame update
     void Start()
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-        ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
         if (card == null)
         {
             card = new Card();
@@ -47,6 +46,7 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
+            ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
             //ps.answerCards.Add(this);
             textField = GetComponentInChildren<TMP_Text>();
             //textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();

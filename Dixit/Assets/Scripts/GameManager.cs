@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         nextQuestion = true;
         //NextQuestion();
         Debug.Log("OK");
-        
+
     }
 
     // Update is called once per frame

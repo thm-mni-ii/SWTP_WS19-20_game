@@ -30,7 +30,9 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
      pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-
+     CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+     cs.ps = this;
+     pm.RecievePlayer(this);   
     }
 
     /// <summary>
@@ -43,6 +45,7 @@ public class PlayerScript : MonoBehaviour
         startPhase=true;
         c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
         c.transform.Rotate(new Vector3(270, 0, 0));
+        c.ps = this;
 
         c.textField = GetComponent<TMP_Text>();
         //if(i==0)
