@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +8,21 @@ public class GameManager : MonoBehaviour
 {
     public string questionPath;
     public QuestionSet questionSet = new QuestionSet();
+    public PlayerManager pm;
     QuestionScript questionScript;
     Question currentQuestion;
     List<Card> currentAnswers;
-    PlayerManager pm;
     List<Card> allCards;
-    List<Player> playerList;
+    public List<Player> playerList;
     public int numberOfRounds;
 
-
+    /// <summary>
+    /// This method gets the next question from questionscript and calls the BroadcastQuestion method on PlayerManager pm.
+    /// </summary>
     void NextQuestion()
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
+        //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         pm.BroadcastQuestion(currentQuestion,30f);
         //Debug.Log("NextQuestion aufgerufen");
     }
@@ -27,87 +31,10 @@ public class GameManager : MonoBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
-        playerList.Add(new Player(1,0,2,0,2,"Marc"));
-        playerList.Add(new Player(2, 0, 2, 0, 2, "Tom"));
-        playerList.Add(new Player(3, 0, 2, 0, 2, "Robert"));
-        playerList.Add(new Player(4, 0, 2, 0, 2, "Herzberg"));
-        //playerList.Add(new Player(1, 0, 2, 0, 2, "Priefer"));
-        List<Card> voteList = new List<Card>();
-      //   Test ob bei tippen auf richtige Karte punkt everteilt werden
-        allCards.Add(new Card());
-        allCards[0].IsCorrect = true;
-        allCards[0].PlayerObject = null;
-        allCards[0].Answer = "Richtig";
-        allCards[0].cardID = 42;
-        allCards[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Tom"));
-        allCards[0].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
-        allCards.Add(new Card());
-        allCards[1].CorrectVotes = 2;
-        allCards[1].IsCorrect = false;
-        allCards[1].PlayerObject = new Player(2, 0, 2, 0, 2, "Tom");
-        allCards[1].Answer = "Richtig";
-        allCards[1].cardID = 1;
-        //allCards[1].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0, 2, "Marc"));
-        allCards.Add(new Card());
-        allCards[2].IsCorrect = false;
-        allCards[2].PlayerObject = new Player(3, 0, 2, 0, 2, "Robert");
-        allCards[2].Answer = "Richtig";
-        allCards[2].cardID = 3;
-        //allCards[2].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0, 2, "Tom"));
-        allCards.Add(new Card());
-        allCards[3].IsCorrect = false;
-        allCards[3].PlayerObject = new Player(1, 0, 2, 0, 2, "Marc");
-        allCards[3].Answer = "Richtig";
-        allCards[3].CorrectVotes = 2;
-        allCards[3].cardID = 3;
-        voteList.Add(new Card());
-        voteList.Add(new Card());
-        voteList.Add(new Card());
-        voteList.Add(new Card());
-        //vote equal test
-
-        //vote test
-        voteList[0].cardID = 1;
-        voteList[0].IsCorrect = false;
-        voteList[0].PlayerObject = playerList[1];
-        //voteList[0].AddPlayerToPlayerGuesses(new Player(1,50,2,0,2,"Marc"));
-        voteList[0].CorrectVotes = 1;
-        voteList[0].AddPlayerToPlayerGuesses(new Player(2, 0, 2, 0,2, "Tom"));
-        voteList[0].AddPlayerToPlayerGuesses(new Player(3, 0, 2, 0,2, "Robert"));
-        //voteList[1].AddPlayerToPlayerGuesses(new Player(1, 0, 2, 0, 2, "Marc"));
-        //voteList[1].cardID = 42;
-
-        RegisterEqualVotes(voteList);
-        RegisterVotes(voteList);
-        //Debug.Log("" + allCards[1].PlayerObject.Score);
-        numberOfRounds = 0;
-        RoundEnd();
-
-
-        //Player(int playerID, int score, int roomID, int experience, int level, string playerName)
-        //Debug.Log("hallo");
-
-
-        //überarbeiten da correct answer in questionScript vom ytp card ist, -> einlesen geht nicht so einfahc wie mit vorherigen question 
-        //abfangen falls questionpath null;
-
-        /*
-        questionSet.QuestionList[0].questionID = 0;
-        Debug.Log("hallo2");
-        questionSet.QuestionList[0].correctAnswer.answer = "42";
-        Debug.Log("hallo3");
-        questionSet.QuestionList[0].question = "Wie lautet die Antwort auf alle Fragen?";
-        questionSet.QuestionList[1].questionID = 0;
-        questionSet.QuestionList[1].correctAnswer.answer = "42";
-        questionSet.QuestionList[1].question = "Wie lautet die Antwort auf alle Fragen?";
-        questionSet.QuestionList[2].questionID = 0;
-        questionSet.QuestionList[2].correctAnswer.answer = "42";
-        questionSet.QuestionList[2].question = "Wie lautet die Antwort auf alle Fragen?";*/
-        //questionSet.PrintOutQuestions();
-
+        //equalVotesCounter = 0;
+        numberOfRounds = 5;
         questionSet = questionSet.LoadQuestionSet(questionPath);
         questionSet.PrintOutQuestions();
-        
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         NextQuestion();
@@ -123,38 +50,52 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// This method is to register the player guesses concerning which answer is the correct one.
+    /// This method is to register the player guesses concerning which answer is equal to the correct one.
     /// To annul an answer, more than half of the players must vote for it.
     /// </summary>
     /// <param name="answers"></param>
     /// votes[j].CorrectVotes > voteLimit 
     public void RegisterEqualVotes(List<Card> votes)
     {
+        Debug.Log("in gm equal");
+        Debug.Log(allCards.Count);
         for (int j = 0; j < votes.Count; j++) {
+           
+
             for (int i = 0; i< allCards.Count; i++) {
+                Debug.Log("i+"+allCards[i].PlayerObject);
                 if (allCards[i].PlayerObject != null && votes[j].PlayerObject!=null && allCards[i].PlayerObject.playerID == votes[j].PlayerObject.playerID )
                 {
                     allCards[i].CorrectVotes = votes[j].CorrectVotes;
+                    Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
+                Debug.Log("xaxa");
+
                 }
-                    }
-            
             }
-        /*AUfgabe der Correct VOtes zum Debuggen
+            
+
+        }
+        Debug.Log("in nach gm equal");
+
+        //AUfgabe der Correct VOtes zum Debuggen
         for (int j = 0; j < allCards.Count; j++)
         {
             if(allCards[j].PlayerObject!=null)
             Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName+" Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
-        }*/
+        }
+        pm.StartAnswerPhaseForAllPlayers();
     }
 
     /// <summary>
-    /// 
+    /// This method is to register the player guesses concerning which answer is the correct one.
     /// Calls the method GiveOutPoints
     /// </summary>
     public void RegisterVotes(List<Card> answer)
     {
         for (int j = 0; j < answer.Count; j++)
         {
+            if (answer[j].IsCorrect)
+                //Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
             for (int i = 0; i < allCards.Count; i++)
             {
                
@@ -172,22 +113,24 @@ public class GameManager : MonoBehaviour
             if (allCards[j].PlayerObject != null)
                 Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " PlayerGuesses: " + allCards[j].PlayerGuesses.Count);
         }*/
-        
+        Debug.Log("registervotes");
+
         GiveOutPoints();
     }
     /// <summary>
-    /// 
+    /// This method increases the player scores acording to the rules of the game.
     /// Calls the Method BroadCastScoresViaPM.
     /// </summary>
     void GiveOutPoints()
     {
-
+        Debug.Log(playerList.Count);
         //for schleife über player cards
         for (int i = 0; i < allCards.Count; i++)
         {
             //wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist
             if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count/2) && allCards[i].IsCorrect == false)
             {
+                Debug.Log("wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist");
                 //Schleife über alle Player 
                 for (int k = 0; k < playerList.Count; k++)
                 {
@@ -218,9 +161,15 @@ public class GameManager : MonoBehaviour
 
                             for(int cardCount = 0; cardCount < allCards.Count;cardCount++)
                             {
-                                if(allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID==allCards[cardCount].PlayerObject.playerID  && allCards[cardCount].CorrectVotes< playerList.Count/2)
+                                //1 + wieder entfernen wenn nicht mehr single player mode
+                                if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1+playerList.Count / 2)
+                                {
+                                    Debug.Log(allCards[i].PlayerGuesses.Count);
                                     playerList[j].Score += 50;
+                                    Debug.Log("pg"+allCards[i].PlayerGuesses.Count);
 
+                                    Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
+                                }
                             }
 
                         }
@@ -229,10 +178,18 @@ public class GameManager : MonoBehaviour
                 }
             }
     }
+
+
+        Debug.Log("After points giveout");
         BroadCastScoresViaPM();
 
     }
 
+    /// <summary>
+    /// This Method updates all the Player Objects in allCards
+    /// 
+    /// </summary>
+    /// <param name="allCards">The List of cards,which cards contain the playerobjects.</param>
     public void UpdatePlayersInCardList(List<Card> allCards)
     {
         for(int i = 0; i < allCards.Count; i++)
@@ -258,12 +215,18 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// This method checks if there are still rounds to be played or questions ind questionSet.
+    /// If one of those is true a NextQuestionwill be called, else the scoreboard will be broadcastet via ShowScoreBoard.
     /// </summary>
     void RoundEnd()
     {
-        if(questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
+
+
+        questionSet.RemoveQuestionFromSet(0);
+        Debug.Log("");
+        if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
         {
+            //Debug.Log("count null");
             //spiel beenden
             //hud 
             //display player scores
@@ -312,22 +275,48 @@ public class GameManager : MonoBehaviour
                 }
 
             }
+            pm.ShowScoreBoard(scoreBoard);
             Debug.Log(scoreBoard);
 
         }
         else
         {
+            CleanUp();
+            pm.CreateNewCardForPlayers();
             NextQuestion();
         }
 
     }
 
-
-    void HandleAnswers(List<Card> answers)
+    /// <summary>
+    /// This method acalls the CleanUp method on PlayerManager pm.
+    /// </summary>
+    public void CleanUp()
     {
-        currentAnswers = answers;
+        pm.CleanUp();
+    }
+
+    /// <summary>
+    /// This method recieves all the answers, saves them in allCards, adds the correctcard and broadcasts allCards via BroadCastAnswers on PlayerManager pm.
+    /// </summary>
+    /// <param name="answers">The list of answer cards</param>
+    public void HandleAnswers(List<Card> answers)
+    {
+        allCards = answers;
+        for (int i = 0; i < answers.Count; i++)
+        {
+            Debug.Log("answer " + i + ": " + allCards[i].Answer);
+
+        }
+        Debug.Log("answers handled");
+        Debug.Log("allcardcount:"+allCards.Count);
+        questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(allCards);
+        pm.BroadcastAnswers(allCards);
     }
 
 }
+
+
+
 
 

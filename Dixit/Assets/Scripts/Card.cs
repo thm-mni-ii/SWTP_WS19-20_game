@@ -35,33 +35,23 @@ public class Card
     /// </summary>
     private List<Player> playerGuesses;
     /// <summary>
-    /// Textfield to display this cards Answe text.
-    /// </summary>
-    public TMP_Text textField;
-    /// <summary>
-    /// Flag if input is finished.
-    /// </summary>
-    private Boolean answerGiven = false;
-    /// <summary>
-    /// Flag if card is clickable.
-    /// </summary>
-    public Boolean votePhase = false;
-
-
-    /// <summary>
     /// Constructor for a Card Object.
     /// This Constructor initializes the List playerGuesses.
     /// </summary>
     /// <param name="cardID">The identification number of this card.</param>
     /// 
 
-    
-
+     
     public Card()
     {
         this.playerGuesses = new List<Player>();
 
     }
+    /// <summary>
+    /// Constructor for a card Object.
+    /// This Constructor initializes the List playerGuesses.
+    /// </summary>
+    /// <param name="cardID">The object will be initilized with this cardID.</param>
     public Card(int cardID)
     {
         this.cardID = cardID;
@@ -178,27 +168,25 @@ public class Card
         return tempCard;
     }
 
-    void Update()
+    /// <summary>
+    /// This method adds the Card to cardList and Shuffles the List. This method should only be called on Cards which are correct.
+    /// </summary>
+    /// <param name="cardList">The List to to which the cards will be added.</param>
+    /// <returns></returns>
+    public List<Card> AddOneAndShuffle(List<Card> cardList)
     {
-        
-        foreach (char c in Input.inputString)
+        this.IsCorrect = true;
+        this.correctVotes = 0;
+        cardList.Add(this);
+        for (int i = 0; i < cardList.Count; i++)
         {
-            if(!answerGiven && !votePhase){
-                if (Input.inputString == "\r"){
-                    answerGiven = true;
-                    PlayerManager.RegisterAnswer(this);
-                } else if (Input.inputString == "\b" && answer.Length>0) 
-                    answer = answer.Substring(0, answer.Length - 1);
-                else
-                    answer = answer + c;
-                textField.text = Answer;
-                Debug.Log(answer);
-            }
-        }   
+            Card temp = cardList[i];
+            int index = UnityEngine.Random.Range(i, cardList.Count);
+            cardList[i] = cardList[index];
+            cardList[index] = temp;
+        }
+        return cardList;
     }
 
-    void TimeUP(){
-        answerGiven = true;
-        PlayerManager.RegisterAnswer(this);
-    }
 }
+

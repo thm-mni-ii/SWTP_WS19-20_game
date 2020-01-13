@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +45,10 @@ public class TimerScript : MonoBehaviour
         text.color = textcolor;
     }
 
+    /// <summary>
+    /// This method sets timeleft.
+    /// </summary>
+    /// <param name="i">The value that timeleft is set to.</param>
     public void setTimer(float i)
     {
         timeleft = i;

@@ -13,6 +13,7 @@ public class Question
         this.questionID = questionID;
         this.question = question;
         correctAnswer = new Card();
+        correctAnswer.cardID = 99;
         correctAnswer.Answer = answer;
     }
     public int questionID;

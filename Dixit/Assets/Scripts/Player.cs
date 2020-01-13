@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -8,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 [Serializable]
-public class Player : MonoBehaviour
+public class Player
 {
     //player und user ID werden jetzt zusammengelegt
     /// <summary>
@@ -36,9 +37,8 @@ public class Player : MonoBehaviour
     /// </summary>
     private string playerName;
 
-    public QuestionScript question;
-    public Card card;
-    private Text scoreboard;
+  //  public Card card;
+  
 
 
     /// <summary>
@@ -50,8 +50,15 @@ public class Player : MonoBehaviour
 
     }
 
-
-
+    /// <summary>
+    /// A constructor for Player
+    /// </summary>
+    /// <param name="playerID">playerID</param>
+    /// <param name="score">score</param>
+    /// <param name="roomID">roomID</param>
+    /// <param name="experience">experience</param>
+    /// <param name="level">level</param>
+    /// <param name="playerName">playerName</param>
     public Player(int playerID, int score, int roomID, int experience, int level, string playerName)
     {
         this.playerID = playerID;
@@ -196,28 +203,5 @@ public class Player : MonoBehaviour
 
     }
 
-    void Awake(){
-        question = GameObject.FindGameObjectWithTag("Question").GetComponent<QuestionScript>();
-        scoreboard = GameObject.FindGameObjectWithTag("Scoreboard").GetComponent<Text>();
-    }
-
-
-    public void ShowAnswers(List<Card> answers){
-        foreach (Card answer in answers)
-        {
-            //Card c = Instantiate(card, new Vector3(0,0,0), Quaternion.identity);
-            //c.cardID = answer.cardID;
-            //c.textField.text = answer.Answer;
-            //c.PlayerObject = answer.PlayerObject;
-            //c.votePhase = true;
-            //c.IsCorrect = answer.IsCorrect;
-        }
-    }
-
-    public void UpdateScores(List<Player> players){
-        foreach (Player p in players)
-        {
-            scoreboard.text += p.Score + "\t" + p.PlayerName + "\n";
-        }
-    }
+   
 }

@@ -19,6 +19,7 @@ public class QuestionSetLoader : MonoBehaviour
     public string questionPath;
     
     public string qp;
+
     void ShuffleList(QuestionSet questSet)
     {
         for (int i = 0; i < questSet.QuestionList.Count; i++)
