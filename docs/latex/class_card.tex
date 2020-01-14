@@ -1,0 +1,242 @@
+\hypertarget{class_card}{}\doxysection{Card Class Reference}
+\label{class_card}\index{Card@{Card}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_card_a8ebe841d86b657788590efc92a8cfb09}{Card}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for a \mbox{\hyperlink{class_card}{Card}} Object. This Constructor initializes the List player\+Guesses. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}{Card}} (int \mbox{\hyperlink{class_card_ac9a587fc3976a91aba13b5acf410ead9}{card\+ID}})
+\begin{DoxyCompactList}\small\item\em Constructor for a card Object. This Constructor initializes the List player\+Guesses. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_card_a083c578986e5954bee5412ca57a454e7}{Add\+Player\+To\+Player\+Guesses}} (\mbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_card_a86e09c2ce78d1a3e3727694fb4693adf}{Card\+To\+Json\+String}} ()
+\begin{DoxyCompactList}\small\item\em A method returns an Object converted to a string in J\+S\+ON format. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_a8653e7edb7afd3090ba8bc411560410d}{Json\+To\+Card}} (string json)
+\begin{DoxyCompactList}\small\item\em A method that reruns a new \mbox{\hyperlink{class_card}{Card}} from a string in J\+S\+ON format. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_card_a01279e8b855a89eaf751f2bb27c64006}{Add\+One\+And\+Shuffle}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ card\+List)
+\begin{DoxyCompactList}\small\item\em This method adds the \mbox{\hyperlink{class_card}{Card}} to card\+List and Shuffles the List. This method should only be called on Cards which are correct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_card_ac9a587fc3976a91aba13b5acf410ead9}{card\+ID}}
+\begin{DoxyCompactList}\small\item\em The identifation of the card \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}{answer}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em The answer of the player \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_card_a5af95d03909ba563e2350c93e8c7becf}{correct\+Votes}}
+\begin{DoxyCompactList}\small\item\em Number of votes, concerning if the given answer is equal to the correct answer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_card_a37131add738b3953372890b117e259e7}{is\+Correct}}
+\begin{DoxyCompactList}\small\item\em Boolean to show it is the correct answer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_card_ab14fa4a4f432aa7712a9a777122f096f}{Answer}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for answer. The Setter automatically converts the String to Upper\+Case. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_card_a57c716130d0d4fbb057f3d9fac986889}{Player\+Object}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for player\+Object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_card_a42955f9bc42747d76700c1dc7578f3a4}{Correct\+Votes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for correct\+Votes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_card_a2d533147f442f5eaaa82a4ee8e0e9050}{Is\+Correct}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for Is\+Correct. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_card_aa42849ab4e9d03cdf64a8ca18cd9da5c}{Player\+Guesses}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for player\+Guesses. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_card_a8ebe841d86b657788590efc92a8cfb09}\label{class_card_a8ebe841d86b657788590efc92a8cfb09}} 
+\index{Card@{Card}!Card@{Card}}
+\index{Card@{Card}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{Card()}{Card()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Card.\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \mbox{\hyperlink{class_card}{Card}} Object. This Constructor initializes the List player\+Guesses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card\+ID} & The identification number of this card.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}\label{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}} 
+\index{Card@{Card}!Card@{Card}}
+\index{Card@{Card}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{Card()}{Card()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Card.\+Card (\begin{DoxyParamCaption}\item[{int}]{card\+ID }\end{DoxyParamCaption})}
+
+
+
+Constructor for a card Object. This Constructor initializes the List player\+Guesses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card\+ID} & The object will be initilized with this card\+ID.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_card_a01279e8b855a89eaf751f2bb27c64006}\label{class_card_a01279e8b855a89eaf751f2bb27c64006}} 
+\index{Card@{Card}!AddOneAndShuffle@{AddOneAndShuffle}}
+\index{AddOneAndShuffle@{AddOneAndShuffle}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{AddOneAndShuffle()}{AddOneAndShuffle()}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_card}{Card}}$>$ Card.\+Add\+One\+And\+Shuffle (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{class_card}{Card}} $>$}]{card\+List }\end{DoxyParamCaption})}
+
+
+
+This method adds the \mbox{\hyperlink{class_card}{Card}} to card\+List and Shuffles the List. This method should only be called on Cards which are correct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card\+List} & The List to to which the cards will be added.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_card_a083c578986e5954bee5412ca57a454e7}\label{class_card_a083c578986e5954bee5412ca57a454e7}} 
+\index{Card@{Card}!AddPlayerToPlayerGuesses@{AddPlayerToPlayerGuesses}}
+\index{AddPlayerToPlayerGuesses@{AddPlayerToPlayerGuesses}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{AddPlayerToPlayerGuesses()}{AddPlayerToPlayerGuesses()}}
+{\footnotesize\ttfamily void Card.\+Add\+Player\+To\+Player\+Guesses (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}}}]{player }\end{DoxyParamCaption})}
+
+
+
+Method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The player that will be added.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_card_a86e09c2ce78d1a3e3727694fb4693adf}\label{class_card_a86e09c2ce78d1a3e3727694fb4693adf}} 
+\index{Card@{Card}!CardToJsonString@{CardToJsonString}}
+\index{CardToJsonString@{CardToJsonString}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{CardToJsonString()}{CardToJsonString()}}
+{\footnotesize\ttfamily string Card.\+Card\+To\+Json\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A method returns an Object converted to a string in J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+json as a string
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_card_a8653e7edb7afd3090ba8bc411560410d}\label{class_card_a8653e7edb7afd3090ba8bc411560410d}} 
+\index{Card@{Card}!JsonToCard@{JsonToCard}}
+\index{JsonToCard@{JsonToCard}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{JsonToCard()}{JsonToCard()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card}{Card}} Card.\+Json\+To\+Card (\begin{DoxyParamCaption}\item[{string}]{json }\end{DoxyParamCaption})}
+
+
+
+A method that reruns a new \mbox{\hyperlink{class_card}{Card}} from a string in J\+S\+ON format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_card}{Card}} object representation of the J\+S\+ON file
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}\label{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}} 
+\index{Card@{Card}!answer@{answer}}
+\index{answer@{answer}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{answer}{answer}}
+{\footnotesize\ttfamily string Card.\+answer = \char`\"{}\char`\"{}}
+
+
+
+The answer of the player 
+
+\mbox{\Hypertarget{class_card_ac9a587fc3976a91aba13b5acf410ead9}\label{class_card_ac9a587fc3976a91aba13b5acf410ead9}} 
+\index{Card@{Card}!cardID@{cardID}}
+\index{cardID@{cardID}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{cardID}{cardID}}
+{\footnotesize\ttfamily int Card.\+card\+ID}
+
+
+
+The identifation of the card 
+
+\mbox{\Hypertarget{class_card_a5af95d03909ba563e2350c93e8c7becf}\label{class_card_a5af95d03909ba563e2350c93e8c7becf}} 
+\index{Card@{Card}!correctVotes@{correctVotes}}
+\index{correctVotes@{correctVotes}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{correctVotes}{correctVotes}}
+{\footnotesize\ttfamily int Card.\+correct\+Votes}
+
+
+
+Number of votes, concerning if the given answer is equal to the correct answer. 
+
+\mbox{\Hypertarget{class_card_a37131add738b3953372890b117e259e7}\label{class_card_a37131add738b3953372890b117e259e7}} 
+\index{Card@{Card}!isCorrect@{isCorrect}}
+\index{isCorrect@{isCorrect}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{isCorrect}{isCorrect}}
+{\footnotesize\ttfamily bool Card.\+is\+Correct}
+
+
+
+Boolean to show it is the correct answer. 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_card_ab14fa4a4f432aa7712a9a777122f096f}\label{class_card_ab14fa4a4f432aa7712a9a777122f096f}} 
+\index{Card@{Card}!Answer@{Answer}}
+\index{Answer@{Answer}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{Answer}{Answer}}
+{\footnotesize\ttfamily string Card.\+Answer\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for answer. The Setter automatically converts the String to Upper\+Case. 
+
+\mbox{\Hypertarget{class_card_a42955f9bc42747d76700c1dc7578f3a4}\label{class_card_a42955f9bc42747d76700c1dc7578f3a4}} 
+\index{Card@{Card}!CorrectVotes@{CorrectVotes}}
+\index{CorrectVotes@{CorrectVotes}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{CorrectVotes}{CorrectVotes}}
+{\footnotesize\ttfamily int Card.\+Correct\+Votes\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for correct\+Votes. 
+
+\mbox{\Hypertarget{class_card_a2d533147f442f5eaaa82a4ee8e0e9050}\label{class_card_a2d533147f442f5eaaa82a4ee8e0e9050}} 
+\index{Card@{Card}!IsCorrect@{IsCorrect}}
+\index{IsCorrect@{IsCorrect}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{IsCorrect}{IsCorrect}}
+{\footnotesize\ttfamily bool Card.\+Is\+Correct\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for Is\+Correct. 
+
+\mbox{\Hypertarget{class_card_aa42849ab4e9d03cdf64a8ca18cd9da5c}\label{class_card_aa42849ab4e9d03cdf64a8ca18cd9da5c}} 
+\index{Card@{Card}!PlayerGuesses@{PlayerGuesses}}
+\index{PlayerGuesses@{PlayerGuesses}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{PlayerGuesses}{PlayerGuesses}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_player}{Player}}$>$ Card.\+Player\+Guesses\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for player\+Guesses. 
+
+\mbox{\Hypertarget{class_card_a57c716130d0d4fbb057f3d9fac986889}\label{class_card_a57c716130d0d4fbb057f3d9fac986889}} 
+\index{Card@{Card}!PlayerObject@{PlayerObject}}
+\index{PlayerObject@{PlayerObject}!Card@{Card}}
+\doxysubsubsection{\texorpdfstring{PlayerObject}{PlayerObject}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} Card.\+Player\+Object\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for player\+Object. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Marc/\+S\+W\+T\+P\+\_\+\+W\+S19-\/20\+\_\+game/\+Dixit/\+Assets/\+Scripts/Card.\+cs\end{DoxyCompactItemize}

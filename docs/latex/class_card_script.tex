@@ -1,0 +1,91 @@
+\hypertarget{class_card_script}{}\doxysection{Card\+Script Class Reference}
+\label{class_card_script}\index{CardScript@{CardScript}}
+Inheritance diagram for Card\+Script\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_card_script}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_card_script_a1611b0d232d9669588134be072917a98}\label{class_card_script_a1611b0d232d9669588134be072917a98}} 
+void {\bfseries Set\+Card\+From\+Player\+Script} (\mbox{\hyperlink{class_player_script}{Player\+Script}} ps, \mbox{\hyperlink{class_card}{Card}} card)
+\item 
+void \mbox{\hyperlink{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}{Time\+UP}} ()
+\begin{DoxyCompactList}\small\item\em This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_card_script_af567a9b37343db3510b578d357695b09}\label{class_card_script_af567a9b37343db3510b578d357695b09}} 
+\mbox{\hyperlink{class_card}{Card}} {\bfseries card}
+\item 
+T\+M\+P\+\_\+\+Text \mbox{\hyperlink{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}{text\+Field}}
+\begin{DoxyCompactList}\small\item\em Textfield to display this cards Answe text. \end{DoxyCompactList}\item 
+Boolean \mbox{\hyperlink{class_card_script_af89b869c70df84d5bb114c6b38f493a5}{answer\+Given}} = false
+\begin{DoxyCompactList}\small\item\em Flag if input is finished. \end{DoxyCompactList}\item 
+Boolean \mbox{\hyperlink{class_card_script_ac02705870f750d731fd80b65541242cb}{vote\+Phase}} = false
+\begin{DoxyCompactList}\small\item\em Flag if card is clickable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_card_script_a67ed090aa16d94ae0b99400da90f922c}\label{class_card_script_a67ed090aa16d94ae0b99400da90f922c}} 
+Boolean {\bfseries answer\+Phase} = false
+\item 
+\mbox{\Hypertarget{class_card_script_a96daebe03b2740900cb84e6315df532f}\label{class_card_script_a96daebe03b2740900cb84e6315df532f}} 
+\mbox{\hyperlink{class_player_manager}{Player\+Manager}} {\bfseries pm}
+\item 
+\mbox{\Hypertarget{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}\label{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}} 
+Boolean {\bfseries is\+Allready\+Voted} = false
+\item 
+\mbox{\Hypertarget{class_card_script_aa0af35d094c775aa22d86d27012ee291}\label{class_card_script_aa0af35d094c775aa22d86d27012ee291}} 
+\mbox{\hyperlink{class_player_script}{Player\+Script}} {\bfseries ps}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}\label{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}} 
+\index{CardScript@{CardScript}!TimeUP@{TimeUP}}
+\index{TimeUP@{TimeUP}!CardScript@{CardScript}}
+\doxysubsubsection{\texorpdfstring{TimeUP()}{TimeUP()}}
+{\footnotesize\ttfamily void Card\+Script.\+Time\+UP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_card_script_af89b869c70df84d5bb114c6b38f493a5}\label{class_card_script_af89b869c70df84d5bb114c6b38f493a5}} 
+\index{CardScript@{CardScript}!answerGiven@{answerGiven}}
+\index{answerGiven@{answerGiven}!CardScript@{CardScript}}
+\doxysubsubsection{\texorpdfstring{answerGiven}{answerGiven}}
+{\footnotesize\ttfamily Boolean Card\+Script.\+answer\+Given = false}
+
+
+
+Flag if input is finished. 
+
+\mbox{\Hypertarget{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}\label{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}} 
+\index{CardScript@{CardScript}!textField@{textField}}
+\index{textField@{textField}!CardScript@{CardScript}}
+\doxysubsubsection{\texorpdfstring{textField}{textField}}
+{\footnotesize\ttfamily T\+M\+P\+\_\+\+Text Card\+Script.\+text\+Field}
+
+
+
+Textfield to display this cards Answe text. 
+
+\mbox{\Hypertarget{class_card_script_ac02705870f750d731fd80b65541242cb}\label{class_card_script_ac02705870f750d731fd80b65541242cb}} 
+\index{CardScript@{CardScript}!votePhase@{votePhase}}
+\index{votePhase@{votePhase}!CardScript@{CardScript}}
+\doxysubsubsection{\texorpdfstring{votePhase}{votePhase}}
+{\footnotesize\ttfamily Boolean Card\+Script.\+vote\+Phase = false}
+
+
+
+Flag if card is clickable. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Marc/\+S\+W\+T\+P\+\_\+\+W\+S19-\/20\+\_\+game/\+Dixit/\+Assets/\+Scripts/Card\+Script.\+cs\end{DoxyCompactItemize}
