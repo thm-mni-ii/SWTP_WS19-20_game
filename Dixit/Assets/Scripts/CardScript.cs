@@ -216,6 +216,11 @@ public void GetAndSetTMP_Text()
 
                 if (isAllreadyVoted == false)
                 {
+                    foreach (CardScript card in ps.answerCards)
+                    {
+                        card.selectionObject.SetActive(false);
+                    }
+                    selectionObject.SetActive(true);
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
 
