@@ -200,15 +200,20 @@ public void GetAndSetTMP_Text()
                 {
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
-                    card.PlayerGuesses.Add(ps.player);
+
+                    //card.PlayerGuesses.Add(ps.player);
+
                     //Debug.Log(ps.player);
                     //Debug.Log(card.PlayerGuesses[0].playerID);
                     ps.voteCard = card;
-                    isAllreadyVoted = true;
-                    for (int i = 0; i < ps.answerCards.Count; i++)
+
+                    //isAllreadyVoted = true;
+
+                    
+                   /* for (int i = 0; i < ps.answerCards.Count; i++)
                     {
                         ps.answerCards[i].answerPhase = false;
-                    }
+                    }*/
                     //Debug.Log(card.PlayerGuesses[0].playerID);
                     //Debug.Log(PlayerManager.answers[0].PlayerGuesses[0].playerID);
                 }

@@ -82,7 +82,7 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
-        else if (answerPhase==true && voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
+        else if (answerPhase==true )//&& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -95,10 +95,15 @@ public class PlayerScript : MonoBehaviour
                 phaseText.text = "";
 
                 //Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                for (int i = 0; i < answerCards.Count; i++)
+                {
+                    answerCards[i].answerPhase = false;
+                }
+                answerPhase = false;
+
                 pm.RegisterVote(voteCard,this.player);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
-                answerPhase = false;
             }
         }
     }
