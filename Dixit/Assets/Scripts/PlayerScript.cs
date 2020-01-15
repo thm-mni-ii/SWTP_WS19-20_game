@@ -69,6 +69,12 @@ public class PlayerScript : MonoBehaviour
             {
                 phaseText.text = "";
                 Debug.Log("update votephase");
+
+                foreach(CardScript card in answerCards)
+                {
+                    card.votePhase = false;
+                }
+
                 pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);

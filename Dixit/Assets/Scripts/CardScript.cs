@@ -160,16 +160,30 @@ public void GetAndSetTMP_Text()
 
                     if (ps.player != null)
                         Debug.Log("player:" + ps.player.playerID);
-                    votePhase = false;
+                   // votePhase = false;
                     isAllreadyVoted = true;
                     answerGiven = true;
                     Debug.Log("OnMouseOver");
-                    if(ps.vote!=null)
-                    //Debug.Log("votecount" + ps.vote.Count);
-                    ps.vote.Add(card);
+                    if (ps.vote != null)
+                        //Debug.Log("votecount" + ps.vote.Count);
+                        ps.vote.Add(card);
                     //Debug.Log("votecount" + ps.vote.Count);
 
 
+                }
+                else if (isAllreadyVoted == true)
+                {
+                    for (int i = 0; i < ps.vote.Count; i++)
+                    {
+                        if (ps.vote[i].answer == this.card.answer)
+                        {
+                            ps.vote.RemoveAt(i);
+                          //  votePhase = true;
+                            answerGiven = false;
+                            isAllreadyVoted = false;
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -187,8 +201,8 @@ public void GetAndSetTMP_Text()
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
                     card.PlayerGuesses.Add(ps.player);
-                    Debug.Log(ps.player);
-                    Debug.Log(card.PlayerGuesses[0].playerID);
+                    //Debug.Log(ps.player);
+                    //Debug.Log(card.PlayerGuesses[0].playerID);
                     ps.voteCard = card;
                     isAllreadyVoted = true;
                     for (int i = 0; i < ps.answerCards.Count; i++)
