@@ -71,9 +71,16 @@ public class PlayerScript : MonoBehaviour
 
                 foreach(CardScript card in answerCards)
                 {
+                    card.selectionObject.SetActive(false);
+
+                    /*if (card.card.isCorrect)
+                    {
+                        card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }*/
                     card.votePhase = false;
                 }
 
+                
                 pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
@@ -97,6 +104,10 @@ public class PlayerScript : MonoBehaviour
                 //Debug.Log(voteCard.PlayerGuesses[0].playerID);
                 for (int i = 0; i < answerCards.Count; i++)
                 {
+                    if (answerCards[i].card.isCorrect)
+                    {
+                        answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }
                     answerCards[i].answerPhase = false;
                 }
                 answerPhase = false;
