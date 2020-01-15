@@ -8,7 +8,6 @@ using TMPro;
 public class CardScript : MonoBehaviour
 {
 
-
     public Card card;
     /// <summary>
     /// Textfield to display this cards Answe text.
@@ -26,9 +25,16 @@ public class CardScript : MonoBehaviour
     public PlayerManager pm;
     public Boolean isAllreadyVoted = false;
     public PlayerScript ps;
+    public GameObject selectionObject;
+    /// <summary>
+    /// Used as the parentobject of cardscript
+    /// </summary>
+    public GameObject cardObject;
+
     // Start is called before the first frame update
     void Start()
     {
+        //cardObject=GameObject.
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         if (card == null)
         {
@@ -46,6 +52,8 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
+            selectionObject.SetActive(false);
+
             ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
             //ps.answerCards.Add(this);
             textField = GetComponentInChildren<TMP_Text>();
@@ -155,8 +163,13 @@ public void GetAndSetTMP_Text()
         {
             if (Input.GetMouseButtonDown(0))
             {
+                //selectionObject.SetActive(true);
+
+
+
                 if (isAllreadyVoted == false)
                 {
+
 
                     if (ps.player != null)
                         Debug.Log("player:" + ps.player.playerID);
@@ -167,12 +180,16 @@ public void GetAndSetTMP_Text()
                     if (ps.vote != null)
                         //Debug.Log("votecount" + ps.vote.Count);
                         ps.vote.Add(card);
+                    selectionObject.SetActive(true);
+                        //gameObject.AddComponent<>
                     //Debug.Log("votecount" + ps.vote.Count);
 
 
                 }
                 else if (isAllreadyVoted == true)
                 {
+                    selectionObject.SetActive(false);
+
                     for (int i = 0; i < ps.vote.Count; i++)
                     {
                         if (ps.vote[i].answer == this.card.answer)
@@ -181,6 +198,7 @@ public void GetAndSetTMP_Text()
                           //  votePhase = true;
                             answerGiven = false;
                             isAllreadyVoted = false;
+
                             break;
                         }
                     }
@@ -206,7 +224,6 @@ public void GetAndSetTMP_Text()
                     //Debug.Log(ps.player);
                     //Debug.Log(card.PlayerGuesses[0].playerID);
                     ps.voteCard = card;
-
                     //isAllreadyVoted = true;
 
                     

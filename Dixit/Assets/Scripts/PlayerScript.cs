@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
     public Player player;
     public TextMeshProUGUI phaseText;
     public TextMeshProUGUI nameText;
-
     public PlayerManager pm;
     public List<Card> vote;
     public Card voteCard;
@@ -90,6 +89,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     Debug.Log("correctcard answer");
                 }
+
                 Debug.Log("update answerphase");
                 //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
                 phaseText.text = "";
@@ -141,7 +141,7 @@ public class PlayerScript : MonoBehaviour
 
         foreach ( CardScript card in answerCards)
         {
-            Debug.Log("satrtphase"+card.card.Answer);
+            Debug.Log("startphase"+card.card.Answer);
         }
         voteCard = new Card();
         answerPhase = true;
