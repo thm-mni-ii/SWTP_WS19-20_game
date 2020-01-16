@@ -74,6 +74,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
             {
+                timer.timeleft = 0;
                 phaseText.text = "";
                 Debug.Log("update votephase");
 
@@ -96,16 +97,12 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
-        else if (answerPhase==true )//&& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
+        else if (answerPhase==true )//& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || timer.timeleft <= 0)
+            if (Input.GetKeyDown(KeyCode.Return)|| timer.timeleft <= 0)
             {
-                if (voteCard.IsCorrect)
-                {
-                    Debug.Log("correctcard answer");
-                }
-
-                Debug.Log("update answerphase");
+                
+                timer.timeleft = 0;
                 //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
                 phaseText.text = "";
 
@@ -156,20 +153,14 @@ public class PlayerScript : MonoBehaviour
     {
         votePhase = false;
         answerPhase = true;
-        Debug.Log("satrtphase:card.card.Answer");
 
-        foreach ( CardScript card in answerCards)
-        {
-            Debug.Log("startphase"+card.card.Answer);
-        }
+        
         voteCard = new Card();
         answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
-        Debug.Log(phaseText.text);
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
 
-            Debug.Log("Answercard i"+answerCards[i]);
             answerCards[i].votePhase = false;
             answerCards[i].answerPhase = true;
             answerCards[i].isAllreadyVoted = false;
@@ -195,10 +186,7 @@ public class PlayerScript : MonoBehaviour
         vote = new List<Card>();
         startPhase = false;
         votePhase = true;
-        Debug.Log(timer);
-        Debug.Log("not null" + phaseText);
         phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
-        Debug.Log("not null"+phaseText.text);
 
 
         answerCards = new List<CardScript>();
@@ -226,13 +214,9 @@ public class PlayerScript : MonoBehaviour
             c.votePhase = true;
             c.card.PlayerObject = answer.PlayerObject;
             if(c.card.PlayerObject!=null)
-            Debug.Log("player:" + c.card.PlayerObject);
-            Debug.Log("showanser: " + c.card.Answer);
-            Debug.Log("countof cardskript from answercards" + answerCards.Count);
-
+         
             for (int g= 0; g < answerCards.Count; g++)
             {
-                Debug.Log("AC:"+answerCards[g].card.Answer);
             }
 
             //c.card.cardID = answer.cardID;
@@ -248,22 +232,18 @@ public class PlayerScript : MonoBehaviour
            // Debug.Log("Textfield: " + c.textField.text);
             c.votePhase = true;
             //answerCards.Add(c);
-            Debug.Log("countof cardskript from answercards"+answerCards.Count);
             if (answers.Count == 2)
             {
                 offset += 7;
             }
             answerCards.Add(c);
             timer.setTimer(time);
-            Debug.Log("time" + timer.timeleft);
 
 
 
         }
 
-        Debug.Log("pphase");
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        Debug.Log("not null"+ phaseText);
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
         vote = new List<Card>();
 

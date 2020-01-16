@@ -101,7 +101,7 @@ public class CardScript : MonoBehaviour
                 if (!answerGiven && !votePhase)
                 {
                     if (Input.inputString == "\r")
-                    //if (Input.GetKeyDown(KeyCode.Return))
+                    //if(Input.GetKeyDown(KeyCode.Return))
                     {
                         qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
                         qs.questionEnd = true;
@@ -109,7 +109,7 @@ public class CardScript : MonoBehaviour
                         answerGiven = true;
 
                         card.PlayerObject = ps.player;
-                        pm.RegisterAnswer(card);
+                       // pm.RegisterAnswer(card);
                     }
                     else if (Input.inputString == "\b" && card.Answer.Length > 0)
                         card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);

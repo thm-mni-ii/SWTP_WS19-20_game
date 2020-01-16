@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
-        pm.BroadcastQuestion(currentQuestion,30f);
+        pm.BroadcastQuestion(currentQuestion,30f,playerList);
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()

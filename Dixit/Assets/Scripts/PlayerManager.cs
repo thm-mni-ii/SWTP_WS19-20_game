@@ -86,9 +86,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
-   public void BroadcastQuestion(Question question, float time){
+   public void BroadcastQuestion(Question question, float time,List<Player> pL){
         //int i = 0;
-        BroadCastPlayers();
+        BroadcastScores(pL);
         equalVotes = 0;
         voteCounter = 0;
         answers = new List<Card>();
