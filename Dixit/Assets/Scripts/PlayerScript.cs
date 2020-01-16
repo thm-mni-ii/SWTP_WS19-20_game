@@ -22,8 +22,11 @@ public class PlayerScript : MonoBehaviour
     public List<Card> vote;
     public Card voteCard;
     public Boolean startPhase = true;
+    int playercount;
     Boolean votePhase = false;
     Boolean answerPhase = false;
+    TimerScript timer;
+    float time;
     public List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,12 @@ public class PlayerScript : MonoBehaviour
      pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
      CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
      cs.ps = this;
-     pm.RecievePlayer(this);   
+     pm.RecievePlayer(this);
+     timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+     if(time==0)
+        time = 10;
+    // if(pla)
+
     }
 
     /// <summary>
@@ -64,7 +72,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (votePhase == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
             {
                 phaseText.text = "";
                 Debug.Log("update votephase");
@@ -90,7 +98,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (answerPhase==true )//&& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || timer.timeleft <= 0)
             {
                 if (voteCard.IsCorrect)
                 {
@@ -166,13 +174,14 @@ public class PlayerScript : MonoBehaviour
             answerCards[i].answerPhase = true;
             answerCards[i].isAllreadyVoted = false;
         }
+        timer.setTimer(time);
 
-       /* foreach (CardScript card in answerCards)
-        {
-            Debug.Log(card);
-            card.answerPhase = true;
-            card.isAllreadyVoted = false;
-        }*/
+        /* foreach (CardScript card in answerCards)
+         {
+             Debug.Log(card);
+             card.answerPhase = true;
+             card.isAllreadyVoted = false;
+         }*/
     }
 
 
@@ -182,10 +191,11 @@ public class PlayerScript : MonoBehaviour
     /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
+
         vote = new List<Card>();
         startPhase = false;
         votePhase = true;
-
+        Debug.Log(timer);
         Debug.Log("not null" + phaseText);
         phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
         Debug.Log("not null"+phaseText.text);
@@ -244,6 +254,10 @@ public class PlayerScript : MonoBehaviour
                 offset += 7;
             }
             answerCards.Add(c);
+            timer.setTimer(time);
+            Debug.Log("time" + timer.timeleft);
+
+
 
         }
 
@@ -304,6 +318,25 @@ public class PlayerScript : MonoBehaviour
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
 
+    /// <summary>
+    /// This method sets the player count and the time of the timer according to how high the player count is.
+    /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
+    /// </summary>
+    /// <param name="pCount">The number of players.</param>
+    public void SetPlayerCountAndTime(int pCount)
+    {
+        playercount = pCount;
+        if( pCount == 3)
+        {
+            time = 20;
+        } else if (pCount == 4)
+        {
+            time = 25;
+        } else if (pCount == 5)
+        {
+            time = 30;
+        }
+    }
 
 
 }

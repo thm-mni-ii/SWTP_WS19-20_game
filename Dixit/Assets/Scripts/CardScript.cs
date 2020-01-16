@@ -30,7 +30,7 @@ public class CardScript : MonoBehaviour
     /// Used as the parentobject of cardscript
     /// </summary>
     public GameObject cardObject;
-
+    QuestionScript qs;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,8 +101,13 @@ public class CardScript : MonoBehaviour
                 if (!answerGiven && !votePhase)
                 {
                     if (Input.inputString == "\r")
+                    //if (Input.GetKeyDown(KeyCode.Return))
                     {
+                        qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+                        qs.questionEnd = true;
+                        qs.endQuestion();
                         answerGiven = true;
+
                         card.PlayerObject = ps.player;
                         pm.RegisterAnswer(card);
                     }

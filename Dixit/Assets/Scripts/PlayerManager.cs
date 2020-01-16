@@ -32,6 +32,18 @@ public class PlayerManager : MonoBehaviour
     }
 
     /// <summary>
+    /// This method sends the count of players to each playerscript.
+    /// </summary>
+
+    public void SendPlayerCount()
+    {
+        foreach(PlayerScript p in players)
+        {
+            p.SetPlayerCountAndTime(players.Count);
+        }
+    }
+
+    /// <summary>
     /// Used by player to join the list of players
     /// </summary>
     public void RecievePlayer(PlayerScript player){
@@ -76,6 +88,7 @@ public class PlayerManager : MonoBehaviour
     /// 
    public void BroadcastQuestion(Question question, float time){
         //int i = 0;
+        BroadCastPlayers();
         equalVotes = 0;
         voteCounter = 0;
         answers = new List<Card>();

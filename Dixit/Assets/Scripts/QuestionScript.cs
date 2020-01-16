@@ -12,7 +12,7 @@ public class QuestionScript : MonoBehaviour
     Color textcolor;
     Question currentQuestion;
     public CardScript cs;
-    bool questionEnd;
+    public bool questionEnd;
 
 
    
@@ -76,7 +76,7 @@ public class QuestionScript : MonoBehaviour
     /// <summary>
     /// This method sets the timer to null and calls, if not null, the timeUP method in CardScript.
     /// </summary>
-    void endQuestion()
+    public void endQuestion()
     {
         Debug.Log("time up called in endquestion");
 
