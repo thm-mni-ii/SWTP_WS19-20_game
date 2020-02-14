@@ -18,6 +18,7 @@ namespace Mirror
         RoundRobin
     }
 
+
     public enum NetworkManagerMode { Offline, ServerOnly, ClientOnly, Host }
 
     [AddComponentMenu("Network/NetworkManager")]

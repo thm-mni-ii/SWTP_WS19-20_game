@@ -8,8 +8,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
+using Mirror;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : NetworkBehaviour
 {
     private TextMeshProUGUI scoreboard;
     public QuestionScript question;
@@ -18,8 +19,10 @@ public class PlayerScript : MonoBehaviour
     public Player player;
     public TextMeshProUGUI phaseText;
     public TextMeshProUGUI nameText;
+    public CardScript cs;
 
-    public PlayerManager pm;
+
+    public PlayerManager pm ;
     public List<Card> vote;
     public Card voteCard;
     public Boolean startPhase = true;
@@ -29,10 +32,18 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-     CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+        foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) {
+             Debug.Log ("found :)" +cur);
+             pm = cur.GetComponent<PlayerManager>();
+             pm.RecievePlayer(this);
+        }
+     CreateNewCard();
+     pm.killme();
+     //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+     //CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
      cs.ps = this;
-     pm.RecievePlayer(this);   
+     //pm.RecievePlayer(this);   
+     
     }
 
     /// <summary>
@@ -44,6 +55,7 @@ public class PlayerScript : MonoBehaviour
         CardScript c;
         startPhase=true;
         c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
+        c.ps = this;
         c.transform.Rotate(new Vector3(270, 0, 0));
         c.ps = this;
 
@@ -54,6 +66,7 @@ public class PlayerScript : MonoBehaviour
        // question = Instantiate(question, question.transform, 0);
         question.cs = c;
         question.InitializeQuestion();
+        cs = c;
     }
 
     void Update()
@@ -61,7 +74,6 @@ public class PlayerScript : MonoBehaviour
         if (startPhase)
         {
             //Debug.Log("votecount:" +vote.Count);
-
         }
         else if (votePhase == true)
         {
@@ -272,6 +284,11 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    public void AnswerInc(Card card){
+        pm.RegisterAnswer(card);
+        pm.killme();
+    }
+
 
     /// <summary>
     /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
@@ -281,8 +298,5 @@ public class PlayerScript : MonoBehaviour
     {
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
-
-
-
 }
 

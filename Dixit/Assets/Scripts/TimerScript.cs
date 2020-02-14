@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class TimerScript : MonoBehaviour
+public class TimerScript : NetworkBehaviour
 {
     //public Question question;
+    [SyncVar(hook = nameof(setTimer))]
     public float timeleft = 0f;
+
     Text text;
     Color textcolor;
 

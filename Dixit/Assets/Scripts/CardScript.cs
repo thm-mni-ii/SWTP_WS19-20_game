@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
+using Mirror;
 
-public class CardScript : MonoBehaviour
+public class CardScript : NetworkBehaviour
 {
 
 
@@ -23,13 +24,14 @@ public class CardScript : MonoBehaviour
     /// </summary>
     public Boolean votePhase = false;
     public Boolean answerPhase = false;
-    public PlayerManager pm;
     public Boolean isAllreadyVoted = false;
     public PlayerScript ps;
+    QuestionScript qs;
     // Start is called before the first frame update
     void Start()
     {
-        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+        
+        qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         if (card == null)
         {
             card = new Card();
@@ -71,10 +73,10 @@ public class CardScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
          if (answerPhase)
         {
-            Debug.Log("answerphase!");
+            //Debug.Log("answerphase!");
         }
         else if (votePhase)
         {
@@ -96,7 +98,7 @@ public class CardScript : MonoBehaviour
                     {
                         answerGiven = true;
                         card.PlayerObject = ps.player;
-                        pm.RegisterAnswer(card);
+                        ps.AnswerInc(card);
                     }
                     else if (Input.inputString == "\b" && card.Answer.Length > 0)
                         card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);
@@ -120,7 +122,7 @@ public class CardScript : MonoBehaviour
 
             SetCardFromPlayerScript(ps, card);
             answerGiven = true;
-            pm.RegisterAnswer(card);
+            ps.AnswerInc(card);
             //Debug.Log(PlayerManager.answers.Count);
             /*   for (int i = 0; i < PlayerManager.answers.Count; i++)
            {
@@ -176,8 +178,8 @@ public void GetAndSetTMP_Text()
         else if (answerPhase==true)
         {
             if (ps.player != null)
-                Debug.Log("player:" + ps.player.playerID);
-            Debug.Log("Answerphase");
+                //Debug.Log("player:" + ps.player.playerID);
+            //Debug.Log("Answerphase");
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log(isAllreadyVoted);

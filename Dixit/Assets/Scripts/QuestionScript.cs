@@ -19,7 +19,6 @@ public class QuestionScript : MonoBehaviour
     void Awake()
     {
         Debug.Log("awake");
-        cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
         Debug.Log(cs);
         question = GetComponent<Text>();
         textcolor = question.color;
@@ -36,7 +35,7 @@ public class QuestionScript : MonoBehaviour
    public void InitializeQuestion()
     {
         //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-        Debug.Log(cs);
+        //Debug.Log(cs);
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -46,13 +45,13 @@ public class QuestionScript : MonoBehaviour
     {
         if (cs != null)
         {
-            Debug.Log("questionENd:" + questionEnd);
-            Debug.Log(cs.card.Answer);
+            //Debug.Log("questionENd:" + questionEnd);
+            //Debug.Log(cs.card.Answer);
   
         }
         if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
-            Debug.Log("questionend");
+            //Debug.Log("questionend");
             questionEnd = true;
             endQuestion();
         }

@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     public static List<PlayerScript> players = new List<PlayerScript>();
     public static List<Card> answers = new List<Card>();
@@ -11,22 +12,28 @@ public class PlayerManager : MonoBehaviour
     public GameManager gm;
     private int voteCounter;
     int equalVotes;
+    List<string> myList = new List<string>();
 
+    int interval = 5; 
+     float nextTime = 0;
     /// <summary>
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
         //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
+        myList.Add("Tom");
+        myList.Add("Thomas");
+        myList.Add("Günther");
+        myList.Add("Jochen");
+        myList.Add("Helga");
+        myList.Add("Inga");
+        myList.Add("Nina");
         //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         voteCounter = 0;
         //gm.playerList.Add(player.player);
         //players.Add(player);
         BroadCastPlayers();
-        /*foreach (PlayerScript p in players)
-        {
-            Debug.Log("player:" + p.player.PlayerName);
-        }*/
         equalVotes = 0;
         voteCounter = 0;
     }
@@ -35,11 +42,32 @@ public class PlayerManager : MonoBehaviour
     /// Used by player to join the list of players
     /// </summary>
     public void RecievePlayer(PlayerScript player){
-        player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        System.Random r = new System.Random();
+        foreach(PlayerScript p in players){
+            if(p == player){
+                Debug.Log("player not added");
+                return;
+            }
+        }
+        player.player = new Player(1, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
         gm.playerList.Add(player.player);
         players.Add(player);
     }
 
+ //   void Update(){
+ //       if (Time.time >= nextTime) {
+ //       foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerScript")) {
+ //            Debug.Log ("found " +cur);
+ //            RecievePlayer(cur.GetComponent<PlayerScript>());
+ //            cur.GetComponent<PlayerScript>().pm = this;
+ //        }
+ //        
+ //        Debug.Log(players.Count);
+ //         nextTime += interval; 
+ //
+ //        }
+//
+ //   }
 
 
     /// <summary>
@@ -111,7 +139,7 @@ public class PlayerManager : MonoBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
-
+            
             if(answer.cardID!=99)
             answers.Add(answer);
 
@@ -125,6 +153,7 @@ public class PlayerManager : MonoBehaviour
                 gm.HandleAnswers(answers);
 
             }
+            
         }
    }
 
@@ -144,9 +173,14 @@ public class PlayerManager : MonoBehaviour
 
         foreach (PlayerScript p in players)
        {
-            p.ShowAnswers(answers);
+           if(players.Count == (answers.Count - 1))
+                p.ShowAnswers(answers);
             //Debug.Log(""+p.)
        }
+
+       foreach(Card a in answers){
+                Debug.Log(a.answer + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ");
+            }
    }
 
 
@@ -284,6 +318,11 @@ public class PlayerManager : MonoBehaviour
        {
             p.ShowScoreBoard(scoreboard);
        }
+    }
+
+
+    public void killme(){
+        Debug.Log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH FUCK THIS SHIT ");
     }
 }
 
