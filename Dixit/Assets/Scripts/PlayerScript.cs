@@ -49,6 +49,15 @@ public class PlayerScript : NetworkBehaviour
         }
     }
 
+
+    [ClientRpc]
+    public void RpcCreateNewCard()
+    {
+        if (isLocalPlayer)
+        {
+            CreateNewCard();
+        }
+    }
     /// <summary>
     /// This Method instantiates a new CardScript Object and calls the InitializeQuestion method in QuestionScript.
     /// </summary>
@@ -74,44 +83,51 @@ public class PlayerScript : NetworkBehaviour
 
     void Update()
     {
-        if (startPhase)
+        if (isLocalPlayer)
         {
-            //Debug.Log("votecount:" +vote.Count);
-        }
-        else if (votePhase == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (startPhase)
             {
-                phaseText.text = "";
-                Debug.Log("update votephase");
-                this.CmdRegisterEqualVotes(vote.ToArray());
-                //pm.RegisterEqualVote(vote);
-                //Debug.Log(vote[0].CorrectVotes);
-                //Debug.Log(vote[1].CorrectVotes);
-                votePhase = false;
-
+                //Debug.Log("votecount:" +vote.Count);
             }
-        }
-        else if (answerPhase==true && voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
+            else if (votePhase == true)
             {
-                if (voteCard.IsCorrect)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log("correctcard answer");
-                }
-                Debug.Log("update answerphase");
-                //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
-                phaseText.text = "";
+                    phaseText.text = "";
+                    Debug.Log("update votephase");
+                    this.CmdRegisterEqualVotes(vote.ToArray());
+                    //pm.RegisterEqualVote(vote);
+                    //Debug.Log(vote[0].CorrectVotes);
+                    //Debug.Log(vote[1].CorrectVotes);
+                    votePhase = false;
+                    Debug.Log("countof cardskript from answercards" + answerCards.Count);
 
-                //Debug.Log(voteCard.PlayerGuesses[0].playerID);
-                this.CmdRegisterVote(voteCard, this.player);
-                //Debug.Log(vote[0].CorrectVotes);
-                //Debug.Log(vote[1].CorrectVotes);
-                answerPhase = false;
+
+                }
+            }
+            else if (answerPhase == true)// && voteCard.PlayerGuesses.Count != 0) //voteCard.cardID!=0)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    if (voteCard.IsCorrect)
+                    {
+                        Debug.Log("correctcard answer");
+                    }
+                    Debug.Log("update answerphase");
+                    Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
+                    phaseText.text = "";
+
+                    //Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                    this.CmdRegisterVote(voteCard, this.player);
+                    //Debug.Log(vote[0].CorrectVotes);
+                    //Debug.Log(vote[1].CorrectVotes);
+                    answerPhase = false;
+                }
             }
         }
     }
+        
+    
     void Awake()
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
@@ -146,17 +162,15 @@ public class PlayerScript : NetworkBehaviour
         {
             votePhase = false;
             answerPhase = true;
-            Debug.Log("satrtphase:card.card.Answer");
-
             foreach (CardScript card in answerCards)
             {
-                Debug.Log("satrtphase" + card.card.Answer);
             }
             voteCard = new Card();
             answerPhase = true;
             phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
             Debug.Log(phaseText.text);
             //CardScript[] cs = GetComponents<CardScript>();
+
             for (int i = 0; i < answerCards.Count; i++)
             {
 
@@ -182,8 +196,10 @@ public class PlayerScript : NetworkBehaviour
     /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
+        Debug.Log("lokalplayer");
         if (isLocalPlayer)
         {
+            Debug.Log(this.player.PlayerName + " local");
             vote = new List<Card>();
             startPhase = false;
             votePhase = true;
@@ -197,6 +213,7 @@ public class PlayerScript : NetworkBehaviour
 
             //int i = 0;
             float offset = -4;
+
             foreach (Card answer in answers)
             {
                 CardScript c;
@@ -240,7 +257,6 @@ public class PlayerScript : NetworkBehaviour
                 // Debug.Log("Textfield: " + c.textField.text);
                 c.votePhase = true;
                 //answerCards.Add(c);
-                Debug.Log("countof cardskript from answercards" + answerCards.Count);
                 if (answers.Count == 2)
                 {
                     offset += 7;
@@ -258,14 +274,17 @@ public class PlayerScript : NetworkBehaviour
                     offset += 2;
                 }
                 answerCards.Add(c);
+                
+                Debug.Log("countof cardskript from answercards" + answerCards.Count);
 
             }
 
-            Debug.Log("pphase");
+            Debug.Log("pphase: "+answerCards.Count);
             phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
             Debug.Log("not null" + phaseText);
             phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
             vote = new List<Card>();
+            Debug.Log("countof cardskript from answercards" + answerCards.Count);
 
         }
     }
@@ -291,21 +310,23 @@ public class PlayerScript : NetworkBehaviour
    
     public void RpcCleanUp() 
     {
-        GameObject[] gameObjects;
-
-      
-        answerPhase = false;
-        answerCards = null;
+        if (isLocalPlayer)
+        {
+            GameObject[] gameObjects;
 
 
-      
-         gameObjects = GameObject.FindGameObjectsWithTag("AnswerCard");
+            answerPhase = false;
+            answerCards = null;
+
+
+
+            gameObjects = GameObject.FindGameObjectsWithTag("AnswerCard");
 
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 Destroy(gameObjects[i]);
             }
-        
+        }
 
     }
     [Command]
@@ -322,12 +343,12 @@ public class PlayerScript : NetworkBehaviour
         pm.killme();
     }
 
-
+    [ClientRpc]
     /// <summary>
     /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
     /// </summary>
     /// <param name="scoreboard">a string containg the scoreboard and the ending game message.</param>
-    public void ShowScoreBoard(string scoreboard)
+    public void RpcShowScoreBoard(string scoreboard)
     {
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
@@ -335,28 +356,33 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcQuestionStart(float time, Question question)
     {
-        if (isLocalPlayer)
-        {
+        
             this.question.startQuestion(time, question.question);
-        }
+        
     }
+
     [ClientRpc]
     public void RpcReceiveAnswers(Card[] answers)
     {
+        
+            List<Card> receivedCards = new List<Card>(answers);
         if (isLocalPlayer)
         {
-            List<Card> receivedCards = new List<Card>(answers);
-            this.ShowAnswers(receivedCards);
+            ShowAnswers(receivedCards);
+            Debug.Log("lokalplayer");
         }
+        
     }
 
     [ClientRpc]
     public void RpcStartAnswerPhase()
     {
-      
+        if (isLocalPlayer)
+        {
+            Debug.Log("answerphase3,count :" + answerCards.Count);
             this.StartAnswerPhase();
-        Debug.Log("start answer XD");
-        
+            Debug.Log("start answer XD");
+        }
     }
 
 
