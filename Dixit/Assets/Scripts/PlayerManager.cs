@@ -6,6 +6,7 @@ using Mirror;
 
 public class PlayerManager : NetworkBehaviour
 {
+    int playerid = 1;
     public static List<PlayerScript> players = new List<PlayerScript>();
     public static List<Card> answers = new List<Card>();
     public PlayerScript player;
@@ -20,6 +21,7 @@ public class PlayerManager : NetworkBehaviour
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
+       //etworkServer.Spawn(this);
         //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
         myList.Add("Tom");
@@ -49,7 +51,8 @@ public class PlayerManager : NetworkBehaviour
                 return;
             }
         }
-        player.player = new Player(1, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        player.player = new Player(playerid, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
     }
@@ -102,16 +105,21 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
-   public void BroadcastQuestion(Question question, float time){
+
+   public void RpcBroadcastQuestion(Question question, float time){
         //int i = 0;
+        Debug.Log("Quest: " + question.question);
+
         equalVotes = 0;
         voteCounter = 0;
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
-          
-          //p.CreateNewCard();
-          p.question.startQuestion(time,question.question);
+
+            //p.CreateNewCard();
+            p.RpcQuestionStart(time, question);
+          //p.question.startQuestion(time,question.question);
+            Debug.Log("Quest: " + question.question);
        }
    }
 
@@ -125,7 +133,7 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
-            player.StartAnswerPhase();
+            player.RpcStartAnswerPhase();
         }
     }
 
@@ -142,7 +150,6 @@ public class PlayerManager : NetworkBehaviour
             
             if(answer.cardID!=99)
             answers.Add(answer);
-
             if (answer.PlayerObject != null)
                 Debug.Log("pid"+answer.PlayerObject.playerID);
             if (answer.PlayerObject == null)
@@ -164,6 +171,7 @@ public class PlayerManager : NetworkBehaviour
    public void BroadcastAnswers(List<Card> answers){
         foreach(Card answer in answers)
         {
+            
             answer.CorrectVotes = 0;
             if(answer.PlayerObject!=null)
             Debug.Log("player:" + answer.PlayerObject.playerID);
@@ -173,11 +181,15 @@ public class PlayerManager : NetworkBehaviour
 
         foreach (PlayerScript p in players)
        {
-           if(players.Count == (answers.Count - 1))
-                p.ShowAnswers(answers);
-            //Debug.Log(""+p.)
-       }
-
+            if (players.Count == (answers.Count - 1))
+            {
+                Card[] cardArray = answers.ToArray();
+                p.RpcReceiveAnswers(cardArray);
+            }
+                    //p.ShowAnswers(answers);
+                    //Debug.Log(""+p.)
+        }
+        Debug.Log(answers.Count);
        foreach(Card a in answers){
                 Debug.Log(a.answer + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ");
             }
@@ -188,7 +200,7 @@ public class PlayerManager : NetworkBehaviour
 
 
     /// <summary>
-    /// ´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers.
+    /// ´This method adds the player to playerGuesses if he voted that the Card contains is the right answer.
     /// </summary>
     /// <param name="player">The specific Player Object.</param>
     /// 
@@ -291,7 +303,7 @@ public class PlayerManager : NetworkBehaviour
     {
         foreach (PlayerScript p in players)
        {
-            p.CleanUp();
+            p.RpcCleanUp();
        }
        
     }
@@ -304,7 +316,8 @@ public class PlayerManager : NetworkBehaviour
    public void BroadcastScores(List<Player> players2){
        foreach (PlayerScript p in players)
        {
-           p.UpdateScores(players2);
+            p.RpcUpdateScores(players2.ToArray());
+          // p.UpdateScores(players2);
        }
    }
 

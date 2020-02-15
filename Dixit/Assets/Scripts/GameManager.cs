@@ -25,7 +25,8 @@ public class GameManager : NetworkBehaviour
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
-        pm.BroadcastQuestion(currentQuestion,30f);
+        if(isServer)
+        pm.RpcBroadcastQuestion(currentQuestion,30f);
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()

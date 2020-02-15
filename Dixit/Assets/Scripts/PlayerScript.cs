@@ -33,17 +33,20 @@ public class PlayerScript : NetworkBehaviour
     void Start()
     {
         foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) {
-             Debug.Log ("found :)" +cur);
+             Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
              pm = cur.GetComponent<PlayerManager>();
              pm.RecievePlayer(this);
         }
-     CreateNewCard();
-     pm.killme();
-     //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-     //CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-     cs.ps = this;
-     //pm.RecievePlayer(this);   
-     
+        if (isLocalPlayer)
+        {
+            CreateNewCard();
+            pm.killme();
+
+            //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+            //CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+            cs.ps = this;
+            //pm.RecievePlayer(this);   
+        }
     }
 
     /// <summary>
@@ -81,7 +84,8 @@ public class PlayerScript : NetworkBehaviour
             {
                 phaseText.text = "";
                 Debug.Log("update votephase");
-                pm.RegisterEqualVote(vote);
+                this.CmdRegisterEqualVotes(vote.ToArray());
+                //pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
                 votePhase = false;
@@ -101,7 +105,7 @@ public class PlayerScript : NetworkBehaviour
                 phaseText.text = "";
 
                 //Debug.Log(voteCard.PlayerGuesses[0].playerID);
-                pm.RegisterVote(voteCard,this.player);
+                this.CmdRegisterVote(voteCard, this.player);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
                 answerPhase = false;
@@ -136,33 +140,39 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     public void StartAnswerPhase()
     {
-        votePhase = false;
-        answerPhase = true;
-        Debug.Log("satrtphase:card.card.Answer");
+        //hier isLocalPlayer einfügen
 
-        foreach ( CardScript card in answerCards)
+        if (isLocalPlayer)
         {
-            Debug.Log("satrtphase"+card.card.Answer);
-        }
-        voteCard = new Card();
-        answerPhase = true;
-        phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
-        Debug.Log(phaseText.text);
-        //CardScript[] cs = GetComponents<CardScript>();
-        for(int i = 0; i < answerCards.Count; i++){
+            votePhase = false;
+            answerPhase = true;
+            Debug.Log("satrtphase:card.card.Answer");
 
-            Debug.Log("Answercard i"+answerCards[i]);
-            answerCards[i].votePhase = false;
-            answerCards[i].answerPhase = true;
-            answerCards[i].isAllreadyVoted = false;
-        }
+            foreach (CardScript card in answerCards)
+            {
+                Debug.Log("satrtphase" + card.card.Answer);
+            }
+            voteCard = new Card();
+            answerPhase = true;
+            phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
+            Debug.Log(phaseText.text);
+            //CardScript[] cs = GetComponents<CardScript>();
+            for (int i = 0; i < answerCards.Count; i++)
+            {
 
-       /* foreach (CardScript card in answerCards)
-        {
-            Debug.Log(card);
-            card.answerPhase = true;
-            card.isAllreadyVoted = false;
-        }*/
+                Debug.Log("Answercard i" + answerCards[i]);
+                answerCards[i].votePhase = false;
+                answerCards[i].answerPhase = true;
+                answerCards[i].isAllreadyVoted = false;
+            }
+
+            /* foreach (CardScript card in answerCards)
+             {
+                 Debug.Log(card);
+                 card.answerPhase = true;
+                 card.isAllreadyVoted = false;
+             }*/
+        }
     }
 
 
@@ -172,78 +182,92 @@ public class PlayerScript : NetworkBehaviour
     /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
-        vote = new List<Card>();
-        startPhase = false;
-        votePhase = true;
-
-        Debug.Log("not null" + phaseText);
-        phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
-        Debug.Log("not null"+phaseText.text);
-
-
-        answerCards = new List<CardScript>();
-
-        //int i = 0;
-        float offset = -4;
-        foreach (Card answer in answers)
+        if (isLocalPlayer)
         {
-            CardScript c;
+            vote = new List<Card>();
+            startPhase = false;
+            votePhase = true;
 
-            c = Instantiate(card, card.transform.position, Quaternion.identity);
+            Debug.Log("not null" + phaseText);
+            phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
+            Debug.Log("not null" + phaseText.text);
 
-            //c.textField = GetComponent<TMP_Text>();
-            //if(i==0)
-            c.card = new Card();
-            c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
-           /* if(i==1)
-            c.textField = GameObject.FindGameObjectWithTag("Text2").GetComponent<TMP_Text>();
-            */
-            c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
-            c.transform.Rotate(new Vector3(270,0,0));
-            c.card = answer;
-            c.card.cardID = answer.cardID;
-            c.card.Answer = answer.Answer;
-            c.votePhase = true;
-            c.card.PlayerObject = answer.PlayerObject;
-            if(c.card.PlayerObject!=null)
-            Debug.Log("player:" + c.card.PlayerObject);
-            Debug.Log("showanser: " + c.card.Answer);
-            Debug.Log("countof cardskript from answercards" + answerCards.Count);
 
-            for (int g= 0; g < answerCards.Count; g++)
+            answerCards = new List<CardScript>();
+
+            //int i = 0;
+            float offset = -4;
+            foreach (Card answer in answers)
             {
-                Debug.Log("AC:"+answerCards[g].card.Answer);
+                CardScript c;
+
+                c = Instantiate(card, card.transform.position, Quaternion.identity);
+
+                //c.textField = GetComponent<TMP_Text>();
+                //if(i==0)
+                c.card = new Card();
+                c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
+                /* if(i==1)
+                 c.textField = GameObject.FindGameObjectWithTag("Text2").GetComponent<TMP_Text>();
+                 */
+                c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
+                c.transform.Rotate(new Vector3(270, 0, 0));
+                c.card = answer;
+                c.card.cardID = answer.cardID;
+                c.card.Answer = answer.Answer;
+                c.votePhase = true;
+                c.card.PlayerObject = answer.PlayerObject;
+                if (c.card.PlayerObject != null)
+                    Debug.Log("player:" + c.card.PlayerObject);
+                Debug.Log("showanser: " + c.card.Answer);
+                Debug.Log("countof cardskript from answercards" + answerCards.Count);
+
+                for (int g = 0; g < answerCards.Count; g++)
+                {
+                    Debug.Log("AC:" + answerCards[g].card.Answer);
+                }
+
+                //c.card.cardID = answer.cardID;
+                // if(c.card.PlayerObject!=null)
+                // Debug.Log("pid: " + c.card.PlayerObject.playerID);
+                //Debug.Log("vorher :" + answer.Answer);
+                //c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
+
+                //GetComponent<TMP_Text>();
+                //c.textField.text = answer.Answer;
+                c.card.CorrectVotes = 0;
+                c.answerGiven = true;
+                // Debug.Log("Textfield: " + c.textField.text);
+                c.votePhase = true;
+                //answerCards.Add(c);
+                Debug.Log("countof cardskript from answercards" + answerCards.Count);
+                if (answers.Count == 2)
+                {
+                    offset += 7;
+                }
+                if (answers.Count == 3)
+                {
+                    offset += 7;
+                }
+                if (answers.Count == 4)
+                {
+                    offset += 4;
+                }
+                if (answers.Count == 5)
+                {
+                    offset += 2;
+                }
+                answerCards.Add(c);
+
             }
 
-            //c.card.cardID = answer.cardID;
-            // if(c.card.PlayerObject!=null)
-            // Debug.Log("pid: " + c.card.PlayerObject.playerID);
-            //Debug.Log("vorher :" + answer.Answer);
-            //c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
-
-            //GetComponent<TMP_Text>();
-            //c.textField.text = answer.Answer;
-            c.card.CorrectVotes = 0;
-            c.answerGiven = true;
-           // Debug.Log("Textfield: " + c.textField.text);
-            c.votePhase = true;
-            //answerCards.Add(c);
-            Debug.Log("countof cardskript from answercards"+answerCards.Count);
-            if (answers.Count == 2)
-            {
-                offset += 7;
-            }
-            answerCards.Add(c);
+            Debug.Log("pphase");
+            phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
+            Debug.Log("not null" + phaseText);
+            phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+            vote = new List<Card>();
 
         }
-
-        Debug.Log("pphase");
-        phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        Debug.Log("not null"+ phaseText);
-        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
-        vote = new List<Card>();
-
-
     }
 
     /// <summary>
@@ -260,11 +284,12 @@ public class PlayerScript : NetworkBehaviour
             nameText.text += p.PlayerName + "\n";
         }
     }
-
+    [ClientRpc]
     /// <summary>
-    /// This method destorys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
+    /// This method destroys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
     /// </summary>
-    public void CleanUp() 
+   
+    public void RpcCleanUp() 
     {
         GameObject[] gameObjects;
 
@@ -283,8 +308,16 @@ public class PlayerScript : NetworkBehaviour
         
 
     }
+    [Command]
+    public void CmdRegisterEqualVotes(Card[] vote)
+    {
+        List<Card> votes = new List<Card>(vote);
+        pm.RegisterEqualVote(votes);
+    }
 
-    public void AnswerInc(Card card){
+
+    [Command]
+    public void CmdAnswerInc(Card card){
         pm.RegisterAnswer(card);
         pm.killme();
     }
@@ -298,5 +331,48 @@ public class PlayerScript : NetworkBehaviour
     {
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
+
+    [ClientRpc]
+    public void RpcQuestionStart(float time, Question question)
+    {
+        if (isLocalPlayer)
+        {
+            this.question.startQuestion(time, question.question);
+        }
+    }
+    [ClientRpc]
+    public void RpcReceiveAnswers(Card[] answers)
+    {
+        if (isLocalPlayer)
+        {
+            List<Card> receivedCards = new List<Card>(answers);
+            this.ShowAnswers(receivedCards);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcStartAnswerPhase()
+    {
+      
+            this.StartAnswerPhase();
+        Debug.Log("start answer XD");
+        
+    }
+
+
+    [Command]
+    public void CmdRegisterVote(Card voteCard,Player player)
+    {
+        pm.RegisterVote(voteCard, this.player);
+
+    }
+
+    [ClientRpc]
+    public void RpcUpdateScores(Player[] players)
+    {
+       this.UpdateScores(new List <Player> (players));
+        Debug.Log("updateScores");
+    }
+    // p.UpdateScores(players2);
 }
 

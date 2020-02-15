@@ -98,13 +98,14 @@ public class CardScript : NetworkBehaviour
                     {
                         answerGiven = true;
                         card.PlayerObject = ps.player;
-                        ps.AnswerInc(card);
+                        ps.CmdAnswerInc(card);
                     }
                     else if (Input.inputString == "\b" && card.Answer.Length > 0)
                         card.Answer = card.Answer.Substring(0, card.Answer.Length - 1);
                     else
                         card.Answer = card.Answer + c;
                     textField.text = card.Answer;
+                    Debug.Log("karte: "+ps.player.playerID);
                     Debug.Log(card.Answer);
                 }
             }
@@ -122,7 +123,7 @@ public class CardScript : NetworkBehaviour
 
             SetCardFromPlayerScript(ps, card);
             answerGiven = true;
-            ps.AnswerInc(card);
+            ps.CmdAnswerInc(card);
             //Debug.Log(PlayerManager.answers.Count);
             /*   for (int i = 0; i < PlayerManager.answers.Count; i++)
            {
@@ -177,6 +178,8 @@ public void GetAndSetTMP_Text()
         }
         else if (answerPhase==true)
         {
+            Debug.Log("In answerphase cardscript");
+
             if (ps.player != null)
                 //Debug.Log("player:" + ps.player.playerID);
             //Debug.Log("Answerphase");
@@ -186,6 +189,7 @@ public void GetAndSetTMP_Text()
 
                 if (isAllreadyVoted == false)
                 {
+                        Debug.Log("In answerphase cardscript");
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
                     card.PlayerGuesses.Add(ps.player);

@@ -8,6 +8,12 @@ using System.IO;
 public class Question
 {
     
+    public Question()
+    {
+        correctAnswer = new Card();
+        correctAnswer.cardID = -1;
+        correctAnswer.Answer = null;
+    }
 
     public Question(int questionID, string question, string answer) {
         this.questionID = questionID;
