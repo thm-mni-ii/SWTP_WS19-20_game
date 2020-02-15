@@ -120,9 +120,7 @@ public class QuestionSet
             RestClient.Get<QuestionSet>("https://dixit-db.firebaseio.com/QuestionSets/" + setName + ".json").Then(response =>
             {
                 //EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
-                Debug.Log("response list length " + response.questionList.Count);
                 //Debug.Log("questionset list length " + active_qs.QuestionList.Count);
-                Debug.Log("SETNAME: " + setName);
                 ShuffleList(response);
                 GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
                 //QuestionSet qs = GameObject.Instantiate(response);
@@ -132,7 +130,6 @@ public class QuestionSet
                 //gm.questionSet = JsonConvert.DeserializeObject<QuestionSet>(json);
                 //Debug.Log("ACTIVEQS " + active_qs.questionList.Count);
                 //gm.questionSet = active_qs;
-                Debug.Log("GM QS in JSON " + gm.questionSet.questionList.Count);
                 //gm.questionSet = response;
             });
         }
@@ -204,7 +201,6 @@ public class QuestionSet
     /// <returns>The next Question.</returns>
     public Question GetNextQuestion()
     {
-        Debug.Log("question list length" + questionList.Count);
         Question nextQuestion = questionList[0];
 
         return nextQuestion;

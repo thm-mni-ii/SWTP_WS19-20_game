@@ -18,13 +18,15 @@ public class PlayerScript : MonoBehaviour
     public Player player;
     public TextMeshProUGUI phaseText;
     public TextMeshProUGUI nameText;
-
     public PlayerManager pm;
     public List<Card> vote;
     public Card voteCard;
     public Boolean startPhase = true;
+    int playercount;
     Boolean votePhase = false;
     Boolean answerPhase = false;
+    TimerScript timer;
+    float time;
     public List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,12 @@ public class PlayerScript : MonoBehaviour
      pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
      CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
      cs.ps = this;
-     pm.RecievePlayer(this);   
+     pm.RecievePlayer(this);
+     timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+     if(time==0)
+        time = 10;
+    // if(pla)
+
     }
 
     /// <summary>
@@ -65,10 +72,24 @@ public class PlayerScript : MonoBehaviour
         }
         else if (votePhase == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
             {
+                timer.timeleft = 0;
                 phaseText.text = "";
                 Debug.Log("update votephase");
+
+                foreach(CardScript card in answerCards)
+                {
+                    card.selectionObject.SetActive(false);
+
+                    /*if (card.card.isCorrect)
+                    {
+                        card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }*/
+                    card.votePhase = false;
+                }
+
+                
                 pm.RegisterEqualVote(vote);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
@@ -76,23 +97,29 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
-        else if (answerPhase==true && voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
+        else if (answerPhase==true )//& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return)|| timer.timeleft <= 0)
             {
-                if (voteCard.IsCorrect)
-                {
-                    Debug.Log("correctcard answer");
-                }
-                Debug.Log("update answerphase");
+                
+                timer.timeleft = 0;
                 //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
                 phaseText.text = "";
 
                 //Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                for (int i = 0; i < answerCards.Count; i++)
+                {
+                    if (answerCards[i].card.isCorrect)
+                    {
+                        answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }
+                    answerCards[i].answerPhase = false;
+                }
+                answerPhase = false;
+
                 pm.RegisterVote(voteCard,this.player);
                 //Debug.Log(vote[0].CorrectVotes);
                 //Debug.Log(vote[1].CorrectVotes);
-                answerPhase = false;
             }
         }
     }
@@ -126,31 +153,26 @@ public class PlayerScript : MonoBehaviour
     {
         votePhase = false;
         answerPhase = true;
-        Debug.Log("satrtphase:card.card.Answer");
 
-        foreach ( CardScript card in answerCards)
-        {
-            Debug.Log("satrtphase"+card.card.Answer);
-        }
+        
         voteCard = new Card();
         answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
-        Debug.Log(phaseText.text);
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
 
-            Debug.Log("Answercard i"+answerCards[i]);
             answerCards[i].votePhase = false;
             answerCards[i].answerPhase = true;
             answerCards[i].isAllreadyVoted = false;
         }
+        timer.setTimer(time);
 
-       /* foreach (CardScript card in answerCards)
-        {
-            Debug.Log(card);
-            card.answerPhase = true;
-            card.isAllreadyVoted = false;
-        }*/
+        /* foreach (CardScript card in answerCards)
+         {
+             Debug.Log(card);
+             card.answerPhase = true;
+             card.isAllreadyVoted = false;
+         }*/
     }
 
 
@@ -160,13 +182,11 @@ public class PlayerScript : MonoBehaviour
     /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
+
         vote = new List<Card>();
         startPhase = false;
         votePhase = true;
-
-        Debug.Log("not null" + phaseText);
         phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
-        Debug.Log("not null"+phaseText.text);
 
 
         answerCards = new List<CardScript>();
@@ -194,13 +214,9 @@ public class PlayerScript : MonoBehaviour
             c.votePhase = true;
             c.card.PlayerObject = answer.PlayerObject;
             if(c.card.PlayerObject!=null)
-            Debug.Log("player:" + c.card.PlayerObject);
-            Debug.Log("showanser: " + c.card.Answer);
-            Debug.Log("countof cardskript from answercards" + answerCards.Count);
-
+         
             for (int g= 0; g < answerCards.Count; g++)
             {
-                Debug.Log("AC:"+answerCards[g].card.Answer);
             }
 
             //c.card.cardID = answer.cardID;
@@ -216,18 +232,18 @@ public class PlayerScript : MonoBehaviour
            // Debug.Log("Textfield: " + c.textField.text);
             c.votePhase = true;
             //answerCards.Add(c);
-            Debug.Log("countof cardskript from answercards"+answerCards.Count);
             if (answers.Count == 2)
             {
                 offset += 7;
             }
             answerCards.Add(c);
+            timer.setTimer(time);
+
+
 
         }
 
-        Debug.Log("pphase");
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        Debug.Log("not null"+ phaseText);
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
         vote = new List<Card>();
 
@@ -282,6 +298,25 @@ public class PlayerScript : MonoBehaviour
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
 
+    /// <summary>
+    /// This method sets the player count and the time of the timer according to how high the player count is.
+    /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
+    /// </summary>
+    /// <param name="pCount">The number of players.</param>
+    public void SetPlayerCountAndTime(int pCount)
+    {
+        playercount = pCount;
+        if( pCount == 3)
+        {
+            time = 20;
+        } else if (pCount == 4)
+        {
+            time = 25;
+        } else if (pCount == 5)
+        {
+            time = 30;
+        }
+    }
 
 
 }

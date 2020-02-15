@@ -32,6 +32,18 @@ public class PlayerManager : MonoBehaviour
     }
 
     /// <summary>
+    /// This method sends the count of players to each playerscript.
+    /// </summary>
+
+    public void SendPlayerCount()
+    {
+        foreach(PlayerScript p in players)
+        {
+            p.SetPlayerCountAndTime(players.Count);
+        }
+    }
+
+    /// <summary>
     /// Used by player to join the list of players
     /// </summary>
     public void RecievePlayer(PlayerScript player){
@@ -74,8 +86,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
-   public void BroadcastQuestion(Question question, float time){
+   public void BroadcastQuestion(Question question, float time,List<Player> pL){
         //int i = 0;
+        BroadcastScores(pL);
         equalVotes = 0;
         voteCounter = 0;
         answers = new List<Card>();
@@ -167,16 +180,18 @@ public class PlayerManager : MonoBehaviour
 
 
         //auskommentiert solange hier mit shallow copy von answer gearbietet wird, wenn das ganze über das netzwerk laufne sollen müssen hie ränderungen vorgenommen werden
-     /*   for (int i = 0; i < answers.Count; i++)
+        for (int i = 0; i < answers.Count; i++)
         {
             Debug.Log("answer in reg:" + answers[i].Answer);
             Debug.Log("registervotes2");
             if (answers[i].cardID == vote.cardID)
             {
                 Debug.Log("registervotes3");
-                /*for (int g=0;g< answers[i].PlayerGuesses.Count; i++) 
+                for (int g=0;g< answers[i].PlayerGuesses.Count; i++) 
                 {
-                    if (answers[i].PlayerGuesses[g].playerID==vote.PlayerGuesses[0].playerID)
+
+                    //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
+                    if (answers[i].PlayerGuesses[g].playerID==p.playerID)
                     {
                         i = answers.Count-1;
                         break;
@@ -196,14 +211,14 @@ public class PlayerManager : MonoBehaviour
                     Debug.Log("pgpre:" + vote.PlayerGuesses.Count); 
                     Debug.Log("answerspgpre:" + answers[i].PlayerGuesses.Count);
 
-                    answers[i].PlayerGuesses.Add(vote.PlayerGuesses[0]);
+                    answers[i].PlayerGuesses.Add(p);
                     Debug.Log("pgpost:" + vote.PlayerGuesses.Count);
                     Debug.Log("registervotes3");
                     Debug.Log("answerspg:" + answers[i].PlayerGuesses.Count);
                     break;
             }
 
-        }*/
+        }
         Debug.Log("registervotes");
         Debug.Log("votecounter:" + voteCounter);
         Debug.Log("playerCount" + players.Count);

@@ -8,19 +8,17 @@ public class QuestionScript : MonoBehaviour
 {
    
     public Text question;
-    TimerScript timer;
+    public TimerScript timer;
     Color textcolor;
     Question currentQuestion;
     public CardScript cs;
-    bool questionEnd;
+    public bool questionEnd;
 
 
    
     void Awake()
     {
-        Debug.Log("awake");
         cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-        Debug.Log(cs);
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -36,7 +34,6 @@ public class QuestionScript : MonoBehaviour
    public void InitializeQuestion()
     {
         //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-        Debug.Log(cs);
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
@@ -46,13 +43,10 @@ public class QuestionScript : MonoBehaviour
     {
         if (cs != null)
         {
-            Debug.Log("questionENd:" + questionEnd);
-            Debug.Log(cs.card.Answer);
   
         }
         if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
-            Debug.Log("questionend");
             questionEnd = true;
             endQuestion();
         }
@@ -69,23 +63,20 @@ public class QuestionScript : MonoBehaviour
         textcolor.a = 1f;
         this.question.text = question;
         this.question.color = textcolor;
-        Debug.Log("questionstart");
         
     }
 
     /// <summary>
     /// This method sets the timer to null and calls, if not null, the timeUP method in CardScript.
     /// </summary>
-    void endQuestion()
+    public void endQuestion()
     {
-        Debug.Log("time up called in endquestion");
 
         textcolor.a = 0f;
         question.color = textcolor;
         timer.setTimer(0);
         if (cs != null)
         {
-            Debug.Log("time up called in endquestion");
             cs.TimeUP();
         }
         /*for(Player player in players)
@@ -106,9 +97,7 @@ public class QuestionScript : MonoBehaviour
         currentQuestion.correctAnswer.cardID = 99;
         currentQuestion.correctAnswer.CorrectVotes = 0;
         question.text = currentQuestion.question;
-        //Debug.Log(questionSet.QuestionList.Count);
         //questionSet.RemoveQuestionFromSet(0);
-        //Debug.Log(questionSet.QuestionList.Count);
         return currentQuestion;
     }
 
