@@ -14,9 +14,8 @@ public class PlayerManager : NetworkBehaviour
     private int voteCounter;
     int equalVotes;
     List<string> myList = new List<string>();
+    int playerid = 1;
 
-    int interval = 5; 
-     float nextTime = 0;
     /// <summary>
     /// Adds players to the dictionary.
     /// </summary>
@@ -55,6 +54,7 @@ public class PlayerManager : NetworkBehaviour
         playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
+        Debug.Log("so viele spieler:" + players.Count);
     }
 
  //   void Update(){
@@ -147,7 +147,7 @@ public class PlayerManager : NetworkBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
-            
+            killme();
             if(answer.cardID!=99)
             answers.Add(answer);
             if (answer.PlayerObject != null)
