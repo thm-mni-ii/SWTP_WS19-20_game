@@ -293,15 +293,19 @@ public class PlayerScript : NetworkBehaviour
     /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
     /// </summary>
     /// <param name="players">A List of players, used for their score and name field.</param>
-    public void UpdateScores(List<Player> players)
+    public void UpdateScores(string name,string score)
     {
+        //Debug.Log("pst RPC:" + players.Count +players[0].PlayerName+players[1].PlayerName);
         scoreboard.text = "";
         nameText.text = "";
-        foreach (Player p in players)
+        scoreboard.text = score;
+        nameText.text = name;
+       /* foreach (Player p in players)
         {
             scoreboard.text += p.Score + "\n";//"\t"+ p.PlayerName + "\n";
             nameText.text += p.PlayerName + "\n";
-        }
+        }*/
+       // Debug.Log("nametext"+nameText.text+"count" +players.Count);
     }
     [ClientRpc]
     /// <summary>
@@ -339,6 +343,7 @@ public class PlayerScript : NetworkBehaviour
 
     [Command]
     public void CmdAnswerInc(Card card){
+        card.PlayerObject = this.player;
         pm.RegisterAnswer(card);
         pm.killme();
     }
@@ -364,8 +369,17 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcReceiveAnswers(Card[] answers)
     {
-        
-            List<Card> receivedCards = new List<Card>(answers);
+        foreach (Card a in answers)
+        {
+            if(a.PlayerObject!=null)
+            Debug.Log("pobj "+a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ");
+        }
+        List<Card> receivedCards = new List<Card>(answers);
+        foreach (Card a in receivedCards)
+        {
+            if (a.PlayerObject != null)
+                Debug.Log("pobj " + a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDList ");
+        }
         if (isLocalPlayer)
         {
             ShowAnswers(receivedCards);
@@ -394,9 +408,10 @@ public class PlayerScript : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcUpdateScores(Player[] players)
+    public void RpcUpdateScores(string name,string score)
     {
-       this.UpdateScores(new List <Player> (players));
+
+        this.UpdateScores(name,score);
         Debug.Log("updateScores");
     }
     // p.UpdateScores(players2);

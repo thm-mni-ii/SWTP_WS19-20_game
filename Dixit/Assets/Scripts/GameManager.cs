@@ -26,7 +26,7 @@ public class GameManager : NetworkBehaviour
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         if(isServer)
-        pm.RpcBroadcastQuestion(currentQuestion,30f);
+        pm.BroadcastQuestion(currentQuestion,30f);
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()
@@ -110,7 +110,7 @@ public class GameManager : NetworkBehaviour
         for (int j = 0; j < answer.Count; j++)
         {
             if (answer[j].IsCorrect)
-                //Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
+                Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
             for (int i = 0; i < allCards.Count; i++)
             {
                
@@ -137,7 +137,7 @@ public class GameManager : NetworkBehaviour
     /// Calls the Method BroadCastScoresViaPM.
     /// </summary>
     void GiveOutPoints()
-    {
+    /*{
         Debug.Log(playerList.Count);
         //for schleife über player cards
         for (int i = 0; i < allCards.Count; i++)
@@ -155,6 +155,7 @@ public class GameManager : NetworkBehaviour
                         for (int j = 0; j < allCards[i].PlayerGuesses.Count; j++)
                         {
                             playerList[k].Score += 50;
+                            Debug.Log(playerList[k] +" Punkte " + playerList[k].Score);
                         }
                     }
                 }
@@ -182,6 +183,7 @@ public class GameManager : NetworkBehaviour
                                     Debug.Log(allCards[i].PlayerGuesses.Count);
                                     playerList[j].Score += 50;
                                     Debug.Log("pg"+allCards[i].PlayerGuesses.Count);
+                                    Debug.Log(playerList[k] + " " + playerList[k].Score);
 
                                     Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
                                 }
@@ -194,9 +196,84 @@ public class GameManager : NetworkBehaviour
             }
     }
 
+    */
+    {
 
+
+        Debug.Log("giveout");
+        //for schleife über player cards
+        for (int i = 0; i < allCards.Count; i++)
+        {
+            if (allCards[i].PlayerObject != null)
+            Debug.Log("allcards " + allCards[i].PlayerObject.PlayerName);
+            //wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist
+            if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count / 2) && allCards[i].IsCorrect == false)
+            {
+                Debug.Log("wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist");
+                //Schleife über alle Player 
+                for (int k = 0; k < playerList.Count; k++)
+                {
+                    if (playerList[k].playerID == allCards[i].PlayerObject.playerID)
+                    {
+                        //schleife über alle Playerguesses
+                        for (int j = 0; j < allCards[i].PlayerGuesses.Count; j++)
+                        {
+                            playerList[k].Score += 50;
+                            Debug.Log(playerList[k] + " " + playerList[k].Score);
+
+                        }
+                    }
+                }
+            }
+
+        }
+        for (int i = 0; i < allCards.Count; i++)
+        {
+            if (allCards[i].IsCorrect == true)
+            {
+                foreach(Player p in allCards[i].PlayerGuesses)
+                {
+                    Debug.Log("correct player :" + p.PlayerName+ " count: " + playerList.Count);
+                    foreach(Card c in allCards){
+                        if (c.CorrectVotes!=0)
+                        {
+                            Debug.Log("still correct player: " + p.PlayerName);
+                        }
+                    }
+                }
+                //schleife über playerList
+                for (int j = 0; j < playerList.Count; j++)
+                {
+
+                    for (int k = 0; k < allCards[i].PlayerGuesses.Count; k++)
+                    {
+                        if (playerList[j].playerID == allCards[i].PlayerGuesses[k].playerID)
+                        {
+
+                            for (int cardCount = 0; cardCount < allCards.Count; cardCount++)
+                            {
+                                //1 + wieder entfernen wenn nicht mehr single player mode
+                                if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1 + playerList.Count / 2)
+                                {
+                                    Debug.Log(allCards[i].PlayerGuesses.Count);
+                                    playerList[j].Score += 50;
+                                    Debug.Log("pg" + allCards[i].PlayerGuesses.Count);
+                                    Debug.Log(playerList[k] + " " + playerList[k].Score);
+
+                                    Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
+        //
         Debug.Log("After points giveout");
         BroadCastScoresViaPM();
+        //foreach(Player p in playerList)
 
     }
 
@@ -321,7 +398,6 @@ public class GameManager : NetworkBehaviour
         allCards = answers;
         for (int i = 0; i < answers.Count; i++)
         {
-            Debug.Log("answer " + i + ": " + allCards[i].Answer);
 
         }
         Debug.Log("answers handled");
