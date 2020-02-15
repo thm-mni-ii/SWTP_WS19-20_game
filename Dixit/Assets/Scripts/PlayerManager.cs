@@ -13,9 +13,8 @@ public class PlayerManager : NetworkBehaviour
     private int voteCounter;
     int equalVotes;
     List<string> myList = new List<string>();
+    int playerid = 1;
 
-    int interval = 5; 
-     float nextTime = 0;
     /// <summary>
     /// Adds players to the dictionary.
     /// </summary>
@@ -49,9 +48,11 @@ public class PlayerManager : NetworkBehaviour
                 return;
             }
         }
-        player.player = new Player(1, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        player.player = new Player(playerid, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
+        Debug.Log("so viele spieler:" + players.Count);
     }
 
  //   void Update(){
@@ -139,7 +140,7 @@ public class PlayerManager : NetworkBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
-            
+            killme();
             if(answer.cardID!=99)
             answers.Add(answer);
 
