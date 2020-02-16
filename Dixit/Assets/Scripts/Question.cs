@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/* created by: SWT-P_WS_19/20_Game */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -7,7 +8,23 @@ using System.IO;
 [Serializable]
 public class Question
 {
+    /// <summary>
+    /// ID of the question.
+    /// </summary>
+    public int questionID;
+    /// <summary>
+    /// The question to be ansered as string.
+    /// </summary>
+    public string question;
+    /// <summary>
+    /// A card with the correct answer to the question.
+    /// </summary>
+    public Card correctAnswer;
+
     
+    /// <summary>
+    /// Default constructor that creates an empty cardobject as answer.
+    /// </summary>
     public Question()
     {
         correctAnswer = new Card();
@@ -15,6 +32,12 @@ public class Question
         correctAnswer.Answer = null;
     }
 
+    /// <summary>
+    /// Constructor for question object.
+    /// </summary>
+    /// <param name="questionID"></param>
+    /// <param name="question"></param>
+    /// <param name="answer"></param>
     public Question(int questionID, string question, string answer) {
         this.questionID = questionID;
         this.question = question;
@@ -22,21 +45,4 @@ public class Question
         correctAnswer.cardID = 99;
         correctAnswer.Answer = answer;
     }
-    public int questionID;
-    public string question;
-    public Card correctAnswer;
-    //  List<string> playerGuesses;
-
-
-    public List<QuestionScript> QuestionToQuestionScript(List<Question> question) {
-        List<QuestionScript> questionList = new List<QuestionScript>();
-        for(int i=0; i < question.Count; i++)
-        {
-
-           // questionList.Add(new QuestionScript(question[i].questionID, question[i].question, question[i].correctAnswer));
-        }
-
-        return questionList;
-    }
-   
 }

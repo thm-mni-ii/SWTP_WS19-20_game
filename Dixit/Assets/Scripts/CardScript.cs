@@ -9,7 +9,6 @@ using Mirror;
 public class CardScript : NetworkBehaviour
 {
 
-
     public Card card;
     /// <summary>
     /// Textfield to display this cards Answe text.
@@ -26,6 +25,11 @@ public class CardScript : NetworkBehaviour
     public Boolean answerPhase = false;
     public Boolean isAllreadyVoted = false;
     public PlayerScript ps;
+    public GameObject selectionObject;
+    /// <summary>
+    /// Used as the parentobject of cardscript
+    /// </summary>
+    public GameObject cardObject;
     QuestionScript qs;
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,8 @@ public class CardScript : NetworkBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
+            selectionObject.SetActive(false);
+
             ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
             //ps.answerCards.Add(this);
             textField = GetComponentInChildren<TMP_Text>();
@@ -95,8 +101,13 @@ public class CardScript : NetworkBehaviour
                 if (!answerGiven && !votePhase)
                 {
                     if (Input.inputString == "\r")
+                    //if(Input.GetKeyDown(KeyCode.Return))
                     {
+                        qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
+                        qs.questionEnd = true;
+                        qs.endQuestion();
                         answerGiven = true;
+
                         card.PlayerObject = ps.player;
                         ps.CmdAnswerInc(card);
                     }
@@ -158,21 +169,45 @@ public void GetAndSetTMP_Text()
         {
             if (Input.GetMouseButtonDown(0))
             {
+                //selectionObject.SetActive(true);
+
+
+
                 if (isAllreadyVoted == false)
                 {
 
+
                     if (ps.player != null)
                         Debug.Log("player:" + ps.player.playerID);
-                    votePhase = false;
+                   // votePhase = false;
                     isAllreadyVoted = true;
                     answerGiven = true;
                     Debug.Log("OnMouseOver");
-                    if(ps.vote!=null)
-                    //Debug.Log("votecount" + ps.vote.Count);
-                    ps.vote.Add(card);
+                    if (ps.vote != null)
+                        //Debug.Log("votecount" + ps.vote.Count);
+                        ps.vote.Add(card);
+                    selectionObject.SetActive(true);
+                        //gameObject.AddComponent<>
                     //Debug.Log("votecount" + ps.vote.Count);
 
 
+                }
+                else if (isAllreadyVoted == true)
+                {
+                    selectionObject.SetActive(false);
+
+                    for (int i = 0; i < ps.vote.Count; i++)
+                    {
+                        if (ps.vote[i].answer == this.card.answer)
+                        {
+                            ps.vote.RemoveAt(i);
+                          //  votePhase = true;
+                            answerGiven = false;
+                            isAllreadyVoted = false;
+
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -190,17 +225,26 @@ public void GetAndSetTMP_Text()
                 if (isAllreadyVoted == false)
                 {
                         Debug.Log("In answerphase cardscript");
+                    foreach (CardScript card in ps.answerCards)
+                    {
+                        card.selectionObject.SetActive(false);
+                    }
+                    selectionObject.SetActive(true);
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
-                    card.PlayerGuesses.Add(ps.player);
-                    Debug.Log(ps.player);
-                    Debug.Log(card.PlayerGuesses[0].playerID);
+
+                    //card.PlayerGuesses.Add(ps.player);
+
+                    //Debug.Log(ps.player);
+                    //Debug.Log(card.PlayerGuesses[0].playerID);
                     ps.voteCard = card;
-                    isAllreadyVoted = true;
-                    for (int i = 0; i < ps.answerCards.Count; i++)
+                    //isAllreadyVoted = true;
+
+                    
+                   /* for (int i = 0; i < ps.answerCards.Count; i++)
                     {
                         ps.answerCards[i].answerPhase = false;
-                    }
+                    }*/
                     //Debug.Log(card.PlayerGuesses[0].playerID);
                     //Debug.Log(PlayerManager.answers[0].PlayerGuesses[0].playerID);
                 }

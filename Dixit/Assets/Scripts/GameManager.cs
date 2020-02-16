@@ -26,7 +26,7 @@ public class GameManager : NetworkBehaviour
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         if(isServer)
-        pm.BroadcastQuestion(currentQuestion,30f);
+        pm.BroadcastQuestion(currentQuestion,30f,playerList);
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()
@@ -373,10 +373,14 @@ public class GameManager : NetworkBehaviour
         }
         else
         {
+            Debug.Log("prewait");
+            StartCoroutine(WaitSecondsThanCleanup());
+           /* Debug.Log("postwait");
             CleanUp();
             pm.CreateNewCardForPlayers();
-            nextQuestion = true;
-            //NextQuestion();
+            //should be called to wait for 3 seconds so that the players kann see which answer was the right one
+                nextQuestion = true;
+            //NextQuestion();*/
         }
 
     }
@@ -405,6 +409,24 @@ public class GameManager : NetworkBehaviour
         questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(allCards);
         pm.BroadcastAnswers(allCards);
     }
+
+    /// <summary>
+    /// This Coroutine waits for 3 seconds before starting the cleanup of the last round, creating new player cards and setting nextQuestion=true so that a new round can start.
+    /// </summary>
+    /// <returns>A Coroutine does not return anything</returns>
+    IEnumerator WaitSecondsThanCleanup()
+    {
+        yield return new WaitForSeconds(3);
+        Debug.Log("waited");
+        CleanUp();
+        pm.CreateNewCardForPlayers();
+        //should be called to wait for 3 seconds so that the players kann see which answer was the right one
+        nextQuestion = true;
+        //NextQuestion();
+    }
+
+
+
 
 }
 

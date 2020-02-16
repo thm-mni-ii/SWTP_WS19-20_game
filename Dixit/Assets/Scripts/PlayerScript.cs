@@ -26,8 +26,11 @@ public class PlayerScript : NetworkBehaviour
     public List<Card> vote;
     public Card voteCard;
     public Boolean startPhase = true;
+    int playercount;
     Boolean votePhase = false;
     Boolean answerPhase = false;
+    TimerScript timer;
+    float time;
     public List<CardScript> answerCards;
     // Start is called before the first frame update
     void Start()
@@ -41,12 +44,16 @@ public class PlayerScript : NetworkBehaviour
         {
             CreateNewCard();
             pm.killme();
+            cs.ps = this;
 
+            timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+            if(time==0)
+                time = 10;
             //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
             //CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-            cs.ps = this;
             //pm.RecievePlayer(this);   
         }
+
     }
 
 
@@ -86,44 +93,54 @@ public class PlayerScript : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (startPhase)
+            if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
             {
-                //Debug.Log("votecount:" +vote.Count);
-            }
-            else if (votePhase == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    phaseText.text = "";
-                    Debug.Log("update votephase");
-                    this.CmdRegisterEqualVotes(vote.ToArray());
-                    //pm.RegisterEqualVote(vote);
-                    //Debug.Log(vote[0].CorrectVotes);
-                    //Debug.Log(vote[1].CorrectVotes);
-                    votePhase = false;
-                    Debug.Log("countof cardskript from answercards" + answerCards.Count);
+                timer.timeleft = 0;
+                phaseText.text = "";
+                Debug.Log("update votephase");
 
-
-                }
-            }
-            else if (answerPhase == true)// && voteCard.PlayerGuesses.Count != 0) //voteCard.cardID!=0)
-            {
-                if (Input.GetKeyDown(KeyCode.Return))
+                foreach(CardScript card in answerCards)
                 {
-                    if (voteCard.IsCorrect)
+                    card.selectionObject.SetActive(false);
+
+                    /*if (card.card.isCorrect)
                     {
-                        Debug.Log("correctcard answer");
-                    }
-                    Debug.Log("update answerphase");
-                    Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
-                    phaseText.text = "";
-
-                    //Debug.Log(voteCard.PlayerGuesses[0].playerID);
-                    this.CmdRegisterVote(voteCard, this.player);
-                    //Debug.Log(vote[0].CorrectVotes);
-                    //Debug.Log(vote[1].CorrectVotes);
-                    answerPhase = false;
+                        card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }*/
+                    card.votePhase = false;
                 }
+
+                
+                this.CmdRegisterEqualVotes(vote.ToArray());
+                //Debug.Log(vote[0].CorrectVotes);
+                //Debug.Log(vote[1].CorrectVotes);
+                votePhase = false;
+
+            }
+        }
+        else if (answerPhase==true )//& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
+        {
+            if (Input.GetKeyDown(KeyCode.Return)|| timer.timeleft <= 0)
+            {
+                
+                timer.timeleft = 0;
+                //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
+                phaseText.text = "";
+
+                //Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                for (int i = 0; i < answerCards.Count; i++)
+                {
+                    if (answerCards[i].card.isCorrect)
+                    {
+                        answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                    }
+                    answerCards[i].answerPhase = false;
+                }
+                answerPhase = false;
+
+                this.CmdRegisterVote(voteCard,this.player);
+                //Debug.Log(vote[0].CorrectVotes);
+                //Debug.Log(vote[1].CorrectVotes);
             }
         }
     }
@@ -180,6 +197,7 @@ public class PlayerScript : NetworkBehaviour
                 answerCards[i].answerPhase = true;
                 answerCards[i].isAllreadyVoted = false;
             }
+            timer.setTimer(time);
 
             /* foreach (CardScript card in answerCards)
              {
@@ -274,7 +292,8 @@ public class PlayerScript : NetworkBehaviour
                 {
                     offset += 2;
                 }
-                answerCards.Add(c);
+                answerCards.Add(c);            
+                timer.setTimer(time);
                 
                 Debug.Log("countof cardskript from answercards" + answerCards.Count);
 
@@ -364,7 +383,26 @@ public class PlayerScript : NetworkBehaviour
     {
         
             this.question.startQuestion(time, question.question);
+    }
         
+    /// <summary>
+    /// This method sets the player count and the time of the timer according to how high the player count is.
+    /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
+    /// </summary>
+    /// <param name="pCount">The number of players.</param>
+    public void SetPlayerCountAndTime(int pCount)
+    {
+        playercount = pCount;
+        if( pCount == 3)
+        {
+            time = 20;
+        } else if (pCount == 4)
+        {
+            time = 25;
+        } else if (pCount == 5)
+        {
+            time = 30;
+        }
     }
 
     [ClientRpc]
