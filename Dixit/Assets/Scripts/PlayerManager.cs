@@ -215,31 +215,33 @@ public class PlayerManager : NetworkBehaviour
         {
             Debug.Log("answer in reg:" + answers[i].Answer);
             Debug.Log("registervotes2");
-            if (answers[i].cardID == vote.cardID)
+            if (vote != null)
             {
-                Debug.Log("registervotes3");
-                for (int g=0;g< answers[i].PlayerGuesses.Count; i++) 
+                if (answers[i].cardID == vote.cardID)
                 {
-
-                    //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
-                    if (answers[i].PlayerGuesses[g].playerID==p.playerID)
+                    Debug.Log("registervotes3");
+                    for (int g = 0; g < answers[i].PlayerGuesses.Count; i++)
                     {
-                        i = answers.Count-1;
-                        break;
+
+                        //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
+                        if (answers[i].PlayerGuesses[g].playerID == p.playerID)
+                        {
+                            i = answers.Count - 1;
+                            break;
+                        }
                     }
-                }
-                if (answers[i].PlayerGuesses.Count == 0)
-                {
-                    Debug.Log("registervotes4");
-                    answers[i].PlayerGuesses = new List<Player>();
-                    Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
-                    //answers[i].PlayerGuesses.Clear();
+                    if (answers[i].PlayerGuesses.Count == 0)
+                    {
+                        Debug.Log("registervotes4");
+                        answers[i].PlayerGuesses = new List<Player>();
+                        Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
+                        //answers[i].PlayerGuesses.Clear();
+                        Debug.Log("registervotes5");
+                    }
+
+
                     Debug.Log("registervotes5");
-                }
-               
-                
-                    Debug.Log("registervotes5");
-                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count); 
+                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count);
                     Debug.Log("answerspgpre:" + answers[i].PlayerGuesses.Count);
 
                     answers[i].PlayerGuesses.Add(p);
@@ -247,8 +249,8 @@ public class PlayerManager : NetworkBehaviour
                     Debug.Log("registervotes3");
                     Debug.Log("answerspg:" + answers[i].PlayerGuesses.Count);
                     break;
+                }
             }
-
         }
         Debug.Log("registervotes");
         Debug.Log("votecounter:" + voteCounter);

@@ -131,6 +131,7 @@ public class PlayerScript : NetworkBehaviour
                     //Debug.Log(vote[0].CorrectVotes);
                     //Debug.Log(vote[1].CorrectVotes);
                     votePhase = false;
+                    voteCard = new Card();
 
                 }
             }
@@ -153,7 +154,7 @@ public class PlayerScript : NetworkBehaviour
                         }
                         answerCards[i].answerPhase = false;
                     }
-                                        
+                                  
                     this.CmdRegisterVote(voteCard, this.player);
 
                     answerPhase = false;
@@ -239,8 +240,27 @@ public class PlayerScript : NetworkBehaviour
 
         answerCards = new List<CardScript>();
 
-        //int i = 0;
-        float offset = -4;
+            //int i = 0;
+            float offset = 0; ;
+            switch (answers.Count)
+            {
+                case 2:
+                offset = -4;
+                    break;
+                case 3:
+                    offset = -6;
+                    break;
+                case 4:
+                    offset = -8;
+                    break;
+                case 5:
+                    offset = -10;
+                    break;
+                case 6:
+                    offset = -12;
+                    break;
+            }
+        
         foreach (Card answer in answers)
         {
             CardScript c;
@@ -261,11 +281,7 @@ public class PlayerScript : NetworkBehaviour
             c.card.Answer = answer.Answer;
             c.votePhase = true;
             c.card.PlayerObject = answer.PlayerObject;
-            if(c.card.PlayerObject!=null)
-         
-            for (int g= 0; g < answerCards.Count; g++)
-            {
-            }
+            
 
             //c.card.cardID = answer.cardID;
             // if(c.card.PlayerObject!=null)
@@ -279,23 +295,24 @@ public class PlayerScript : NetworkBehaviour
             c.answerGiven = true;
            // Debug.Log("Textfield: " + c.textField.text);
             c.votePhase = true;
-            //answerCards.Add(c);
-            if (answers.Count == 2)
-                {
-                    offset += 7;
-                }
+                //answerCards.Add(c);
                 if (answers.Count == 3)
-                {
-                    offset += 7;
-                }
+                    {
+                        offset += 5;
+                    }
                 if (answers.Count == 4)
-                {
-                    offset += 4;
-                }
+                    {
+                        offset += 5;
+                    }
                 if (answers.Count == 5)
-                {
-                    offset += 2;
-                }
+                    {
+                        offset += 5;
+                    }
+                if (answers.Count == 6)
+                    {
+                        offset += 5;
+                    }
+                
             answerCards.Add(c);
             timer.setTimer(time);
 
@@ -374,20 +391,29 @@ public class PlayerScript : NetworkBehaviour
     /// <param name="pCount">The number of players.</param>
     public void RpcSetPlayerCountAndTime(int pCount)
     {
-        playercount = pCount;
-        if (pCount == 2)
+        if (isLocalPlayer)
         {
-            time = 10;
-        }
-        if( pCount == 3)
-        {
-            time = 20;
-        } else if (pCount == 4)
-        {
-            time = 25;
-        } else if (pCount == 5)
-        {
-            time = 30;
+            playercount = pCount;
+            if (pCount == 1)
+            {
+                time = 100;
+            }
+            if (pCount == 2)
+            {
+                time = 10;
+            }
+            if (pCount == 3)
+            {
+                time = 20;
+            }
+            else if (pCount == 4)
+            {
+                time = 25;
+            }
+            else if (pCount == 5)
+            {
+                time = 30;
+            }
         }
     }
 
