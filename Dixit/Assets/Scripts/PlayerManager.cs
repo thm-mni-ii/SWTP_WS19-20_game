@@ -319,14 +319,19 @@ public class PlayerManager : NetworkBehaviour
    public void BroadcastScores(List<Player> players2){
         string names = "";
         string score = "";
+        int[] scoreUpdates = new int[players2.Count];
+        int counter = 0;
        foreach (PlayerScript p in players)
        {
+            scoreUpdates[counter] = p.player.Score;
             names += p.player.PlayerName + "\n";
             score += p.player.Score+"\n";
+            scoreUpdates[counter] = p.player.Score - scoreUpdates[counter];
+            counter++;
           // p.UpdateScores(players2);
        }
        foreach(PlayerScript p in players){
-            p.RpcUpdateScores(names,score);
+            p.RpcUpdateScores(names,score, scoreUpdates);
 
        }
        

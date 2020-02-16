@@ -13,6 +13,13 @@ using Mirror;
 
 public class PlayerScript : NetworkBehaviour
 {
+    private TextMeshProUGUI scoreboardUpdate;
+    public float flashSpeed = 1f;
+    public Color scoreboardUpdateColor = new Color(0.078f, 0.706f, 0.078f, 1f);
+    public Color scoreboardNoUpdateColor = new Color(0.078f, 0.706f, 0.078f, 0f);
+    bool scoreboardUpdating;
+
+
     public bool isLocal;
     public CardScript cs;
     private TextMeshProUGUI scoreboard;
@@ -164,6 +171,14 @@ public class PlayerScript : NetworkBehaviour
                     //Debug.Log(vote[1].CorrectVotes);
                 }
             }
+            if(scoreboardUpdating)
+            {
+                scoreboardUpdate.color = scoreboardUpdateColor;
+                scoreboardUpdating = false;
+            } else
+            {
+                scoreboardUpdate.color = Color.Lerp(scoreboardUpdate.color, scoreboardNoUpdateColor, flashSpeed * Time.deltaTime);
+            }
         }
     }
     void Awake()
@@ -172,6 +187,8 @@ public class PlayerScript : NetworkBehaviour
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
         nameText = GameObject.FindGameObjectWithTag("NamesUI").GetComponent<TextMeshProUGUI>();
         scoreboard = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<TextMeshProUGUI>();
+        scoreboardUpdate = GameObject.FindGameObjectWithTag("ScoreChangeUI").GetComponent<TextMeshProUGUI>();
+        scoreboardUpdate.color = scoreboardNoUpdateColor;
     }
 
 
@@ -332,13 +349,28 @@ public class PlayerScript : NetworkBehaviour
     /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
     /// </summary>
     /// <param name="players">A List of players, used for their score and name field.</param>
-    public void RpcUpdateScores(string name,string score)
+    public void RpcUpdateScores(string name,string score, int[] scoreUpdates)
     {
-
+        string tmpScoreString;
         scoreboard.text = "";
+        scoreboardUpdate.text = "";
         nameText.text = "";
         scoreboard.text = score;
         nameText.text = name;
+
+        for(int i = 0; i < scoreUpdates.Length; i++)
+        {
+            if(scoreUpdates[i] > 0)
+            {
+                tmpScoreString = "+" + scoreUpdates[i].ToString();
+            } else
+            {
+                tmpScoreString = "";
+            }
+            scoreboardUpdate.text += tmpScoreString + "\n";
+        }
+        scoreboardUpdating = true;
+
         /*
         foreach (Player p in players)
         {
