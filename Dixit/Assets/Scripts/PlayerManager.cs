@@ -345,7 +345,7 @@ public class PlayerManager : NetworkBehaviour
     {
         foreach (PlayerScript p in players)
        {
-            p.ShowScoreBoard(scoreboard);
+            p.RpcShowScoreBoard(scoreboard);
        }
     }
 }

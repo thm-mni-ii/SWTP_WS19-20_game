@@ -221,7 +221,7 @@ public class PlayerScript : NetworkBehaviour
 
         
         voteCard = new Card();
-        phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
+        phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest und bestätige dann mit Enter";
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
 
@@ -338,7 +338,7 @@ public class PlayerScript : NetworkBehaviour
         }
 
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
+        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
         vote = new List<Card>();
 
         }
@@ -404,12 +404,12 @@ public class PlayerScript : NetworkBehaviour
         }
     }
 
-
+    [ClientRpc]
     /// <summary>
     /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
     /// </summary>
     /// <param name="scoreboard">a string containg the scoreboard and the ending game message.</param>
-    public void ShowScoreBoard(string scoreboard)
+    public void RpcShowScoreBoard(string scoreboard)
     {
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
