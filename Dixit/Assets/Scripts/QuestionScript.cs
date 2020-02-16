@@ -59,7 +59,7 @@ public class QuestionScript : MonoBehaviour
     /// <param name="question">the question, which is to be answered.</param>
     public void startQuestion(float time, string question)
     {
-        timer.setTimer(time);
+        timer.setTimer(15);
         textcolor.a = 1f;
         this.question.text = question;
         this.question.color = textcolor;

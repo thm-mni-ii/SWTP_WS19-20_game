@@ -25,6 +25,8 @@ public class GameManager : NetworkBehaviour
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         pm.BroadcastQuestion(currentQuestion,30f,playerList);
+        pm.CreateNewCardForPlayers();
+
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()
@@ -344,7 +346,7 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("waited");
         CleanUp();
-        pm.CreateNewCardForPlayers();
+        //pm.CreateNewCardForPlayers();
         //should be called to wait for 3 seconds so that the players kann see which answer was the right one
         nextQuestion = true;
         //NextQuestion();

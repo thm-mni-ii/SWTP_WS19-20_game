@@ -95,11 +95,13 @@ public class PlayerManager : NetworkBehaviour
 
     public void CreateNewCardForPlayers()
     {
-                    Debug.Log("create clean");
+
+        Debug.Log("create clean");
 
         foreach (PlayerScript p in players)
         {
             Debug.Log("create clean");
+            Debug.Log("playercount: "+players.Count);
             p.RpcCreateNewCard();
         }
     }
@@ -319,9 +321,13 @@ public class PlayerManager : NetworkBehaviour
        {
             names += p.player.PlayerName + "\n";
             score += p.player.Score+"\n";
-            p.RpcUpdateScores(names,score);
           // p.UpdateScores(players2);
        }
+       foreach(PlayerScript p in players){
+            p.RpcUpdateScores(names,score);
+
+       }
+       
    }
 
     /// <summary>

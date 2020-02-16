@@ -13,6 +13,7 @@ using Mirror;
 
 public class PlayerScript : NetworkBehaviour
 {
+    public bool isLocal;
     public CardScript cs;
     private TextMeshProUGUI scoreboard;
     public QuestionScript question;
@@ -34,6 +35,8 @@ public class PlayerScript : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isLocal = isLocalPlayer;
+
         foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) {
                     Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
                     pm = cur.GetComponent<PlayerManager>();
@@ -46,8 +49,8 @@ public class PlayerScript : NetworkBehaviour
              timer = cur.GetComponent<TimerScript>();
         }  
      if(isLocalPlayer){
-        CreateNewCard();
-        cs.ps = this;
+        //CreateNewCard();
+        //cs.ps = this;
 
           foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) {
              Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
@@ -67,11 +70,10 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcCreateNewCard()
     {
-        if (isLocalPlayer)
-        {
+       if(isLocalPlayer){
             CreateNewCard();
             cs.ps=this;
-        }
+       }
     }
 
     /// <summary>
@@ -79,7 +81,7 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     public void CreateNewCard()
     {
-
+        if(isLocalPlayer){
         CardScript c;
         startPhase=true;
         c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
@@ -94,7 +96,8 @@ public class PlayerScript : NetworkBehaviour
         question.cs = c;
         question.InitializeQuestion();
         cs=c;
-    }
+        }
+        }
 
     void Update()
     {
@@ -192,13 +195,15 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     public void RpcStartAnswerPhase()
     {
-        if(isLocalPlayer){
         votePhase = false;
         answerPhase = true;
 
+        if(isLocalPlayer){
+        //votePhase = false;
+        //answerPhase = true;
+
         
         voteCard = new Card();
-        answerPhase = true;
         phaseText.text = "Antwortphase: \nBitte klicke auf die Karte, welche du als richtig erachtest";
         //CardScript[] cs = GetComponents<CardScript>();
         for(int i = 0; i < answerCards.Count; i++){
@@ -413,9 +418,10 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
     public void RpcQuestionStart(float time, Question question)
     {
-        
+
+        if(isLocalPlayer){
             this.question.startQuestion(time, question.question);
-        
+        }
     }
 
  [Command]

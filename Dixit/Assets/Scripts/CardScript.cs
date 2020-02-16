@@ -7,7 +7,6 @@ using TMPro;
 
 public class CardScript : MonoBehaviour
 {
-
     public Card card;
     /// <summary>
     /// Textfield to display this cards Answe text.
@@ -34,6 +33,7 @@ public class CardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         //cardObject=GameObject.
         //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
@@ -147,7 +147,10 @@ public class CardScript : MonoBehaviour
         }
         //Destroy(gameObject);
             Debug.Log("timeup");
-            Destroy(GameObject.FindGameObjectWithTag("Card"));
+            foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Card")) {
+                            Destroy(GameObject.FindGameObjectWithTag("Card"));
+
+        }  
         
     }
     /*
