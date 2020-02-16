@@ -19,7 +19,6 @@ public class PlayerManager : NetworkBehaviour
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
-        //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
         myList.Add("Tom");
         myList.Add("Thomas");
@@ -28,15 +27,8 @@ public class PlayerManager : NetworkBehaviour
         myList.Add("Helga");
         myList.Add("Inga");
         myList.Add("Nina");
-        //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         voteCounter = 0;
-        //gm.playerList.Add(player.player);
-        //players.Add(player);
         BroadCastPlayers();
-        /*foreach (PlayerScript p in players)
-        {
-            Debug.Log("player:" + p.player.PlayerName);
-        }*/
         equalVotes = 0;
         voteCounter = 0;
     }
@@ -70,7 +62,6 @@ public class PlayerManager : NetworkBehaviour
         playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
-        //gm.playerList.Add(player.player);
         Debug.Log("so viele spieler:" + players.Count);
     }
 
@@ -113,7 +104,6 @@ public class PlayerManager : NetworkBehaviour
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
    public void BroadcastQuestion(Question question,List<Player> pL){
-        //int i = 0;
         BroadcastScores(pL);
         equalVotes = 0;
         voteCounter = 0;
@@ -121,18 +111,11 @@ public class PlayerManager : NetworkBehaviour
        foreach (PlayerScript p in players)
        {
           p.RpcQuestionStart(pL.Count, question);
-          //p.CreateNewCard();
-          //p.question.startQuestion(time,question.question);
        }
    }
 
     public void StartAnswerPhaseForAllPlayers()
     {
-       /* foreach(Card answer in answers)
-        {
-            answer.PlayerGuesses = new List<Player>();
-            answer.PlayerGuesses.Clear();
-        }*/
         Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
@@ -150,19 +133,21 @@ public class PlayerManager : NetworkBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
-
             if(answer.cardID!=99)
             answers.Add(answer);
 
             if (answer.PlayerObject != null)
+            {
                 Debug.Log("pid"+answer.PlayerObject.playerID);
+            }
             if (answer.PlayerObject == null)
+            {
                 Debug.Log("error");
+            }
             if (answers.Count == players.Count)
             {
                 Debug.Log(players.Count + ":pc");
                 gm.HandleAnswers(answers);
-
             }
         }
    }
@@ -211,8 +196,6 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log("registervotes");
         Debug.Log("votecard:" + vote.PlayerGuesses.Count);
 
-
-        //auskommentiert solange hier mit shallow copy von answer gearbietet wird, wenn das ganze über das netzwerk laufne sollen müssen hie ränderungen vorgenommen werden
         for (int i = 0; i < answers.Count; i++)
         {
             Debug.Log("answer in reg:" + answers[i].Answer);
@@ -237,7 +220,6 @@ public class PlayerManager : NetworkBehaviour
                         Debug.Log("registervotes4");
                         answers[i].PlayerGuesses = new List<Player>();
                         Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
-                        //answers[i].PlayerGuesses.Clear();
                         Debug.Log("registervotes5");
                     }
 
@@ -272,9 +254,6 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal.</param>
     public void RegisterEqualVote(List<Card> vote){
-        //foreach (PlayerScript p in players)
-        //{
-        // Debug.Log(answers.Count);
         equalVotes++;
         for (int i = 0; i < vote.Count; i++)
         {
@@ -285,7 +264,6 @@ public class PlayerManager : NetworkBehaviour
                     if (answers[j].PlayerObject != null)
                         Debug.Log("playerregeq:" + answers[j].PlayerObject);
                     answers[j].CorrectVotes++;
-                   // answers[i].PlayerGuesses.Add(player);
                 }
             }
         }
@@ -295,8 +273,6 @@ public class PlayerManager : NetworkBehaviour
             gm.RegisterEqualVotes(answers);
 
         }
-
-        //}
     }
 
     
@@ -330,7 +306,6 @@ public class PlayerManager : NetworkBehaviour
             score += p.player.Score+"\n";
             scoreUpdates[counter] = p.player.Score - scoreUpdates[counter];
             counter++;
-          // p.UpdateScores(players2);
        }
        foreach(PlayerScript p in players){
             p.RpcUpdateScores(names,score, scoreUpdates);
@@ -347,7 +322,7 @@ public class PlayerManager : NetworkBehaviour
     {
         foreach (PlayerScript p in players)
        {
-            p.RpcShowScoreBoard(scoreboard);
+            p.Rpc-ShowScoreBoard(scoreboard);
        }
     }
 }

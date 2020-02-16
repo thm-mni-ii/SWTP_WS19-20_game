@@ -14,7 +14,6 @@ using UnityEditor;
 [Serializable]
 public class QuestionSet 
 {
-
     //static QuestionSet active_qs = new QuestionSet();
     /// <summary>
     /// The Identification Number of the QuestionSet
@@ -41,7 +40,6 @@ public class QuestionSet
         }
     }
 
-
     /// <summary>
     /// Constructer for QuestionSet
     /// </summary>
@@ -49,7 +47,6 @@ public class QuestionSet
     {
         this.questionList = new List<Question>();
     }
-
 
     /// <summary>
     /// A Shuffle function to randomize the order of questions
@@ -77,12 +74,9 @@ public class QuestionSet
         }
     }
 
-  
-    //
     /// <summary>
     /// A function to Remove a Specific Question from a QuestionSet. This function will be called when before the next question will be asked.
     /// </summary>
-    /// <param name="questSet">The QuestionSet, from which the Question shall be removed.</param>
     /// <param name="index">the index of the list where the question shall be removed.</param>
     public void RemoveQuestionFromSet(int index)
     {
@@ -92,19 +86,13 @@ public class QuestionSet
     /// <summary>
     /// Debug function to print out the whole QuestionSet as a string. The string will be formatted as Json.
     /// </summary>
-    /// <param name="questionSet">The QuestionSet </param>
     public void PrintOutQuestions()
     {
         string output;
   
         output = JsonConvert.SerializeObject(this);
         Debug.Log(" " + this + " :" + output);
-
     }
-
-
-
-    //Methode verwendet momentan ein pfad zur json datei, wenn die Datei später über
 
     /// <summary>
     /// This method requests a JSON file from a database and saves it as QuestionSet.
@@ -114,86 +102,15 @@ public class QuestionSet
     /// <param name="setName">The name of the QuestionSet name</param>
     public void JsonToQuestionSet(string setName)
     {
-        //active_qs = new QuestionSet();
         {
-            //qs = new QuestionSet();
             RestClient.Get<QuestionSet>("https://dixit-db.firebaseio.com/QuestionSets/" + setName + ".json").Then(response =>
             {
-                //EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
-                //Debug.Log("questionset list length " + active_qs.QuestionList.Count);
                 ShuffleList(response);
                 GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-                //QuestionSet qs = GameObject.Instantiate(response);
-                //string json = JsonConvert.SerializeObject(response);
-                //Debug.Log("JSON STRING " + json);
                 gm.questionSet = response;
-                //gm.questionSet = JsonConvert.DeserializeObject<QuestionSet>(json);
-                //Debug.Log("ACTIVEQS " + active_qs.questionList.Count);
-                //gm.questionSet = active_qs;
-                //gm.questionSet = response;
             });
         }
-        /*RestClient.Get<QuestionSet>("https://dixit-db.firebaseio.com/QuestionSets/Informatik.json").Then(response =>
-       {
-           EditorUtility.DisplayDialog("JSON", JsonUtility.ToJson(response, true), "Ok");
-           questionSet = response;
-           Debug.Log("response list length " + response.questionList.Count);
-           Debug.Log("questionset list length " + questionSet.QuestionList.Count);
-           Debug.Log("SETNAME: " + setName);
-       });*/
-
-        /*RestClient.GetArray<Question>("https://dixit-db.firebaseio.com/QuestionSets/" + setName + "/questionList.json").Then(responseQuestionList =>
-        { 
-            EditorUtility.DisplayDialog("QUESTION", JsonHelper.ArrayToJsonString<Question>(responseQuestionList, true), "Ok");
-
-            for(int i = 0; i < responseQuestionList.Length; i++)
-            {
-                RestClient.Get<Card>("https://dixit-db.firebaseio.com/QuestionSets/" + setName + "/questionList/" + responseQuestionList[i].questionID + "/correctAnswer.json").Then(responseCard =>
-                //RestClient.Get<Card>("https://dixit-db.firebaseio.com/QuestionSets/Informatik/questionList/0/correctAnswer.json").Then(responseCard =>
-                {
-
-                    Debug.Log("CARD ANSWER" + responseCard.answer);
-                    Debug.Log("CARD CARDID" + responseCard.cardID);
-                    Debug.Log("CARD ISCORRECT" + responseCard.IsCorrect);
-                    Debug.Log("CARD CORRECTVOTES" + responseCard.CorrectVotes);
-                    //EditorUtility.DisplayDialog("CARD", JsonHelper.ArrayToJsonString<Card>(responseCard, true), "Ok");
-                    //EditorUtility.DisplayDialog("CARD", JsonUtility.ToJson(responseCard, true), "Ok");
-                    //responseQuestionList[i].correctAnswer = responseCard;
-
-                });
-            }
-        });*/
-
-
-        //using (StreamReader reader = File.OpenText(@"" + path))
-        //{
-
-            
-            //JObject on = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-            //string json = on.ToString();
-            //questionSet = JsonConvert.DeserializeObject<QuestionSet>(json);
-            //return questionSet;
-
-        //}
     }
-
-    /// <summary>
-    /// A method to create a new QuestionSet from a JSON File under a specific Path.
-    /// The QuestionSet will also be shuffled.
-    /// </summary>
-    /// <param name="path">The path to the JSOn File.</param>
-    /// <returns>The loaded QuestionSet questionSet.</returns>
-    /*public QuestionSet LoadQuestionSet(string setName)
-    {
-        //QuestionSet qs = new QuestionSet();
-        Debug.Log("LoadQS " + active_qs.questionList.Count);
-        //JsonToQuestionSet(setName, active_qs);
-        System.Threading.Thread.Sleep(5000);
-        Debug.Log("LoadQS2 " + active_qs.questionList.Count);
-        ShuffleList(active_qs);
-        return active_qs;
-    }*/
-
 
     /// <summary>
     /// Gets the next Question from questionList.
@@ -205,5 +122,4 @@ public class QuestionSet
 
         return nextQuestion;
     }
-
 }

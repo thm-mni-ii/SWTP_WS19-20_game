@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
-{
-    public GameObject menu;
+{   
+    /// <summary>
+    /// Gameobject that is disabled at start.
+    /// </summary>
+    public GameObject obj;
 
+    /// <summary>
+    /// On start of the script is disabled.
+    /// </summary>
     void Start()
     {
-       menu.SetActive(false);
+       obj.SetActive(false);
     }
 }

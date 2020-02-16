@@ -6,8 +6,10 @@ using TMPro;
 
 public class GetInputText : MonoBehaviour
 {
-
-    public Card card;       //Card for that Input
+    /// <summary>
+    /// Card from which the inputtext is recieved.
+    /// </summary>
+    public Card card;       
 
     void Start()
     {
@@ -17,14 +19,8 @@ public class GetInputText : MonoBehaviour
         input.onEndEdit = se;                           //After ending input with enter the AddListener is called
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void GetInput(string input){
-        //Debug.Log(input);
         card.Answer = input;
     }
 }

@@ -121,16 +121,6 @@ public class GameManager : NetworkBehaviour
                 }
             }
         }
-        /*
-        Debug.Log("Card :" + 0 + " PlayerGuesses: " + allCards[0].PlayerGuesses.Count);
-
-        for (int j = 0; j < allCards.Count; j++)
-        {
-            if (allCards[j].PlayerObject != null)
-                Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " PlayerGuesses: " + allCards[j].PlayerGuesses.Count);
-        }*/
-        Debug.Log("registervotes2");
-
         GiveOutPoints();
     }
     /// <summary>
@@ -347,18 +337,8 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("waited");
         CleanUp();
-        //pm.CreateNewCardForPlayers();
         //should be called to wait for 3 seconds so that the players kann see which answer was the right one
         nextQuestion = true;
         //NextQuestion();
     }
-
-
-
-
 }
-
-
-
-
-

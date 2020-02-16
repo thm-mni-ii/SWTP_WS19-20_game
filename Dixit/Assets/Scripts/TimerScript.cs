@@ -4,21 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+
 public class TimerScript : NetworkBehaviour
 {
-    //public Question question;
+    /// <summary>
+    /// Time left on the timer.
+    /// </summary>
     public float timeleft = 0f;
+    /// <summary>
+    /// Textfield wher the timer is displayed.
+    /// </summary>
     Text text;
+    /// <summary>
+    /// Textcolor is used to change the color of the text depending on the time left on the timer.
+    /// </summary>
     Color textcolor;
 
-    // Start is called before the first frame update
     void Awake()
     {
-        text = GetComponent<Text>();
+        text = GetComponent<Text>();        //Get the textfield from scene.
         textcolor = text.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(timeleft > 0)
@@ -26,14 +33,14 @@ public class TimerScript : NetworkBehaviour
             text.text = timeleft.ToString("0.00");
             timeleft -= Time.deltaTime;
 
-            if(timeleft >= 10)
+            if(timeleft >= 10)                     //Change the color to orange when the timer is below 10 seconds
             {
                 textcolor = new Color(65f / 255f, 163f / 255f, 23f / 255f);
             }
-            else if(timeleft < 10 && timeleft >= 3)
+            else if(timeleft < 10 && timeleft >= 3)             //Change the color to orange when the timer is below 10 seconds
             {
                 textcolor = new Color(255f / 255f, 170f / 255f, 29f / 255f);
-            } else
+            } else                                              //Change the color to red when the timer is below 3 seconds
             {
                 textcolor = new Color(255f / 255f, 0f / 255f, 0f / 255f);
             }
@@ -48,9 +55,9 @@ public class TimerScript : NetworkBehaviour
     /// <summary>
     /// This method sets timeleft.
     /// </summary>
-    /// <param name="i">The value that timeleft is set to.</param>
-    public void setTimer(float i)
+    /// <param name="time">The value that timeleft is set to.</param>
+    public void setTimer(float time)
     {
-        timeleft = i;
+        timeleft = time;
     }
 }
