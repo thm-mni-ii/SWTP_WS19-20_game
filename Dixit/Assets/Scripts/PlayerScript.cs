@@ -8,9 +8,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using TMPro;
+using Mirror;
 
-public class PlayerScript : MonoBehaviour
+
+public class PlayerScript : NetworkBehaviour
 {
+    public CardScript cs;
     private TextMeshProUGUI scoreboard;
     public QuestionScript question;
     public CardScript card;
@@ -31,15 +34,44 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
-     CardScript cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-     cs.ps = this;
-     pm.RecievePlayer(this);
-     timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
-     if(time==0)
-        time = 10;
-    // if(pla)
+        foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) {
+                    Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
+                    pm = cur.GetComponent<PlayerManager>();
+                    pm.RecievePlayer(this);
+        }  
 
+
+     foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) {
+             Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
+             timer = cur.GetComponent<TimerScript>();
+        }  
+     if(isLocalPlayer){
+        CreateNewCard();
+        cs.ps = this;
+
+          foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) {
+             Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
+             timer = cur.GetComponent<TimerScript>();
+        }  
+
+        //timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        if(time==0)
+            time = 10;
+    // if(pla)
+     }
+    }
+
+
+
+
+    [ClientRpc]
+    public void RpcCreateNewCard()
+    {
+        if (isLocalPlayer)
+        {
+            CreateNewCard();
+            cs.ps=this;
+        }
     }
 
     /// <summary>
@@ -61,65 +93,73 @@ public class PlayerScript : MonoBehaviour
        // question = Instantiate(question, question.transform, 0);
         question.cs = c;
         question.InitializeQuestion();
+        cs=c;
     }
 
     void Update()
     {
-        if (startPhase)
+        if (isLocalPlayer)
         {
-            //Debug.Log("votecount:" +vote.Count);
-
-        }
-        else if (votePhase == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
+            if (startPhase)
             {
-                timer.timeleft = 0;
-                phaseText.text = "";
-                Debug.Log("update votephase");
-
-                foreach(CardScript card in answerCards)
-                {
-                    card.selectionObject.SetActive(false);
-
-                    /*if (card.card.isCorrect)
-                    {
-                        card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
-                    }*/
-                    card.votePhase = false;
-                }
-
-                
-                pm.RegisterEqualVote(vote);
-                //Debug.Log(vote[0].CorrectVotes);
-                //Debug.Log(vote[1].CorrectVotes);
-                votePhase = false;
+                //Debug.Log("votecount:" +vote.Count);
 
             }
-        }
-        else if (answerPhase==true )//& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
-        {
-            if (Input.GetKeyDown(KeyCode.Return)|| timer.timeleft <= 0)
+            else if (votePhase == true)
             {
-                
-                timer.timeleft = 0;
-                //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
-                phaseText.text = "";
-
-                //Debug.Log(voteCard.PlayerGuesses[0].playerID);
-                for (int i = 0; i < answerCards.Count; i++)
+                if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
                 {
-                    if (answerCards[i].card.isCorrect)
-                    {
-                        answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
-                    }
-                    answerCards[i].answerPhase = false;
-                }
-                answerPhase = false;
+                    timer.timeleft = 0;
+                    phaseText.text = "";
+                    Debug.Log("update votephase");
 
-                pm.RegisterVote(voteCard,this.player);
-                //Debug.Log(vote[0].CorrectVotes);
-                //Debug.Log(vote[1].CorrectVotes);
+                    foreach(CardScript card in answerCards)
+                    {
+                        card.selectionObject.SetActive(false);
+
+                        /*if (card.card.isCorrect)
+                        {
+                            card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                        }*/
+                        card.votePhase = false;
+                    }
+
+                    
+                    this.CmdRegisterEqualVotes(vote.ToArray());
+                    //Debug.Log(vote[0].CorrectVotes);
+                    //Debug.Log(vote[1].CorrectVotes);
+                    votePhase = false;
+
+                }
+            }
+            else if (answerPhase==true )//& voteCard.PlayerGuesses.Count!=0) //voteCard.cardID!=0)
+            {
+                if (Input.GetKeyDown(KeyCode.Return)|| timer.timeleft <= 0)
+                {
+                    
+                    timer.timeleft = 0;
+                    //Debug.Log("Clearcount:" + voteCard.PlayerGuesses.Count);
+                    phaseText.text = "";
+
+                    //Debug.Log(voteCard.PlayerGuesses[0].playerID);
+                    for (int i = 0; i < answerCards.Count; i++)
+                    {
+                        if (answerCards[i].card.isCorrect)
+                        {
+                            Debug.Log("grün");
+                            answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
+                        }
+                        answerCards[i].answerPhase = false;
+                    }
+                                        
+                    this.CmdRegisterVote(voteCard, this.player);
+
+                    answerPhase = false;
+
+                    //pm.RegisterVote(voteCard,this.player);
+                    //Debug.Log(vote[0].CorrectVotes);
+                    //Debug.Log(vote[1].CorrectVotes);
+                }
             }
         }
     }
@@ -132,25 +172,27 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+    [ClientRpc]
     /// <summary>
     /// This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text.
     /// 
     /// </summary>
     /// <param name="playerList">A string cotaining the players and a newline after every playername</param>
     /// <param name="playerScores">A string containing the score and a newline for every player</param>
-    public void DisplayPlayers(string playerList,string playerScores)
+    public void RpcDisplayPlayers(string playerList,string playerScores)
     {
         nameText.text = playerList;
         scoreboard.text = playerScores;
 
     }
 
-
+    [ClientRpc]
     /// <summary>
     /// This method starts the answerphase, setting the corresponding booleans directing which phase it is.
     /// </summary>
-    public void StartAnswerPhase()
+    public void RpcStartAnswerPhase()
     {
+        if(isLocalPlayer){
         votePhase = false;
         answerPhase = true;
 
@@ -173,6 +215,7 @@ public class PlayerScript : MonoBehaviour
              card.answerPhase = true;
              card.isAllreadyVoted = false;
          }*/
+        }
     }
 
 
@@ -182,7 +225,7 @@ public class PlayerScript : MonoBehaviour
     /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
-
+        if(isLocalPlayer){
         vote = new List<Card>();
         startPhase = false;
         votePhase = true;
@@ -233,9 +276,21 @@ public class PlayerScript : MonoBehaviour
             c.votePhase = true;
             //answerCards.Add(c);
             if (answers.Count == 2)
-            {
-                offset += 7;
-            }
+                {
+                    offset += 7;
+                }
+                if (answers.Count == 3)
+                {
+                    offset += 7;
+                }
+                if (answers.Count == 4)
+                {
+                    offset += 4;
+                }
+                if (answers.Count == 5)
+                {
+                    offset += 2;
+                }
             answerCards.Add(c);
             timer.setTimer(time);
 
@@ -247,32 +302,39 @@ public class PlayerScript : MonoBehaviour
         phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann enter";
         vote = new List<Card>();
 
-
+        }
     }
 
+    [ClientRpc]
     /// <summary>
     /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
     /// </summary>
     /// <param name="players">A List of players, used for their score and name field.</param>
-    public void UpdateScores(List<Player> players)
+    public void RpcUpdateScores(string name,string score)
     {
+
         scoreboard.text = "";
         nameText.text = "";
+        scoreboard.text = score;
+        nameText.text = name;
+        /*
         foreach (Player p in players)
         {
             scoreboard.text += p.Score + "\n";//"\t"+ p.PlayerName + "\n";
-            nameText.text += p.PlayerName + "\n";
-        }
+            nameText.text += p.PlayerName + "\n";*/
+    //    }
     }
+    [ClientRpc]
 
     /// <summary>
     /// This method destorys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
     /// </summary>
-    public void CleanUp() 
+    public void RpcCleanUp() 
     {
+        if(isLocalPlayer){
         GameObject[] gameObjects;
 
-      
+        Debug.Log("Cleeeean");
         answerPhase = false;
         answerCards = null;
 
@@ -285,7 +347,7 @@ public class PlayerScript : MonoBehaviour
                 Destroy(gameObjects[i]);
             }
         
-
+        }
     }
 
 
@@ -317,6 +379,60 @@ public class PlayerScript : MonoBehaviour
             time = 30;
         }
     }
+
+  [Command]
+    public void CmdRegisterEqualVotes(Card[] vote)
+    {
+        List<Card> votes = new List<Card>(vote);
+        pm.RegisterEqualVote(votes);
+        Debug.Log("call pm.registereqvot");
+    }
+
+    [ClientRpc]
+    public void RpcReceiveAnswers(Card[] answers)
+    {
+        foreach (Card a in answers)
+        {
+            if(a.PlayerObject!=null)
+            Debug.Log("pobj "+a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ");
+        }
+        List<Card> receivedCards = new List<Card>(answers);
+        foreach (Card a in receivedCards)
+        {
+            if (a.PlayerObject != null)
+                Debug.Log("pobj " + a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDList ");
+        }
+        if (isLocalPlayer)
+        {
+            ShowAnswers(receivedCards);
+            Debug.Log("lokalplayer");
+        }
+        
+    }
+
+    [ClientRpc]
+    public void RpcQuestionStart(float time, Question question)
+    {
+        
+            this.question.startQuestion(time, question.question);
+        
+    }
+
+ [Command]
+    public void CmdAnswerInc(Card card){
+        Debug.Log("CMDANSWER");
+        card.PlayerObject = this.player;
+        pm.RegisterAnswer(card);
+    }
+    
+
+    [Command]
+    public void CmdRegisterVote(Card voteCard,Player player)
+    {
+        pm.RegisterVote(voteCard, this.player);
+
+    }
+
 
 
 }

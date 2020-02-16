@@ -18,7 +18,7 @@ public class QuestionScript : MonoBehaviour
    
     void Awake()
     {
-        cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
+        //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();

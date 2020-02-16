@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class GameManager : MonoBehaviour
+using Mirror;
+public class GameManager : NetworkBehaviour
 {
     public string questionSetName;
     public QuestionSet questionSet = new QuestionSet();
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
             if (allCards[j].PlayerObject != null)
                 Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " PlayerGuesses: " + allCards[j].PlayerGuesses.Count);
         }*/
-        Debug.Log("registervotes");
+        Debug.Log("registervotes2");
 
         GiveOutPoints();
     }
@@ -223,8 +223,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BroadCastScoresViaPM()
     {
+        Debug.Log("boradcastet");
         pm.BroadcastScores(playerList);
+        Debug.Log("boradcastet");
         RoundEnd();
+        Debug.Log("noend");
     }
 
     /// <summary>
@@ -234,7 +237,7 @@ public class GameManager : MonoBehaviour
     void RoundEnd()
     {
 
-
+        Debug.Log("End!!");
         questionSet.RemoveQuestionFromSet(0);
         Debug.Log("");
         if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )

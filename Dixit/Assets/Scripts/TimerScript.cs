@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class TimerScript : MonoBehaviour
+using Mirror;
+public class TimerScript : NetworkBehaviour
 {
     //public Question question;
     public float timeleft = 0f;

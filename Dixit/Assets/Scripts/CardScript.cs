@@ -34,8 +34,9 @@ public class CardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         //cardObject=GameObject.
-        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+        //pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         if (card == null)
         {
             card = new Card();
@@ -103,12 +104,15 @@ public class CardScript : MonoBehaviour
                     if (Input.inputString == "\r")
                     //if(Input.GetKeyDown(KeyCode.Return))
                     {
+                        
                         qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
                         qs.questionEnd = true;
-                        qs.endQuestion();
-                        answerGiven = true;
+                        //answerGiven = true;
 
                         card.PlayerObject = ps.player;
+                        qs.endQuestion();
+
+                        //ps.CmdAnswerInc(card);
                        // pm.RegisterAnswer(card);
                     }
                     else if (Input.inputString == "\b" && card.Answer.Length > 0)
@@ -133,7 +137,8 @@ public class CardScript : MonoBehaviour
 
             SetCardFromPlayerScript(ps, card);
             answerGiven = true;
-            pm.RegisterAnswer(card);
+            //pm.RegisterAnswer(card);
+            ps.CmdAnswerInc(card);
             //Debug.Log(PlayerManager.answers.Count);
             /*   for (int i = 0; i < PlayerManager.answers.Count; i++)
            {
@@ -213,8 +218,6 @@ public void GetAndSetTMP_Text()
         else if (answerPhase==true)
         {
             if (ps.player != null)
-                Debug.Log("player:" + ps.player.playerID);
-            Debug.Log("Answerphase");
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log(isAllreadyVoted);

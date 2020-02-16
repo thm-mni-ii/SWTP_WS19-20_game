@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     public static List<PlayerScript> players = new List<PlayerScript>();
     public static List<Card> answers = new List<Card>();
@@ -11,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public GameManager gm;
     private int voteCounter;
     int equalVotes;
+    int playerid = 1;
+    List<string> myList = new List<string>();
 
     /// <summary>
     /// Adds players to the dictionary.
@@ -18,6 +21,13 @@ public class PlayerManager : MonoBehaviour
     public void Start(){
         //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
+        myList.Add("Tom");
+        myList.Add("Thomas");
+        myList.Add("Günther");
+        myList.Add("Jochen");
+        myList.Add("Helga");
+        myList.Add("Inga");
+        myList.Add("Nina");
         //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
         voteCounter = 0;
         //gm.playerList.Add(player.player);
@@ -47,9 +57,19 @@ public class PlayerManager : MonoBehaviour
     /// Used by player to join the list of players
     /// </summary>
     public void RecievePlayer(PlayerScript player){
-        player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        System.Random r = new System.Random();
+        foreach (PlayerScript p in players) {
+            if (p == player) {
+                Debug.Log("player not added");
+                return;
+            }
+        }
+        player.player = new Player(playerid, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
+        //gm.playerList.Add(player.player);
+        Debug.Log("so viele spieler:" + players.Count);
     }
 
 
@@ -68,17 +88,19 @@ public class PlayerManager : MonoBehaviour
         }
         foreach(PlayerScript player in players)
         {
-            player.DisplayPlayers(playerList,playerScores);
+            player.RpcDisplayPlayers(playerList,playerScores);
         }
     }
 
 
     public void CreateNewCardForPlayers()
     {
+                    Debug.Log("create clean");
+
         foreach (PlayerScript p in players)
         {
-
-            p.CreateNewCard();
+            Debug.Log("create clean");
+            p.RpcCreateNewCard();
         }
     }
     /// <summary>
@@ -94,9 +116,9 @@ public class PlayerManager : MonoBehaviour
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
-          
+          p.RpcQuestionStart(time, question);
           //p.CreateNewCard();
-          p.question.startQuestion(time,question.question);
+          //p.question.startQuestion(time,question.question);
        }
    }
 
@@ -110,7 +132,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
-            player.StartAnswerPhase();
+            player.RpcStartAnswerPhase();
         }
     }
 
@@ -155,14 +177,21 @@ public class PlayerManager : MonoBehaviour
         }
         PlayerManager.answers = answers;
 
-        foreach (PlayerScript p in players)
-       {
-            p.ShowAnswers(answers);
-            //Debug.Log(""+p.)
-       }
+       foreach (PlayerScript p in players)
+        {
+            if (players.Count == (answers.Count - 1))
+            {
+                Card[] cardArray = answers.ToArray();
+                foreach (Card ans in cardArray)
+                {
+                    if (ans.PlayerObject != null)
+                        Debug.Log("Player still there " + ans.PlayerObject.PlayerName);
+                }
+                p.RpcReceiveAnswers(cardArray);
+            }
    }
 
-
+   }
 
 
 
@@ -270,9 +299,10 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void CleanUp()
     {
+        Debug.Log("call cleanup");
         foreach (PlayerScript p in players)
        {
-            p.CleanUp();
+            p.RpcCleanUp();
        }
        
     }
@@ -281,11 +311,16 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Sends the new list of players to the player to update scores.
     /// </summary>
-    /// <param name="player">A List of Player Objects.</param>
+    /// <param name="players2">A List of Player Objects.</param>
    public void BroadcastScores(List<Player> players2){
+        string names = "";
+        string score = "";
        foreach (PlayerScript p in players)
        {
-           p.UpdateScores(players2);
+            names += p.player.PlayerName + "\n";
+            score += p.player.Score+"\n";
+            p.RpcUpdateScores(names,score);
+          // p.UpdateScores(players2);
        }
    }
 
