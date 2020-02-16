@@ -63,7 +63,7 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     public void CreateNewCard()
     {
-
+        if(isLocalPlayer){
         CardScript c;
         startPhase=true;
         c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
@@ -79,6 +79,7 @@ public class PlayerScript : NetworkBehaviour
         question.cs = c;
         question.InitializeQuestion();
         cs = c;
+        }
     }
 
     void Update()

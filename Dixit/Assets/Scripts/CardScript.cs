@@ -208,9 +208,4 @@ public void GetAndSetTMP_Text()
 
         }
     }
-
-    
-
-
-
 }
