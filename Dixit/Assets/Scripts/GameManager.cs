@@ -36,7 +36,7 @@ public class GameManager : NetworkBehaviour
         allCards = new List<Card>();
         playerList = new List<Player>();
         //equalVotesCounter = 0;
-        numberOfRounds = 5;
+        numberOfRounds = 2;
         //questionSet = questionSet.LoadQuestionSet(questionSetName);
         Debug.Log("GM QS " + questionSet.questionList.Count);
         questionSet.JsonToQuestionSet(questionSetName);
