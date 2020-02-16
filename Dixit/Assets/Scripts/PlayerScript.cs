@@ -211,6 +211,7 @@ public class PlayerScript : NetworkBehaviour
             answerCards[i].votePhase = false;
             answerCards[i].answerPhase = true;
             answerCards[i].isAllreadyVoted = false;
+            answerCards[i].ansCards = answerCards;
         }
         timer.setTimer(time);
 

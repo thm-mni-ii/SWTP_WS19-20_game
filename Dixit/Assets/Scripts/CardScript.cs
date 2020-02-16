@@ -7,6 +7,7 @@ using TMPro;
 
 public class CardScript : MonoBehaviour
 {
+    public List<CardScript> ansCards;
     public Card card;
     /// <summary>
     /// Textfield to display this cards Answe text.
@@ -53,7 +54,9 @@ public class CardScript : MonoBehaviour
         //textField = GetComponentInChildren<TMP_Text>();
         if (votePhase == true)
         {
-            selectionObject.SetActive(false);
+            ansCards = new List<CardScript>();
+
+          selectionObject.SetActive(false);
 
             ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
             //ps.answerCards.Add(this);
@@ -220,18 +223,22 @@ public void GetAndSetTMP_Text()
         }
         else if (answerPhase==true)
         {
-            if (ps.player != null)
+            
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log(isAllreadyVoted);
 
                 if (isAllreadyVoted == false)
                 {
-                    foreach (CardScript card in ps.answerCards)
+
+
+
+                    foreach (CardScript card in ansCards) // ps.answerCards)
                     {
                         card.selectionObject.SetActive(false);
+                        isAllreadyVoted = false;
                     }
-                    selectionObject.SetActive(true);
+                    this.selectionObject.SetActive(true) ;
                     // ps.vote = new List<Card>();
                     //ps.vote.Clear();
 
