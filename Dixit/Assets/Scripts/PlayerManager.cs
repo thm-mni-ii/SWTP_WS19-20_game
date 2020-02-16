@@ -64,7 +64,9 @@ public class PlayerManager : NetworkBehaviour
                 return;
             }
         }
-        player.player = new Player(playerid, 0, 1337, 0, 0, myList[r.Next(myList.Count)]);
+        int tmp = r.Next(myList.Count);
+        player.player = new Player(playerid, 0, 1337, 0, 0, myList[tmp]);
+        myList.RemoveAt(tmp);
         playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
