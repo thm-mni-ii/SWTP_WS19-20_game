@@ -24,7 +24,8 @@ public class GameManager : NetworkBehaviour
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
-        pm.BroadcastQuestion(currentQuestion,30f,playerList);
+        pm.SendPlayerCount();
+        pm.BroadcastQuestion(currentQuestion,playerList);
         pm.CreateNewCardForPlayers();
 
         //Debug.Log("NextQuestion aufgerufen");

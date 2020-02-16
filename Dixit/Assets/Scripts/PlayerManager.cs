@@ -49,7 +49,7 @@ public class PlayerManager : NetworkBehaviour
     {
         foreach(PlayerScript p in players)
         {
-            p.SetPlayerCountAndTime(players.Count);
+            p.RpcSetPlayerCountAndTime(players.Count);
         }
     }
 
@@ -110,7 +110,7 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
-   public void BroadcastQuestion(Question question, float time,List<Player> pL){
+   public void BroadcastQuestion(Question question,List<Player> pL){
         //int i = 0;
         BroadcastScores(pL);
         equalVotes = 0;
@@ -118,7 +118,7 @@ public class PlayerManager : NetworkBehaviour
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
-          p.RpcQuestionStart(time, question);
+          p.RpcQuestionStart(pL.Count, question);
           //p.CreateNewCard();
           //p.question.startQuestion(time,question.question);
        }

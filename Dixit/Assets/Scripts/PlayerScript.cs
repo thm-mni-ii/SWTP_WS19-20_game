@@ -58,8 +58,7 @@ public class PlayerScript : NetworkBehaviour
         }  
 
         //timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
-        if(time==0)
-            time = 10;
+    
     // if(pla)
      }
     }
@@ -366,14 +365,20 @@ public class PlayerScript : NetworkBehaviour
         phaseText.text ="Spiel beendet\nDie Ergebnisse lauten wie folgt:\n"+ scoreboard;
     }
 
+
+    [ClientRpc]
     /// <summary>
     /// This method sets the player count and the time of the timer according to how high the player count is.
     /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
     /// </summary>
     /// <param name="pCount">The number of players.</param>
-    public void SetPlayerCountAndTime(int pCount)
+    public void RpcSetPlayerCountAndTime(int pCount)
     {
         playercount = pCount;
+        if (pCount == 2)
+        {
+            time = 10;
+        }
         if( pCount == 3)
         {
             time = 20;
@@ -417,10 +422,11 @@ public class PlayerScript : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcQuestionStart(float time, Question question)
+    public void RpcQuestionStart(int count, Question question)
     {
 
         if(isLocalPlayer){
+            RpcSetPlayerCountAndTime(count);
             this.question.startQuestion(time, question.question);
         }
     }
