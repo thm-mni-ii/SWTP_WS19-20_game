@@ -46,6 +46,7 @@ public class QuestionScript : MonoBehaviour
 
     /// <summary>
     /// This method sets the QuestionScript object to the same state as it was when awake was called. 
+    /// Initializes variables of the QuestionScript.
     /// </summary>
     public void InitializeQuestion()
     {
@@ -61,11 +62,6 @@ public class QuestionScript : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (cs != null)
-        {
-            //Debug.Log("questionENd:" + questionEnd);
-            //Debug.Log(cs.card.Answer);
-        }
         if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
             questionEnd = true;
@@ -88,7 +84,7 @@ public class QuestionScript : MonoBehaviour
     }
 
     /// <summary>
-    /// This method sets the timer to null and calls, if not null, the timeUP method in CardScript.
+    /// This method sets the timer to 0 and calls, if not cs is not null, the timeUP method in CardScript cs.
     /// </summary>
     public void endQuestion()
     {
@@ -108,12 +104,10 @@ public class QuestionScript : MonoBehaviour
     /// <returns>The next question from the set</returns>
     public Question GetQuestionFromQuestionSet(QuestionSet questionSet)
     {
-
         currentQuestion = questionSet.GetNextQuestion();
         currentQuestion.correctAnswer.cardID = 99;
         currentQuestion.correctAnswer.CorrectVotes = 0;
         question.text = currentQuestion.question;
-        //questionSet.RemoveQuestionFromSet(0);
         return currentQuestion;
     }
 }

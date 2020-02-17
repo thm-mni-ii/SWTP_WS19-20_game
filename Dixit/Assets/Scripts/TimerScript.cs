@@ -31,7 +31,7 @@ public class TimerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// Controls the color of the timer
+    /// Controls the color of the timer.
     /// This method is called once per frame.
     /// </summary>
     void Update()

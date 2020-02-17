@@ -37,7 +37,7 @@ public class Player
     private string playerName;
 
     /// <summary>
-    /// An empty constructor for Player.
+    /// An empty default constructor for Player.
     /// </summary>
     /// 
     public Player()
@@ -46,7 +46,7 @@ public class Player
     }
 
     /// <summary>
-    /// A constructor for Player
+    /// A constructor for Player.
     /// </summary>
     /// <param name="playerID">playerID</param>
     /// <param name="score">score</param>

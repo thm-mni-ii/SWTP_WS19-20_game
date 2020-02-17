@@ -10,11 +10,11 @@ Inheritance diagram for Question\+Script\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_question_script_ac7664d817c0ec936ecfad67db44d5542}{Initialize\+Question}} ()
-\begin{DoxyCompactList}\small\item\em This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. Initializes variables of the \mbox{\hyperlink{class_question_script}{Question\+Script}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_question_script_a86d6d7612d7bceb363e458ef309bacda}{start\+Question}} (float time, string \mbox{\hyperlink{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}{question}})
 \begin{DoxyCompactList}\small\item\em This method starts the question and its corresponding timer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_question_script_ac6199d2001cb4602d58f532b805a4a49}{end\+Question}} ()
-\begin{DoxyCompactList}\small\item\em This method sets the timer to null and calls, if not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method sets the timer to 0 and calls, if not cs is not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}} cs. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_question}{Question}} \mbox{\hyperlink{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}{Get\+Question\+From\+Question\+Set}} (\mbox{\hyperlink{class_question_set}{Question\+Set}} question\+Set)
 \begin{DoxyCompactList}\small\item\em This method delivers the next question. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -30,13 +30,6 @@ bool \mbox{\hyperlink{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}{q
 \begin{DoxyCompactList}\small\item\em Flag that indicates if the question has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-
-
-Definition at line 7 of file Question\+Script.\+cs.
-
-
-
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_question_script_ac6199d2001cb4602d58f532b805a4a49}\label{class_question_script_ac6199d2001cb4602d58f532b805a4a49}} 
 \index{QuestionScript@{QuestionScript}!endQuestion@{endQuestion}}
@@ -46,11 +39,7 @@ Definition at line 7 of file Question\+Script.\+cs.
 
 
 
-This method sets the timer to null and calls, if not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}}. 
-
-
-
-Definition at line 93 of file Question\+Script.\+cs.
+This method sets the timer to 0 and calls, if not cs is not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}} cs. 
 
 \mbox{\Hypertarget{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}\label{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}} 
 \index{QuestionScript@{QuestionScript}!GetQuestionFromQuestionSet@{GetQuestionFromQuestionSet}}
@@ -70,10 +59,6 @@ This method delivers the next question.
 \begin{DoxyReturn}{Returns}
 The next question from the set
 \end{DoxyReturn}
-
-
-Definition at line 109 of file Question\+Script.\+cs.
-
 \mbox{\Hypertarget{class_question_script_ac7664d817c0ec936ecfad67db44d5542}\label{class_question_script_ac7664d817c0ec936ecfad67db44d5542}} 
 \index{QuestionScript@{QuestionScript}!InitializeQuestion@{InitializeQuestion}}
 \index{InitializeQuestion@{InitializeQuestion}!QuestionScript@{QuestionScript}}
@@ -82,11 +67,7 @@ Definition at line 109 of file Question\+Script.\+cs.
 
 
 
-This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. 
-
-
-
-Definition at line 50 of file Question\+Script.\+cs.
+This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. Initializes variables of the \mbox{\hyperlink{class_question_script}{Question\+Script}}. 
 
 \mbox{\Hypertarget{class_question_script_a86d6d7612d7bceb363e458ef309bacda}\label{class_question_script_a86d6d7612d7bceb363e458ef309bacda}} 
 \index{QuestionScript@{QuestionScript}!startQuestion@{startQuestion}}
@@ -107,10 +88,6 @@ This method starts the question and its corresponding timer.
 \end{DoxyParams}
 
 
-Definition at line 81 of file Question\+Script.\+cs.
-
-
-
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_question_script_a9971949f3e09aa7b2e30ce4e4c38fa19}\label{class_question_script_a9971949f3e09aa7b2e30ce4e4c38fa19}} 
 \index{QuestionScript@{QuestionScript}!cs@{cs}}
@@ -122,10 +99,6 @@ Definition at line 81 of file Question\+Script.\+cs.
 
 \mbox{\hyperlink{class_card}{Card}}, that the player uses to answer the question. 
 
-
-
-Definition at line 28 of file Question\+Script.\+cs.
-
 \mbox{\Hypertarget{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}\label{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}} 
 \index{QuestionScript@{QuestionScript}!question@{question}}
 \index{question@{question}!QuestionScript@{QuestionScript}}
@@ -135,10 +108,6 @@ Definition at line 28 of file Question\+Script.\+cs.
 
 
 Text where the question is displayed 
-
-
-
-Definition at line 12 of file Question\+Script.\+cs.
 
 \mbox{\Hypertarget{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}\label{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}} 
 \index{QuestionScript@{QuestionScript}!questionEnd@{questionEnd}}
@@ -150,10 +119,6 @@ Definition at line 12 of file Question\+Script.\+cs.
 
 Flag that indicates if the question has ended. 
 
-
-
-Definition at line 32 of file Question\+Script.\+cs.
-
 \mbox{\Hypertarget{class_question_script_aefaf08ee37d36757094d495b82c3da88}\label{class_question_script_aefaf08ee37d36757094d495b82c3da88}} 
 \index{QuestionScript@{QuestionScript}!timer@{timer}}
 \index{timer@{timer}!QuestionScript@{QuestionScript}}
@@ -163,10 +128,6 @@ Definition at line 32 of file Question\+Script.\+cs.
 
 
 Timer for the question. 
-
-
-
-Definition at line 16 of file Question\+Script.\+cs.
 
 
 

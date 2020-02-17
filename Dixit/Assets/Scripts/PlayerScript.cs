@@ -37,79 +37,75 @@ public class PlayerScript : NetworkBehaviour
     */
 
     /// <summary>
-    /// 
-    /// </summary>
-    public bool isLocal;
-    /// <summary>
-    /// A CardScript to communicate with
+    /// A CardScript to communicate with. This CardScript is set to istanciated in each Startphase.
     /// </summary>
     public CardScript cs;
     /// <summary>
-    /// The scoreboard text element
+    /// The scoreboard text element.
     /// </summary>
     private TextMeshProUGUI scoreboard;
     /// <summary>
-    /// A QuestionScript to communicate with
+    /// A QuestionScript to communicate with. This QuestionScript will be set at the start of each round.
     /// </summary>
     public QuestionScript question;
     /// <summary>
-    /// A CardScript to communicate with
+    /// A CardScript to communicate with. This CardScript is set to the CardScript of AnswerCards, which is used in the votingphase and answerphase.
     /// </summary>
     public CardScript card;
     /// <summary>
-    /// A CardScript to communicate with
+    /// A CardScript to communicate with. Used as c placeholder for the CardObject prefab.
     /// </summary>
     public CardScript playerCard;
     /// <summary>
-    /// A Player object to communicate with
+    /// A Player object to communicate with.
     /// </summary>
     public Player player;
     /// <summary>
-    /// The text element which displays the current stage of the game
+    /// The text element which displays the current stage of the game.
     /// </summary>
     public TextMeshProUGUI phaseText;
     /// <summary>
-    /// The names displayed in the scoreboard
+    /// The names displayed in the scoreboard.
     /// </summary>
     public TextMeshProUGUI nameText;
     /// <summary>
-    /// The PlayerManager to communicate with
+    /// The PlayerManager to communicate with. Can only be accessed on the ServerSide via Cmd methods.
     /// </summary>
     public PlayerManager pm;
     /// <summary>
-    /// A list of cards for voting purposes
+    /// A list of cards for voting purposes.
     /// </summary>
     public List<Card> vote;
     /// <summary>
-    /// A single card for voting purposes
+    /// A single card for voting purposes.
     /// </summary>
     public Card voteCard;
     /// <summary>
-    /// Bool if the game is currently in the start phase
+    /// Bool if the game is currently in the start phase.
     /// </summary>
     public Boolean startPhase = true;
     /// <summary>
-    /// Number of players
+    /// Number of players.
     /// </summary>
     int playercount;
     /// <summary>
-    /// Bool if the game is currently in the voting phase
+    /// Bool if the game is currently in the voting phase.
     /// </summary>
     Boolean votePhase = false;
     /// <summary>
-    /// Bool if the game is currently in the answer phase
+    /// Bool if the game is currently in the answer phase.
     /// </summary>
     Boolean answerPhase = false;
     /// <summary>
-    /// Timer to limit the duration of phases
+    /// Timer to limit the duration of phases.
     /// </summary>
     TimerScript timer;
     /// <summary>
-    /// Variable for current time
+    /// Variable for current time. Value that is set to this variable varies depending on the number of players.
     /// </summary>
     float time;
     /// <summary>
-    /// List of CardScripts representing the answers given by the players
+    /// List of CardScripts representing the answers given by the players.
     /// </summary>
     public List<CardScript> answerCards;
 
@@ -120,43 +116,40 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     void Start()
     {
-        isLocal = isLocalPlayer;
 
-        foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) {
-                    Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
+        foreach(GameObject cur in GameObject.FindGameObjectsWithTag("PlayerManager")) 
+        {
                     pm = cur.GetComponent<PlayerManager>();
                     pm.RecievePlayer(this);
         }  
 
 
-     foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) {
-             Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
-             timer = cur.GetComponent<TimerScript>();
+        foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) 
+        {
+                 timer = cur.GetComponent<TimerScript>();
         }  
-     if(isLocalPlayer){
-        //CreateNewCard();
-        //cs.ps = this;
+        if(isLocalPlayer){
 
-          foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) {
-             Debug.Log ("found :)" +cur+" ,pid="+this.player.playerID);
-             timer = cur.GetComponent<TimerScript>();
-        }  
+              foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Timer")) 
+              {
+                 timer = cur.GetComponent<TimerScript>();
+              }  
 
-        //timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
     
-    // if(pla)
-     }
+        }
     }
 
 
 
     /// <summary>
-    /// Creates a new card
+    /// Calls the CreateNewCard method on a local player and sets the PlayerScript of the Card created in that method to this playerscript. 
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     [ClientRpc]
     public void RpcCreateNewCard()
     {
-       if(isLocalPlayer){
+       if(isLocalPlayer)
+       {
             CreateNewCard();
             cs.ps=this;
        }
@@ -167,23 +160,21 @@ public class PlayerScript : NetworkBehaviour
     /// </summary>
     public void CreateNewCard()
     {
-        if(isLocalPlayer){
-        CardScript c;
-        startPhase=true;
-        c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
-        c.transform.Rotate(new Vector3(270, 0, 0));
-        c.ps = this;
+        if(isLocalPlayer)
+        {
+            CardScript c;
+            startPhase=true;
+            c = Instantiate(playerCard, card.transform.position, Quaternion.identity);
+            c.transform.Rotate(new Vector3(270, 0, 0));
+            c.ps = this;
 
-        c.textField = GetComponent<TMP_Text>();
-        //if(i==0)
-        c.card = new Card();
-      //  question.cs = c;
-       // question = Instantiate(question, question.transform, 0);
-        question.cs = c;
-        question.InitializeQuestion();
-        cs=c;
+            c.textField = GetComponent<TMP_Text>();
+            c.card = new Card();
+            question.cs = c;
+            question.InitializeQuestion();
+            cs=c;
         }
-        }
+    }
 
     /// <summary>
     /// Controls the game based on the current phase.
@@ -193,27 +184,15 @@ public class PlayerScript : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (startPhase)
-            {
-                //Debug.Log("votecount:" +vote.Count);
-
-            }
-            else if (votePhase == true)
+           if (votePhase == true)
             {
                 if (Input.GetKeyDown(KeyCode.Space)||timer.timeleft<=0)
                 {
                     timer.timeleft = 0;
                     phaseText.text = "";
-                    Debug.Log("update votephase");
-
                     foreach(CardScript card in answerCards)
                     {
                         card.selectionObject.SetActive(false);
-
-                        /*if (card.card.isCorrect)
-                        {
-                            card.gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
-                        }*/
                         card.votePhase = false;
                     }
 
@@ -240,7 +219,6 @@ public class PlayerScript : NetworkBehaviour
                     {
                         if (answerCards[i].card.isCorrect)
                         {
-                            Debug.Log("grün");
                             answerCards[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(0, 255, 0);
                         }
                         answerCards[i].answerPhase = false;
@@ -341,166 +319,113 @@ public class PlayerScript : NetworkBehaviour
     public void ShowAnswers(List<Card> answers)
     {
         if(isLocalPlayer){
-        vote = new List<Card>();
-        startPhase = false;
-        votePhase = true;
-        phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
-
-
-        answerCards = new List<CardScript>();
-
-            //int i = 0;
+            vote = new List<Card>();
+            startPhase = false;
+            votePhase = true;
+            phaseText.text = "Votingphase: \nBitte klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
+            answerCards = new List<CardScript>();
             float offset = 0; ;
             switch (answers.Count)
             {
-                case 2:
-                offset = -4;
-                    break;
-                case 3:
-                    offset = -6;
-                    break;
-                case 4:
-                    offset = -8;
-                    break;
-                case 5:
-                    offset = -10;
-                    break;
-                case 6:
-                    offset = -12;
-                    break;
+                    case 2:
+                        offset = -4;
+                        break;
+                    case 3:
+                        offset = -6;
+                        break;
+                    case 4:
+                        offset = -8;
+                        break;
+                    case 5:
+                        offset = -10;
+                        break;
+                    case 6:
+                        offset = -12;
+                        break;
             }
-        
-        foreach (Card answer in answers)
-        {
-            CardScript c;
-
-            c = Instantiate(card, card.transform.position, Quaternion.identity);
-
-            //c.textField = GetComponent<TMP_Text>();
-            //if(i==0)
-            c.card = new Card();
-            c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
-           /* if(i==1)
-            c.textField = GameObject.FindGameObjectWithTag("Text2").GetComponent<TMP_Text>();
-            */
-            c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
-            c.transform.Rotate(new Vector3(270,0,0));
-            c.card = answer;
-            c.card.cardID = answer.cardID;
-            c.card.Answer = answer.Answer;
-            c.votePhase = true;
-            c.card.PlayerObject = answer.PlayerObject;
-            
-
-            //c.card.cardID = answer.cardID;
-            // if(c.card.PlayerObject!=null)
-            // Debug.Log("pid: " + c.card.PlayerObject.playerID);
-            //Debug.Log("vorher :" + answer.Answer);
-            //c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
-
-            //GetComponent<TMP_Text>();
-            //c.textField.text = answer.Answer;
-            c.card.CorrectVotes = 0;
-            c.answerGiven = true;
-           // Debug.Log("Textfield: " + c.textField.text);
-            c.votePhase = true;
-                //answerCards.Add(c);
-                if (answers.Count == 3)
-                    {
-                        offset += 5;
-                    }
-                if (answers.Count == 4)
-                    {
-                        offset += 5;
-                    }
-                if (answers.Count == 5)
-                    {
-                        offset += 5;
-                    }
-                if (answers.Count == 6)
-                    {
-                        offset += 5;
-                    }
-                
-            answerCards.Add(c);
-            timer.setTimer(time);
-
-
-
-        }
-
-        phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
-        phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
-        vote = new List<Card>();
-
+            foreach (Card answer in answers)
+            {
+                CardScript c;
+                c = Instantiate(card, card.transform.position, Quaternion.identity);
+                c.card = new Card();
+                c.textField = GameObject.FindGameObjectWithTag("Text").GetComponent<TMP_Text>();
+                c.transform.position = new Vector3(card.transform.position.x + offset, card.transform.position.y, card.transform.position.z);
+                c.transform.Rotate(new Vector3(270,0,0));
+                c.card = answer;
+                c.card.cardID = answer.cardID;
+                c.card.Answer = answer.Answer;
+                c.votePhase = true;
+                c.card.PlayerObject = answer.PlayerObject;
+                c.card.CorrectVotes = 0;
+                c.answerGiven = true;
+                c.votePhase = true;
+                    if (answers.Count == 3)
+                        {
+                            offset += 5;
+                        }
+                    if (answers.Count == 4)
+                        {
+                            offset += 5;
+                        }
+                    if (answers.Count == 5)
+                        {
+                            offset += 5;
+                        }
+                    if (answers.Count == 6)
+                        {
+                            offset += 5;
+                        }
+                answerCards.Add(c);
+                timer.setTimer(time);
+            }
+            phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
+            phaseText.text = "Votingphase: \nBitte Klicke Karten an die du als gleichwertig erachtest und drücke dann Space";
+            vote = new List<Card>();
         }
     }
 
     [ClientRpc]
     /// <summary>
-    /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
+    /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="name">A string of player names</param>
     /// <param name="score">A string of player scores</param>
     /// <param name="scoreUpdates">An array of the difference between old and new player scores</param>
     public void RpcUpdateScores(string name,string score, int[] scoreUpdates)
     {
-        string tmpScoreString;
         scoreboard.text = "";
         //scoreboardUpdate.text = "";
         nameText.text = "";
         scoreboard.text = score;
         nameText.text = name;
 
-        /*for(int i = 0; i < scoreUpdates.Length; i++)
-        {
-            if(scoreUpdates[i] > 0)
-            {
-                tmpScoreString = "+" + scoreUpdates[i].ToString();
-            } else
-            {
-                tmpScoreString = "";
-            }
-            scoreboardUpdate.text += tmpScoreString + "\n";
-        }
-        scoreboardUpdating = true;*/
-
-        /*
-        foreach (Player p in players)
-        {
-            scoreboard.text += p.Score + "\n";//"\t"+ p.PlayerName + "\n";
-            nameText.text += p.PlayerName + "\n";*/
-    //    }
+        
     }
     [ClientRpc]
 
     /// <summary>
-    /// This method destroys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
+    /// This method destroys old CardScripts with the Tag answercards. 
+    /// It sets the corresponding boolean answerPhase to false.
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     public void RpcCleanUp() 
     {
         if(isLocalPlayer){
-        GameObject[] gameObjects;
-
-        Debug.Log("Cleeeean");
-        answerPhase = false;
-        answerCards = null;
-
-
-      
-         gameObjects = GameObject.FindGameObjectsWithTag("AnswerCard");
-
+            GameObject[] gameObjects;
+            answerPhase = false;
+            answerCards = null;
+             gameObjects = GameObject.FindGameObjectsWithTag("AnswerCard");
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 Destroy(gameObjects[i]);
             }
-        
         }
     }
 
     [ClientRpc]
     /// <summary>
     /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="scoreboard">a string containg the scoreboard and the ending game message.</param>
     public void RpcShowScoreBoard(string scoreboard)
@@ -513,6 +438,7 @@ public class PlayerScript : NetworkBehaviour
     /// <summary>
     /// This method sets the player count and the time of the timer according to how high the player count is.
     /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="pCount">The number of players.</param>
     public void RpcSetPlayerCountAndTime(int pCount)
@@ -522,7 +448,7 @@ public class PlayerScript : NetworkBehaviour
             playercount = pCount;
             if (pCount == 1)
             {
-                time = 100;
+                time = 10;
             }
             if (pCount == 2)
             {
@@ -544,45 +470,35 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// This command registers equal votes for a card array
+    /// This command registers equal votes for a card array.
+    /// This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="vote">The card array </param>
-  [Command]
+    [Command]
     public void CmdRegisterEqualVotes(Card[] vote)
     {
         List<Card> votes = new List<Card>(vote);
         pm.RegisterEqualVote(votes);
-        Debug.Log("call pm.registereqvot");
     }
 
     /// <summary>
-    /// This method receives the player answers through a card array
+    /// This method receives the player answers through a card array.
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="answers">The card array</param>
     [ClientRpc]
     public void RpcReceiveAnswers(Card[] answers)
     {
-        foreach (Card a in answers)
-        {
-            if(a.PlayerObject!=null)
-            Debug.Log("pobj "+a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD ");
-        }
         List<Card> receivedCards = new List<Card>(answers);
-        foreach (Card a in receivedCards)
-        {
-            if (a.PlayerObject != null)
-                Debug.Log("pobj " + a.PlayerObject.PlayerName + "XDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDList ");
-        }
         if (isLocalPlayer)
         {
             ShowAnswers(receivedCards);
-            Debug.Log("lokalplayer");
         }
-        
     }
 
     /// <summary>
-    /// This method initializes a new question for the player
+    /// This method initializes a new question for the player.
+    /// This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="count"></param>
     /// <param name="question">The question to be set</param>
@@ -597,18 +513,20 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// Registers an incoming answer for the player
+    /// Registers an incoming answer for the player.
+    /// This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="card">The incoming answer</param>
- [Command]
+    [Command]
     public void CmdAnswerInc(Card card){
-        Debug.Log("CMDANSWER");
         card.PlayerObject = this.player;
         pm.RegisterAnswer(card);
     }
-    
+
     /// <summary>
-    /// Registers the voting of this player on a card
+    /// Registers the voting of this player on a card.
+    /// It calls the RegisterVote method of the playermanager with the voted card voteCard und the PlayerScript.
+    /// This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="voteCard">The card to vote on</param>
     /// <param name="player"></param>
@@ -617,8 +535,5 @@ public class PlayerScript : NetworkBehaviour
     {
         pm.RegisterVote(voteCard, this.player);
     }
-
-
-
 }
 

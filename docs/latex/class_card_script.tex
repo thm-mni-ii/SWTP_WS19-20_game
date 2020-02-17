@@ -10,9 +10,9 @@ Inheritance diagram for Card\+Script\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_card_script_a1611b0d232d9669588134be072917a98}{Set\+Card\+From\+Player\+Script}} (\mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_card_script_aa0af35d094c775aa22d86d27012ee291}{ps}}, \mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_script_af567a9b37343db3510b578d357695b09}{card}})
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the cards playerobject to the localplayer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}{Time\+UP}} ()
-\begin{DoxyCompactList}\small\item\em This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. This method calls the Cmd\+Answer\+Inc via \mbox{\hyperlink{class_player_script}{Player\+Script}} ps, so that it will be executed on the Server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,13 +40,6 @@ Game\+Object \mbox{\hyperlink{class_card_script_a4b463a696c742320e6baa8623257b36
 \begin{DoxyCompactList}\small\item\em The question that is asked in the current round. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-
-
-Definition at line 8 of file Card\+Script.\+cs.
-
-
-
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_card_script_a1611b0d232d9669588134be072917a98}\label{class_card_script_a1611b0d232d9669588134be072917a98}} 
 \index{CardScript@{CardScript}!SetCardFromPlayerScript@{SetCardFromPlayerScript}}
@@ -56,19 +49,15 @@ Definition at line 8 of file Card\+Script.\+cs.
 
 
 
-
+Sets the cards playerobject to the localplayer. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ps} & \\
+{\em ps} & The \mbox{\hyperlink{class_player_script}{Player\+Script}} containing the localplayer\\
 \hline
-{\em card} & \\
+{\em card} & The \mbox{\hyperlink{class_card}{Card}} whichs playerobject will be set to the localplayer.\\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 131 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}\label{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}} 
 \index{CardScript@{CardScript}!TimeUP@{TimeUP}}
 \index{TimeUP@{TimeUP}!CardScript@{CardScript}}
@@ -77,11 +66,7 @@ Definition at line 131 of file Card\+Script.\+cs.
 
 
 
-This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. 
-
-
-
-Definition at line 143 of file Card\+Script.\+cs.
+This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. This method calls the Cmd\+Answer\+Inc via \mbox{\hyperlink{class_player_script}{Player\+Script}} ps, so that it will be executed on the Server. 
 
 
 
@@ -96,10 +81,6 @@ Definition at line 143 of file Card\+Script.\+cs.
 
 List of answer cards. 
 
-
-
-Definition at line 13 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_af89b869c70df84d5bb114c6b38f493a5}\label{class_card_script_af89b869c70df84d5bb114c6b38f493a5}} 
 \index{CardScript@{CardScript}!answerGiven@{answerGiven}}
 \index{answerGiven@{answerGiven}!CardScript@{CardScript}}
@@ -109,10 +90,6 @@ Definition at line 13 of file Card\+Script.\+cs.
 
 
 Flag if input is finished. 
-
-
-
-Definition at line 25 of file Card\+Script.\+cs.
 
 \mbox{\Hypertarget{class_card_script_a67ed090aa16d94ae0b99400da90f922c}\label{class_card_script_a67ed090aa16d94ae0b99400da90f922c}} 
 \index{CardScript@{CardScript}!answerPhase@{answerPhase}}
@@ -124,10 +101,6 @@ Definition at line 25 of file Card\+Script.\+cs.
 
 Flag if the game is in answer phase. 
 
-
-
-Definition at line 33 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_af567a9b37343db3510b578d357695b09}\label{class_card_script_af567a9b37343db3510b578d357695b09}} 
 \index{CardScript@{CardScript}!card@{card}}
 \index{card@{card}!CardScript@{CardScript}}
@@ -137,10 +110,6 @@ Definition at line 33 of file Card\+Script.\+cs.
 
 
 \mbox{\hyperlink{class_card}{Card}} object to this \mbox{\hyperlink{class_card_script}{Card\+Script}}. 
-
-
-
-Definition at line 17 of file Card\+Script.\+cs.
 
 \mbox{\Hypertarget{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}\label{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}} 
 \index{CardScript@{CardScript}!isAllreadyVoted@{isAllreadyVoted}}
@@ -152,10 +121,6 @@ Definition at line 17 of file Card\+Script.\+cs.
 
 Flag if this card was voted by the player. 
 
-
-
-Definition at line 41 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_a96daebe03b2740900cb84e6315df532f}\label{class_card_script_a96daebe03b2740900cb84e6315df532f}} 
 \index{CardScript@{CardScript}!pm@{pm}}
 \index{pm@{pm}!CardScript@{CardScript}}
@@ -165,10 +130,6 @@ Definition at line 41 of file Card\+Script.\+cs.
 
 
 \mbox{\hyperlink{class_player_manager}{Player\+Manager}} of the game. 
-
-
-
-Definition at line 37 of file Card\+Script.\+cs.
 
 \mbox{\Hypertarget{class_card_script_aa0af35d094c775aa22d86d27012ee291}\label{class_card_script_aa0af35d094c775aa22d86d27012ee291}} 
 \index{CardScript@{CardScript}!ps@{ps}}
@@ -180,10 +141,6 @@ Definition at line 37 of file Card\+Script.\+cs.
 
 \mbox{\hyperlink{class_player_script}{Player\+Script}} to the player. 
 
-
-
-Definition at line 45 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_ab1ff5ac9d4a7061d7ab31b066b022cc1}\label{class_card_script_ab1ff5ac9d4a7061d7ab31b066b022cc1}} 
 \index{CardScript@{CardScript}!qs@{qs}}
 \index{qs@{qs}!CardScript@{CardScript}}
@@ -193,10 +150,6 @@ Definition at line 45 of file Card\+Script.\+cs.
 
 
 The question that is asked in the current round. 
-
-
-
-Definition at line 53 of file Card\+Script.\+cs.
 
 \mbox{\Hypertarget{class_card_script_a4b463a696c742320e6baa8623257b364}\label{class_card_script_a4b463a696c742320e6baa8623257b364}} 
 \index{CardScript@{CardScript}!selectionObject@{selectionObject}}
@@ -208,10 +161,6 @@ Definition at line 53 of file Card\+Script.\+cs.
 
 Border for voted cards. 
 
-
-
-Definition at line 49 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}\label{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}} 
 \index{CardScript@{CardScript}!textField@{textField}}
 \index{textField@{textField}!CardScript@{CardScript}}
@@ -222,10 +171,6 @@ Definition at line 49 of file Card\+Script.\+cs.
 
 Text field to display this card\textquotesingle{}s answer text. 
 
-
-
-Definition at line 21 of file Card\+Script.\+cs.
-
 \mbox{\Hypertarget{class_card_script_ac02705870f750d731fd80b65541242cb}\label{class_card_script_ac02705870f750d731fd80b65541242cb}} 
 \index{CardScript@{CardScript}!votePhase@{votePhase}}
 \index{votePhase@{votePhase}!CardScript@{CardScript}}
@@ -235,10 +180,6 @@ Definition at line 21 of file Card\+Script.\+cs.
 
 
 Flag if the game is in voting phase. 
-
-
-
-Definition at line 29 of file Card\+Script.\+cs.
 
 
 

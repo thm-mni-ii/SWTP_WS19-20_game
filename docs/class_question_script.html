@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,9 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Dixit
-   &#160;<span id="projectnumber">0.3beta</span>
+   &#160;<span id="projectnumber">v0.3 beta</span>
    </div>
-   <div id="projectbrief">A Cardgame LearnMMO</div>
+   <div id="projectbrief">SWTP_WS19/20_Game</div>
   </td>
  </tr>
  </tbody>
@@ -47,6 +55,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_question_script.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,7 +86,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -81,13 +105,13 @@ Inheritance diagram for QuestionScript:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7664d817c0ec936ecfad67db44d5542"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_question_script.html#ac7664d817c0ec936ecfad67db44d5542">InitializeQuestion</a> ()</td></tr>
-<tr class="memdesc:ac7664d817c0ec936ecfad67db44d5542"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the <a class="el" href="class_question_script.html">QuestionScript</a> object to the same state as it was when awake was called.  <a href="class_question_script.html#ac7664d817c0ec936ecfad67db44d5542">More...</a><br /></td></tr>
+<tr class="memdesc:ac7664d817c0ec936ecfad67db44d5542"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the <a class="el" href="class_question_script.html">QuestionScript</a> object to the same state as it was when awake was called. Initializes variables of the <a class="el" href="class_question_script.html">QuestionScript</a>.  <a href="class_question_script.html#ac7664d817c0ec936ecfad67db44d5542">More...</a><br /></td></tr>
 <tr class="separator:ac7664d817c0ec936ecfad67db44d5542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86d6d7612d7bceb363e458ef309bacda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_question_script.html#a86d6d7612d7bceb363e458ef309bacda">startQuestion</a> (float time, string <a class="el" href="class_question_script.html#ac3e4de43b0ff9aec3c8f7731be17d299">question</a>)</td></tr>
 <tr class="memdesc:a86d6d7612d7bceb363e458ef309bacda"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method starts the question and its corresponding timer.  <a href="class_question_script.html#a86d6d7612d7bceb363e458ef309bacda">More...</a><br /></td></tr>
 <tr class="separator:a86d6d7612d7bceb363e458ef309bacda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6199d2001cb4602d58f532b805a4a49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_question_script.html#ac6199d2001cb4602d58f532b805a4a49">endQuestion</a> ()</td></tr>
-<tr class="memdesc:ac6199d2001cb4602d58f532b805a4a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the timer to null and calls, if not null, the timeUP method in <a class="el" href="class_card_script.html">CardScript</a>.  <a href="class_question_script.html#ac6199d2001cb4602d58f532b805a4a49">More...</a><br /></td></tr>
+<tr class="memdesc:ac6199d2001cb4602d58f532b805a4a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the timer to 0 and calls, if not cs is not null, the timeUP method in <a class="el" href="class_card_script.html">CardScript</a> cs.  <a href="class_question_script.html#ac6199d2001cb4602d58f532b805a4a49">More...</a><br /></td></tr>
 <tr class="separator:ac6199d2001cb4602d58f532b805a4a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdd591ed83c4e5a941315f6a0552b1cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_question.html">Question</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_question_script.html#abdd591ed83c4e5a941315f6a0552b1cd">GetQuestionFromQuestionSet</a> (<a class="el" href="class_question_set.html">QuestionSet</a> questionSet)</td></tr>
 <tr class="memdesc:abdd591ed83c4e5a941315f6a0552b1cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method delivers the next question.  <a href="class_question_script.html#abdd591ed83c4e5a941315f6a0552b1cd">More...</a><br /></td></tr>
@@ -108,10 +132,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a47356a70c50e9cbef7132c35fe861f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag that indicates if the question has ended.  <a href="class_question_script.html#a47356a70c50e9cbef7132c35fe861f9b">More...</a><br /></td></tr>
 <tr class="separator:a47356a70c50e9cbef7132c35fe861f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00007">7</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac6199d2001cb4602d58f532b805a4a49"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac6199d2001cb4602d58f532b805a4a49">&#9670;&nbsp;</a></span>endQuestion()</h2>
 
@@ -127,9 +148,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method sets the timer to null and calls, if not null, the timeUP method in <a class="el" href="class_card_script.html">CardScript</a>. </p>
-
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00093">93</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
+<p>This method sets the timer to 0 and calls, if not cs is not null, the timeUP method in <a class="el" href="class_card_script.html">CardScript</a> cs. </p>
 
 </div>
 </div>
@@ -158,8 +177,6 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The next question from the set</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00109">109</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-
 </div>
 </div>
 <a id="ac7664d817c0ec936ecfad67db44d5542"></a>
@@ -177,9 +194,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method sets the <a class="el" href="class_question_script.html">QuestionScript</a> object to the same state as it was when awake was called. </p>
-
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00050">50</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
+<p>This method sets the <a class="el" href="class_question_script.html">QuestionScript</a> object to the same state as it was when awake was called. Initializes variables of the <a class="el" href="class_question_script.html">QuestionScript</a>. </p>
 
 </div>
 </div>
@@ -218,8 +233,6 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00081">81</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -237,8 +250,6 @@ Public Attributes</h2></td></tr>
 
 <p><a class="el" href="class_card.html">Card</a>, that the player uses to answer the question. </p>
 
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00028">28</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-
 </div>
 </div>
 <a id="ac3e4de43b0ff9aec3c8f7731be17d299"></a>
@@ -254,8 +265,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Text where the question is displayed </p>
-
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00012">12</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
 
 </div>
 </div>
@@ -273,8 +282,6 @@ Public Attributes</h2></td></tr>
 
 <p>Flag that indicates if the question has ended. </p>
 
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00032">32</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-
 </div>
 </div>
 <a id="aefaf08ee37d36757094d495b82c3da88"></a>
@@ -291,19 +298,21 @@ Public Attributes</h2></td></tr>
 
 <p>Timer for the question. </p>
 
-<p class="definition">Definition at line <a class="el" href="_question_script_8cs_source.html#l00016">16</a> of file <a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/<a class="el" href="_question_script_8cs_source.html">QuestionScript.cs</a></li>
+<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/<a class="el" href="_question_script_8cs.html">QuestionScript.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_question_script.html">QuestionScript</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

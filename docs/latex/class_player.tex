@@ -4,9 +4,9 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_player_a712a726b07cf901c040116d6d0c5cc66}{Player}} ()
-\begin{DoxyCompactList}\small\item\em An empty constructor for \mbox{\hyperlink{class_player}{Player}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em An empty default constructor for \mbox{\hyperlink{class_player}{Player}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}{Player}} (int \mbox{\hyperlink{class_player_a2b1593046a8f0326290f6ff71ed23fe9}{player\+ID}}, int score, int room\+ID, int experience, int level, string player\+Name)
-\begin{DoxyCompactList}\small\item\em A constructor for \mbox{\hyperlink{class_player}{Player}} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A constructor for \mbox{\hyperlink{class_player}{Player}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_player_a3b452a7a45efcb60f0a48cd2c1fcde2f}{Load\+Player\+Data}} (string path)
 \begin{DoxyCompactList}\small\item\em A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets it\textquotesingle{}s score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_player_a29d7544a35ba91456852430f6c17ce9d}{Player\+To\+J\+S\+O\+N\+String}} ()
@@ -33,13 +33,6 @@ string \mbox{\hyperlink{class_player_adacf1854e9a36d16ab527e6969998e90}{Player\+
 \begin{DoxyCompactList}\small\item\em Getter/\+Setter for player\+Name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-
-
-Definition at line 12 of file Player.\+cs.
-
-
-
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_player_a712a726b07cf901c040116d6d0c5cc66}\label{class_player_a712a726b07cf901c040116d6d0c5cc66}} 
 \index{Player@{Player}!Player@{Player}}
@@ -49,11 +42,7 @@ Definition at line 12 of file Player.\+cs.
 
 
 
-An empty constructor for \mbox{\hyperlink{class_player}{Player}}. 
-
-
-
-Definition at line 43 of file Player.\+cs.
+An empty default constructor for \mbox{\hyperlink{class_player}{Player}}. 
 
 \mbox{\Hypertarget{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}\label{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}} 
 \index{Player@{Player}!Player@{Player}}
@@ -63,7 +52,7 @@ Definition at line 43 of file Player.\+cs.
 
 
 
-A constructor for \mbox{\hyperlink{class_player}{Player}} 
+A constructor for \mbox{\hyperlink{class_player}{Player}}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -80,10 +69,6 @@ A constructor for \mbox{\hyperlink{class_player}{Player}}
 {\em player\+Name} & player\+Name\\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 57 of file Player.\+cs.
-
 
 
 \doxysubsection{Member Function Documentation}
@@ -105,10 +90,6 @@ A method that uses a path to a J\+S\+ON File to load the data of a player, creat
 \begin{DoxyReturn}{Returns}
 Returns a Playerobject repersantion of the J\+S\+ON file.
 \end{DoxyReturn}
-
-
-Definition at line 153 of file Player.\+cs.
-
 \mbox{\Hypertarget{class_player_a29d7544a35ba91456852430f6c17ce9d}\label{class_player_a29d7544a35ba91456852430f6c17ce9d}} 
 \index{Player@{Player}!PlayerToJSONString@{PlayerToJSONString}}
 \index{PlayerToJSONString@{PlayerToJSONString}!Player@{Player}}
@@ -122,10 +103,6 @@ A method returns a \mbox{\hyperlink{class_player}{Player}} Object converted to a
 \begin{DoxyReturn}{Returns}
 J\+S\+ON as a string
 \end{DoxyReturn}
-
-
-Definition at line 174 of file Player.\+cs.
-
 \mbox{\Hypertarget{class_player_a6943e6d8602b5d54b173a9c3fcb22729}\label{class_player_a6943e6d8602b5d54b173a9c3fcb22729}} 
 \index{Player@{Player}!PrintOutPlayer@{PrintOutPlayer}}
 \index{PrintOutPlayer@{PrintOutPlayer}!Player@{Player}}
@@ -143,10 +120,6 @@ A simple method to print out the a \mbox{\hyperlink{class_player}{Player}} Objec
 \end{DoxyParams}
 
 
-Definition at line 184 of file Player.\+cs.
-
-
-
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_player_a2b1593046a8f0326290f6ff71ed23fe9}\label{class_player_a2b1593046a8f0326290f6ff71ed23fe9}} 
 \index{Player@{Player}!playerID@{playerID}}
@@ -157,10 +130,6 @@ Definition at line 184 of file Player.\+cs.
 
 
 The identfication number of the player. 
-
-
-
-Definition at line 17 of file Player.\+cs.
 
 
 
@@ -175,10 +144,6 @@ Definition at line 17 of file Player.\+cs.
 
 Getter/\+Setter for experience. 
 
-
-
-Definition at line 101 of file Player.\+cs.
-
 \mbox{\Hypertarget{class_player_ad89cb407e6df206d7a21a714006571c9}\label{class_player_ad89cb407e6df206d7a21a714006571c9}} 
 \index{Player@{Player}!Level@{Level}}
 \index{Level@{Level}!Player@{Player}}
@@ -188,10 +153,6 @@ Definition at line 101 of file Player.\+cs.
 
 
 Getter/\+Setter for level. 
-
-
-
-Definition at line 116 of file Player.\+cs.
 
 \mbox{\Hypertarget{class_player_adacf1854e9a36d16ab527e6969998e90}\label{class_player_adacf1854e9a36d16ab527e6969998e90}} 
 \index{Player@{Player}!PlayerName@{PlayerName}}
@@ -203,10 +164,6 @@ Definition at line 116 of file Player.\+cs.
 
 Getter/\+Setter for player\+Name. 
 
-
-
-Definition at line 131 of file Player.\+cs.
-
 \mbox{\Hypertarget{class_player_adb3e49f621df02c7d89a781303046d18}\label{class_player_adb3e49f621df02c7d89a781303046d18}} 
 \index{Player@{Player}!RoomID@{RoomID}}
 \index{RoomID@{RoomID}!Player@{Player}}
@@ -217,10 +174,6 @@ Definition at line 131 of file Player.\+cs.
 
 Getter/\+Setter for room\+ID. 
 
-
-
-Definition at line 86 of file Player.\+cs.
-
 \mbox{\Hypertarget{class_player_a26d4288e4b37749aed27336ed88688e1}\label{class_player_a26d4288e4b37749aed27336ed88688e1}} 
 \index{Player@{Player}!Score@{Score}}
 \index{Score@{Score}!Player@{Player}}
@@ -230,10 +183,6 @@ Definition at line 86 of file Player.\+cs.
 
 
 Getter/\+Setter for score. 
-
-
-
-Definition at line 71 of file Player.\+cs.
 
 
 

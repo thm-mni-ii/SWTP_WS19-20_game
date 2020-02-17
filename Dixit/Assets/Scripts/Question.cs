@@ -35,9 +35,9 @@ public class Question
     /// <summary>
     /// Constructor for question object.
     /// </summary>
-    /// <param name="questionID"></param>
-    /// <param name="question"></param>
-    /// <param name="answer"></param>
+    /// <param name="questionID">The Identification Number of the Question Object</param>
+    /// <param name="question">The question as a string.</param>
+    /// <param name="answer">The answer to the question as a string.</param>
     public Question(int questionID, string question, string answer) {
         this.questionID = questionID;
         this.question = question;

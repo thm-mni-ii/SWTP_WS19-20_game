@@ -14,18 +14,17 @@ using UnityEditor;
 [Serializable]
 public class QuestionSet 
 {
-    //static QuestionSet active_qs = new QuestionSet();
     /// <summary>
-    /// The Identification Number of the QuestionSet
+    /// The Identification Number of the QuestionSet.
     /// </summary>
     public int questionSetID;
     /// <summary>
-    /// The List of all Questions of is QuestionSet
+    /// The List of all Questions of is QuestionSet.
     /// </summary>
     public List<Question> questionList;
 
     /// <summary>
-    /// Setter and Getter for the questionList
+    /// Setter and Getter for the QuestionList.
     /// </summary>
     public List<Question> QuestionList
     {
@@ -41,7 +40,7 @@ public class QuestionSet
     }
 
     /// <summary>
-    /// Constructer for QuestionSet
+    /// Default Constructer for QuestionSet
     /// </summary>
     public QuestionSet ()
     {
@@ -49,22 +48,11 @@ public class QuestionSet
     }
 
     /// <summary>
-    /// A Shuffle function to randomize the order of questions
+    /// A Shuffle function to randomize the order of questions.
     /// </summary>
     /// <param name="questSet">Parameter is of type QuestionSet.The member questionList of this QuestionSet will be shuffled.</param>
     void ShuffleList(QuestionSet questSet)
-    {
-        Debug.Log("shufflelist length" + questSet.questionList.Count);
-        if (questSet.QuestionList == null)
-        {
-            Debug.Log("qs is null");
-        } else
-        {
-            Debug.Log("qs is not null");
-            Debug.Log("qs is not null 2");
-            Debug.Log("qs is not null, answer is " + questSet.questionList[0].correctAnswer.Answer);
-            Debug.Log("qs is not null 3");
-        }
+    {        
         for (int i = 0; i < questSet.QuestionList.Count; i++)
         {
             Question temp = questSet.QuestionList[i];
@@ -77,7 +65,7 @@ public class QuestionSet
     /// <summary>
     /// A function to Remove a Specific Question from a QuestionSet. This function will be called when before the next question will be asked.
     /// </summary>
-    /// <param name="index">the index of the list where the question shall be removed.</param>
+    /// <param name="index">The index of the list where the question shall be removed.</param>
     public void RemoveQuestionFromSet(int index)
     {
         this.QuestionList.RemoveAt(index);
@@ -91,7 +79,6 @@ public class QuestionSet
         string output;
   
         output = JsonConvert.SerializeObject(this);
-        Debug.Log(" " + this + " :" + output);
     }
 
     /// <summary>
@@ -115,7 +102,7 @@ public class QuestionSet
     /// <summary>
     /// Gets the next Question from questionList.
     /// </summary>
-    /// <returns>The next Question.</returns>
+    /// <returns>The next Question will be returned.</returns>
     public Question GetNextQuestion()
     {
         Question nextQuestion = questionList[0];

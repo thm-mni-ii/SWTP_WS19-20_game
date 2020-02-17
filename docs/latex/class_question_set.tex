@@ -4,7 +4,7 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_question_set_aeb8c79cd5f7bad8c933e82e02d2a86a2}{Question\+Set}} ()
-\begin{DoxyCompactList}\small\item\em Constructer for \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Default Constructer for \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_question_set_a1e02f77922dbe61317b6644a3241e7cc}{Remove\+Question\+From\+Set}} (int index)
 \begin{DoxyCompactList}\small\item\em A function to Remove a Specific \mbox{\hyperlink{class_question}{Question}} from a \mbox{\hyperlink{class_question_set}{Question\+Set}}. This function will be called when before the next question will be asked. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_question_set_aea4739c7f395d2f8d943c5b95b572612}{Print\+Out\+Questions}} ()
@@ -17,21 +17,14 @@ void \mbox{\hyperlink{class_question_set_a050693f13c41d24d8727a8acb5b6c94f}{Json
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{class_question_set_a0cf255225ba7d4dc5caa6c628016fd02}{question\+Set\+ID}}
-\begin{DoxyCompactList}\small\item\em The Identification Number of the \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The Identification Number of the \mbox{\hyperlink{class_question_set}{Question\+Set}}. \end{DoxyCompactList}\item 
 List$<$ \mbox{\hyperlink{class_question}{Question}} $>$ \mbox{\hyperlink{class_question_set_a03fd5c7a52a4f2f9406d8d26480ca23d}{question\+List}}
-\begin{DoxyCompactList}\small\item\em The List of all Questions of is \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The List of all Questions of is \mbox{\hyperlink{class_question_set}{Question\+Set}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
 List$<$ \mbox{\hyperlink{class_question}{Question}} $>$ \mbox{\hyperlink{class_question_set_a6b89441840dc7dabebfa51e960c992b6}{Question\+List}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Setter and Getter for the question\+List \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-
-
-Definition at line 15 of file Question\+Set.\+cs.
-
+\begin{DoxyCompactList}\small\item\em Setter and Getter for the Question\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -43,11 +36,7 @@ Definition at line 15 of file Question\+Set.\+cs.
 
 
 
-Constructer for \mbox{\hyperlink{class_question_set}{Question\+Set}} 
-
-
-
-Definition at line 46 of file Question\+Set.\+cs.
+Default Constructer for \mbox{\hyperlink{class_question_set}{Question\+Set}} 
 
 
 
@@ -63,12 +52,8 @@ Definition at line 46 of file Question\+Set.\+cs.
 Gets the next \mbox{\hyperlink{class_question}{Question}} from question\+List. 
 
 \begin{DoxyReturn}{Returns}
-The next \mbox{\hyperlink{class_question}{Question}}.
+The next \mbox{\hyperlink{class_question}{Question}} will be returned.
 \end{DoxyReturn}
-
-
-Definition at line 119 of file Question\+Set.\+cs.
-
 \mbox{\Hypertarget{class_question_set_a050693f13c41d24d8727a8acb5b6c94f}\label{class_question_set_a050693f13c41d24d8727a8acb5b6c94f}} 
 \index{QuestionSet@{QuestionSet}!JsonToQuestionSet@{JsonToQuestionSet}}
 \index{JsonToQuestionSet@{JsonToQuestionSet}!QuestionSet@{QuestionSet}}
@@ -84,10 +69,6 @@ This method requests a J\+S\+ON file from a database and saves it as \mbox{\hype
 {\em set\+Name} & The name of the \mbox{\hyperlink{class_question_set}{Question\+Set}} name\\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 103 of file Question\+Set.\+cs.
-
 \mbox{\Hypertarget{class_question_set_aea4739c7f395d2f8d943c5b95b572612}\label{class_question_set_aea4739c7f395d2f8d943c5b95b572612}} 
 \index{QuestionSet@{QuestionSet}!PrintOutQuestions@{PrintOutQuestions}}
 \index{PrintOutQuestions@{PrintOutQuestions}!QuestionSet@{QuestionSet}}
@@ -97,10 +78,6 @@ Definition at line 103 of file Question\+Set.\+cs.
 
 
 Debug function to print out the whole \mbox{\hyperlink{class_question_set}{Question\+Set}} as a string. The string will be formatted as Json. 
-
-
-
-Definition at line 89 of file Question\+Set.\+cs.
 
 \mbox{\Hypertarget{class_question_set_a1e02f77922dbe61317b6644a3241e7cc}\label{class_question_set_a1e02f77922dbe61317b6644a3241e7cc}} 
 \index{QuestionSet@{QuestionSet}!RemoveQuestionFromSet@{RemoveQuestionFromSet}}
@@ -114,13 +91,9 @@ A function to Remove a Specific \mbox{\hyperlink{class_question}{Question}} from
 
 
 \begin{DoxyParams}{Parameters}
-{\em index} & the index of the list where the question shall be removed.\\
+{\em index} & The index of the list where the question shall be removed.\\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 81 of file Question\+Set.\+cs.
-
 
 
 \doxysubsection{Member Data Documentation}
@@ -132,11 +105,7 @@ Definition at line 81 of file Question\+Set.\+cs.
 
 
 
-The List of all Questions of is \mbox{\hyperlink{class_question_set}{Question\+Set}} 
-
-
-
-Definition at line 25 of file Question\+Set.\+cs.
+The List of all Questions of is \mbox{\hyperlink{class_question_set}{Question\+Set}}. 
 
 \mbox{\Hypertarget{class_question_set_a0cf255225ba7d4dc5caa6c628016fd02}\label{class_question_set_a0cf255225ba7d4dc5caa6c628016fd02}} 
 \index{QuestionSet@{QuestionSet}!questionSetID@{questionSetID}}
@@ -146,11 +115,7 @@ Definition at line 25 of file Question\+Set.\+cs.
 
 
 
-The Identification Number of the \mbox{\hyperlink{class_question_set}{Question\+Set}} 
-
-
-
-Definition at line 21 of file Question\+Set.\+cs.
+The Identification Number of the \mbox{\hyperlink{class_question_set}{Question\+Set}}. 
 
 
 
@@ -163,11 +128,7 @@ Definition at line 21 of file Question\+Set.\+cs.
 
 
 
-Setter and Getter for the question\+List 
-
-
-
-Definition at line 31 of file Question\+Set.\+cs.
+Setter and Getter for the Question\+List. 
 
 
 

@@ -64,17 +64,14 @@ public class CardScript : MonoBehaviour
             card = new Card();
             SetCardFromPlayerScript(ps, card);
         }
-         if (votePhase == false)
+        if (votePhase == false)
         {
             textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
         }
-
         if (votePhase == true)
         {
             ansCards = new List<CardScript>();
-
-          selectionObject.SetActive(false);
-
+            selectionObject.SetActive(false);
             ps = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
             textField = GetComponentInChildren<TMP_Text>();
         }
@@ -87,7 +84,7 @@ public class CardScript : MonoBehaviour
     /// </summary>
     void Update()
     {
-         if (answerPhase)
+        if (answerPhase)
         {
         }
         else if (votePhase)
@@ -101,10 +98,8 @@ public class CardScript : MonoBehaviour
                 {
                     if (Input.inputString == "\r")
                     {
-                        
                         qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
                         qs.questionEnd = true;
-
                         card.PlayerObject = ps.player;
                         qs.endQuestion();
                     }
@@ -116,7 +111,6 @@ public class CardScript : MonoBehaviour
                         card.Answer = card.Answer + c;
                     }
                     textField.text = card.Answer;
-                    Debug.Log(card.Answer);
                 }
             }
         }
@@ -124,10 +118,10 @@ public class CardScript : MonoBehaviour
 
     //TODO
     /// <summary>
-    /// 
+    /// Sets the cards playerobject to the localplayer.
     /// </summary>
-    /// <param name="ps"></param>
-    /// <param name="card"></param>
+    /// <param name="ps">The PlayerScript containing the localplayer</param>
+    /// <param name="card">The Card whichs playerobject will be set to the localplayer.</param>
     public void SetCardFromPlayerScript(PlayerScript ps,Card card)
     {
         card.cardID = ps.player.playerID;
@@ -138,18 +132,17 @@ public class CardScript : MonoBehaviour
 
     /// <summary>
     /// This method destroys a "Card" tagged gameobject. 
-    /// If the game is neither in the votePhase nor is an answer given by the player, the SetCardFromPlayerScript method and the RegisterAnswer method are called. 
+    /// If the game is neither in the votePhase nor is an answer given by the player, the SetCardFromPlayerScript method and the RegisterAnswer method are called.
+    /// This method calls the CmdAnswerInc via PlayerScript ps, so that it will be executed on the Server.
     /// </summary>
     public void TimeUP()
     {
-        Debug.Log("timeup");
         if (!answerGiven && !votePhase)
         {
             SetCardFromPlayerScript(ps, card);
             answerGiven = true;
             ps.CmdAnswerInc(card);
         }
-            Debug.Log("timeup");
             foreach(GameObject cur in GameObject.FindGameObjectsWithTag("Card"))
             {
                 Destroy(GameObject.FindGameObjectWithTag("Card"));
@@ -159,6 +152,7 @@ public class CardScript : MonoBehaviour
     /// <summary>
     /// This method adds card to ps.vote if votephase is true and if it is left clicked by the mouse.
     /// If in answerphase and left clicked by the mouse, it sets ps.voteCard = card.
+    /// This Method is also responsible for the visual marking of the cardobjects via selectionObject.
     /// </summary>
     void OnMouseOver()
     {
@@ -170,7 +164,6 @@ public class CardScript : MonoBehaviour
                 {
                     isAllreadyVoted = true;
                     answerGiven = true;
-                    Debug.Log("OnMouseOver");
                     if (ps.vote != null)
                     {
                         ps.vote.Add(card);
@@ -199,8 +192,6 @@ public class CardScript : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(isAllreadyVoted);
-
                 if (isAllreadyVoted == false)
                 {
                     foreach (CardScript card in ansCards)

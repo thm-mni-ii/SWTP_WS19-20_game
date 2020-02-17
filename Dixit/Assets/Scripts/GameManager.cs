@@ -49,12 +49,9 @@ public class GameManager : NetworkBehaviour
     void NextQuestion()
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
-        //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
         pm.SendPlayerCount();
         pm.BroadcastQuestion(currentQuestion,playerList);
         pm.CreateNewCardForPlayers();
-
-        //Debug.Log("NextQuestion aufgerufen");
     }
 
     /// <summary>
@@ -66,19 +63,11 @@ public class GameManager : NetworkBehaviour
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
         allCards = new List<Card>();
         playerList = new List<Player>();
-        //equalVotesCounter = 0;
         numberOfRounds = 2;
-        //questionSet = questionSet.LoadQuestionSet(questionSetName);
-        Debug.Log("GM QS " + questionSet.questionList.Count);
         questionSet.JsonToQuestionSet(questionSetName);
-        Debug.Log("GM QS2 " + questionSet.questionList.Count);
         questionSet.PrintOutQuestions();
         questionScript = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
-        //currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         nextQuestion = true;
-        //NextQuestion();
-        Debug.Log("OK");
-
     }
 
     /// <summary>
@@ -87,7 +76,6 @@ public class GameManager : NetworkBehaviour
     /// </summary>
     void Update()
     {
-        //Debug.Log("GM QS " + questionSet.questionList.Count);
         if(nextQuestion)
         {
             if(questionSet.questionList.Count > 0)
@@ -106,30 +94,15 @@ public class GameManager : NetworkBehaviour
     /// <param name="votes">The list of cards to be voted for</param>
     public void RegisterEqualVotes(List<Card> votes)
     {
-        Debug.Log("in gm equal");
-        Debug.Log(allCards.Count);
-        for (int j = 0; j < votes.Count; j++) {
-           
-
-            for (int i = 0; i< allCards.Count; i++) {
-                Debug.Log("i+"+allCards[i].PlayerObject);
+        for (int j = 0; j < votes.Count; j++) 
+        {
+            for (int i = 0; i< allCards.Count; i++) 
+            {
                 if (allCards[i].PlayerObject != null && votes[j].PlayerObject!=null && allCards[i].PlayerObject.playerID == votes[j].PlayerObject.playerID )
                 {
                     allCards[i].CorrectVotes = votes[j].CorrectVotes;
-                    Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
-                Debug.Log("xaxa");
-
                 }
             }
-            
-
-        }
-        Debug.Log("in nach gm equal");
-
-        for (int j = 0; j < allCards.Count; j++)
-        {
-            if(allCards[j].PlayerObject!=null)
-            Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName+" Card :" + j + " CorrectVotes: " + allCards[j].CorrectVotes);
         }
         pm.StartAnswerPhaseForAllPlayers();
     }
@@ -144,14 +117,12 @@ public class GameManager : NetworkBehaviour
         for (int j = 0; j < answer.Count; j++)
         {
             if (answer[j].IsCorrect)
-                //Debug.Log("correct card playerguess" + answer[j].PlayerGuesses[0].PlayerName);
-            for (int i = 0; i < allCards.Count; i++)
-            {
-               
-                if (allCards[i].PlayerObject!=null && answer[j].PlayerObject!=null && allCards[i].PlayerObject.playerID == answer[j].PlayerObject.playerID)
+                for (int i = 0; i < allCards.Count; i++)
                 {
-                    allCards[i].PlayerGuesses = answer[j].PlayerGuesses;
-                }
+                    if (allCards[i].PlayerObject!=null && answer[j].PlayerObject!=null && allCards[i].PlayerObject.playerID == answer[j].PlayerObject.playerID)
+                    {
+                        allCards[i].PlayerGuesses = answer[j].PlayerGuesses;
+                    }
             }
         }
         GiveOutPoints();
@@ -163,14 +134,12 @@ public class GameManager : NetworkBehaviour
     /// </summary>
     void GiveOutPoints()
     {
-        Debug.Log(playerList.Count);
         //for loop iterating player cards
         for (int i = 0; i < allCards.Count; i++)
         {
             //if less than half of the players voted the card to be equal to the correct answer
             if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count/2) && allCards[i].IsCorrect == false)
             {
-                Debug.Log("wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist");
                 //loop iterating over all players
                 for (int k = 0; k < playerList.Count; k++)
                 {
@@ -203,11 +172,7 @@ public class GameManager : NetworkBehaviour
                             {
                                 if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1+playerList.Count / 2)
                                 {
-                                    Debug.Log(allCards[i].PlayerGuesses.Count);
                                     playerList[j].Score += 50;
-                                    Debug.Log("pg"+allCards[i].PlayerGuesses.Count);
-
-                                    Debug.Log(playerList[j].Score + " " + playerList[j].PlayerName);
                                 }
                             }
 
@@ -216,16 +181,13 @@ public class GameManager : NetworkBehaviour
 
                 }
             }
-    }
-
-
-        Debug.Log("After points giveout");
+        }
         BroadCastScoresViaPM();
 
     }
 
     /// <summary>
-    /// This Method updates all the Player Objects in allCards
+    /// This Method updates all the Player Objects in allCards.
     /// </summary>
     /// <param name="allCards">The List of cards which cards contain the playerobjects</param>
     public void UpdatePlayersInCardList(List<Card> allCards)
@@ -243,16 +205,13 @@ public class GameManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// Broadcasts the scores to all players via the PlayerManager.
-    /// Calls the Method RoundEnd()
+    /// Broadcasts the scores to all players via the PlayerManager using the PlayerManger method BroadCastScores with playerList as an parameter.
+    /// Calls the Method RoundEnd().
     /// </summary>
     public void BroadCastScoresViaPM()
     {
-        Debug.Log("boradcastet");
         pm.BroadcastScores(playerList);
-        Debug.Log("boradcastet");
         RoundEnd();
-        Debug.Log("noend");
     }
 
     /// <summary>
@@ -261,22 +220,11 @@ public class GameManager : NetworkBehaviour
     /// </summary>
     void RoundEnd()
     {
-
-        Debug.Log("End!!");
         questionSet.RemoveQuestionFromSet(0);
-        Debug.Log("");
         if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
         {
-            //Debug.Log("count null");
-            //hud 
-            //display player scores
-            // display winner
             string scoreBoard = "ScoreBoard\n";
-            
             Player temp = new Player();
-
-            //for loop sorting players by score
-            
             bool sorted;
             do
             {
@@ -293,8 +241,8 @@ public class GameManager : NetworkBehaviour
                     }
                 }
 
-            } while (!sorted);
-
+            } 
+            while (!sorted);
             int place = 1;
             for (int i=0;i<playerList.Count;i++)
             {
@@ -302,33 +250,19 @@ public class GameManager : NetworkBehaviour
                 {
                     scoreBoard = "" + place + ". Platz: " + playerList[i].PlayerName + " Score:" + playerList[i].Score + "\n";
                 }
-                else{
+                else
+                {
                     if (playerList[i].Score != playerList[i - 1].Score) { 
-                    
                         place += 1;
-                 
-
                     }
-
                     scoreBoard += "" + place + ". Platz: " + playerList[i].PlayerName + " Score:" + playerList[i].Score + "\n";
-
                 }
-
             }
             pm.ShowScoreBoard(scoreBoard);
-            Debug.Log(scoreBoard);
-
         }
         else
         {
-            Debug.Log("prewait");
             StartCoroutine(WaitSecondsThanCleanup());
-           /* Debug.Log("postwait");
-            CleanUp();
-            pm.CreateNewCardForPlayers();
-            //should be called to wait for 3 seconds so that the players kann see which answer was the right one
-                nextQuestion = true;
-            //NextQuestion();*/
         }
 
     }
@@ -348,13 +282,6 @@ public class GameManager : NetworkBehaviour
     public void HandleAnswers(List<Card> answers)
     {
         allCards = answers;
-        for (int i = 0; i < answers.Count; i++)
-        {
-            Debug.Log("answer " + i + ": " + allCards[i].Answer);
-
-        }
-        Debug.Log("answers handled");
-        Debug.Log("allcardcount:"+allCards.Count);
         questionSet.QuestionList[0].correctAnswer.AddOneAndShuffle(allCards);
         pm.BroadcastAnswers(allCards);
     }
@@ -366,10 +293,7 @@ public class GameManager : NetworkBehaviour
     IEnumerator WaitSecondsThanCleanup()
     {
         yield return new WaitForSeconds(3);
-        Debug.Log("waited");
         CleanUp();
-        //should be called to wait for 3 seconds so that the players kann see which answer was the right one
         nextQuestion = true;
-        //NextQuestion();
     }
 }

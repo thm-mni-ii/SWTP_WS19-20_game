@@ -24,7 +24,7 @@ public class GetInputText : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets a card's text to the given string.
+    /// Sets Card card's text to the given string.
     /// </summary>
     /// <param name="input">The string to which the answer shall be set</param>
     void GetInput(string input){

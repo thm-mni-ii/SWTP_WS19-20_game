@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,9 +30,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Dixit
-   &#160;<span id="projectnumber">0.3beta</span>
+   &#160;<span id="projectnumber">v0.3 beta</span>
    </div>
-   <div id="projectbrief">A Cardgame LearnMMO</div>
+   <div id="projectbrief">SWTP_WS19/20_Game</div>
   </td>
  </tr>
  </tbody>
@@ -47,6 +55,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_player_script.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,7 +86,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -81,7 +105,7 @@ Inheritance diagram for PlayerScript:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af8d0a7d47609ea6f9718220e872ee3b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#af8d0a7d47609ea6f9718220e872ee3b6">RpcCreateNewCard</a> ()</td></tr>
-<tr class="memdesc:af8d0a7d47609ea6f9718220e872ee3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new card  <a href="class_player_script.html#af8d0a7d47609ea6f9718220e872ee3b6">More...</a><br /></td></tr>
+<tr class="memdesc:af8d0a7d47609ea6f9718220e872ee3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the CreateNewCard method on a local player and sets the <a class="el" href="class_player_script.html">PlayerScript</a> of the <a class="el" href="class_card.html">Card</a> created in that method to this playerscript. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#af8d0a7d47609ea6f9718220e872ee3b6">More...</a><br /></td></tr>
 <tr class="separator:af8d0a7d47609ea6f9718220e872ee3b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b8d599451f71d52f79fecc7a5345144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a0b8d599451f71d52f79fecc7a5345144">CreateNewCard</a> ()</td></tr>
 <tr class="memdesc:a0b8d599451f71d52f79fecc7a5345144"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Method instantiates a new <a class="el" href="class_card_script.html">CardScript</a> Object and calls the InitializeQuestion method in <a class="el" href="class_question_script.html">QuestionScript</a>.  <a href="class_player_script.html#a0b8d599451f71d52f79fecc7a5345144">More...</a><br /></td></tr>
@@ -96,78 +120,73 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4a68fcc567d7778a886474196730c7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shows all instantiates new CardScripts for the given answers and displays them for the player.  <a href="class_player_script.html#a4a68fcc567d7778a886474196730c7f5">More...</a><br /></td></tr>
 <tr class="separator:a4a68fcc567d7778a886474196730c7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a511e4966a914defa8dc25eb6dee2cef3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a511e4966a914defa8dc25eb6dee2cef3">RpcUpdateScores</a> (string name, string score, int[] scoreUpdates)</td></tr>
-<tr class="memdesc:a511e4966a914defa8dc25eb6dee2cef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.  <a href="class_player_script.html#a511e4966a914defa8dc25eb6dee2cef3">More...</a><br /></td></tr>
+<tr class="memdesc:a511e4966a914defa8dc25eb6dee2cef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#a511e4966a914defa8dc25eb6dee2cef3">More...</a><br /></td></tr>
 <tr class="separator:a511e4966a914defa8dc25eb6dee2cef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53ab65b3d02425a23efb01395d8cbad8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a53ab65b3d02425a23efb01395d8cbad8">RpcCleanUp</a> ()</td></tr>
-<tr class="memdesc:a53ab65b3d02425a23efb01395d8cbad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method destroys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.  <a href="class_player_script.html#a53ab65b3d02425a23efb01395d8cbad8">More...</a><br /></td></tr>
+<tr class="memdesc:a53ab65b3d02425a23efb01395d8cbad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method destroys old CardScripts with the Tag answercards. It sets the corresponding boolean answerPhase to false. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#a53ab65b3d02425a23efb01395d8cbad8">More...</a><br /></td></tr>
 <tr class="separator:a53ab65b3d02425a23efb01395d8cbad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24d92ebbf328fb06c2d2bb242c7d697"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#aa24d92ebbf328fb06c2d2bb242c7d697">RpcShowScoreBoard</a> (string scoreboard)</td></tr>
-<tr class="memdesc:aa24d92ebbf328fb06c2d2bb242c7d697"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shows the ScoreBoard at the end of the game, including which player is placed on which place.  <a href="class_player_script.html#aa24d92ebbf328fb06c2d2bb242c7d697">More...</a><br /></td></tr>
+<tr class="memdesc:aa24d92ebbf328fb06c2d2bb242c7d697"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shows the ScoreBoard at the end of the game, including which player is placed on which place. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#aa24d92ebbf328fb06c2d2bb242c7d697">More...</a><br /></td></tr>
 <tr class="separator:aa24d92ebbf328fb06c2d2bb242c7d697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32043604b9cb1657718da312f32a07d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a32043604b9cb1657718da312f32a07d8">RpcSetPlayerCountAndTime</a> (int pCount)</td></tr>
-<tr class="memdesc:a32043604b9cb1657718da312f32a07d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.  <a href="class_player_script.html#a32043604b9cb1657718da312f32a07d8">More...</a><br /></td></tr>
+<tr class="memdesc:a32043604b9cb1657718da312f32a07d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#a32043604b9cb1657718da312f32a07d8">More...</a><br /></td></tr>
 <tr class="separator:a32043604b9cb1657718da312f32a07d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ab9feabbefb205be4ea5f2084489703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">CmdRegisterEqualVotes</a> (<a class="el" href="class_card.html">Card</a>[] <a class="el" href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">vote</a>)</td></tr>
-<tr class="memdesc:a2ab9feabbefb205be4ea5f2084489703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This command registers equal votes for a card array  <a href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">More...</a><br /></td></tr>
+<tr class="memdesc:a2ab9feabbefb205be4ea5f2084489703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server.  <a href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">More...</a><br /></td></tr>
 <tr class="separator:a2ab9feabbefb205be4ea5f2084489703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">RpcReceiveAnswers</a> (<a class="el" href="class_card.html">Card</a>[] answers)</td></tr>
-<tr class="memdesc:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method receives the player answers through a card array  <a href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">More...</a><br /></td></tr>
+<tr class="memdesc:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method receives the player answers through a card array. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">More...</a><br /></td></tr>
 <tr class="separator:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcd7ee1bea1661413e5acb659f5ccf6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#afcd7ee1bea1661413e5acb659f5ccf6d">RpcQuestionStart</a> (int count, <a class="el" href="class_question.html">Question</a> <a class="el" href="class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e">question</a>)</td></tr>
-<tr class="memdesc:afcd7ee1bea1661413e5acb659f5ccf6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method initializes a new question for the player  <a href="class_player_script.html#afcd7ee1bea1661413e5acb659f5ccf6d">More...</a><br /></td></tr>
+<tr class="memdesc:afcd7ee1bea1661413e5acb659f5ccf6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method initializes a new question for the player. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#afcd7ee1bea1661413e5acb659f5ccf6d">More...</a><br /></td></tr>
 <tr class="separator:afcd7ee1bea1661413e5acb659f5ccf6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3d48f7157078e94126babe551def309"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#aa3d48f7157078e94126babe551def309">CmdAnswerInc</a> (<a class="el" href="class_card.html">Card</a> <a class="el" href="class_player_script.html#a2af2238b9880f69dbc99b729e7d6a74f">card</a>)</td></tr>
-<tr class="memdesc:aa3d48f7157078e94126babe551def309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers an incoming answer for the player  <a href="class_player_script.html#aa3d48f7157078e94126babe551def309">More...</a><br /></td></tr>
+<tr class="memdesc:aa3d48f7157078e94126babe551def309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers an incoming answer for the player. This is an Command method so it will be send and executed on the Server.  <a href="class_player_script.html#aa3d48f7157078e94126babe551def309">More...</a><br /></td></tr>
 <tr class="separator:aa3d48f7157078e94126babe551def309"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7941532e6ae40951e04c1729f27904ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a7941532e6ae40951e04c1729f27904ed">CmdRegisterVote</a> (<a class="el" href="class_card.html">Card</a> <a class="el" href="class_player_script.html#a1d6fe6a41285353868b931208fcd1af3">voteCard</a>, <a class="el" href="class_player.html">Player</a> <a class="el" href="class_player_script.html#ad729f088f5d5231025faa1960481a22a">player</a>)</td></tr>
-<tr class="memdesc:a7941532e6ae40951e04c1729f27904ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the voting of this player on a card  <a href="class_player_script.html#a7941532e6ae40951e04c1729f27904ed">More...</a><br /></td></tr>
+<tr class="memdesc:a7941532e6ae40951e04c1729f27904ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the voting of this player on a card. It calls the RegisterVote method of the playermanager with the voted card voteCard und the <a class="el" href="class_player_script.html">PlayerScript</a>. This is an Command method so it will be send and executed on the Server.  <a href="class_player_script.html#a7941532e6ae40951e04c1729f27904ed">More...</a><br /></td></tr>
 <tr class="separator:a7941532e6ae40951e04c1729f27904ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:acd314aea7ada103376bcbf8317b3dbfa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#acd314aea7ada103376bcbf8317b3dbfa">isLocal</a></td></tr>
-<tr class="separator:acd314aea7ada103376bcbf8317b3dbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f3503fd7750cddfd58d6578e945b03d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card_script.html">CardScript</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a5f3503fd7750cddfd58d6578e945b03d">cs</a></td></tr>
-<tr class="memdesc:a5f3503fd7750cddfd58d6578e945b03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with  <a href="class_player_script.html#a5f3503fd7750cddfd58d6578e945b03d">More...</a><br /></td></tr>
+<tr class="memdesc:a5f3503fd7750cddfd58d6578e945b03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. This <a class="el" href="class_card_script.html">CardScript</a> is set to istanciated in each Startphase.  <a href="class_player_script.html#a5f3503fd7750cddfd58d6578e945b03d">More...</a><br /></td></tr>
 <tr class="separator:a5f3503fd7750cddfd58d6578e945b03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38406ec736ce36881aa3eb7e9f030a8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_question_script.html">QuestionScript</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e">question</a></td></tr>
-<tr class="memdesc:a38406ec736ce36881aa3eb7e9f030a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_question_script.html">QuestionScript</a> to communicate with  <a href="class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e">More...</a><br /></td></tr>
+<tr class="memdesc:a38406ec736ce36881aa3eb7e9f030a8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_question_script.html">QuestionScript</a> to communicate with. This <a class="el" href="class_question_script.html">QuestionScript</a> will be set at the start of each round.  <a href="class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e">More...</a><br /></td></tr>
 <tr class="separator:a38406ec736ce36881aa3eb7e9f030a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2af2238b9880f69dbc99b729e7d6a74f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card_script.html">CardScript</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a2af2238b9880f69dbc99b729e7d6a74f">card</a></td></tr>
-<tr class="memdesc:a2af2238b9880f69dbc99b729e7d6a74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with  <a href="class_player_script.html#a2af2238b9880f69dbc99b729e7d6a74f">More...</a><br /></td></tr>
+<tr class="memdesc:a2af2238b9880f69dbc99b729e7d6a74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. This <a class="el" href="class_card_script.html">CardScript</a> is set to the <a class="el" href="class_card_script.html">CardScript</a> of AnswerCards, which is used in the votingphase and answerphase.  <a href="class_player_script.html#a2af2238b9880f69dbc99b729e7d6a74f">More...</a><br /></td></tr>
 <tr class="separator:a2af2238b9880f69dbc99b729e7d6a74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c44873ebd1cc9f188dfea738fca30c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card_script.html">CardScript</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a8c44873ebd1cc9f188dfea738fca30c1">playerCard</a></td></tr>
-<tr class="memdesc:a8c44873ebd1cc9f188dfea738fca30c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with  <a href="class_player_script.html#a8c44873ebd1cc9f188dfea738fca30c1">More...</a><br /></td></tr>
+<tr class="memdesc:a8c44873ebd1cc9f188dfea738fca30c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. Used as c placeholder for the CardObject prefab.  <a href="class_player_script.html#a8c44873ebd1cc9f188dfea738fca30c1">More...</a><br /></td></tr>
 <tr class="separator:a8c44873ebd1cc9f188dfea738fca30c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad729f088f5d5231025faa1960481a22a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#ad729f088f5d5231025faa1960481a22a">player</a></td></tr>
-<tr class="memdesc:ad729f088f5d5231025faa1960481a22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_player.html">Player</a> object to communicate with  <a href="class_player_script.html#ad729f088f5d5231025faa1960481a22a">More...</a><br /></td></tr>
+<tr class="memdesc:ad729f088f5d5231025faa1960481a22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="class_player.html">Player</a> object to communicate with.  <a href="class_player_script.html#ad729f088f5d5231025faa1960481a22a">More...</a><br /></td></tr>
 <tr class="separator:ad729f088f5d5231025faa1960481a22a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc20193eb7967a005367ad13f36ad98c"><td class="memItemLeft" align="right" valign="top">TextMeshProUGUI&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#abc20193eb7967a005367ad13f36ad98c">phaseText</a></td></tr>
-<tr class="memdesc:abc20193eb7967a005367ad13f36ad98c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text element which displays the current stage of the game  <a href="class_player_script.html#abc20193eb7967a005367ad13f36ad98c">More...</a><br /></td></tr>
+<tr class="memdesc:abc20193eb7967a005367ad13f36ad98c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text element which displays the current stage of the game.  <a href="class_player_script.html#abc20193eb7967a005367ad13f36ad98c">More...</a><br /></td></tr>
 <tr class="separator:abc20193eb7967a005367ad13f36ad98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a0593773711850064d2413a959e2ac4"><td class="memItemLeft" align="right" valign="top">TextMeshProUGUI&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a2a0593773711850064d2413a959e2ac4">nameText</a></td></tr>
-<tr class="memdesc:a2a0593773711850064d2413a959e2ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The names displayed in the scoreboard  <a href="class_player_script.html#a2a0593773711850064d2413a959e2ac4">More...</a><br /></td></tr>
+<tr class="memdesc:a2a0593773711850064d2413a959e2ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The names displayed in the scoreboard.  <a href="class_player_script.html#a2a0593773711850064d2413a959e2ac4">More...</a><br /></td></tr>
 <tr class="separator:a2a0593773711850064d2413a959e2ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c095f7d22f42a12ad577c7aded99147"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player_manager.html">PlayerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a2c095f7d22f42a12ad577c7aded99147">pm</a></td></tr>
-<tr class="memdesc:a2c095f7d22f42a12ad577c7aded99147"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_player_manager.html">PlayerManager</a> to communicate with  <a href="class_player_script.html#a2c095f7d22f42a12ad577c7aded99147">More...</a><br /></td></tr>
+<tr class="memdesc:a2c095f7d22f42a12ad577c7aded99147"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_player_manager.html">PlayerManager</a> to communicate with. Can only be accessed on the ServerSide via Cmd methods.  <a href="class_player_script.html#a2c095f7d22f42a12ad577c7aded99147">More...</a><br /></td></tr>
 <tr class="separator:a2c095f7d22f42a12ad577c7aded99147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a653c0d264ae147d83f4d9cd916d1c7d9"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">vote</a></td></tr>
-<tr class="memdesc:a653c0d264ae147d83f4d9cd916d1c7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of cards for voting purposes  <a href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">More...</a><br /></td></tr>
+<tr class="memdesc:a653c0d264ae147d83f4d9cd916d1c7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of cards for voting purposes.  <a href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">More...</a><br /></td></tr>
 <tr class="separator:a653c0d264ae147d83f4d9cd916d1c7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d6fe6a41285353868b931208fcd1af3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card.html">Card</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a1d6fe6a41285353868b931208fcd1af3">voteCard</a></td></tr>
-<tr class="memdesc:a1d6fe6a41285353868b931208fcd1af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single card for voting purposes  <a href="class_player_script.html#a1d6fe6a41285353868b931208fcd1af3">More...</a><br /></td></tr>
+<tr class="memdesc:a1d6fe6a41285353868b931208fcd1af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single card for voting purposes.  <a href="class_player_script.html#a1d6fe6a41285353868b931208fcd1af3">More...</a><br /></td></tr>
 <tr class="separator:a1d6fe6a41285353868b931208fcd1af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a428af4511825b9b7495b28f2b95b6906"><td class="memItemLeft" align="right" valign="top">Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a428af4511825b9b7495b28f2b95b6906">startPhase</a> = true</td></tr>
-<tr class="memdesc:a428af4511825b9b7495b28f2b95b6906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool if the game is currently in the start phase  <a href="class_player_script.html#a428af4511825b9b7495b28f2b95b6906">More...</a><br /></td></tr>
+<tr class="memdesc:a428af4511825b9b7495b28f2b95b6906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool if the game is currently in the start phase.  <a href="class_player_script.html#a428af4511825b9b7495b28f2b95b6906">More...</a><br /></td></tr>
 <tr class="separator:a428af4511825b9b7495b28f2b95b6906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac61f50a49b9990ed23ca6ef0cb186fb4"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_card_script.html">CardScript</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#ac61f50a49b9990ed23ca6ef0cb186fb4">answerCards</a></td></tr>
-<tr class="memdesc:ac61f50a49b9990ed23ca6ef0cb186fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of CardScripts representing the answers given by the players  <a href="class_player_script.html#ac61f50a49b9990ed23ca6ef0cb186fb4">More...</a><br /></td></tr>
+<tr class="memdesc:ac61f50a49b9990ed23ca6ef0cb186fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of CardScripts representing the answers given by the players.  <a href="class_player_script.html#ac61f50a49b9990ed23ca6ef0cb186fb4">More...</a><br /></td></tr>
 <tr class="separator:ac61f50a49b9990ed23ca6ef0cb186fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00014">14</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa3d48f7157078e94126babe551def309"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa3d48f7157078e94126babe551def309">&#9670;&nbsp;</a></span>CmdAnswerInc()</h2>
 
@@ -184,15 +203,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Registers an incoming answer for the player </p>
+<p>Registers an incoming answer for the player. This is an Command method so it will be send and executed on the Server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">card</td><td>The incoming answer</td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00604">604</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -212,15 +229,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This command registers equal votes for a card array </p>
+<p>This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vote</td><td>The card array </td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00551">551</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -250,7 +265,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Registers the voting of this player on a card </p>
+<p>Registers the voting of this player on a card. It calls the RegisterVote method of the playermanager with the voted card voteCard und the <a class="el" href="class_player_script.html">PlayerScript</a>. This is an Command method so it will be send and executed on the Server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">voteCard</td><td>The card to vote on</td></tr>
@@ -258,8 +273,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00616">616</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -280,8 +293,6 @@ Public Attributes</h2></td></tr>
 
 <p>This Method instantiates a new <a class="el" href="class_card_script.html">CardScript</a> Object and calls the InitializeQuestion method in <a class="el" href="class_question_script.html">QuestionScript</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00168">168</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
-
 </div>
 </div>
 <a id="a53ab65b3d02425a23efb01395d8cbad8"></a>
@@ -299,9 +310,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method destroys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false. </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00480">480</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>This method destroys old CardScripts with the Tag answercards. It sets the corresponding boolean answerPhase to false. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 
 </div>
 </div>
@@ -320,9 +329,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new card </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00157">157</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>Calls the CreateNewCard method on a local player and sets the <a class="el" href="class_player_script.html">PlayerScript</a> of the <a class="el" href="class_card.html">Card</a> created in that method to this playerscript. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 
 </div>
 </div>
@@ -361,8 +368,6 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00294">294</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
-
 </div>
 </div>
 <a id="afcd7ee1bea1661413e5acb659f5ccf6d"></a>
@@ -391,7 +396,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method initializes a new question for the player </p>
+<p>This method initializes a new question for the player. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">count</td><td></td></tr>
@@ -399,8 +404,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00590">590</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -420,15 +423,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method receives the player answers through a card array </p>
+<p>This method receives the player answers through a card array. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">answers</td><td>The card array</td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00563">563</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -448,15 +449,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. </p>
+<p>This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pCount</td><td>The number of players.</td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00518">518</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -476,15 +475,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method shows the ScoreBoard at the end of the game, including which player is placed on which place. </p>
+<p>This method shows the ScoreBoard at the end of the game, including which player is placed on which place. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scoreboard</td><td>a string containg the scoreboard and the ending game message.</td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00506">506</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -504,8 +501,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This method starts the answerphase, setting the corresponding booleans directing which phase it is. </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00305">305</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -541,7 +536,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method updates the scores and corresponding playernames in scoreboard.text and nameText.text. </p>
+<p>This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>A string of player names</td></tr>
@@ -550,8 +545,6 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00446">446</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
 
 </div>
 </div>
@@ -579,8 +572,6 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00341">341</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -596,9 +587,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>List of CardScripts representing the answers given by the players </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00114">114</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>List of CardScripts representing the answers given by the players. </p>
 
 </div>
 </div>
@@ -614,9 +603,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00058">58</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. This <a class="el" href="class_card_script.html">CardScript</a> is set to the <a class="el" href="class_card_script.html">CardScript</a> of AnswerCards, which is used in the votingphase and answerphase. </p>
 
 </div>
 </div>
@@ -632,27 +619,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00046">46</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
-
-</div>
-</div>
-<a id="acd314aea7ada103376bcbf8317b3dbfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd314aea7ada103376bcbf8317b3dbfa">&#9670;&nbsp;</a></span>isLocal</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool PlayerScript.isLocal</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p></p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00042">42</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. This <a class="el" href="class_card_script.html">CardScript</a> is set to istanciated in each Startphase. </p>
 
 </div>
 </div>
@@ -668,9 +635,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The names displayed in the scoreboard </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00074">74</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>The names displayed in the scoreboard. </p>
 
 </div>
 </div>
@@ -686,9 +651,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The text element which displays the current stage of the game </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00070">70</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>The text element which displays the current stage of the game. </p>
 
 </div>
 </div>
@@ -704,9 +667,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A <a class="el" href="class_player.html">Player</a> object to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00066">66</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A <a class="el" href="class_player.html">Player</a> object to communicate with. </p>
 
 </div>
 </div>
@@ -722,9 +683,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00062">62</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A <a class="el" href="class_card_script.html">CardScript</a> to communicate with. Used as c placeholder for the CardObject prefab. </p>
 
 </div>
 </div>
@@ -740,9 +699,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The <a class="el" href="class_player_manager.html">PlayerManager</a> to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00078">78</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>The <a class="el" href="class_player_manager.html">PlayerManager</a> to communicate with. Can only be accessed on the ServerSide via Cmd methods. </p>
 
 </div>
 </div>
@@ -758,9 +715,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A <a class="el" href="class_question_script.html">QuestionScript</a> to communicate with </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00054">54</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A <a class="el" href="class_question_script.html">QuestionScript</a> to communicate with. This <a class="el" href="class_question_script.html">QuestionScript</a> will be set at the start of each round. </p>
 
 </div>
 </div>
@@ -776,9 +731,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Bool if the game is currently in the start phase </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00090">90</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>Bool if the game is currently in the start phase. </p>
 
 </div>
 </div>
@@ -794,9 +747,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A list of cards for voting purposes </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00082">82</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A list of cards for voting purposes. </p>
 
 </div>
 </div>
@@ -812,21 +763,23 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A single card for voting purposes </p>
-
-<p class="definition">Definition at line <a class="el" href="_player_script_8cs_source.html#l00086">86</a> of file <a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a>.</p>
+<p>A single card for voting purposes. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/<a class="el" href="_player_script_8cs_source.html">PlayerScript.cs</a></li>
+<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/<a class="el" href="_player_script_8cs.html">PlayerScript.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_player_script.html">PlayerScript</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

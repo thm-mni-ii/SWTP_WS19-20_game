@@ -59,7 +59,8 @@ public class PlayerManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method sends the count of players to each PlayerScript.
+    /// This method sends the count of players to each PlayerScript. 
+    /// It calls the method RpcSetPlayerCountAndTime on all players o players, which will be executed on alle Clients.
     /// </summary>
     public void SendPlayerCount()
     {
@@ -70,14 +71,14 @@ public class PlayerManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// Used by player to join the list of players
+    /// Used by player to join the list of players.
     /// <param name="player">The player to join the game</param>
     /// </summary>
     public void RecievePlayer(PlayerScript player){
         System.Random r = new System.Random();
         foreach (PlayerScript p in players) {
-            if (p == player) {
-                Debug.Log("player not added");
+            if (p == player) 
+            {
                 return;
             }
         }
@@ -87,13 +88,12 @@ public class PlayerManager : NetworkBehaviour
         playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
-        Debug.Log("so viele spieler:" + players.Count);
     }
 
 
 
     /// <summary>
-    /// Broadcasts all PlayerNames to all PlayScripts in players.
+    /// Broadcasts a string of all PlayerNames and the corresponding scores to all PlayScripts in players.
     /// </summary>
     public void BroadCastPlayers()
     {
@@ -111,17 +111,12 @@ public class PlayerManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// Creates a new card to write on for each player.
+    /// Creates a new card of the prefab CardObject to write on for each player.
     /// </summary>
     public void CreateNewCardForPlayers()
     {
-
-        Debug.Log("create clean");
-
         foreach (PlayerScript p in players)
         {
-            Debug.Log("create clean");
-            Debug.Log("playercount: "+players.Count);
             p.RpcCreateNewCard();
         }
     }
@@ -132,10 +127,10 @@ public class PlayerManager : NetworkBehaviour
     /// <param name="question">The Question Object to be broadcasted</param>
     /// <param name="pL">The list of players to broadcast to</param>
    public void BroadcastQuestion(Question question,List<Player> pL){
-        BroadcastScores(pL);
-        equalVotes = 0;
-        voteCounter = 0;
-        answers = new List<Card>();
+       BroadcastScores(pL);
+       equalVotes = 0;
+       voteCounter = 0;
+       answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
           p.RpcQuestionStart(pL.Count, question);
@@ -147,7 +142,6 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     public void StartAnswerPhaseForAllPlayers()
     {
-        Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
             player.RpcStartAnswerPhase();
@@ -156,26 +150,19 @@ public class PlayerManager : NetworkBehaviour
 
 
     /// <summary>
-    /// Receives the Answer from the players and marks them in the dictionary.
+    /// Receives the Answer from the players and marks them in the List answers.
+    /// Calls the GameManagr method HandleAnswers with paramater answers.
     /// </summary>
     /// <param name="answer">The Card Object from the player.</param>
    public void RegisterAnswer(Card answer){
         if (true)
         {
-            if(answer.cardID!=99)
-            answers.Add(answer);
-
-            if (answer.PlayerObject != null)
+            if (answer.cardID != 99)
             {
-                Debug.Log("pid"+answer.PlayerObject.playerID);
-            }
-            if (answer.PlayerObject == null)
-            {
-                Debug.Log("error");
+                answers.Add(answer);
             }
             if (answers.Count == players.Count)
             {
-                Debug.Log(players.Count + ":pc");
                 gm.HandleAnswers(answers);
             }
         }
@@ -186,28 +173,20 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     /// <param name="answers">The list of player answers</param>
    public void BroadcastAnswers(List<Card> answers){
-        foreach(Card answer in answers)
-        {
+       foreach(Card answer in answers)
+       {
             answer.CorrectVotes = 0;
-            if(answer.PlayerObject!=null)
-            Debug.Log("player:" + answer.PlayerObject.playerID);
 
-        }
-        PlayerManager.answers = answers;
-
+       }
+       PlayerManager.answers = answers;
        foreach (PlayerScript p in players)
-        {
+       {
             if (players.Count == (answers.Count - 1))
             {
                 Card[] cardArray = answers.ToArray();
-                foreach (Card ans in cardArray)
-                {
-                    if (ans.PlayerObject != null)
-                        Debug.Log("Player still there " + ans.PlayerObject.PlayerName);
-                }
                 p.RpcReceiveAnswers(cardArray);
             }
-   }
+       }
 
    }
 
@@ -215,29 +194,21 @@ public class PlayerManager : NetworkBehaviour
 
     /// <summary>
     /// This method registers a vote for a player.
+    /// The player will be added to the PlayerGuesses List of the corresponding card in the List answers.
     /// </summary>
     /// <param name="vote">The card to be voted on</param>
     /// <param name="p">The player that voted</param>
     public void RegisterVote(Card vote,Player p)
     {
         voteCounter++;
-        Debug.Log("answerscountxx:"+answers.Count);
-        Debug.Log("registervotes");
-        Debug.Log("votecard:" + vote.PlayerGuesses.Count);
-
         for (int i = 0; i < answers.Count; i++)
         {
-            Debug.Log("answer in reg:" + answers[i].Answer);
-            Debug.Log("registervotes2");
             if (vote != null)
             {
                 if (answers[i].cardID == vote.cardID)
                 {
-                    Debug.Log("registervotes3");
                     for (int g = 0; g < answers[i].PlayerGuesses.Count; i++)
                     {
-
-                        //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
                         if (answers[i].PlayerGuesses[g].playerID == p.playerID)
                         {
                             i = answers.Count - 1;
@@ -246,33 +217,15 @@ public class PlayerManager : NetworkBehaviour
                     }
                     if (answers[i].PlayerGuesses.Count == 0)
                     {
-                        Debug.Log("registervotes4");
                         answers[i].PlayerGuesses = new List<Player>();
-                        Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
-                        Debug.Log("registervotes5");
                     }
-
-
-                    Debug.Log("registervotes5");
-                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count);
-                    Debug.Log("answerspgpre:" + answers[i].PlayerGuesses.Count);
-
                     answers[i].PlayerGuesses.Add(p);
-                    Debug.Log("pgpost:" + vote.PlayerGuesses.Count);
-                    Debug.Log("registervotes3");
-                    Debug.Log("answerspg:" + answers[i].PlayerGuesses.Count);
                     break;
                 }
             }
         }
-        Debug.Log("registervotes");
-        Debug.Log("votecounter:" + voteCounter);
-        Debug.Log("playerCount" + players.Count);
         if (voteCounter == players.Count)
         {
-            Debug.Log("registervotes");
-
-
             gm.RegisterVotes(answers);
         }
     }
@@ -290,15 +243,12 @@ public class PlayerManager : NetworkBehaviour
             {
                 if (answers[j].cardID == vote[i].cardID  )
                 {
-                    if (answers[j].PlayerObject != null)
-                        Debug.Log("playerregeq:" + answers[j].PlayerObject);
-                    answers[j].CorrectVotes++;
+                   answers[j].CorrectVotes++;
                 }
             }
         }
         if (equalVotes == players.Count)
         {
-            Debug.Log("call gm.equalvotes");
             gm.RegisterEqualVotes(answers);
 
         }
@@ -310,24 +260,24 @@ public class PlayerManager : NetworkBehaviour
     /// </summary>
     public void CleanUp()
     {
-        Debug.Log("call cleanup");
         foreach (PlayerScript p in players)
-       {
+        {
             p.RpcCleanUp();
-       }
+        }
        
     }
 
 
     /// <summary>
     /// Sends the new list of players to the player to update scores.
+    /// Calls the Rpc method RpcUpdateScores, so it will be executed on all clients.
     /// </summary>
     /// <param name="players2">A List of Player Objects.</param>
-   public void BroadcastScores(List<Player> players2){
-        string names = "";
-        string score = "";
-        int[] scoreUpdates = new int[players2.Count];
-        int counter = 0;
+    public void BroadcastScores(List<Player> players2){
+       string names = "";
+       string score = "";
+       int[] scoreUpdates = new int[players2.Count];
+       int counter = 0;
        foreach (PlayerScript p in players)
        {
             scoreUpdates[counter] = p.player.Score;
@@ -336,7 +286,8 @@ public class PlayerManager : NetworkBehaviour
             scoreUpdates[counter] = p.player.Score - scoreUpdates[counter];
             counter++;
        }
-       foreach(PlayerScript p in players){
+       foreach(PlayerScript p in players)
+       {
             p.RpcUpdateScores(names,score, scoreUpdates);
 
        }
@@ -345,14 +296,15 @@ public class PlayerManager : NetworkBehaviour
 
     /// <summary>
     /// This method calls the ShowScoreBoard method on PlayerScript player.
+    /// Calls the Rpc method RpcShowScoreBoard, so it will be executed on all clients.
     /// </summary>
     /// <param name="scoreboard"></param>
     public void ShowScoreBoard(string scoreboard)
     {
         foreach (PlayerScript p in players)
-       {
+        {
             p.RpcShowScoreBoard(scoreboard);
-       }
+        }
     }
 }
 
