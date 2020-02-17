@@ -37,10 +37,6 @@ public class Player
     /// </summary>
     private string playerName;
 
-  //  public Card card;
-  
-
-
     /// <summary>
     /// An empty constructor for Player.
     /// </summary>
@@ -142,9 +138,6 @@ public class Player
         }
     }
 
-
-
-    //wird zu anfang des spiels aufgerufen,
     //LoadPlayerData has a path to a json file as its parameter
     //it sets the score of a player to 0
     //it returns a player objekt.
@@ -165,18 +158,11 @@ public class Player
             string json = on.ToString();
            // Debug.Log("playerjson:" + json);
            
-         
-            //Debug.Log("level:" + player.Level);
             Player player = new Player();
             player = JsonConvert.DeserializeObject<Player>(json);
             player.Score = 0;
             return player;
-
-
-
         }
-
-
     }
 
 

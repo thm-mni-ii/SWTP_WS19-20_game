@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     public static List<PlayerScript> players = new List<PlayerScript>();
     public static List<Card> answers = new List<Card>();
@@ -11,22 +12,23 @@ public class PlayerManager : MonoBehaviour
     public GameManager gm;
     private int voteCounter;
     int equalVotes;
+    int playerid = 1;
+    List<string> myList = new List<string>();
 
     /// <summary>
     /// Adds players to the dictionary.
     /// </summary>
     public void Start(){
-        //player = GameObject.FindGameObjectWithTag("PlayerScript").GetComponent<PlayerScript>();
        
-        //player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        myList.Add("Tom");
+        myList.Add("Thomas");
+        myList.Add("Günther");
+        myList.Add("Jochen");
+        myList.Add("Helga");
+        myList.Add("Inga");
+        myList.Add("Nina");
         voteCounter = 0;
-        //gm.playerList.Add(player.player);
-        //players.Add(player);
         BroadCastPlayers();
-        /*foreach (PlayerScript p in players)
-        {
-            Debug.Log("player:" + p.player.PlayerName);
-        }*/
         equalVotes = 0;
         voteCounter = 0;
     }
@@ -39,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach(PlayerScript p in players)
         {
-            p.SetPlayerCountAndTime(players.Count);
+            p.RpcSetPlayerCountAndTime(players.Count);
         }
     }
 
@@ -47,9 +49,20 @@ public class PlayerManager : MonoBehaviour
     /// Used by player to join the list of players
     /// </summary>
     public void RecievePlayer(PlayerScript player){
-        player.player = new Player(1, 0, 1337, 0, 0, "TOM");
+        System.Random r = new System.Random();
+        foreach (PlayerScript p in players) {
+            if (p == player) {
+                Debug.Log("player not added");
+                return;
+            }
+        }
+        int tmp = r.Next(myList.Count);
+        player.player = new Player(playerid, 0, 1337, 0, 0, myList[tmp]);
+        myList.RemoveAt(tmp);
+        playerid++;
         gm.playerList.Add(player.player);
         players.Add(player);
+        Debug.Log("so viele spieler:" + players.Count);
     }
 
 
@@ -68,17 +81,21 @@ public class PlayerManager : MonoBehaviour
         }
         foreach(PlayerScript player in players)
         {
-            player.DisplayPlayers(playerList,playerScores);
+            player.RpcDisplayPlayers(playerList,playerScores);
         }
     }
 
 
     public void CreateNewCardForPlayers()
     {
+
+        Debug.Log("create clean");
+
         foreach (PlayerScript p in players)
         {
-
-            p.CreateNewCard();
+            Debug.Log("create clean");
+            Debug.Log("playercount: "+players.Count);
+            p.RpcCreateNewCard();
         }
     }
     /// <summary>
@@ -86,31 +103,23 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="player">A Question Object and the time for the timer</param>
     /// 
-   public void BroadcastQuestion(Question question, float time,List<Player> pL){
-        //int i = 0;
+   public void BroadcastQuestion(Question question,List<Player> pL){
         BroadcastScores(pL);
         equalVotes = 0;
         voteCounter = 0;
         answers = new List<Card>();
        foreach (PlayerScript p in players)
        {
-          
-          //p.CreateNewCard();
-          p.question.startQuestion(time,question.question);
+          p.RpcQuestionStart(pL.Count, question);
        }
    }
 
     public void StartAnswerPhaseForAllPlayers()
     {
-       /* foreach(Card answer in answers)
-        {
-            answer.PlayerGuesses = new List<Player>();
-            answer.PlayerGuesses.Clear();
-        }*/
         Debug.Log("startanswerphase");
         foreach (PlayerScript player in players)
         {
-            player.StartAnswerPhase();
+            player.RpcStartAnswerPhase();
         }
     }
 
@@ -124,19 +133,21 @@ public class PlayerManager : MonoBehaviour
         //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
-
             if(answer.cardID!=99)
             answers.Add(answer);
 
             if (answer.PlayerObject != null)
+            {
                 Debug.Log("pid"+answer.PlayerObject.playerID);
+            }
             if (answer.PlayerObject == null)
+            {
                 Debug.Log("error");
+            }
             if (answers.Count == players.Count)
             {
                 Debug.Log(players.Count + ":pc");
                 gm.HandleAnswers(answers);
-
             }
         }
    }
@@ -155,14 +166,21 @@ public class PlayerManager : MonoBehaviour
         }
         PlayerManager.answers = answers;
 
-        foreach (PlayerScript p in players)
-       {
-            p.ShowAnswers(answers);
-            //Debug.Log(""+p.)
-       }
+       foreach (PlayerScript p in players)
+        {
+            if (players.Count == (answers.Count - 1))
+            {
+                Card[] cardArray = answers.ToArray();
+                foreach (Card ans in cardArray)
+                {
+                    if (ans.PlayerObject != null)
+                        Debug.Log("Player still there " + ans.PlayerObject.PlayerName);
+                }
+                p.RpcReceiveAnswers(cardArray);
+            }
    }
 
-
+   }
 
 
 
@@ -178,37 +196,36 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("registervotes");
         Debug.Log("votecard:" + vote.PlayerGuesses.Count);
 
-
-        //auskommentiert solange hier mit shallow copy von answer gearbietet wird, wenn das ganze über das netzwerk laufne sollen müssen hie ränderungen vorgenommen werden
         for (int i = 0; i < answers.Count; i++)
         {
             Debug.Log("answer in reg:" + answers[i].Answer);
             Debug.Log("registervotes2");
-            if (answers[i].cardID == vote.cardID)
+            if (vote != null)
             {
-                Debug.Log("registervotes3");
-                for (int g=0;g< answers[i].PlayerGuesses.Count; i++) 
+                if (answers[i].cardID == vote.cardID)
                 {
-
-                    //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
-                    if (answers[i].PlayerGuesses[g].playerID==p.playerID)
+                    Debug.Log("registervotes3");
+                    for (int g = 0; g < answers[i].PlayerGuesses.Count; i++)
                     {
-                        i = answers.Count-1;
-                        break;
+
+                        //Wenn die Karte die man votet die eigene ist, bricht die forschleife ab
+                        if (answers[i].PlayerGuesses[g].playerID == p.playerID)
+                        {
+                            i = answers.Count - 1;
+                            break;
+                        }
                     }
-                }
-                if (answers[i].PlayerGuesses.Count == 0)
-                {
-                    Debug.Log("registervotes4");
-                    answers[i].PlayerGuesses = new List<Player>();
-                    Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
-                    //answers[i].PlayerGuesses.Clear();
+                    if (answers[i].PlayerGuesses.Count == 0)
+                    {
+                        Debug.Log("registervotes4");
+                        answers[i].PlayerGuesses = new List<Player>();
+                        Debug.Log("answerspgerst:" + answers[i].PlayerGuesses.Count);
+                        Debug.Log("registervotes5");
+                    }
+
+
                     Debug.Log("registervotes5");
-                }
-               
-                
-                    Debug.Log("registervotes5");
-                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count); 
+                    Debug.Log("pgpre:" + vote.PlayerGuesses.Count);
                     Debug.Log("answerspgpre:" + answers[i].PlayerGuesses.Count);
 
                     answers[i].PlayerGuesses.Add(p);
@@ -216,8 +233,8 @@ public class PlayerManager : MonoBehaviour
                     Debug.Log("registervotes3");
                     Debug.Log("answerspg:" + answers[i].PlayerGuesses.Count);
                     break;
+                }
             }
-
         }
         Debug.Log("registervotes");
         Debug.Log("votecounter:" + voteCounter);
@@ -237,9 +254,6 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal.</param>
     public void RegisterEqualVote(List<Card> vote){
-        //foreach (PlayerScript p in players)
-        //{
-        // Debug.Log(answers.Count);
         equalVotes++;
         for (int i = 0; i < vote.Count; i++)
         {
@@ -250,7 +264,6 @@ public class PlayerManager : MonoBehaviour
                     if (answers[j].PlayerObject != null)
                         Debug.Log("playerregeq:" + answers[j].PlayerObject);
                     answers[j].CorrectVotes++;
-                   // answers[i].PlayerGuesses.Add(player);
                 }
             }
         }
@@ -260,8 +273,6 @@ public class PlayerManager : MonoBehaviour
             gm.RegisterEqualVotes(answers);
 
         }
-
-        //}
     }
 
     
@@ -270,9 +281,10 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void CleanUp()
     {
+        Debug.Log("call cleanup");
         foreach (PlayerScript p in players)
        {
-            p.CleanUp();
+            p.RpcCleanUp();
        }
        
     }
@@ -281,12 +293,25 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// Sends the new list of players to the player to update scores.
     /// </summary>
-    /// <param name="player">A List of Player Objects.</param>
+    /// <param name="players2">A List of Player Objects.</param>
    public void BroadcastScores(List<Player> players2){
+        string names = "";
+        string score = "";
+        int[] scoreUpdates = new int[players2.Count];
+        int counter = 0;
        foreach (PlayerScript p in players)
        {
-           p.UpdateScores(players2);
+            scoreUpdates[counter] = p.player.Score;
+            names += p.player.PlayerName + "\n";
+            score += p.player.Score+"\n";
+            scoreUpdates[counter] = p.player.Score - scoreUpdates[counter];
+            counter++;
        }
+       foreach(PlayerScript p in players){
+            p.RpcUpdateScores(names,score, scoreUpdates);
+
+       }
+       
    }
 
     /// <summary>
@@ -297,7 +322,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (PlayerScript p in players)
        {
-            p.ShowScoreBoard(scoreboard);
+            p.Rpc-ShowScoreBoard(scoreboard);
        }
     }
 }

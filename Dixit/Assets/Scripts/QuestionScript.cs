@@ -6,44 +6,57 @@ using UnityEngine.UI;
 
 public class QuestionScript : MonoBehaviour
 {
-   
+    /// <summary>
+    /// Text where the question is displayed
+    /// </summary>
     public Text question;
+    /// <summary>
+    /// Timer for the question.
+    /// </summary>
     public TimerScript timer;
+    /// <summary>
+    /// Textcolor is used to regulate the transparency of the displayed text.
+    /// </summary>
     Color textcolor;
+    /// <summary>
+    /// The currently displayed question object.
+    /// </summary>
     Question currentQuestion;
+    /// <summary>
+    /// Card, that the player uses to answer the question.
+    /// </summary>
     public CardScript cs;
+    /// <summary>
+    /// Flag that indicates if the question has ended.
+    /// </summary>
     public bool questionEnd;
 
-
-   
     void Awake()
     {
-        cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
-        question = GetComponent<Text>();
+        question = GetComponent<Text>();                                                //finds the textfield where the question is written
         textcolor = question.color;
-        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
+        timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();  //finds the timerscript
         questionEnd = false;
-        
-       // startQuestion(4, "scuur scurr");
     }
 
 
     /// <summary>
     /// This method sets the QuestionScript object to the same state as it was when awake was called. 
     /// </summary>
-   public void InitializeQuestion()
+    public void InitializeQuestion()
     {
-        //cs = GameObject.FindGameObjectWithTag("Card").GetComponent<CardScript>();
         question = GetComponent<Text>();
         textcolor = question.color;
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerScript>();
         questionEnd = false;
     }
+
     void Update()
     {
         if (cs != null)
         {
-  
+            //Debug.Log("questionENd:" + questionEnd);
+            //Debug.Log(cs.card.Answer);
         }
         if((timer.timeleft <= 0 ||cs.answerGiven==true )&& questionEnd==false)
         {
@@ -71,7 +84,6 @@ public class QuestionScript : MonoBehaviour
     /// </summary>
     public void endQuestion()
     {
-
         textcolor.a = 0f;
         question.color = textcolor;
         timer.setTimer(0);
@@ -79,17 +91,13 @@ public class QuestionScript : MonoBehaviour
         {
             cs.TimeUP();
         }
-        /*for(Player player in players)
-        {
-            if(player.answer == correctAnswer)
-            {
-                player.increaseScore(10);
-            }
-        }*/
     }
 
-
-
+    /// <summary>
+    /// This method delivers the next question.
+    /// </summary>
+    /// <param name="questionSet">The questionset from which the next question is requested.</param>
+    /// <returns>The next question from the set</returns>
     public Question GetQuestionFromQuestionSet(QuestionSet questionSet)
     {
 
@@ -100,8 +108,4 @@ public class QuestionScript : MonoBehaviour
         //questionSet.RemoveQuestionFromSet(0);
         return currentQuestion;
     }
-
-
 }
-
-

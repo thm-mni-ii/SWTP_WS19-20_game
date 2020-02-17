@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class GameManager : MonoBehaviour
+using Mirror;
+public class GameManager : NetworkBehaviour
 {
     public string questionSetName;
     public QuestionSet questionSet = new QuestionSet();
@@ -24,7 +24,10 @@ public class GameManager : MonoBehaviour
     {
         currentQuestion = questionScript.GetQuestionFromQuestionSet(questionSet);
         //Debug.Log("answer:" +currentQuestion.correctAnswer.Answer);
-        pm.BroadcastQuestion(currentQuestion,30f,playerList);
+        pm.SendPlayerCount();
+        pm.BroadcastQuestion(currentQuestion,playerList);
+        pm.CreateNewCardForPlayers();
+
         //Debug.Log("NextQuestion aufgerufen");
     }
     void Start()
@@ -33,7 +36,7 @@ public class GameManager : MonoBehaviour
         allCards = new List<Card>();
         playerList = new List<Player>();
         //equalVotesCounter = 0;
-        numberOfRounds = 5;
+        numberOfRounds = 2;
         //questionSet = questionSet.LoadQuestionSet(questionSetName);
         Debug.Log("GM QS " + questionSet.questionList.Count);
         questionSet.JsonToQuestionSet(questionSetName);
@@ -118,16 +121,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        /*
-        Debug.Log("Card :" + 0 + " PlayerGuesses: " + allCards[0].PlayerGuesses.Count);
-
-        for (int j = 0; j < allCards.Count; j++)
-        {
-            if (allCards[j].PlayerObject != null)
-                Debug.Log("Player:" + allCards[j].PlayerObject.PlayerName + " Card :" + j + " PlayerGuesses: " + allCards[j].PlayerGuesses.Count);
-        }*/
-        Debug.Log("registervotes");
-
         GiveOutPoints();
     }
     /// <summary>
@@ -223,8 +216,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void BroadCastScoresViaPM()
     {
+        Debug.Log("boradcastet");
         pm.BroadcastScores(playerList);
+        Debug.Log("boradcastet");
         RoundEnd();
+        Debug.Log("noend");
     }
 
     /// <summary>
@@ -234,7 +230,7 @@ public class GameManager : MonoBehaviour
     void RoundEnd()
     {
 
-
+        Debug.Log("End!!");
         questionSet.RemoveQuestionFromSet(0);
         Debug.Log("");
         if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
@@ -341,18 +337,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         Debug.Log("waited");
         CleanUp();
-        pm.CreateNewCardForPlayers();
         //should be called to wait for 3 seconds so that the players kann see which answer was the right one
         nextQuestion = true;
         //NextQuestion();
     }
-
-
-
-
 }
-
-
-
-
-
