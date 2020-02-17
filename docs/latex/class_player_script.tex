@@ -14,9 +14,9 @@ void \mbox{\hyperlink{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}{Rpc
 void \mbox{\hyperlink{class_player_script_a0b8d599451f71d52f79fecc7a5345144}{Create\+New\+Card}} ()
 \begin{DoxyCompactList}\small\item\em This Method instantiates a new \mbox{\hyperlink{class_card_script}{Card\+Script}} Object and calls the Initialize\+Question method in \mbox{\hyperlink{class_question_script}{Question\+Script}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}{Rpc\+Display\+Players}} (string player\+List, string player\+Scores)
-\begin{DoxyCompactList}\small\item\em This Method displays the players and their starting score of 0 points in name\+Text.\+text and score\+Board.\+text. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This Method displays the players and their starting score of 0 points in name\+Text.\+text and score\+Board.\+text. This is an Client\+Rpc method so it will be send and executed on all Clients. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_aeab93762563563a8c8c55ab2f3ce63f4}{Rpc\+Start\+Answer\+Phase}} ()
-\begin{DoxyCompactList}\small\item\em This method starts the answerphase, setting the corresponding booleans directing which phase it is. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method starts the answerphase, setting the corresponding booleans directing which phase it is. This is an Client\+Rpc method so it will be send and executed on all Clients. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a4a68fcc567d7778a886474196730c7f5}{Show\+Answers}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ answers)
 \begin{DoxyCompactList}\small\item\em This method shows all instantiates new Card\+Scripts for the given answers and displays them for the player. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}{Rpc\+Update\+Scores}} (string name, string score, int\mbox{[}$\,$\mbox{]} score\+Updates)
@@ -28,7 +28,7 @@ void \mbox{\hyperlink{class_player_script_aa24d92ebbf328fb06c2d2bb242c7d697}{Rpc
 void \mbox{\hyperlink{class_player_script_a32043604b9cb1657718da312f32a07d8}{Rpc\+Set\+Player\+Count\+And\+Time}} (int p\+Count)
 \begin{DoxyCompactList}\small\item\em This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. This is an Client\+Rpc method so it will be send and executed on all Clients. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a2ab9feabbefb205be4ea5f2084489703}{Cmd\+Register\+Equal\+Votes}} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}{vote}})
-\begin{DoxyCompactList}\small\item\em This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This command registers equal votes for a card array.\+This is an Command method so it will be send and executed on the Server. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}{Rpc\+Receive\+Answers}} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} answers)
 \begin{DoxyCompactList}\small\item\em This method receives the player answers through a card array. This is an Client\+Rpc method so it will be send and executed on all Clients. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}{Rpc\+Question\+Start}} (int count, \mbox{\hyperlink{class_question}{Question}} \mbox{\hyperlink{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}{question}})
@@ -90,7 +90,7 @@ Registers an incoming answer for the player. This is an Command method so it wil
 
 
 
-This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server. 
+This command registers equal votes for a card array.\+This is an Command method so it will be send and executed on the Server. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -152,7 +152,7 @@ Calls the Create\+New\+Card method on a local player and sets the \mbox{\hyperli
 
 
 
-This Method displays the players and their starting score of 0 points in name\+Text.\+text and score\+Board.\+text. 
+This Method displays the players and their starting score of 0 points in name\+Text.\+text and score\+Board.\+text. This is an Client\+Rpc method so it will be send and executed on all Clients. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -231,7 +231,7 @@ This method shows the Score\+Board at the end of the game, including which playe
 
 
 
-This method starts the answerphase, setting the corresponding booleans directing which phase it is. 
+This method starts the answerphase, setting the corresponding booleans directing which phase it is. This is an Client\+Rpc method so it will be send and executed on all Clients. 
 
 \mbox{\Hypertarget{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}\label{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}} 
 \index{PlayerScript@{PlayerScript}!RpcUpdateScores@{RpcUpdateScores}}

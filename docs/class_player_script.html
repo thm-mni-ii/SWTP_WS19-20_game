@@ -111,10 +111,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0b8d599451f71d52f79fecc7a5345144"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Method instantiates a new <a class="el" href="class_card_script.html">CardScript</a> Object and calls the InitializeQuestion method in <a class="el" href="class_question_script.html">QuestionScript</a>.  <a href="class_player_script.html#a0b8d599451f71d52f79fecc7a5345144">More...</a><br /></td></tr>
 <tr class="separator:a0b8d599451f71d52f79fecc7a5345144"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8316cb758cd1ca197a6e4908ae2b7bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#ae8316cb758cd1ca197a6e4908ae2b7bd">RpcDisplayPlayers</a> (string playerList, string playerScores)</td></tr>
-<tr class="memdesc:ae8316cb758cd1ca197a6e4908ae2b7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text.  <a href="class_player_script.html#ae8316cb758cd1ca197a6e4908ae2b7bd">More...</a><br /></td></tr>
+<tr class="memdesc:ae8316cb758cd1ca197a6e4908ae2b7bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#ae8316cb758cd1ca197a6e4908ae2b7bd">More...</a><br /></td></tr>
 <tr class="separator:ae8316cb758cd1ca197a6e4908ae2b7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeab93762563563a8c8c55ab2f3ce63f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#aeab93762563563a8c8c55ab2f3ce63f4">RpcStartAnswerPhase</a> ()</td></tr>
-<tr class="memdesc:aeab93762563563a8c8c55ab2f3ce63f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method starts the answerphase, setting the corresponding booleans directing which phase it is.  <a href="class_player_script.html#aeab93762563563a8c8c55ab2f3ce63f4">More...</a><br /></td></tr>
+<tr class="memdesc:aeab93762563563a8c8c55ab2f3ce63f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method starts the answerphase, setting the corresponding booleans directing which phase it is. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#aeab93762563563a8c8c55ab2f3ce63f4">More...</a><br /></td></tr>
 <tr class="separator:aeab93762563563a8c8c55ab2f3ce63f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a68fcc567d7778a886474196730c7f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a4a68fcc567d7778a886474196730c7f5">ShowAnswers</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; answers)</td></tr>
 <tr class="memdesc:a4a68fcc567d7778a886474196730c7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shows all instantiates new CardScripts for the given answers and displays them for the player.  <a href="class_player_script.html#a4a68fcc567d7778a886474196730c7f5">More...</a><br /></td></tr>
@@ -132,7 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a32043604b9cb1657718da312f32a07d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#a32043604b9cb1657718da312f32a07d8">More...</a><br /></td></tr>
 <tr class="separator:a32043604b9cb1657718da312f32a07d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ab9feabbefb205be4ea5f2084489703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">CmdRegisterEqualVotes</a> (<a class="el" href="class_card.html">Card</a>[] <a class="el" href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">vote</a>)</td></tr>
-<tr class="memdesc:a2ab9feabbefb205be4ea5f2084489703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server.  <a href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">More...</a><br /></td></tr>
+<tr class="memdesc:a2ab9feabbefb205be4ea5f2084489703"><td class="mdescLeft">&#160;</td><td class="mdescRight">This command registers equal votes for a card array.This is an Command method so it will be send and executed on the Server.  <a href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">More...</a><br /></td></tr>
 <tr class="separator:a2ab9feabbefb205be4ea5f2084489703"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">RpcReceiveAnswers</a> (<a class="el" href="class_card.html">Card</a>[] answers)</td></tr>
 <tr class="memdesc:ae4ee033576b9c90e90dd45a23dc3c53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method receives the player answers through a card array. This is an ClientRpc method so it will be send and executed on all Clients.  <a href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">More...</a><br /></td></tr>
@@ -229,7 +229,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This command registers equal votes for a card array. This is an Command method so it will be send and executed on the Server. </p>
+<p>This command registers equal votes for a card array.This is an Command method so it will be send and executed on the Server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vote</td><td>The card array </td></tr>
@@ -359,7 +359,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text. </p>
+<p>This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">playerList</td><td>A string cotaining the players and a newline after every playername</td></tr>
@@ -500,7 +500,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method starts the answerphase, setting the corresponding booleans directing which phase it is. </p>
+<p>This method starts the answerphase, setting the corresponding booleans directing which phase it is. This is an ClientRpc method so it will be send and executed on all Clients. </p>
 
 </div>
 </div>

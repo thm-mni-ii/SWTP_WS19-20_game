@@ -142,8 +142,7 @@ public class PlayerScript : NetworkBehaviour
 
 
     /// <summary>
-    /// Calls the CreateNewCard method on a local player and sets the PlayerScript of the Card created in that method to this playerscript. 
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// Calls the CreateNewCard method on a local player and sets the PlayerScript of the Card created in that method to this playerscript. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     [ClientRpc]
     public void RpcCreateNewCard()
@@ -177,8 +176,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// Controls the game based on the current phase.
-    /// This method is called once per frame.
+    /// Controls the game based on the current phase.This method is called once per frame.
     /// </summary>
     void Update()
     {
@@ -263,12 +261,12 @@ public class PlayerScript : NetworkBehaviour
     }
 
 
-    [ClientRpc]
     /// <summary>
-    /// This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text.
+    /// This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="playerList">A string cotaining the players and a newline after every playername</param>
     /// <param name="playerScores">A string containing the score and a newline for every player</param>
+    [ClientRpc]
     public void RpcDisplayPlayers(string playerList,string playerScores)
     {
         nameText.text = playerList;
@@ -278,7 +276,7 @@ public class PlayerScript : NetworkBehaviour
 
     [ClientRpc]
     /// <summary>
-    /// This method starts the answerphase, setting the corresponding booleans directing which phase it is.
+    /// This method starts the answerphase, setting the corresponding booleans directing which phase it is. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     public void RpcStartAnswerPhase()
     {
@@ -404,9 +402,7 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
 
     /// <summary>
-    /// This method destroys old CardScripts with the Tag answercards. 
-    /// It sets the corresponding boolean answerPhase to false.
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// This method destroys old CardScripts with the Tag answercards. It sets the corresponding boolean answerPhase to false. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     public void RpcCleanUp() 
     {
@@ -424,8 +420,7 @@ public class PlayerScript : NetworkBehaviour
 
     [ClientRpc]
     /// <summary>
-    /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place.
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// This method shows the ScoreBoard at the end of the game, including which player is placed on which place. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="scoreboard">a string containg the scoreboard and the ending game message.</param>
     public void RpcShowScoreBoard(string scoreboard)
@@ -436,9 +431,7 @@ public class PlayerScript : NetworkBehaviour
 
     [ClientRpc]
     /// <summary>
-    /// This method sets the player count and the time of the timer according to how high the player count is.
-    /// For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30.
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="pCount">The number of players.</param>
     public void RpcSetPlayerCountAndTime(int pCount)
@@ -470,8 +463,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// This command registers equal votes for a card array.
-    /// This is an Command method so it will be send and executed on the Server.
+    /// This command registers equal votes for a card array.This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="vote">The card array </param>
     [Command]
@@ -482,8 +474,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method receives the player answers through a card array.
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// This method receives the player answers through a card array. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="answers">The card array</param>
     [ClientRpc]
@@ -497,8 +488,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method initializes a new question for the player.
-    /// This is an ClientRpc method so it will be send and executed on all Clients.
+    /// This method initializes a new question for the player. This is an ClientRpc method so it will be send and executed on all Clients.
     /// </summary>
     /// <param name="count"></param>
     /// <param name="question">The question to be set</param>
@@ -513,8 +503,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// Registers an incoming answer for the player.
-    /// This is an Command method so it will be send and executed on the Server.
+    /// Registers an incoming answer for the player. This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="card">The incoming answer</param>
     [Command]
@@ -524,9 +513,7 @@ public class PlayerScript : NetworkBehaviour
     }
 
     /// <summary>
-    /// Registers the voting of this player on a card.
-    /// It calls the RegisterVote method of the playermanager with the voted card voteCard und the PlayerScript.
-    /// This is an Command method so it will be send and executed on the Server.
+    /// Registers the voting of this player on a card. It calls the RegisterVote method of the playermanager with the voted card voteCard und the PlayerScript. This is an Command method so it will be send and executed on the Server.
     /// </summary>
     /// <param name="voteCard">The card to vote on</param>
     /// <param name="player"></param>
