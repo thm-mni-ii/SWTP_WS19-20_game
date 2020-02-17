@@ -11,11 +11,11 @@ using TMPro;
 public class Card
 {
     /// <summary>
-    /// The identifation of the card
+    /// The identification number of the card
     /// </summary>
     public int cardID;
     /// <summary>
-    /// The answer of the player
+    /// The answer the player give to a certain question
     /// </summary>
     public string answer = "";
     /// <summary>
@@ -23,7 +23,7 @@ public class Card
     /// </summary>
     private Player playerObject;
     /// <summary>
-    /// Number of votes, concerning if the given answer is equal to the correct answer.
+    /// The number of players who voted this answer to be equal to the correct one
     /// </summary>
     public int correctVotes;
     /// <summary>
@@ -31,22 +31,21 @@ public class Card
     /// </summary>
     public bool isCorrect;
     /// <summary>
-    /// A list of players who chose this card as the correct answer.
+    /// A list of players who chose this card as their answer.
     /// </summary>
     private List<Player> playerGuesses;
+
+
     /// <summary>
     /// Constructor for a Card Object.
     /// This Constructor initializes the List playerGuesses.
     /// </summary>
-    /// <param name="cardID">The identification number of this card.</param>
-    /// 
-
-     
     public Card()
     {
         this.playerGuesses = new List<Player>();
 
     }
+
     /// <summary>
     /// Constructor for a card Object.
     /// This Constructor initializes the List playerGuesses.
@@ -57,6 +56,7 @@ public class Card
         this.cardID = cardID;
         this.playerGuesses = new List<Player>();
     }
+
     /// <summary>
     /// Getter/Setter for answer. 
     /// The Setter automatically converts the String to UpperCase.
@@ -71,9 +71,9 @@ public class Card
         set
         {
             answer = value;
-           // Debug.Log(answer);
         }
     }
+
     /// <summary>
     /// Getter/Setter for playerObject.
     /// </summary>
@@ -89,6 +89,7 @@ public class Card
             playerObject = value;
         }
     }
+
     /// <summary>
     /// Getter/Setter for correctVotes.
     /// </summary>
@@ -104,6 +105,7 @@ public class Card
             correctVotes = value;
         }
     }
+
     /// <summary>
     /// Getter/Setter for IsCorrect.
     /// </summary>
@@ -136,30 +138,29 @@ public class Card
         }
     }
 
-
-
     /// <summary>
-    /// Method to add a specific Player to the playerGuesses List of the Card Object.
+    /// A method to add a specific Player to the playerGuesses List of the Card Object.
     /// </summary>
-    /// <param name="player">The player that will be added.</param>
+    /// <param name="player">The player that will be added to the list.</param>
     public void AddPlayerToPlayerGuesses(Player player)
     {
         this.PlayerGuesses.Add(player);
     }
 
     /// <summary>
-    /// A method returns an Object converted to a string in JSON format. 
+    /// This method returns an Object converted to a string in JSON format. 
     /// </summary>
-    /// <returns>json as a string</returns>
+    /// <returns>JSON as a string</returns>
     public string CardToJsonString()
     {
         string output = JsonConvert.SerializeObject(this);
         return output;
     }
+
     /// <summary>
-    /// A method that reruns a new Card from a string in JSON format.
+    /// A method that returns a new card from a string in JSON format.
     /// </summary>
-    /// <param name="json"></param>
+    /// <param name="json">The string to create the new card</param>
     /// <returns>Card object representation of the JSON file</returns>
     public Card JsonToCard(string json)
     {
@@ -169,10 +170,10 @@ public class Card
     }
 
     /// <summary>
-    /// This method adds the Card to cardList and Shuffles the List. This method should only be called on Cards which are correct.
+    /// This method adds the card to cardList and shuffles the list. It should only be called on cards which are correct.
     /// </summary>
-    /// <param name="cardList">The List to to which the cards will be added.</param>
-    /// <returns></returns>
+    /// <param name="cardList">The List to which the cards will be added</param>
+    /// <returns>The shuffled list containing the new card</returns>
     public List<Card> AddOneAndShuffle(List<Card> cardList)
     {
         this.IsCorrect = true;

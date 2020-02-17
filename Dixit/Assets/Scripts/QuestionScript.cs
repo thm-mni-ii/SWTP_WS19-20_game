@@ -31,6 +31,10 @@ public class QuestionScript : MonoBehaviour
     /// </summary>
     public bool questionEnd;
 
+    /// <summary>
+    /// Initializes variables of the QuestionScript.
+    /// This method is called once on startup.
+    /// </summary>
     void Awake()
     {
         question = GetComponent<Text>();                                                //finds the textfield where the question is written
@@ -51,6 +55,10 @@ public class QuestionScript : MonoBehaviour
         questionEnd = false;
     }
 
+    /// <summary>
+    /// Checks if time has run out for a question and if so, ends the answer phase.
+    /// This method is called once per frame.
+    /// </summary>
     void Update()
     {
         if (cs != null)

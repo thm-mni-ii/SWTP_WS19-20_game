@@ -6,12 +6,13 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {   
     /// <summary>
-    /// Gameobject that is disabled at start.
+    /// GameObject that is disabled at start.
     /// </summary>
     public GameObject obj;
 
     /// <summary>
     /// On start of the script is disabled.
+    /// This method is called once on startup.
     /// </summary>
     void Start()
     {

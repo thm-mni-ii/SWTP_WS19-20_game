@@ -20,12 +20,20 @@ public class TimerScript : NetworkBehaviour
     /// </summary>
     Color textcolor;
 
+    /// <summary>
+    /// Initializes variables of the TimerScript.
+    /// This method is called once on startup.
+    /// </summary>
     void Awake()
     {
         text = GetComponent<Text>();        //Get the textfield from scene.
         textcolor = text.color;
     }
 
+    /// <summary>
+    /// Controls the color of the timer
+    /// This method is called once per frame.
+    /// </summary>
     void Update()
     {
         if(timeleft > 0)
