@@ -5,18 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SWTP_WS19-20_game Dixit: PlayerManager Class Reference</title>
+<title>Dixit: PlayerManager Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -29,8 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">SWTP_WS19-20_game Dixit
+   <div id="projectname">Dixit
+   &#160;<span id="projectnumber">0.3beta</span>
    </div>
+   <div id="projectbrief">A Cardgame LearnMMO</div>
   </td>
  </tr>
  </tbody>
@@ -53,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_player_manager.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +61,7 @@ $(document).ready(function(){initNavTree('class_player_manager.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -104,31 +82,40 @@ Inheritance diagram for PlayerManager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abdb444060fde7b515c89247b97f5167c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#abdb444060fde7b515c89247b97f5167c">Start</a> ()</td></tr>
-<tr class="memdesc:abdb444060fde7b515c89247b97f5167c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds players to the dictionary.  <a href="class_player_manager.html#abdb444060fde7b515c89247b97f5167c">More...</a><br /></td></tr>
+<tr class="memdesc:abdb444060fde7b515c89247b97f5167c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds players to the dictionary. This method is called once on startup.  <a href="class_player_manager.html#abdb444060fde7b515c89247b97f5167c">More...</a><br /></td></tr>
 <tr class="separator:abdb444060fde7b515c89247b97f5167c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba44c7fde1e15f0c0b3e957af71769e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#aba44c7fde1e15f0c0b3e957af71769e8">RecievePlayer</a> (<a class="el" href="class_player_script.html">PlayerScript</a> player)</td></tr>
-<tr class="memdesc:aba44c7fde1e15f0c0b3e957af71769e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by player to join the list of players  <a href="class_player_manager.html#aba44c7fde1e15f0c0b3e957af71769e8">More...</a><br /></td></tr>
+<tr class="memitem:ac68a77b974a6d32da9187d3e86e01303"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#ac68a77b974a6d32da9187d3e86e01303">SendPlayerCount</a> ()</td></tr>
+<tr class="memdesc:ac68a77b974a6d32da9187d3e86e01303"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method sends the count of players to each <a class="el" href="class_player_script.html">PlayerScript</a>.  <a href="class_player_manager.html#ac68a77b974a6d32da9187d3e86e01303">More...</a><br /></td></tr>
+<tr class="separator:ac68a77b974a6d32da9187d3e86e01303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba44c7fde1e15f0c0b3e957af71769e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#aba44c7fde1e15f0c0b3e957af71769e8">RecievePlayer</a> (<a class="el" href="class_player_script.html">PlayerScript</a> <a class="el" href="class_player_manager.html#ad36b93623a6b747cee5a25be0dd16d00">player</a>)</td></tr>
+<tr class="memdesc:aba44c7fde1e15f0c0b3e957af71769e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used by player to join the list of players </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player to join the game</td></tr>
+  </table>
+  </dd>
+</dl>
+ <a href="class_player_manager.html#aba44c7fde1e15f0c0b3e957af71769e8">More...</a><br /></td></tr>
 <tr class="separator:aba44c7fde1e15f0c0b3e957af71769e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8b4c479d5107597e91303fe3f0ed033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#ad8b4c479d5107597e91303fe3f0ed033">BroadCastPlayers</a> ()</td></tr>
-<tr class="memdesc:ad8b4c479d5107597e91303fe3f0ed033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts all PlayerNames to all all Playscripts in players.  <a href="class_player_manager.html#ad8b4c479d5107597e91303fe3f0ed033">More...</a><br /></td></tr>
+<tr class="memdesc:ad8b4c479d5107597e91303fe3f0ed033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts all PlayerNames to all PlayScripts in players.  <a href="class_player_manager.html#ad8b4c479d5107597e91303fe3f0ed033">More...</a><br /></td></tr>
 <tr class="separator:ad8b4c479d5107597e91303fe3f0ed033"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acec489f03f4ac7cb7d1be598d6c2b724"><td class="memItemLeft" align="right" valign="top"><a id="acec489f03f4ac7cb7d1be598d6c2b724"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateNewCardForPlayers</b> ()</td></tr>
+<tr class="memitem:acec489f03f4ac7cb7d1be598d6c2b724"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#acec489f03f4ac7cb7d1be598d6c2b724">CreateNewCardForPlayers</a> ()</td></tr>
+<tr class="memdesc:acec489f03f4ac7cb7d1be598d6c2b724"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new card to write on for each player.  <a href="class_player_manager.html#acec489f03f4ac7cb7d1be598d6c2b724">More...</a><br /></td></tr>
 <tr class="separator:acec489f03f4ac7cb7d1be598d6c2b724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25c7dc0869cfddb68a883a5d0b00e4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a25c7dc0869cfddb68a883a5d0b00e4b0">BroadcastQuestion</a> (<a class="el" href="class_question.html">Question</a> question, float time)</td></tr>
-<tr class="memdesc:a25c7dc0869cfddb68a883a5d0b00e4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a question and a timer to send to all Players.  <a href="class_player_manager.html#a25c7dc0869cfddb68a883a5d0b00e4b0">More...</a><br /></td></tr>
-<tr class="separator:a25c7dc0869cfddb68a883a5d0b00e4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad324238d2f3996f450fcc4aea600f909"><td class="memItemLeft" align="right" valign="top"><a id="ad324238d2f3996f450fcc4aea600f909"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>StartAnswerPhaseForAllPlayers</b> ()</td></tr>
+<tr class="memitem:ae3df8938bac857bc990f5f0497d1fbd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#ae3df8938bac857bc990f5f0497d1fbd4">BroadcastQuestion</a> (<a class="el" href="class_question.html">Question</a> question, List&lt; <a class="el" href="class_player.html">Player</a> &gt; pL)</td></tr>
+<tr class="memdesc:ae3df8938bac857bc990f5f0497d1fbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves a question to send to all Players.  <a href="class_player_manager.html#ae3df8938bac857bc990f5f0497d1fbd4">More...</a><br /></td></tr>
+<tr class="separator:ae3df8938bac857bc990f5f0497d1fbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad324238d2f3996f450fcc4aea600f909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#ad324238d2f3996f450fcc4aea600f909">StartAnswerPhaseForAllPlayers</a> ()</td></tr>
+<tr class="memdesc:ad324238d2f3996f450fcc4aea600f909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts the beginning of the answer phase to all players.  <a href="class_player_manager.html#ad324238d2f3996f450fcc4aea600f909">More...</a><br /></td></tr>
 <tr class="separator:ad324238d2f3996f450fcc4aea600f909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c074190d0d102d80be24cf6e410257f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a5c074190d0d102d80be24cf6e410257f">RegisterAnswer</a> (<a class="el" href="class_card.html">Card</a> answer)</td></tr>
-<tr class="memdesc:a5c074190d0d102d80be24cf6e410257f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recieves the Answer from the players and marks them in the dictionary.  <a href="class_player_manager.html#a5c074190d0d102d80be24cf6e410257f">More...</a><br /></td></tr>
+<tr class="memdesc:a5c074190d0d102d80be24cf6e410257f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives the Answer from the players and marks them in the dictionary.  <a href="class_player_manager.html#a5c074190d0d102d80be24cf6e410257f">More...</a><br /></td></tr>
 <tr class="separator:a5c074190d0d102d80be24cf6e410257f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b4932aeee88ece980511ba8decb2351"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a8b4932aeee88ece980511ba8decb2351">BroadcastAnswers</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; answers)</td></tr>
+<tr class="memitem:a8b4932aeee88ece980511ba8decb2351"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a8b4932aeee88ece980511ba8decb2351">BroadcastAnswers</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; <a class="el" href="class_player_manager.html#af1186d5e8b5cd280701508a2f06c4828">answers</a>)</td></tr>
 <tr class="memdesc:a8b4932aeee88ece980511ba8decb2351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the answers of all players and the system answer to all players.  <a href="class_player_manager.html#a8b4932aeee88ece980511ba8decb2351">More...</a><br /></td></tr>
 <tr class="separator:a8b4932aeee88ece980511ba8decb2351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ff247ee6a4c20143d1bf35b32e71a2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a8ff247ee6a4c20143d1bf35b32e71a2a">RegisterVote</a> (<a class="el" href="class_card.html">Card</a> vote, <a class="el" href="class_player.html">Player</a> p)</td></tr>
-<tr class="memdesc:a8ff247ee6a4c20143d1bf35b32e71a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers.  <a href="class_player_manager.html#a8ff247ee6a4c20143d1bf35b32e71a2a">More...</a><br /></td></tr>
+<tr class="memdesc:a8ff247ee6a4c20143d1bf35b32e71a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method registers a vote for a player.  <a href="class_player_manager.html#a8ff247ee6a4c20143d1bf35b32e71a2a">More...</a><br /></td></tr>
 <tr class="separator:a8ff247ee6a4c20143d1bf35b32e71a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfdb782b92c6735e07ded1013eaa399e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#abfdb782b92c6735e07ded1013eaa399e">RegisterEqualVote</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; vote)</td></tr>
 <tr class="memdesc:abfdb782b92c6735e07ded1013eaa399e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method registers which card is voted as an equal answer by the players. It calls the method RegisterEqualVotes on the <a class="el" href="class_game_manager.html">GameManager</a> if all player have voted.  <a href="class_player_manager.html#abfdb782b92c6735e07ded1013eaa399e">More...</a><br /></td></tr>
@@ -145,23 +132,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartAnswerPhaseForAl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad36b93623a6b747cee5a25be0dd16d00"><td class="memItemLeft" align="right" valign="top"><a id="ad36b93623a6b747cee5a25be0dd16d00"></a>
-<a class="el" href="class_player_script.html">PlayerScript</a>&#160;</td><td class="memItemRight" valign="bottom"><b>player</b></td></tr>
+<tr class="memitem:ad36b93623a6b747cee5a25be0dd16d00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player_script.html">PlayerScript</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#ad36b93623a6b747cee5a25be0dd16d00">player</a></td></tr>
+<tr class="memdesc:ad36b93623a6b747cee5a25be0dd16d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">A single Playerscript to communicate with  <a href="class_player_manager.html#ad36b93623a6b747cee5a25be0dd16d00">More...</a><br /></td></tr>
 <tr class="separator:ad36b93623a6b747cee5a25be0dd16d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc10762ecee2ad006e2972ad251269e9"><td class="memItemLeft" align="right" valign="top"><a id="adc10762ecee2ad006e2972ad251269e9"></a>
-<a class="el" href="class_game_manager.html">GameManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gm</b></td></tr>
+<tr class="memitem:adc10762ecee2ad006e2972ad251269e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_game_manager.html">GameManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#adc10762ecee2ad006e2972ad251269e9">gm</a></td></tr>
+<tr class="memdesc:adc10762ecee2ad006e2972ad251269e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_game_manager.html">GameManager</a> to communicate with  <a href="class_player_manager.html#adc10762ecee2ad006e2972ad251269e9">More...</a><br /></td></tr>
 <tr class="separator:adc10762ecee2ad006e2972ad251269e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a3c4146396bf16172a63a1731f1f71915"><td class="memItemLeft" align="right" valign="top"><a id="a3c4146396bf16172a63a1731f1f71915"></a>
-static List&lt; <a class="el" href="class_player_script.html">PlayerScript</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>players</b> = new List&lt;<a class="el" href="class_player_script.html">PlayerScript</a>&gt;()</td></tr>
+<tr class="memitem:a3c4146396bf16172a63a1731f1f71915"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_player_script.html">PlayerScript</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#a3c4146396bf16172a63a1731f1f71915">players</a> = new List&lt;<a class="el" href="class_player_script.html">PlayerScript</a>&gt;()</td></tr>
+<tr class="memdesc:a3c4146396bf16172a63a1731f1f71915"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of PlayerScripts that represents the players  <a href="class_player_manager.html#a3c4146396bf16172a63a1731f1f71915">More...</a><br /></td></tr>
 <tr class="separator:a3c4146396bf16172a63a1731f1f71915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1186d5e8b5cd280701508a2f06c4828"><td class="memItemLeft" align="right" valign="top"><a id="af1186d5e8b5cd280701508a2f06c4828"></a>
-static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>answers</b> = new List&lt;<a class="el" href="class_card.html">Card</a>&gt;()</td></tr>
+<tr class="memitem:af1186d5e8b5cd280701508a2f06c4828"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_manager.html#af1186d5e8b5cd280701508a2f06c4828">answers</a> = new List&lt;<a class="el" href="class_card.html">Card</a>&gt;()</td></tr>
+<tr class="memdesc:af1186d5e8b5cd280701508a2f06c4828"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of Cards that represents the given answers  <a href="class_player_manager.html#af1186d5e8b5cd280701508a2f06c4828">More...</a><br /></td></tr>
 <tr class="separator:af1186d5e8b5cd280701508a2f06c4828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00007">7</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8b4932aeee88ece980511ba8decb2351"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b4932aeee88ece980511ba8decb2351">&#9670;&nbsp;</a></span>BroadcastAnswers()</h2>
 
@@ -181,10 +171,12 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
 <p>Sends the answers of all players and the system answer to all players. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>A List of <a class="el" href="class_card.html">Card</a> Objects.</td></tr>
+    <tr><td class="paramname">answers</td><td>The list of player answers</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00188">188</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -203,12 +195,14 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>Broadcasts all PlayerNames to all all Playscripts in players. </p>
+<p>Broadcasts all PlayerNames to all PlayScripts in players. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00098">98</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="a25c7dc0869cfddb68a883a5d0b00e4b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25c7dc0869cfddb68a883a5d0b00e4b0">&#9670;&nbsp;</a></span>BroadcastQuestion()</h2>
+<a id="ae3df8938bac857bc990f5f0497d1fbd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3df8938bac857bc990f5f0497d1fbd4">&#9670;&nbsp;</a></span>BroadcastQuestion()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,8 +216,8 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time</em>&#160;</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_player.html">Player</a> &gt;&#160;</td>
+          <td class="paramname"><em>pL</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -233,13 +227,16 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>Recieves a question and a timer to send to all Players. </p>
+<p>Recieves a question to send to all Players. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>A <a class="el" href="class_question.html">Question</a> Object and the time for the timer</td></tr>
+    <tr><td class="paramname">question</td><td>The <a class="el" href="class_question.html">Question</a> Object to be broadcasted</td></tr>
+    <tr><td class="paramname">pL</td><td>The list of players to broadcast to</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00134">134</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -262,10 +259,12 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
 <p>Sends the new list of players to the player to update scores. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>A List of <a class="el" href="class_player.html">Player</a> Objects.</td></tr>
+    <tr><td class="paramname">players2</td><td>A List of <a class="el" href="class_player.html">Player</a> Objects.</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00326">326</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -286,6 +285,29 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
 
 <p>This method calls the CleanUp method on <a class="el" href="class_player_script.html">PlayerScript</a> player. </p>
 
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00311">311</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="acec489f03f4ac7cb7d1be598d6c2b724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec489f03f4ac7cb7d1be598d6c2b724">&#9670;&nbsp;</a></span>CreateNewCardForPlayers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager.CreateNewCardForPlayers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new card to write on for each player. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00116">116</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
 </div>
 </div>
 <a id="aba44c7fde1e15f0c0b3e957af71769e8"></a>
@@ -304,7 +326,15 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>Used by player to join the list of players </p>
+<p>Used by player to join the list of players </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player to join the game</td></tr>
+  </table>
+  </dd>
+</dl>
+</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00076">76</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -324,13 +354,15 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>Recieves the Answer from the players and marks them in the dictionary. </p>
+<p>Receives the Answer from the players and marks them in the dictionary. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>The <a class="el" href="class_card.html">Card</a> Object from the player.</td></tr>
+    <tr><td class="paramname">answer</td><td>The <a class="el" href="class_card.html">Card</a> Object from the player.</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00162">162</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -353,10 +385,12 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
 <p>This method registers which card is voted as an equal answer by the players. It calls the method RegisterEqualVotes on the <a class="el" href="class_game_manager.html">GameManager</a> if all player have voted. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vote</td><td>A List of cards from the player, containing the cards, which this player voted as equal.</td></tr>
+    <tr><td class="paramname">vote</td><td>A List of cards from the player, containing the cards, which this player voted as equal</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00285">285</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -386,13 +420,37 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers. </p>
+<p>This method registers a vote for a player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>The specific <a class="el" href="class_player.html">Player</a> Object.</td></tr>
+    <tr><td class="paramname">vote</td><td>The card to be voted on</td></tr>
+    <tr><td class="paramname">p</td><td>The player that voted</td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00221">221</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac68a77b974a6d32da9187d3e86e01303"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac68a77b974a6d32da9187d3e86e01303">&#9670;&nbsp;</a></span>SendPlayerCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager.SendPlayerCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method sends the count of players to each <a class="el" href="class_player_script.html">PlayerScript</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00064">64</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
@@ -420,6 +478,8 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00350">350</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
 </div>
 </div>
 <a id="abdb444060fde7b515c89247b97f5167c"></a>
@@ -437,23 +497,131 @@ static List&lt; <a class="el" href="class_card.html">Card</a> &gt;&#160;</td><td
       </table>
 </div><div class="memdoc">
 
-<p>Adds players to the dictionary. </p>
+<p>Adds players to the dictionary. This method is called once on startup. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00046">46</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad324238d2f3996f450fcc4aea600f909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad324238d2f3996f450fcc4aea600f909">&#9670;&nbsp;</a></span>StartAnswerPhaseForAllPlayers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager.StartAnswerPhaseForAllPlayers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Broadcasts the beginning of the answer phase to all players. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00148">148</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af1186d5e8b5cd280701508a2f06c4828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1186d5e8b5cd280701508a2f06c4828">&#9670;&nbsp;</a></span>answers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_card.html">Card</a>&gt; PlayerManager.answers = new List&lt;<a class="el" href="class_card.html">Card</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of Cards that represents the given answers </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00016">16</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="adc10762ecee2ad006e2972ad251269e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc10762ecee2ad006e2972ad251269e9">&#9670;&nbsp;</a></span>gm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_game_manager.html">GameManager</a> PlayerManager.gm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_game_manager.html">GameManager</a> to communicate with </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00024">24</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad36b93623a6b747cee5a25be0dd16d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad36b93623a6b747cee5a25be0dd16d00">&#9670;&nbsp;</a></span>player</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_player_script.html">PlayerScript</a> PlayerManager.player</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A single Playerscript to communicate with </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00020">20</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3c4146396bf16172a63a1731f1f71915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c4146396bf16172a63a1731f1f71915">&#9670;&nbsp;</a></span>players</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_player_script.html">PlayerScript</a>&gt; PlayerManager.players = new List&lt;<a class="el" href="class_player_script.html">PlayerScript</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A list of PlayerScripts that represents the players </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_manager_8cs_source.html#l00012">12</a> of file <a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/PlayerManager.cs</li>
+<li>C:/Users/Marc/SWTP_WS19-20_game/Dixit/Assets/Scripts/<a class="el" href="_player_manager_8cs_source.html">PlayerManager.cs</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_player_manager.html">PlayerManager</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
 </body>
 </html>

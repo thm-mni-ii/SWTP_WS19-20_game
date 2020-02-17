@@ -68,6 +68,13 @@ List$<$ \mbox{\hyperlink{class_card_script}{Card\+Script}} $>$ \mbox{\hyperlink{
 \begin{DoxyCompactList}\small\item\em List of Card\+Scripts representing the answers given by the players \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+
+
+Definition at line 14 of file Player\+Script.\+cs.
+
+
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_player_script_aa3d48f7157078e94126babe551def309}\label{class_player_script_aa3d48f7157078e94126babe551def309}} 
 \index{PlayerScript@{PlayerScript}!CmdAnswerInc@{CmdAnswerInc}}
@@ -84,6 +91,10 @@ Registers an incoming answer for the player
 {\em card} & The incoming answer\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 604 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a2ab9feabbefb205be4ea5f2084489703}\label{class_player_script_a2ab9feabbefb205be4ea5f2084489703}} 
 \index{PlayerScript@{PlayerScript}!CmdRegisterEqualVotes@{CmdRegisterEqualVotes}}
 \index{CmdRegisterEqualVotes@{CmdRegisterEqualVotes}!PlayerScript@{PlayerScript}}
@@ -99,6 +110,10 @@ This command registers equal votes for a card array
 {\em vote} & The card array \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 551 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a7941532e6ae40951e04c1729f27904ed}\label{class_player_script_a7941532e6ae40951e04c1729f27904ed}} 
 \index{PlayerScript@{PlayerScript}!CmdRegisterVote@{CmdRegisterVote}}
 \index{CmdRegisterVote@{CmdRegisterVote}!PlayerScript@{PlayerScript}}
@@ -116,6 +131,10 @@ Registers the voting of this player on a card
 {\em player} & \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 616 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a0b8d599451f71d52f79fecc7a5345144}\label{class_player_script_a0b8d599451f71d52f79fecc7a5345144}} 
 \index{PlayerScript@{PlayerScript}!CreateNewCard@{CreateNewCard}}
 \index{CreateNewCard@{CreateNewCard}!PlayerScript@{PlayerScript}}
@@ -125,6 +144,10 @@ Registers the voting of this player on a card
 
 
 This Method instantiates a new \mbox{\hyperlink{class_card_script}{Card\+Script}} Object and calls the Initialize\+Question method in \mbox{\hyperlink{class_question_script}{Question\+Script}}. 
+
+
+
+Definition at line 168 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a53ab65b3d02425a23efb01395d8cbad8}\label{class_player_script_a53ab65b3d02425a23efb01395d8cbad8}} 
 \index{PlayerScript@{PlayerScript}!RpcCleanUp@{RpcCleanUp}}
@@ -136,6 +159,10 @@ This Method instantiates a new \mbox{\hyperlink{class_card_script}{Card\+Script}
 
 This method destroys old Card\+Scripts with the Tag answer cards. It sets the corresponding boolean answer\+Phase to false. 
 
+
+
+Definition at line 480 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}\label{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}} 
 \index{PlayerScript@{PlayerScript}!RpcCreateNewCard@{RpcCreateNewCard}}
 \index{RpcCreateNewCard@{RpcCreateNewCard}!PlayerScript@{PlayerScript}}
@@ -145,6 +172,10 @@ This method destroys old Card\+Scripts with the Tag answer cards. It sets the co
 
 
 Creates a new card 
+
+
+
+Definition at line 157 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}\label{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}} 
 \index{PlayerScript@{PlayerScript}!RpcDisplayPlayers@{RpcDisplayPlayers}}
@@ -163,6 +194,10 @@ This Method displays the players and their starting score of 0 points in name\+T
 {\em player\+Scores} & A string containing the score and a newline for every player\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 294 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}\label{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}} 
 \index{PlayerScript@{PlayerScript}!RpcQuestionStart@{RpcQuestionStart}}
 \index{RpcQuestionStart@{RpcQuestionStart}!PlayerScript@{PlayerScript}}
@@ -180,6 +215,10 @@ This method initializes a new question for the player
 {\em question} & The question to be set\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 590 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}\label{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}} 
 \index{PlayerScript@{PlayerScript}!RpcReceiveAnswers@{RpcReceiveAnswers}}
 \index{RpcReceiveAnswers@{RpcReceiveAnswers}!PlayerScript@{PlayerScript}}
@@ -195,6 +234,10 @@ This method receives the player answers through a card array
 {\em answers} & The card array\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 563 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a32043604b9cb1657718da312f32a07d8}\label{class_player_script_a32043604b9cb1657718da312f32a07d8}} 
 \index{PlayerScript@{PlayerScript}!RpcSetPlayerCountAndTime@{RpcSetPlayerCountAndTime}}
 \index{RpcSetPlayerCountAndTime@{RpcSetPlayerCountAndTime}!PlayerScript@{PlayerScript}}
@@ -210,6 +253,10 @@ This method sets the player count and the time of the timer according to how hig
 {\em p\+Count} & The number of players.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 518 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_aa24d92ebbf328fb06c2d2bb242c7d697}\label{class_player_script_aa24d92ebbf328fb06c2d2bb242c7d697}} 
 \index{PlayerScript@{PlayerScript}!RpcShowScoreBoard@{RpcShowScoreBoard}}
 \index{RpcShowScoreBoard@{RpcShowScoreBoard}!PlayerScript@{PlayerScript}}
@@ -225,6 +272,10 @@ This method shows the Score\+Board at the end of the game, including which playe
 {\em scoreboard} & a string containg the scoreboard and the ending game message.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 506 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_aeab93762563563a8c8c55ab2f3ce63f4}\label{class_player_script_aeab93762563563a8c8c55ab2f3ce63f4}} 
 \index{PlayerScript@{PlayerScript}!RpcStartAnswerPhase@{RpcStartAnswerPhase}}
 \index{RpcStartAnswerPhase@{RpcStartAnswerPhase}!PlayerScript@{PlayerScript}}
@@ -234,6 +285,10 @@ This method shows the Score\+Board at the end of the game, including which playe
 
 
 This method starts the answerphase, setting the corresponding booleans directing which phase it is. 
+
+
+
+Definition at line 305 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}\label{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}} 
 \index{PlayerScript@{PlayerScript}!RpcUpdateScores@{RpcUpdateScores}}
@@ -254,6 +309,10 @@ This method updates the scores and corresponding playernames in scoreboard.\+tex
 {\em score\+Updates} & An array of the difference between old and new player scores\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 446 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a4a68fcc567d7778a886474196730c7f5}\label{class_player_script_a4a68fcc567d7778a886474196730c7f5}} 
 \index{PlayerScript@{PlayerScript}!ShowAnswers@{ShowAnswers}}
 \index{ShowAnswers@{ShowAnswers}!PlayerScript@{PlayerScript}}
@@ -271,6 +330,10 @@ This method shows all instantiates new Card\+Scripts for the given answers and d
 \end{DoxyParams}
 
 
+Definition at line 341 of file Player\+Script.\+cs.
+
+
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}\label{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}} 
 \index{PlayerScript@{PlayerScript}!answerCards@{answerCards}}
@@ -282,6 +345,10 @@ This method shows all instantiates new Card\+Scripts for the given answers and d
 
 List of Card\+Scripts representing the answers given by the players 
 
+
+
+Definition at line 114 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}\label{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}} 
 \index{PlayerScript@{PlayerScript}!card@{card}}
 \index{card@{card}!PlayerScript@{PlayerScript}}
@@ -291,6 +358,10 @@ List of Card\+Scripts representing the answers given by the players
 
 
 A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
+
+
+
+Definition at line 58 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}\label{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}} 
 \index{PlayerScript@{PlayerScript}!cs@{cs}}
@@ -302,6 +373,10 @@ A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with
 
 A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
 
+
+
+Definition at line 46 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}\label{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}} 
 \index{PlayerScript@{PlayerScript}!isLocal@{isLocal}}
 \index{isLocal@{isLocal}!PlayerScript@{PlayerScript}}
@@ -311,6 +386,10 @@ A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with
 
 
 
+
+
+
+Definition at line 42 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a2a0593773711850064d2413a959e2ac4}\label{class_player_script_a2a0593773711850064d2413a959e2ac4}} 
 \index{PlayerScript@{PlayerScript}!nameText@{nameText}}
@@ -322,6 +401,10 @@ A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with
 
 The names displayed in the scoreboard 
 
+
+
+Definition at line 74 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_abc20193eb7967a005367ad13f36ad98c}\label{class_player_script_abc20193eb7967a005367ad13f36ad98c}} 
 \index{PlayerScript@{PlayerScript}!phaseText@{phaseText}}
 \index{phaseText@{phaseText}!PlayerScript@{PlayerScript}}
@@ -331,6 +414,10 @@ The names displayed in the scoreboard
 
 
 The text element which displays the current stage of the game 
+
+
+
+Definition at line 70 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_ad729f088f5d5231025faa1960481a22a}\label{class_player_script_ad729f088f5d5231025faa1960481a22a}} 
 \index{PlayerScript@{PlayerScript}!player@{player}}
@@ -342,6 +429,10 @@ The text element which displays the current stage of the game
 
 A \mbox{\hyperlink{class_player}{Player}} object to communicate with 
 
+
+
+Definition at line 66 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}\label{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}} 
 \index{PlayerScript@{PlayerScript}!playerCard@{playerCard}}
 \index{playerCard@{playerCard}!PlayerScript@{PlayerScript}}
@@ -351,6 +442,10 @@ A \mbox{\hyperlink{class_player}{Player}} object to communicate with
 
 
 A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
+
+
+
+Definition at line 62 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a2c095f7d22f42a12ad577c7aded99147}\label{class_player_script_a2c095f7d22f42a12ad577c7aded99147}} 
 \index{PlayerScript@{PlayerScript}!pm@{pm}}
@@ -362,6 +457,10 @@ A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with
 
 The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} to communicate with 
 
+
+
+Definition at line 78 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}\label{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}} 
 \index{PlayerScript@{PlayerScript}!question@{question}}
 \index{question@{question}!PlayerScript@{PlayerScript}}
@@ -371,6 +470,10 @@ The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} to communicate with
 
 
 A \mbox{\hyperlink{class_question_script}{Question\+Script}} to communicate with 
+
+
+
+Definition at line 54 of file Player\+Script.\+cs.
 
 \mbox{\Hypertarget{class_player_script_a428af4511825b9b7495b28f2b95b6906}\label{class_player_script_a428af4511825b9b7495b28f2b95b6906}} 
 \index{PlayerScript@{PlayerScript}!startPhase@{startPhase}}
@@ -382,6 +485,10 @@ A \mbox{\hyperlink{class_question_script}{Question\+Script}} to communicate with
 
 Bool if the game is currently in the start phase 
 
+
+
+Definition at line 90 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}\label{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}} 
 \index{PlayerScript@{PlayerScript}!vote@{vote}}
 \index{vote@{vote}!PlayerScript@{PlayerScript}}
@@ -392,6 +499,10 @@ Bool if the game is currently in the start phase
 
 A list of cards for voting purposes 
 
+
+
+Definition at line 82 of file Player\+Script.\+cs.
+
 \mbox{\Hypertarget{class_player_script_a1d6fe6a41285353868b931208fcd1af3}\label{class_player_script_a1d6fe6a41285353868b931208fcd1af3}} 
 \index{PlayerScript@{PlayerScript}!voteCard@{voteCard}}
 \index{voteCard@{voteCard}!PlayerScript@{PlayerScript}}
@@ -401,6 +512,10 @@ A list of cards for voting purposes
 
 
 A single card for voting purposes 
+
+
+
+Definition at line 86 of file Player\+Script.\+cs.
 
 
 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['card_67',['Card',['../class_card.html',1,'']]],
-  ['cardscript_68',['CardScript',['../class_card_script.html',1,'']]]
+  ['applicationcloser_110',['ApplicationCloser',['../class_application_closer.html',1,'']]]
 ];

@@ -58,6 +58,13 @@ static List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_pl
 \begin{DoxyCompactList}\small\item\em A list of Cards that represents the given answers \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+
+
+Definition at line 7 of file Player\+Manager.\+cs.
+
+
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_player_manager_a8b4932aeee88ece980511ba8decb2351}\label{class_player_manager_a8b4932aeee88ece980511ba8decb2351}} 
 \index{PlayerManager@{PlayerManager}!BroadcastAnswers@{BroadcastAnswers}}
@@ -74,6 +81,10 @@ Sends the answers of all players and the system answer to all players.
 {\em answers} & The list of player answers\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 188 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_ad8b4c479d5107597e91303fe3f0ed033}\label{class_player_manager_ad8b4c479d5107597e91303fe3f0ed033}} 
 \index{PlayerManager@{PlayerManager}!BroadCastPlayers@{BroadCastPlayers}}
 \index{BroadCastPlayers@{BroadCastPlayers}!PlayerManager@{PlayerManager}}
@@ -83,6 +94,10 @@ Sends the answers of all players and the system answer to all players.
 
 
 Broadcasts all Player\+Names to all Play\+Scripts in players. 
+
+
+
+Definition at line 98 of file Player\+Manager.\+cs.
 
 \mbox{\Hypertarget{class_player_manager_ae3df8938bac857bc990f5f0497d1fbd4}\label{class_player_manager_ae3df8938bac857bc990f5f0497d1fbd4}} 
 \index{PlayerManager@{PlayerManager}!BroadcastQuestion@{BroadcastQuestion}}
@@ -101,6 +116,10 @@ Recieves a question to send to all Players.
 {\em pL} & The list of players to broadcast to\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 134 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_a41970d38befac06c3a4c95d826e98424}\label{class_player_manager_a41970d38befac06c3a4c95d826e98424}} 
 \index{PlayerManager@{PlayerManager}!BroadcastScores@{BroadcastScores}}
 \index{BroadcastScores@{BroadcastScores}!PlayerManager@{PlayerManager}}
@@ -116,6 +135,10 @@ Sends the new list of players to the player to update scores.
 {\em players2} & A List of \mbox{\hyperlink{class_player}{Player}} Objects.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 326 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_acc056785f96d5dd81938b2e0cbb037f9}\label{class_player_manager_acc056785f96d5dd81938b2e0cbb037f9}} 
 \index{PlayerManager@{PlayerManager}!CleanUp@{CleanUp}}
 \index{CleanUp@{CleanUp}!PlayerManager@{PlayerManager}}
@@ -126,6 +149,10 @@ Sends the new list of players to the player to update scores.
 
 This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_script}{Player\+Script}} player. 
 
+
+
+Definition at line 311 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}\label{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}} 
 \index{PlayerManager@{PlayerManager}!CreateNewCardForPlayers@{CreateNewCardForPlayers}}
 \index{CreateNewCardForPlayers@{CreateNewCardForPlayers}!PlayerManager@{PlayerManager}}
@@ -135,6 +162,10 @@ This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_script}{
 
 
 Creates a new card to write on for each player. 
+
+
+
+Definition at line 116 of file Player\+Manager.\+cs.
 
 \mbox{\Hypertarget{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}\label{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}} 
 \index{PlayerManager@{PlayerManager}!RecievePlayer@{RecievePlayer}}
@@ -151,6 +182,10 @@ Used by player to join the list of players
 \end{DoxyParams}
 
 
+
+
+Definition at line 76 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_a5c074190d0d102d80be24cf6e410257f}\label{class_player_manager_a5c074190d0d102d80be24cf6e410257f}} 
 \index{PlayerManager@{PlayerManager}!RegisterAnswer@{RegisterAnswer}}
 \index{RegisterAnswer@{RegisterAnswer}!PlayerManager@{PlayerManager}}
@@ -166,6 +201,10 @@ Receives the Answer from the players and marks them in the dictionary.
 {\em answer} & The \mbox{\hyperlink{class_card}{Card}} Object from the player.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 162 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_abfdb782b92c6735e07ded1013eaa399e}\label{class_player_manager_abfdb782b92c6735e07ded1013eaa399e}} 
 \index{PlayerManager@{PlayerManager}!RegisterEqualVote@{RegisterEqualVote}}
 \index{RegisterEqualVote@{RegisterEqualVote}!PlayerManager@{PlayerManager}}
@@ -181,6 +220,10 @@ This method registers which card is voted as an equal answer by the players. It 
 {\em vote} & A List of cards from the player, containing the cards, which this player voted as equal\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 285 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_a8ff247ee6a4c20143d1bf35b32e71a2a}\label{class_player_manager_a8ff247ee6a4c20143d1bf35b32e71a2a}} 
 \index{PlayerManager@{PlayerManager}!RegisterVote@{RegisterVote}}
 \index{RegisterVote@{RegisterVote}!PlayerManager@{PlayerManager}}
@@ -198,6 +241,10 @@ This method registers a vote for a player.
 {\em p} & The player that voted\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 221 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_ac68a77b974a6d32da9187d3e86e01303}\label{class_player_manager_ac68a77b974a6d32da9187d3e86e01303}} 
 \index{PlayerManager@{PlayerManager}!SendPlayerCount@{SendPlayerCount}}
 \index{SendPlayerCount@{SendPlayerCount}!PlayerManager@{PlayerManager}}
@@ -207,6 +254,10 @@ This method registers a vote for a player.
 
 
 This method sends the count of players to each \mbox{\hyperlink{class_player_script}{Player\+Script}}. 
+
+
+
+Definition at line 64 of file Player\+Manager.\+cs.
 
 \mbox{\Hypertarget{class_player_manager_a9ea3507fd0b9e0c6b5b1b2762aac1f5d}\label{class_player_manager_a9ea3507fd0b9e0c6b5b1b2762aac1f5d}} 
 \index{PlayerManager@{PlayerManager}!ShowScoreBoard@{ShowScoreBoard}}
@@ -223,6 +274,10 @@ This method calls the Show\+Score\+Board method on \mbox{\hyperlink{class_player
 {\em scoreboard} & \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 350 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_abdb444060fde7b515c89247b97f5167c}\label{class_player_manager_abdb444060fde7b515c89247b97f5167c}} 
 \index{PlayerManager@{PlayerManager}!Start@{Start}}
 \index{Start@{Start}!PlayerManager@{PlayerManager}}
@@ -233,6 +288,10 @@ This method calls the Show\+Score\+Board method on \mbox{\hyperlink{class_player
 
 Adds players to the dictionary. This method is called once on startup. 
 
+
+
+Definition at line 46 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_ad324238d2f3996f450fcc4aea600f909}\label{class_player_manager_ad324238d2f3996f450fcc4aea600f909}} 
 \index{PlayerManager@{PlayerManager}!StartAnswerPhaseForAllPlayers@{StartAnswerPhaseForAllPlayers}}
 \index{StartAnswerPhaseForAllPlayers@{StartAnswerPhaseForAllPlayers}!PlayerManager@{PlayerManager}}
@@ -242,6 +301,10 @@ Adds players to the dictionary. This method is called once on startup.
 
 
 Broadcasts the beginning of the answer phase to all players. 
+
+
+
+Definition at line 148 of file Player\+Manager.\+cs.
 
 
 
@@ -256,6 +319,10 @@ Broadcasts the beginning of the answer phase to all players.
 
 A list of Cards that represents the given answers 
 
+
+
+Definition at line 16 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_adc10762ecee2ad006e2972ad251269e9}\label{class_player_manager_adc10762ecee2ad006e2972ad251269e9}} 
 \index{PlayerManager@{PlayerManager}!gm@{gm}}
 \index{gm@{gm}!PlayerManager@{PlayerManager}}
@@ -265,6 +332,10 @@ A list of Cards that represents the given answers
 
 
 The \mbox{\hyperlink{class_game_manager}{Game\+Manager}} to communicate with 
+
+
+
+Definition at line 24 of file Player\+Manager.\+cs.
 
 \mbox{\Hypertarget{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}\label{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}} 
 \index{PlayerManager@{PlayerManager}!player@{player}}
@@ -276,6 +347,10 @@ The \mbox{\hyperlink{class_game_manager}{Game\+Manager}} to communicate with
 
 A single Playerscript to communicate with 
 
+
+
+Definition at line 20 of file Player\+Manager.\+cs.
+
 \mbox{\Hypertarget{class_player_manager_a3c4146396bf16172a63a1731f1f71915}\label{class_player_manager_a3c4146396bf16172a63a1731f1f71915}} 
 \index{PlayerManager@{PlayerManager}!players@{players}}
 \index{players@{players}!PlayerManager@{PlayerManager}}
@@ -285,6 +360,10 @@ A single Playerscript to communicate with
 
 
 A list of Player\+Scripts that represents the players 
+
+
+
+Definition at line 12 of file Player\+Manager.\+cs.
 
 
 

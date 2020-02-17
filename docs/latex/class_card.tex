@@ -41,6 +41,13 @@ List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_card_
 \begin{DoxyCompactList}\small\item\em Getter/\+Setter for player\+Guesses. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+
+
+Definition at line 11 of file Card.\+cs.
+
+
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_card_a8ebe841d86b657788590efc92a8cfb09}\label{class_card_a8ebe841d86b657788590efc92a8cfb09}} 
 \index{Card@{Card}!Card@{Card}}
@@ -51,6 +58,10 @@ List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_card_
 
 
 Constructor for a \mbox{\hyperlink{class_card}{Card}} Object. This Constructor initializes the List player\+Guesses. 
+
+
+
+Definition at line 43 of file Card.\+cs.
 
 \mbox{\Hypertarget{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}\label{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}} 
 \index{Card@{Card}!Card@{Card}}
@@ -67,6 +78,10 @@ Constructor for a card Object. This Constructor initializes the List player\+Gue
 {\em card\+ID} & The object will be initilized with this card\+ID.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 54 of file Card.\+cs.
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -88,6 +103,10 @@ This method adds the card to card\+List and shuffles the list. It should only be
 \begin{DoxyReturn}{Returns}
 The shuffled list containing the new card
 \end{DoxyReturn}
+
+
+Definition at line 177 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a083c578986e5954bee5412ca57a454e7}\label{class_card_a083c578986e5954bee5412ca57a454e7}} 
 \index{Card@{Card}!AddPlayerToPlayerGuesses@{AddPlayerToPlayerGuesses}}
 \index{AddPlayerToPlayerGuesses@{AddPlayerToPlayerGuesses}!Card@{Card}}
@@ -103,6 +122,10 @@ A method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player
 {\em player} & The player that will be added to the list.\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 145 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a86e09c2ce78d1a3e3727694fb4693adf}\label{class_card_a86e09c2ce78d1a3e3727694fb4693adf}} 
 \index{Card@{Card}!CardToJsonString@{CardToJsonString}}
 \index{CardToJsonString@{CardToJsonString}!Card@{Card}}
@@ -116,6 +139,10 @@ This method returns an Object converted to a string in J\+S\+ON format.
 \begin{DoxyReturn}{Returns}
 J\+S\+ON as a string
 \end{DoxyReturn}
+
+
+Definition at line 154 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a8653e7edb7afd3090ba8bc411560410d}\label{class_card_a8653e7edb7afd3090ba8bc411560410d}} 
 \index{Card@{Card}!JsonToCard@{JsonToCard}}
 \index{JsonToCard@{JsonToCard}!Card@{Card}}
@@ -136,6 +163,10 @@ A method that returns a new card from a string in J\+S\+ON format.
 \end{DoxyReturn}
 
 
+Definition at line 165 of file Card.\+cs.
+
+
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}\label{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}} 
 \index{Card@{Card}!answer@{answer}}
@@ -147,6 +178,10 @@ A method that returns a new card from a string in J\+S\+ON format.
 
 The answer the player give to a certain question 
 
+
+
+Definition at line 20 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_ac9a587fc3976a91aba13b5acf410ead9}\label{class_card_ac9a587fc3976a91aba13b5acf410ead9}} 
 \index{Card@{Card}!cardID@{cardID}}
 \index{cardID@{cardID}!Card@{Card}}
@@ -156,6 +191,10 @@ The answer the player give to a certain question
 
 
 The identification number of the card 
+
+
+
+Definition at line 16 of file Card.\+cs.
 
 \mbox{\Hypertarget{class_card_a5af95d03909ba563e2350c93e8c7becf}\label{class_card_a5af95d03909ba563e2350c93e8c7becf}} 
 \index{Card@{Card}!correctVotes@{correctVotes}}
@@ -167,6 +206,10 @@ The identification number of the card
 
 The number of players who voted this answer to be equal to the correct one 
 
+
+
+Definition at line 28 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a37131add738b3953372890b117e259e7}\label{class_card_a37131add738b3953372890b117e259e7}} 
 \index{Card@{Card}!isCorrect@{isCorrect}}
 \index{isCorrect@{isCorrect}!Card@{Card}}
@@ -176,6 +219,10 @@ The number of players who voted this answer to be equal to the correct one
 
 
 Boolean to show it is the correct answer. 
+
+
+
+Definition at line 32 of file Card.\+cs.
 
 
 
@@ -190,6 +237,10 @@ Boolean to show it is the correct answer.
 
 Getter/\+Setter for answer. The Setter automatically converts the String to Upper\+Case. 
 
+
+
+Definition at line 65 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a42955f9bc42747d76700c1dc7578f3a4}\label{class_card_a42955f9bc42747d76700c1dc7578f3a4}} 
 \index{Card@{Card}!CorrectVotes@{CorrectVotes}}
 \index{CorrectVotes@{CorrectVotes}!Card@{Card}}
@@ -199,6 +250,10 @@ Getter/\+Setter for answer. The Setter automatically converts the String to Uppe
 
 
 Getter/\+Setter for correct\+Votes. 
+
+
+
+Definition at line 97 of file Card.\+cs.
 
 \mbox{\Hypertarget{class_card_a2d533147f442f5eaaa82a4ee8e0e9050}\label{class_card_a2d533147f442f5eaaa82a4ee8e0e9050}} 
 \index{Card@{Card}!IsCorrect@{IsCorrect}}
@@ -210,6 +265,10 @@ Getter/\+Setter for correct\+Votes.
 
 Getter/\+Setter for Is\+Correct. 
 
+
+
+Definition at line 113 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_aa42849ab4e9d03cdf64a8ca18cd9da5c}\label{class_card_aa42849ab4e9d03cdf64a8ca18cd9da5c}} 
 \index{Card@{Card}!PlayerGuesses@{PlayerGuesses}}
 \index{PlayerGuesses@{PlayerGuesses}!Card@{Card}}
@@ -220,6 +279,10 @@ Getter/\+Setter for Is\+Correct.
 
 Getter/\+Setter for player\+Guesses. 
 
+
+
+Definition at line 129 of file Card.\+cs.
+
 \mbox{\Hypertarget{class_card_a57c716130d0d4fbb057f3d9fac986889}\label{class_card_a57c716130d0d4fbb057f3d9fac986889}} 
 \index{Card@{Card}!PlayerObject@{PlayerObject}}
 \index{PlayerObject@{PlayerObject}!Card@{Card}}
@@ -229,6 +292,10 @@ Getter/\+Setter for player\+Guesses.
 
 
 Getter/\+Setter for player\+Object. 
+
+
+
+Definition at line 81 of file Card.\+cs.
 
 
 

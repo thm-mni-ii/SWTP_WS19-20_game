@@ -5,18 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SWTP_WS19-20_game Dixit: Class Members</title>
+<title>Dixit: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -29,8 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">SWTP_WS19-20_game Dixit
+   <div id="projectname">Dixit
+   &#160;<span id="projectnumber">0.3beta</span>
    </div>
+   <div id="projectbrief">A Cardgame LearnMMO</div>
   </td>
  </tr>
  </tbody>
@@ -54,22 +48,6 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('functions.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -94,14 +72,26 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>AddPlayerToPlayerGuesses()
 : <a class="el" href="class_card.html#a083c578986e5954bee5412ca57a454e7">Card</a>
 </li>
-<li>Answer
-: <a class="el" href="class_card.html#ab14fa4a4f432aa7712a9a777122f096f">Card</a>
+<li>ansCards
+: <a class="el" href="class_card_script.html#a9545b5987c13cfcc3695754dfb4aa5db">CardScript</a>
 </li>
 <li>answer
 : <a class="el" href="class_card.html#a5f5d07a030bc1d53e6b53f16b2f61da0">Card</a>
 </li>
+<li>Answer
+: <a class="el" href="class_card.html#ab14fa4a4f432aa7712a9a777122f096f">Card</a>
+</li>
+<li>answerCards
+: <a class="el" href="class_player_script.html#ac61f50a49b9990ed23ca6ef0cb186fb4">PlayerScript</a>
+</li>
 <li>answerGiven
 : <a class="el" href="class_card_script.html#af89b869c70df84d5bb114c6b38f493a5">CardScript</a>
+</li>
+<li>answerPhase
+: <a class="el" href="class_card_script.html#a67ed090aa16d94ae0b99400da90f922c">CardScript</a>
+</li>
+<li>answers
+: <a class="el" href="class_player_manager.html#af1186d5e8b5cd280701508a2f06c4828">PlayerManager</a>
 </li>
 </ul>
 
@@ -114,7 +104,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_player_manager.html#ad8b4c479d5107597e91303fe3f0ed033">PlayerManager</a>
 </li>
 <li>BroadcastQuestion()
-: <a class="el" href="class_player_manager.html#a25c7dc0869cfddb68a883a5d0b00e4b0">PlayerManager</a>
+: <a class="el" href="class_player_manager.html#ae3df8938bac857bc990f5f0497d1fbd4">PlayerManager</a>
 </li>
 <li>BroadcastScores()
 : <a class="el" href="class_player_manager.html#a41970d38befac06c3a4c95d826e98424">PlayerManager</a>
@@ -129,6 +119,11 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>Card()
 : <a class="el" href="class_card.html#a8ebe841d86b657788590efc92a8cfb09">Card</a>
 </li>
+<li>card
+: <a class="el" href="class_card_script.html#af567a9b37343db3510b578d357695b09">CardScript</a>
+, <a class="el" href="class_get_input_text.html#a5bf90fcd2f41baeb3dc0c57ea2c2dd7e">GetInputText</a>
+, <a class="el" href="class_player_script.html#a2af2238b9880f69dbc99b729e7d6a74f">PlayerScript</a>
+</li>
 <li>cardID
 : <a class="el" href="class_card.html#ac9a587fc3976a91aba13b5acf410ead9">Card</a>
 </li>
@@ -138,7 +133,18 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>CleanUp()
 : <a class="el" href="class_game_manager.html#a06b082eac2e2475899c87d81cbde31cf">GameManager</a>
 , <a class="el" href="class_player_manager.html#acc056785f96d5dd81938b2e0cbb037f9">PlayerManager</a>
-, <a class="el" href="class_player_script.html#a4c697bde6e5117f2270282557143c0b1">PlayerScript</a>
+</li>
+<li>CmdAnswerInc()
+: <a class="el" href="class_player_script.html#aa3d48f7157078e94126babe551def309">PlayerScript</a>
+</li>
+<li>CmdRegisterEqualVotes()
+: <a class="el" href="class_player_script.html#a2ab9feabbefb205be4ea5f2084489703">PlayerScript</a>
+</li>
+<li>CmdRegisterVote()
+: <a class="el" href="class_player_script.html#a7941532e6ae40951e04c1729f27904ed">PlayerScript</a>
+</li>
+<li>correctAnswer
+: <a class="el" href="class_question.html#a1b1ad8344d8db0456e61caaf5942bb32">Question</a>
 </li>
 <li>correctVotes
 : <a class="el" href="class_card.html#a5af95d03909ba563e2350c93e8c7becf">Card</a>
@@ -149,17 +155,20 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>CreateNewCard()
 : <a class="el" href="class_player_script.html#a0b8d599451f71d52f79fecc7a5345144">PlayerScript</a>
 </li>
-</ul>
-
-
-<h3><a id="index_d"></a>- d -</h3><ul>
-<li>DisplayPlayers()
-: <a class="el" href="class_player_script.html#ab47d3ded384ec7399b872d4ba1f70db2">PlayerScript</a>
+<li>CreateNewCardForPlayers()
+: <a class="el" href="class_player_manager.html#acec489f03f4ac7cb7d1be598d6c2b724">PlayerManager</a>
+</li>
+<li>cs
+: <a class="el" href="class_player_script.html#a5f3503fd7750cddfd58d6578e945b03d">PlayerScript</a>
+, <a class="el" href="class_question_script.html#a9971949f3e09aa7b2e30ce4e4c38fa19">QuestionScript</a>
 </li>
 </ul>
 
 
 <h3><a id="index_e"></a>- e -</h3><ul>
+<li>endQuestion()
+: <a class="el" href="class_question_script.html#ac6199d2001cb4602d58f532b805a4a49">QuestionScript</a>
+</li>
 <li>Experience
 : <a class="el" href="class_player.html#a52eec3e19497b231bc51c5db5bfe5645">Player</a>
 </li>
@@ -169,6 +178,12 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>GetNextQuestion()
 : <a class="el" href="class_question_set.html#a9c90146d29012b1ac0fdec07db9c8055">QuestionSet</a>
+</li>
+<li>GetQuestionFromQuestionSet()
+: <a class="el" href="class_question_script.html#abdd591ed83c4e5a941315f6a0552b1cd">QuestionScript</a>
+</li>
+<li>gm
+: <a class="el" href="class_player_manager.html#adc10762ecee2ad006e2972ad251269e9">PlayerManager</a>
 </li>
 </ul>
 
@@ -184,11 +199,17 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>InitializeQuestion()
 : <a class="el" href="class_question_script.html#ac7664d817c0ec936ecfad67db44d5542">QuestionScript</a>
 </li>
+<li>isAllreadyVoted
+: <a class="el" href="class_card_script.html#a79ace588d8a2d99ee14796ce80a2584e">CardScript</a>
+</li>
 <li>isCorrect
 : <a class="el" href="class_card.html#a37131add738b3953372890b117e259e7">Card</a>
 </li>
 <li>IsCorrect
 : <a class="el" href="class_card.html#a2d533147f442f5eaaa82a4ee8e0e9050">Card</a>
+</li>
+<li>isLocal
+: <a class="el" href="class_player_script.html#acd314aea7ada103376bcbf8317b3dbfa">PlayerScript</a>
 </li>
 </ul>
 
@@ -213,9 +234,36 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </ul>
 
 
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>nameText
+: <a class="el" href="class_player_script.html#a2a0593773711850064d2413a959e2ac4">PlayerScript</a>
+</li>
+<li>numberOfRounds
+: <a class="el" href="class_game_manager.html#ade43917fdfb32ef7dd725565023caaf3">GameManager</a>
+</li>
+</ul>
+
+
+<h3><a id="index_o"></a>- o -</h3><ul>
+<li>obj
+: <a class="el" href="class_menu.html#a9cb1a9b559045ffe6cf2a07333ee6da7">Menu</a>
+</li>
+</ul>
+
+
 <h3><a id="index_p"></a>- p -</h3><ul>
+<li>phaseText
+: <a class="el" href="class_player_script.html#abc20193eb7967a005367ad13f36ad98c">PlayerScript</a>
+</li>
 <li>Player()
 : <a class="el" href="class_player.html#a712a726b07cf901c040116d6d0c5cc66">Player</a>
+</li>
+<li>player
+: <a class="el" href="class_player_manager.html#ad36b93623a6b747cee5a25be0dd16d00">PlayerManager</a>
+, <a class="el" href="class_player_script.html#ad729f088f5d5231025faa1960481a22a">PlayerScript</a>
+</li>
+<li>playerCard
+: <a class="el" href="class_player_script.html#a8c44873ebd1cc9f188dfea738fca30c1">PlayerScript</a>
 </li>
 <li>PlayerGuesses
 : <a class="el" href="class_card.html#aa42849ab4e9d03cdf64a8ca18cd9da5c">Card</a>
@@ -223,14 +271,25 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>playerID
 : <a class="el" href="class_player.html#a2b1593046a8f0326290f6ff71ed23fe9">Player</a>
 </li>
+<li>playerList
+: <a class="el" href="class_game_manager.html#a9e16c77887fb897cab016af97ba9e2ea">GameManager</a>
+</li>
 <li>PlayerName
 : <a class="el" href="class_player.html#adacf1854e9a36d16ab527e6969998e90">Player</a>
 </li>
 <li>PlayerObject
 : <a class="el" href="class_card.html#a57c716130d0d4fbb057f3d9fac986889">Card</a>
 </li>
+<li>players
+: <a class="el" href="class_player_manager.html#a3c4146396bf16172a63a1731f1f71915">PlayerManager</a>
+</li>
 <li>PlayerToJSONString()
 : <a class="el" href="class_player.html#a29d7544a35ba91456852430f6c17ce9d">Player</a>
+</li>
+<li>pm
+: <a class="el" href="class_card_script.html#a96daebe03b2740900cb84e6315df532f">CardScript</a>
+, <a class="el" href="class_game_manager.html#af569bf0b4258b79c3cd97e96efb3980c">GameManager</a>
+, <a class="el" href="class_player_script.html#a2c095f7d22f42a12ad577c7aded99147">PlayerScript</a>
 </li>
 <li>PrintOutPlayer()
 : <a class="el" href="class_player.html#a6943e6d8602b5d54b173a9c3fcb22729">Player</a>
@@ -238,21 +297,52 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>PrintOutQuestions()
 : <a class="el" href="class_question_set.html#aea4739c7f395d2f8d943c5b95b572612">QuestionSet</a>
 </li>
+<li>ps
+: <a class="el" href="class_card_script.html#aa0af35d094c775aa22d86d27012ee291">CardScript</a>
+</li>
 </ul>
 
 
 <h3><a id="index_q"></a>- q -</h3><ul>
+<li>qs
+: <a class="el" href="class_card_script.html#ab1ff5ac9d4a7061d7ab31b066b022cc1">CardScript</a>
+</li>
+<li>question
+: <a class="el" href="class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e">PlayerScript</a>
+</li>
+<li>Question()
+: <a class="el" href="class_question.html#a307272d9a0d279f26216bdf142a09986">Question</a>
+</li>
+<li>question
+: <a class="el" href="class_question.html#afa79800493bceb0ca4449a8e258e7ae4">Question</a>
+, <a class="el" href="class_question_script.html#ac3e4de43b0ff9aec3c8f7731be17d299">QuestionScript</a>
+</li>
+<li>questionEnd
+: <a class="el" href="class_question_script.html#a47356a70c50e9cbef7132c35fe861f9b">QuestionScript</a>
+</li>
+<li>questionID
+: <a class="el" href="class_question.html#ae74532a8db301985e5ae0dd97a1ff5e6">Question</a>
+</li>
 <li>questionList
 : <a class="el" href="class_question_set.html#a03fd5c7a52a4f2f9406d8d26480ca23d">QuestionSet</a>
 </li>
 <li>QuestionList
 : <a class="el" href="class_question_set.html#a6b89441840dc7dabebfa51e960c992b6">QuestionSet</a>
 </li>
+<li>questionSet
+: <a class="el" href="class_game_manager.html#a93e9aacd51d6e1376ef5223b99307f79">GameManager</a>
+</li>
 <li>QuestionSet()
 : <a class="el" href="class_question_set.html#aeb8c79cd5f7bad8c933e82e02d2a86a2">QuestionSet</a>
 </li>
 <li>questionSetID
 : <a class="el" href="class_question_set.html#a0cf255225ba7d4dc5caa6c628016fd02">QuestionSet</a>
+</li>
+<li>questionSetName
+: <a class="el" href="class_game_manager.html#a5b1eff733348c33da27eae892551c5c4">GameManager</a>
+</li>
+<li>QuitApp()
+: <a class="el" href="class_application_closer.html#a152624a9c05eb7f77bd6cb6aada066df">ApplicationCloser</a>
 </li>
 </ul>
 
@@ -282,6 +372,33 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>RoomID
 : <a class="el" href="class_player.html#adb3e49f621df02c7d89a781303046d18">Player</a>
 </li>
+<li>RpcCleanUp()
+: <a class="el" href="class_player_script.html#a53ab65b3d02425a23efb01395d8cbad8">PlayerScript</a>
+</li>
+<li>RpcCreateNewCard()
+: <a class="el" href="class_player_script.html#af8d0a7d47609ea6f9718220e872ee3b6">PlayerScript</a>
+</li>
+<li>RpcDisplayPlayers()
+: <a class="el" href="class_player_script.html#ae8316cb758cd1ca197a6e4908ae2b7bd">PlayerScript</a>
+</li>
+<li>RpcQuestionStart()
+: <a class="el" href="class_player_script.html#afcd7ee1bea1661413e5acb659f5ccf6d">PlayerScript</a>
+</li>
+<li>RpcReceiveAnswers()
+: <a class="el" href="class_player_script.html#ae4ee033576b9c90e90dd45a23dc3c53e">PlayerScript</a>
+</li>
+<li>RpcSetPlayerCountAndTime()
+: <a class="el" href="class_player_script.html#a32043604b9cb1657718da312f32a07d8">PlayerScript</a>
+</li>
+<li>RpcShowScoreBoard()
+: <a class="el" href="class_player_script.html#aa24d92ebbf328fb06c2d2bb242c7d697">PlayerScript</a>
+</li>
+<li>RpcStartAnswerPhase()
+: <a class="el" href="class_player_script.html#aeab93762563563a8c8c55ab2f3ce63f4">PlayerScript</a>
+</li>
+<li>RpcUpdateScores()
+: <a class="el" href="class_player_script.html#a511e4966a914defa8dc25eb6dee2cef3">PlayerScript</a>
+</li>
 </ul>
 
 
@@ -289,21 +406,32 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>Score
 : <a class="el" href="class_player.html#a26d4288e4b37749aed27336ed88688e1">Player</a>
 </li>
+<li>selectionObject
+: <a class="el" href="class_card_script.html#a4b463a696c742320e6baa8623257b364">CardScript</a>
+</li>
+<li>SendPlayerCount()
+: <a class="el" href="class_player_manager.html#ac68a77b974a6d32da9187d3e86e01303">PlayerManager</a>
+</li>
+<li>SetCardFromPlayerScript()
+: <a class="el" href="class_card_script.html#a1611b0d232d9669588134be072917a98">CardScript</a>
+</li>
 <li>setTimer()
-: <a class="el" href="class_timer_script.html#adc0aa9e1b5d880472ef0e03d231c736d">TimerScript</a>
+: <a class="el" href="class_timer_script.html#a54dc67a0bcd3385965b4dfdfdd513e21">TimerScript</a>
 </li>
 <li>ShowAnswers()
 : <a class="el" href="class_player_script.html#a4a68fcc567d7778a886474196730c7f5">PlayerScript</a>
 </li>
 <li>ShowScoreBoard()
 : <a class="el" href="class_player_manager.html#a9ea3507fd0b9e0c6b5b1b2762aac1f5d">PlayerManager</a>
-, <a class="el" href="class_player_script.html#ad81f14e3f0739d0e54dc831e3ca3af51">PlayerScript</a>
 </li>
 <li>Start()
 : <a class="el" href="class_player_manager.html#abdb444060fde7b515c89247b97f5167c">PlayerManager</a>
 </li>
-<li>StartAnswerPhase()
-: <a class="el" href="class_player_script.html#ab15395b82c43b4fa25329263c94b4a19">PlayerScript</a>
+<li>StartAnswerPhaseForAllPlayers()
+: <a class="el" href="class_player_manager.html#ad324238d2f3996f450fcc4aea600f909">PlayerManager</a>
+</li>
+<li>startPhase
+: <a class="el" href="class_player_script.html#a428af4511825b9b7495b28f2b95b6906">PlayerScript</a>
 </li>
 <li>startQuestion()
 : <a class="el" href="class_question_script.html#a86d6d7612d7bceb363e458ef309bacda">QuestionScript</a>
@@ -315,6 +443,12 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>textField
 : <a class="el" href="class_card_script.html#a7fb1b5f8c1f15897e038f7825379b758">CardScript</a>
 </li>
+<li>timeleft
+: <a class="el" href="class_timer_script.html#a02f26f593c332fed8e0082c1544ee1a1">TimerScript</a>
+</li>
+<li>timer
+: <a class="el" href="class_question_script.html#aefaf08ee37d36757094d495b82c3da88">QuestionScript</a>
+</li>
 <li>TimeUP()
 : <a class="el" href="class_card_script.html#a7cfc56cf9b72de7bd1fc4141241fec1e">CardScript</a>
 </li>
@@ -325,26 +459,26 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>UpdatePlayersInCardList()
 : <a class="el" href="class_game_manager.html#ad9e0475bfbcc10407d59eebaeff137a7">GameManager</a>
 </li>
-<li>UpdateScores()
-: <a class="el" href="class_player_script.html#a862259d18dc87bf92694cc2075954f3d">PlayerScript</a>
-</li>
 </ul>
 
 
 <h3><a id="index_v"></a>- v -</h3><ul>
+<li>vote
+: <a class="el" href="class_player_script.html#a653c0d264ae147d83f4d9cd916d1c7d9">PlayerScript</a>
+</li>
+<li>voteCard
+: <a class="el" href="class_player_script.html#a1d6fe6a41285353868b931208fcd1af3">PlayerScript</a>
+</li>
 <li>votePhase
 : <a class="el" href="class_card_script.html#ac02705870f750d731fd80b65541242cb">CardScript</a>
 </li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.16
+</small></address>
 </body>
 </html>
