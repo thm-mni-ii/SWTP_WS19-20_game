@@ -8,5 +8,6 @@ var searchData=
   ['answergiven_5',['answerGiven',['../class_card_script.html#af89b869c70df84d5bb114c6b38f493a5',1,'CardScript']]],
   ['answerphase_6',['answerPhase',['../class_card_script.html#a67ed090aa16d94ae0b99400da90f922c',1,'CardScript']]],
   ['answers_7',['answers',['../class_player_manager.html#af1186d5e8b5cd280701508a2f06c4828',1,'PlayerManager']]],
-  ['applicationcloser_8',['ApplicationCloser',['../class_application_closer.html',1,'']]]
+  ['applicationcloser_8',['ApplicationCloser',['../class_application_closer.html',1,'']]],
+  ['applicationcloser_2ecs_9',['ApplicationCloser.cs',['../_application_closer_8cs.html',1,'']]]
 ];
