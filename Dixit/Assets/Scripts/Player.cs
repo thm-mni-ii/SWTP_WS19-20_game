@@ -11,9 +11,8 @@ using UnityEngine;
 [Serializable]
 public class Player
 {
-    //player und user ID werden jetzt zusammengelegt
     /// <summary>
-    /// The identfication of the player.
+    /// The identfication number of the player.
     /// </summary>
     public int playerID;
     /// <summary>
@@ -79,6 +78,7 @@ public class Player
             score = value;
         }
     }
+
     /// <summary>
     /// Getter/Setter for roomID.
     /// </summary>
@@ -123,6 +123,7 @@ public class Player
             level = value;
         }
     }
+
     /// <summary>
     /// Getter/Setter for playerName.
     /// </summary>
@@ -143,7 +144,7 @@ public class Player
     //it returns a player objekt.
 
     /// <summary>
-    /// A method that uses a path to a JSON File to load the data of a player, create a Player Object and resets its score.
+    /// A method that uses a path to a JSON File to load the data of a player, create a Player Object and resets it's score.
     /// This method will be invoked at the beginning of a game.
     /// This method is not final, it will be changed so it can work with mirror and firebase.
     /// </summary>
@@ -169,7 +170,7 @@ public class Player
     /// <summary>
     /// A method returns a Player Object converted to a string in JSON format. 
     /// </summary>
-    /// <returns>json as a string</returns>
+    /// <returns>JSON as a string</returns>
     public string PlayerToJSONString()
     {
         string output = JsonConvert.SerializeObject(this);

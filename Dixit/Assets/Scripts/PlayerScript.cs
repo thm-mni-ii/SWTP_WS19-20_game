@@ -13,33 +13,111 @@ using Mirror;
 
 public class PlayerScript : NetworkBehaviour
 {
+    /*
+    /// <summary>
+    /// A text element to visualize scoreboard updates
+    /// </summary>
     private TextMeshProUGUI scoreboardUpdate;
+    /// <summary>
+    /// The speed of the update animation
+    /// </summary>
     public float flashSpeed = 1f;
+    /// <summary>
+    /// The color of the update animation
+    /// </summary>
     public Color scoreboardUpdateColor = new Color(0.078f, 0.706f, 0.078f, 1f);
+    /// <summary>
+    /// The color while the scoreboard is not showing any animation
+    /// </summary>
     public Color scoreboardNoUpdateColor = new Color(0.078f, 0.706f, 0.078f, 0f);
+    /// <summary>
+    /// Bool if the scoreboard should show an update
+    /// </summary>
     bool scoreboardUpdating;
+    */
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public bool isLocal;
+    /// <summary>
+    /// A CardScript to communicate with
+    /// </summary>
     public CardScript cs;
+    /// <summary>
+    /// The scoreboard text element
+    /// </summary>
     private TextMeshProUGUI scoreboard;
+    /// <summary>
+    /// A QuestionScript to communicate with
+    /// </summary>
     public QuestionScript question;
+    /// <summary>
+    /// A CardScript to communicate with
+    /// </summary>
     public CardScript card;
+    /// <summary>
+    /// A CardScript to communicate with
+    /// </summary>
     public CardScript playerCard;
+    /// <summary>
+    /// A Player object to communicate with
+    /// </summary>
     public Player player;
+    /// <summary>
+    /// The text element which displays the current stage of the game
+    /// </summary>
     public TextMeshProUGUI phaseText;
+    /// <summary>
+    /// The names displayed in the scoreboard
+    /// </summary>
     public TextMeshProUGUI nameText;
+    /// <summary>
+    /// The PlayerManager to communicate with
+    /// </summary>
     public PlayerManager pm;
+    /// <summary>
+    /// A list of cards for voting purposes
+    /// </summary>
     public List<Card> vote;
+    /// <summary>
+    /// A single card for voting purposes
+    /// </summary>
     public Card voteCard;
+    /// <summary>
+    /// Bool if the game is currently in the start phase
+    /// </summary>
     public Boolean startPhase = true;
+    /// <summary>
+    /// Number of players
+    /// </summary>
     int playercount;
+    /// <summary>
+    /// Bool if the game is currently in the voting phase
+    /// </summary>
     Boolean votePhase = false;
+    /// <summary>
+    /// Bool if the game is currently in the answer phase
+    /// </summary>
     Boolean answerPhase = false;
+    /// <summary>
+    /// Timer to limit the duration of phases
+    /// </summary>
     TimerScript timer;
+    /// <summary>
+    /// Variable for current time
+    /// </summary>
     float time;
+    /// <summary>
+    /// List of CardScripts representing the answers given by the players
+    /// </summary>
     public List<CardScript> answerCards;
-    // Start is called before the first frame update
+
+
+    /// <summary>
+    /// Initializes communication with PlayerManager and Timer
+    /// This method is called before the first frame update.
+    /// </summary>
     void Start()
     {
         isLocal = isLocalPlayer;
@@ -72,7 +150,9 @@ public class PlayerScript : NetworkBehaviour
 
 
 
-
+    /// <summary>
+    /// Creates a new card
+    /// </summary>
     [ClientRpc]
     public void RpcCreateNewCard()
     {
@@ -105,6 +185,10 @@ public class PlayerScript : NetworkBehaviour
         }
         }
 
+    /// <summary>
+    /// Controls the game based on the current phase.
+    /// This method is called once per frame.
+    /// </summary>
     void Update()
     {
         if (isLocalPlayer)
@@ -171,6 +255,7 @@ public class PlayerScript : NetworkBehaviour
                     //Debug.Log(vote[1].CorrectVotes);
                 }
             }
+            /*
             if(scoreboardUpdating)
             {
                 scoreboardUpdate.color = scoreboardUpdateColor;
@@ -179,23 +264,30 @@ public class PlayerScript : NetworkBehaviour
             {
                 scoreboardUpdate.color = Color.Lerp(scoreboardUpdate.color, scoreboardNoUpdateColor, flashSpeed * Time.deltaTime);
             }
+            */
         }
     }
+
+    /// <summary>
+    /// Initializes variables of the PlayerScript.
+    /// This method is called once on startup.
+    /// </summary>
     void Awake()
     {
         question = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
         phaseText = GameObject.FindGameObjectWithTag("PhaseUI").GetComponent<TextMeshProUGUI>();
         nameText = GameObject.FindGameObjectWithTag("NamesUI").GetComponent<TextMeshProUGUI>();
         scoreboard = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<TextMeshProUGUI>();
+        /*
         scoreboardUpdate = GameObject.FindGameObjectWithTag("ScoreChangeUI").GetComponent<TextMeshProUGUI>();
         scoreboardUpdate.color = scoreboardNoUpdateColor;
+        */
     }
 
 
     [ClientRpc]
     /// <summary>
     /// This Method displays the players and their starting score of 0 points in nameText.text and scoreBoard.text.
-    /// 
     /// </summary>
     /// <param name="playerList">A string cotaining the players and a newline after every playername</param>
     /// <param name="playerScores">A string containing the score and a newline for every player</param>
@@ -245,7 +337,7 @@ public class PlayerScript : NetworkBehaviour
     /// <summary>
     /// This method shows all instantiates new CardScripts for the given answers and displays them for the player.
     /// </summary>
-    /// <param name="answers">A list of cards which are used to instaiate new Cardscripts </param>
+    /// <param name="answers">A list of cards which are used to instantiate new Cardscripts </param>
     public void ShowAnswers(List<Card> answers)
     {
         if(isLocalPlayer){
@@ -348,17 +440,19 @@ public class PlayerScript : NetworkBehaviour
     /// <summary>
     /// This method updates the scores and corresponding playernames in scoreboard.text and nameText.text.
     /// </summary>
-    /// <param name="players">A List of players, used for their score and name field.</param>
+    /// <param name="name">A string of player names</param>
+    /// <param name="score">A string of player scores</param>
+    /// <param name="scoreUpdates">An array of the difference between old and new player scores</param>
     public void RpcUpdateScores(string name,string score, int[] scoreUpdates)
     {
         string tmpScoreString;
         scoreboard.text = "";
-        scoreboardUpdate.text = "";
+        //scoreboardUpdate.text = "";
         nameText.text = "";
         scoreboard.text = score;
         nameText.text = name;
 
-        for(int i = 0; i < scoreUpdates.Length; i++)
+        /*for(int i = 0; i < scoreUpdates.Length; i++)
         {
             if(scoreUpdates[i] > 0)
             {
@@ -369,7 +463,7 @@ public class PlayerScript : NetworkBehaviour
             }
             scoreboardUpdate.text += tmpScoreString + "\n";
         }
-        scoreboardUpdating = true;
+        scoreboardUpdating = true;*/
 
         /*
         foreach (Player p in players)
@@ -381,7 +475,7 @@ public class PlayerScript : NetworkBehaviour
     [ClientRpc]
 
     /// <summary>
-    /// This method destorys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
+    /// This method destroys old CardScripts with the Tag answer cards. It sets the corresponding boolean answerPhase to false.
     /// </summary>
     public void RpcCleanUp() 
     {
@@ -449,6 +543,10 @@ public class PlayerScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// This command registers equal votes for a card array
+    /// </summary>
+    /// <param name="vote">The card array </param>
   [Command]
     public void CmdRegisterEqualVotes(Card[] vote)
     {
@@ -457,6 +555,10 @@ public class PlayerScript : NetworkBehaviour
         Debug.Log("call pm.registereqvot");
     }
 
+    /// <summary>
+    /// This method receives the player answers through a card array
+    /// </summary>
+    /// <param name="answers">The card array</param>
     [ClientRpc]
     public void RpcReceiveAnswers(Card[] answers)
     {
@@ -479,6 +581,11 @@ public class PlayerScript : NetworkBehaviour
         
     }
 
+    /// <summary>
+    /// This method initializes a new question for the player
+    /// </summary>
+    /// <param name="count"></param>
+    /// <param name="question">The question to be set</param>
     [ClientRpc]
     public void RpcQuestionStart(int count, Question question)
     {
@@ -489,6 +596,10 @@ public class PlayerScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Registers an incoming answer for the player
+    /// </summary>
+    /// <param name="card">The incoming answer</param>
  [Command]
     public void CmdAnswerInc(Card card){
         Debug.Log("CMDANSWER");
@@ -496,12 +607,15 @@ public class PlayerScript : NetworkBehaviour
         pm.RegisterAnswer(card);
     }
     
-
+    /// <summary>
+    /// Registers the voting of this player on a card
+    /// </summary>
+    /// <param name="voteCard">The card to vote on</param>
+    /// <param name="player"></param>
     [Command]
     public void CmdRegisterVote(Card voteCard,Player player)
     {
         pm.RegisterVote(voteCard, this.player);
-
     }
 
 

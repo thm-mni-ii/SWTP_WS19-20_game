@@ -7,10 +7,14 @@ using TMPro;
 public class GetInputText : MonoBehaviour
 {
     /// <summary>
-    /// Card from which the inputtext is recieved.
+    /// Card from which the input text is recieved.
     /// </summary>
     public Card card;       
 
+    /// <summary>
+    /// Adds a listener to an input field.
+    /// This method is called once on startup.
+    /// </summary>
     void Start()
     {
         var input = gameObject.GetComponent<TMP_InputField>();
@@ -19,7 +23,10 @@ public class GetInputText : MonoBehaviour
         input.onEndEdit = se;                           //After ending input with enter the AddListener is called
     }
 
-
+    /// <summary>
+    /// Sets a card's text to the given string.
+    /// </summary>
+    /// <param name="input">The string to which the answer shall be set</param>
     void GetInput(string input){
         card.Answer = input;
     }

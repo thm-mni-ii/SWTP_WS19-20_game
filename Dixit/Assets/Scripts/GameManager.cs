@@ -6,19 +6,45 @@ using UnityEngine.UI;
 using Mirror;
 public class GameManager : NetworkBehaviour
 {
+    /// <summary>
+    /// The name of the currently used QuestionSet
+    /// </summary>
     public string questionSetName;
+    /// <summary>
+    /// The currently used QuestionSet
+    /// </summary>
     public QuestionSet questionSet = new QuestionSet();
+    /// <summary>
+    /// The PlayerManager the GameManager communicates with
+    /// </summary>
     public PlayerManager pm;
+    /// <summary>
+    /// The QuestionScript the GameManager gets new questions from
+    /// </summary>
     QuestionScript questionScript;
+    /// <summary>
+    /// The question of the current round in a game
+    /// </summary>
     Question currentQuestion;
-    List<Card> currentAnswers;
+    /// <summary>
+    /// All answer cards given by the players
+    /// </summary>
     List<Card> allCards;
+    /// <summary>
+    /// All players participating in the game
+    /// </summary>
     public List<Player> playerList;
+    /// <summary>
+    /// The number of rounds to be played
+    /// </summary>
     public int numberOfRounds;
+    /// <summary>
+    /// Bool to decide if the next question is to be shown
+    /// </summary>
     private bool nextQuestion = false;
 
     /// <summary>
-    /// This method gets the next question from questionscript and calls the BroadcastQuestion method on PlayerManager pm.
+    /// This method gets the next question from the QuestionScript and calls the BroadcastQuestion method on the PlayerManager.
     /// </summary>
     void NextQuestion()
     {
@@ -30,6 +56,11 @@ public class GameManager : NetworkBehaviour
 
         //Debug.Log("NextQuestion aufgerufen");
     }
+
+    /// <summary>
+    /// Initializes the GameManager's variables.
+    /// This method is called once on startup.
+    /// </summary>
     void Start()
     {
         pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
@@ -50,7 +81,10 @@ public class GameManager : NetworkBehaviour
 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Proceeds to the next question.
+    /// This method is called once per frame.
+    /// </summary>
     void Update()
     {
         //Debug.Log("GM QS " + questionSet.questionList.Count);
@@ -69,8 +103,7 @@ public class GameManager : NetworkBehaviour
     /// This method is to register the player guesses concerning which answer is equal to the correct one.
     /// To annul an answer, more than half of the players must vote for it.
     /// </summary>
-    /// <param name="answers"></param>
-    /// votes[j].CorrectVotes > voteLimit 
+    /// <param name="votes">The list of cards to be voted for</param>
     public void RegisterEqualVotes(List<Card> votes)
     {
         Debug.Log("in gm equal");
@@ -93,7 +126,6 @@ public class GameManager : NetworkBehaviour
         }
         Debug.Log("in nach gm equal");
 
-        //AUfgabe der Correct VOtes zum Debuggen
         for (int j = 0; j < allCards.Count; j++)
         {
             if(allCards[j].PlayerObject!=null)
@@ -104,7 +136,8 @@ public class GameManager : NetworkBehaviour
 
     /// <summary>
     /// This method is to register the player guesses concerning which answer is the correct one.
-    /// Calls the method GiveOutPoints
+    /// Calls the method GiveOutPoints.
+    /// <param name="answer">The list of cards to be voted for</param>
     /// </summary>
     public void RegisterVotes(List<Card> answer)
     {
@@ -123,6 +156,7 @@ public class GameManager : NetworkBehaviour
         }
         GiveOutPoints();
     }
+
     /// <summary>
     /// This method increases the player scores acording to the rules of the game.
     /// Calls the Method BroadCastScoresViaPM.
@@ -130,19 +164,19 @@ public class GameManager : NetworkBehaviour
     void GiveOutPoints()
     {
         Debug.Log(playerList.Count);
-        //for schleife über player cards
+        //for loop iterating player cards
         for (int i = 0; i < allCards.Count; i++)
         {
-            //wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist
+            //if less than half of the players voted the card to be equal to the correct answer
             if (allCards[i].PlayerObject != null && allCards[i].CorrectVotes < (playerList.Count/2) && allCards[i].IsCorrect == false)
             {
                 Debug.Log("wenn weniger als die hälfte der Spieler dafür gestimmt haben das die karte gleich der richtigen card ist");
-                //Schleife über alle Player 
+                //loop iterating over all players
                 for (int k = 0; k < playerList.Count; k++)
                 {
                   if ( playerList[k].playerID == allCards[i].PlayerObject.playerID )
                     {
-                        //schleife über alle Playerguesses
+                        //loop iterating over all Playerguesses
                         for (int j = 0; j < allCards[i].PlayerGuesses.Count; j++)
                         {
                             playerList[k].Score += 50;
@@ -156,7 +190,7 @@ public class GameManager : NetworkBehaviour
         {
             if (allCards[i].IsCorrect == true)
             {
-                //schleife über playerList
+                //loop iterating over playerList
                 for (int j = 0; j < playerList.Count; j++)
                 {
                   
@@ -167,7 +201,6 @@ public class GameManager : NetworkBehaviour
 
                             for(int cardCount = 0; cardCount < allCards.Count;cardCount++)
                             {
-                                //1 + wieder entfernen wenn nicht mehr single player mode
                                 if (allCards[cardCount].PlayerObject != null && allCards[i].PlayerGuesses[k].playerID == allCards[cardCount].PlayerObject.playerID && allCards[cardCount].CorrectVotes < 1+playerList.Count / 2)
                                 {
                                     Debug.Log(allCards[i].PlayerGuesses.Count);
@@ -193,9 +226,8 @@ public class GameManager : NetworkBehaviour
 
     /// <summary>
     /// This Method updates all the Player Objects in allCards
-    /// 
     /// </summary>
-    /// <param name="allCards">The List of cards,which cards contain the playerobjects.</param>
+    /// <param name="allCards">The List of cards which cards contain the playerobjects</param>
     public void UpdatePlayersInCardList(List<Card> allCards)
     {
         for(int i = 0; i < allCards.Count; i++)
@@ -211,7 +243,7 @@ public class GameManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Broadcasts the scores to all players via the PlayerManager.
     /// Calls the Method RoundEnd()
     /// </summary>
     public void BroadCastScoresViaPM()
@@ -224,8 +256,8 @@ public class GameManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method checks if there are still rounds to be played or questions ind questionSet.
-    /// If one of those is true a NextQuestionwill be called, else the scoreboard will be broadcastet via ShowScoreBoard.
+    /// This method checks if there are still rounds to be played or questions in questionSet.
+    /// If one of those is true a NextQuestion will be called, else the scoreboard will be broadcasted via ShowScoreBoard.
     /// </summary>
     void RoundEnd()
     {
@@ -236,7 +268,6 @@ public class GameManager : NetworkBehaviour
         if (questionSet.QuestionList.Count == 0 || numberOfRounds<=0 )
         {
             //Debug.Log("count null");
-            //spiel beenden
             //hud 
             //display player scores
             // display winner
@@ -244,7 +275,7 @@ public class GameManager : NetworkBehaviour
             
             Player temp = new Player();
 
-            //For Schleife die die Player nahc ihrem Score sortiert
+            //for loop sorting players by score
             
             bool sorted;
             do
@@ -303,7 +334,7 @@ public class GameManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method acalls the CleanUp method on PlayerManager pm.
+    /// This method calls the CleanUp method on PlayerManager pm.
     /// </summary>
     public void CleanUp()
     {

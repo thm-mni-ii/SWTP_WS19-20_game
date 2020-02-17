@@ -6,17 +6,42 @@ using Mirror;
 
 public class PlayerManager : NetworkBehaviour
 {
+    /// <summary>
+    /// A list of PlayerScripts that represents the players
+    /// </summary>
     public static List<PlayerScript> players = new List<PlayerScript>();
+    /// <summary>
+    /// A list of Cards that represents the given answers
+    /// </summary>
     public static List<Card> answers = new List<Card>();
+    /// <summary>
+    /// A single Playerscript to communicate with
+    /// </summary>
     public PlayerScript player;
+    /// <summary>
+    /// The GameManager to communicate with
+    /// </summary>
     public GameManager gm;
+    /// <summary>
+    /// A counter for player votes
+    /// </summary>
     private int voteCounter;
+    /// <summary>
+    /// A counter for 'equal answer' votes
+    /// </summary>
     int equalVotes;
+    /// <summary>
+    /// A counter for player ids
+    /// </summary>
     int playerid = 1;
+    /// <summary>
+    /// A list of strings
+    /// </summary>
     List<string> myList = new List<string>();
 
     /// <summary>
     /// Adds players to the dictionary.
+    /// This method is called once on startup.
     /// </summary>
     public void Start(){
        
@@ -34,9 +59,8 @@ public class PlayerManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method sends the count of players to each playerscript.
+    /// This method sends the count of players to each PlayerScript.
     /// </summary>
-
     public void SendPlayerCount()
     {
         foreach(PlayerScript p in players)
@@ -47,6 +71,7 @@ public class PlayerManager : NetworkBehaviour
 
     /// <summary>
     /// Used by player to join the list of players
+    /// <param name="player">The player to join the game</param>
     /// </summary>
     public void RecievePlayer(PlayerScript player){
         System.Random r = new System.Random();
@@ -68,7 +93,7 @@ public class PlayerManager : NetworkBehaviour
 
 
     /// <summary>
-    /// Broadcasts all PlayerNames to all all Playscripts in players.
+    /// Broadcasts all PlayerNames to all PlayScripts in players.
     /// </summary>
     public void BroadCastPlayers()
     {
@@ -85,7 +110,9 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Creates a new card to write on for each player.
+    /// </summary>
     public void CreateNewCardForPlayers()
     {
 
@@ -98,11 +125,12 @@ public class PlayerManager : NetworkBehaviour
             p.RpcCreateNewCard();
         }
     }
+
     /// <summary>
-    /// Recieves a question and a timer to send to all Players.
+    /// Recieves a question to send to all Players.
     /// </summary>
-    /// <param name="player">A Question Object and the time for the timer</param>
-    /// 
+    /// <param name="question">The Question Object to be broadcasted</param>
+    /// <param name="pL">The list of players to broadcast to</param>
    public void BroadcastQuestion(Question question,List<Player> pL){
         BroadcastScores(pL);
         equalVotes = 0;
@@ -114,6 +142,9 @@ public class PlayerManager : NetworkBehaviour
        }
    }
 
+    /// <summary>
+    /// Broadcasts the beginning of the answer phase to all players.
+    /// </summary>
     public void StartAnswerPhaseForAllPlayers()
     {
         Debug.Log("startanswerphase");
@@ -125,12 +156,10 @@ public class PlayerManager : NetworkBehaviour
 
 
     /// <summary>
-    /// Recieves the Answer from the players and marks them in the dictionary.
+    /// Receives the Answer from the players and marks them in the dictionary.
     /// </summary>
-    /// <param name="player">The Card Object from the player.</param>
+    /// <param name="answer">The Card Object from the player.</param>
    public void RegisterAnswer(Card answer){
-        //if: wird hier benötigt da sonst eine zusätzliche instanz von Card in answers hinzugefügt wird
-        //woher dieser aufruf stammt kann ich noch nicht sagen
         if (true)
         {
             if(answer.cardID!=99)
@@ -155,7 +184,7 @@ public class PlayerManager : NetworkBehaviour
     /// <summary>
     /// Sends the answers of all players and the system answer to all players.
     /// </summary>
-    /// <param name="player">A List of Card Objects.</param>
+    /// <param name="answers">The list of player answers</param>
    public void BroadcastAnswers(List<Card> answers){
         foreach(Card answer in answers)
         {
@@ -185,10 +214,10 @@ public class PlayerManager : NetworkBehaviour
 
 
     /// <summary>
-    /// ´This method adds the player to playerGuesses if he voted that registers the votes concerning which cards are equal in answers.
+    /// This method registers a vote for a player.
     /// </summary>
-    /// <param name="player">The specific Player Object.</param>
-    /// 
+    /// <param name="vote">The card to be voted on</param>
+    /// <param name="p">The player that voted</param>
     public void RegisterVote(Card vote,Player p)
     {
         voteCounter++;
@@ -249,10 +278,10 @@ public class PlayerManager : NetworkBehaviour
     }
 
     /// <summary>
-    /// This method registers  which card is voted as an equal answer by  the players.
+    /// This method registers which card is voted as an equal answer by  the players.
     /// It calls the method RegisterEqualVotes on the GameManager if all player have voted.
     /// </summary>
-    /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal.</param>
+    /// <param name="vote">A List of cards from the player, containing the cards, which this player voted as equal</param>
     public void RegisterEqualVote(List<Card> vote){
         equalVotes++;
         for (int i = 0; i < vote.Count; i++)

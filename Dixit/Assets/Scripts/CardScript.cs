@@ -8,15 +8,15 @@ using TMPro;
 public class CardScript : MonoBehaviour
 {
     /// <summary>
-    /// List of answercards.
+    /// List of answer cards.
     /// </summary>
     public List<CardScript> ansCards;
     /// <summary>
-    /// Card object to this cardscript.
+    /// Card object to this CardScript.
     /// </summary>
     public Card card;
     /// <summary>
-    /// Textfield to display this cards Answe text.
+    /// Text field to display this card's answer text.
     /// </summary>
     public TMP_Text textField;
     /// <summary>
@@ -24,15 +24,15 @@ public class CardScript : MonoBehaviour
     /// </summary>
     public Boolean answerGiven = false;
     /// <summary>
-    /// Flag if the game is in votingphase.
+    /// Flag if the game is in voting phase.
     /// </summary>
     public Boolean votePhase = false;
     /// <summary>
-    /// Flag if the game is in answerphase.
+    /// Flag if the game is in answer phase.
     /// </summary>
     public Boolean answerPhase = false;
     /// <summary>
-    /// Playermanager of the game.
+    /// PlayerManager of the game.
     /// </summary>
     public PlayerManager pm;
     /// <summary>
@@ -40,7 +40,7 @@ public class CardScript : MonoBehaviour
     /// </summary>
     public Boolean isAllreadyVoted = false;
     /// <summary>
-    /// Playerscript to the player.
+    /// PlayerScript to the player.
     /// </summary>
     public PlayerScript ps;
     /// <summary>
@@ -48,11 +48,14 @@ public class CardScript : MonoBehaviour
     /// </summary>
     public GameObject selectionObject;
     /// <summary>
-    /// The question that is asked at the moment.
+    /// The question that is asked in the current round.
     /// </summary>
     public QuestionScript qs;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Prepares the CardScript by initializing it's variables.
+    /// This method is calles once on startup.
+    /// </summary>
     void Start()
     {
         qs = GameObject.FindGameObjectWithTag("QuestionUI").GetComponent<QuestionScript>();
@@ -64,7 +67,6 @@ public class CardScript : MonoBehaviour
          if (votePhase == false)
         {
             textField = GameObject.FindGameObjectWithTag("TextTMP").GetComponent<TMP_Text>();
-            Debug.Log("falseflase");
         }
 
         if (votePhase == true)
@@ -77,15 +79,16 @@ public class CardScript : MonoBehaviour
             textField = GetComponentInChildren<TMP_Text>();
         }
         textField.text = card.Answer;
-        Debug.Log("tst:" + textField.text);
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Sets the players input as answer of his card.
+    /// This method is called every frame.
+    /// </summary>
     void Update()
     {
          if (answerPhase)
         {
-            Debug.Log("answerphase!");
         }
         else if (votePhase)
         {
@@ -119,6 +122,12 @@ public class CardScript : MonoBehaviour
         }
     }
 
+    //TODO
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ps"></param>
+    /// <param name="card"></param>
     public void SetCardFromPlayerScript(PlayerScript ps,Card card)
     {
         card.cardID = ps.player.playerID;
@@ -128,7 +137,8 @@ public class CardScript : MonoBehaviour
     }
 
     /// <summary>
-    /// This method destroys a "Card" tagged gameobject. If the game is neither in the votePhase nor is an answer given by the player, the SetCardFromPlayerScript method and the RegisterAnswer method are called. 
+    /// This method destroys a "Card" tagged gameobject. 
+    /// If the game is neither in the votePhase nor is an answer given by the player, the SetCardFromPlayerScript method and the RegisterAnswer method are called. 
     /// </summary>
     public void TimeUP()
     {
@@ -147,9 +157,8 @@ public class CardScript : MonoBehaviour
     }
 
     /// <summary>
-    /// This method adds card to ps.vote if  votephase is true and if it is leftclicked by the mouse.
-    /// If in answerphase and leftclicked by the mouse, it sets ps.voteCard = card.
-
+    /// This method adds card to ps.vote if votephase is true and if it is left clicked by the mouse.
+    /// If in answerphase and left clicked by the mouse, it sets ps.voteCard = card.
     /// </summary>
     void OnMouseOver()
     {
