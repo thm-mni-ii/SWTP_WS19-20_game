@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['applicationcloser_87',['ApplicationCloser',['../class_application_closer.html',1,'']]]
+  ['applicationcloser_110',['ApplicationCloser',['../class_application_closer.html',1,'']]]
 ];

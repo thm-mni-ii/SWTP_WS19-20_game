@@ -84,15 +84,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af1b37890fa0dd4d32fc9b7f1affb12f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is to register the player guesses concerning which answer is equal to the correct one. To annul an answer, more than half of the players must vote for it.  <a href="class_game_manager.html#af1b37890fa0dd4d32fc9b7f1affb12f0">More...</a><br /></td></tr>
 <tr class="separator:af1b37890fa0dd4d32fc9b7f1affb12f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bb95ad28ad033bbb37842d22a421cc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a7bb95ad28ad033bbb37842d22a421cc0">RegisterVotes</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; answer)</td></tr>
-<tr class="memdesc:a7bb95ad28ad033bbb37842d22a421cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is to register the player guesses concerning which answer is the correct one. Calls the method GiveOutPoints  <a href="class_game_manager.html#a7bb95ad28ad033bbb37842d22a421cc0">More...</a><br /></td></tr>
+<tr class="memdesc:a7bb95ad28ad033bbb37842d22a421cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method is to register the player guesses concerning which answer is the correct one. Calls the method GiveOutPoints. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">answer</td><td>The list of cards to be voted for</td></tr>
+  </table>
+  </dd>
+</dl>
+ <a href="class_game_manager.html#a7bb95ad28ad033bbb37842d22a421cc0">More...</a><br /></td></tr>
 <tr class="separator:a7bb95ad28ad033bbb37842d22a421cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9e0475bfbcc10407d59eebaeff137a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#ad9e0475bfbcc10407d59eebaeff137a7">UpdatePlayersInCardList</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; allCards)</td></tr>
 <tr class="memdesc:ad9e0475bfbcc10407d59eebaeff137a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Method updates all the <a class="el" href="class_player.html">Player</a> Objects in allCards  <a href="class_game_manager.html#ad9e0475bfbcc10407d59eebaeff137a7">More...</a><br /></td></tr>
 <tr class="separator:ad9e0475bfbcc10407d59eebaeff137a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa3c0f9b0b37d400f8a54f8a5cba5648"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#aaa3c0f9b0b37d400f8a54f8a5cba5648">BroadCastScoresViaPM</a> ()</td></tr>
+<tr class="memdesc:aaa3c0f9b0b37d400f8a54f8a5cba5648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts the scores to all players via the <a class="el" href="class_player_manager.html">PlayerManager</a>. Calls the Method RoundEnd()  <a href="class_game_manager.html#aaa3c0f9b0b37d400f8a54f8a5cba5648">More...</a><br /></td></tr>
 <tr class="separator:aaa3c0f9b0b37d400f8a54f8a5cba5648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06b082eac2e2475899c87d81cbde31cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a06b082eac2e2475899c87d81cbde31cf">CleanUp</a> ()</td></tr>
-<tr class="memdesc:a06b082eac2e2475899c87d81cbde31cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method acalls the CleanUp method on <a class="el" href="class_player_manager.html">PlayerManager</a> pm.  <a href="class_game_manager.html#a06b082eac2e2475899c87d81cbde31cf">More...</a><br /></td></tr>
+<tr class="memdesc:a06b082eac2e2475899c87d81cbde31cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method calls the CleanUp method on <a class="el" href="class_player_manager.html">PlayerManager</a> pm.  <a href="class_game_manager.html#a06b082eac2e2475899c87d81cbde31cf">More...</a><br /></td></tr>
 <tr class="separator:a06b082eac2e2475899c87d81cbde31cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2918b3d3edff04860caf69c337c2dbeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a2918b3d3edff04860caf69c337c2dbeb">HandleAnswers</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; answers)</td></tr>
 <tr class="memdesc:a2918b3d3edff04860caf69c337c2dbeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method recieves all the answers, saves them in allCards, adds the correctcard and broadcasts allCards via BroadCastAnswers on <a class="el" href="class_player_manager.html">PlayerManager</a> pm.  <a href="class_game_manager.html#a2918b3d3edff04860caf69c337c2dbeb">More...</a><br /></td></tr>
@@ -100,20 +107,20 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5b1eff733348c33da27eae892551c5c4"><td class="memItemLeft" align="right" valign="top"><a id="a5b1eff733348c33da27eae892551c5c4"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>questionSetName</b></td></tr>
+<tr class="memitem:a5b1eff733348c33da27eae892551c5c4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a5b1eff733348c33da27eae892551c5c4">questionSetName</a></td></tr>
+<tr class="memdesc:a5b1eff733348c33da27eae892551c5c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the currently used <a class="el" href="class_question_set.html">QuestionSet</a>  <a href="class_game_manager.html#a5b1eff733348c33da27eae892551c5c4">More...</a><br /></td></tr>
 <tr class="separator:a5b1eff733348c33da27eae892551c5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93e9aacd51d6e1376ef5223b99307f79"><td class="memItemLeft" align="right" valign="top"><a id="a93e9aacd51d6e1376ef5223b99307f79"></a>
-<a class="el" href="class_question_set.html">QuestionSet</a>&#160;</td><td class="memItemRight" valign="bottom"><b>questionSet</b> = new <a class="el" href="class_question_set.html">QuestionSet</a>()</td></tr>
+<tr class="memitem:a93e9aacd51d6e1376ef5223b99307f79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_question_set.html">QuestionSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a93e9aacd51d6e1376ef5223b99307f79">questionSet</a> = new <a class="el" href="class_question_set.html">QuestionSet</a>()</td></tr>
+<tr class="memdesc:a93e9aacd51d6e1376ef5223b99307f79"><td class="mdescLeft">&#160;</td><td class="mdescRight">The currently used <a class="el" href="class_question_set.html">QuestionSet</a>  <a href="class_game_manager.html#a93e9aacd51d6e1376ef5223b99307f79">More...</a><br /></td></tr>
 <tr class="separator:a93e9aacd51d6e1376ef5223b99307f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af569bf0b4258b79c3cd97e96efb3980c"><td class="memItemLeft" align="right" valign="top"><a id="af569bf0b4258b79c3cd97e96efb3980c"></a>
-<a class="el" href="class_player_manager.html">PlayerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pm</b></td></tr>
+<tr class="memitem:af569bf0b4258b79c3cd97e96efb3980c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player_manager.html">PlayerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#af569bf0b4258b79c3cd97e96efb3980c">pm</a></td></tr>
+<tr class="memdesc:af569bf0b4258b79c3cd97e96efb3980c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_player_manager.html">PlayerManager</a> the <a class="el" href="class_game_manager.html">GameManager</a> communicates with  <a href="class_game_manager.html#af569bf0b4258b79c3cd97e96efb3980c">More...</a><br /></td></tr>
 <tr class="separator:af569bf0b4258b79c3cd97e96efb3980c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e16c77887fb897cab016af97ba9e2ea"><td class="memItemLeft" align="right" valign="top"><a id="a9e16c77887fb897cab016af97ba9e2ea"></a>
-List&lt; <a class="el" href="class_player.html">Player</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>playerList</b></td></tr>
+<tr class="memitem:a9e16c77887fb897cab016af97ba9e2ea"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_player.html">Player</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#a9e16c77887fb897cab016af97ba9e2ea">playerList</a></td></tr>
+<tr class="memdesc:a9e16c77887fb897cab016af97ba9e2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">All players participating in the game  <a href="class_game_manager.html#a9e16c77887fb897cab016af97ba9e2ea">More...</a><br /></td></tr>
 <tr class="separator:a9e16c77887fb897cab016af97ba9e2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade43917fdfb32ef7dd725565023caaf3"><td class="memItemLeft" align="right" valign="top"><a id="ade43917fdfb32ef7dd725565023caaf3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td></tr>
+<tr class="memitem:ade43917fdfb32ef7dd725565023caaf3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_manager.html#ade43917fdfb32ef7dd725565023caaf3">numberOfRounds</a></td></tr>
+<tr class="memdesc:ade43917fdfb32ef7dd725565023caaf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of rounds to be played  <a href="class_game_manager.html#ade43917fdfb32ef7dd725565023caaf3">More...</a><br /></td></tr>
 <tr class="separator:ade43917fdfb32ef7dd725565023caaf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -132,8 +139,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td
       </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Calls the Method RoundEnd()</p>
+<p>Broadcasts the scores to all players via the <a class="el" href="class_player_manager.html">PlayerManager</a>. Calls the Method RoundEnd() </p>
 
 </div>
 </div>
@@ -152,7 +158,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td
       </table>
 </div><div class="memdoc">
 
-<p>This method acalls the CleanUp method on <a class="el" href="class_player_manager.html">PlayerManager</a> pm. </p>
+<p>This method calls the CleanUp method on <a class="el" href="class_player_manager.html">PlayerManager</a> pm. </p>
 
 </div>
 </div>
@@ -201,12 +207,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td
 <p>This method is to register the player guesses concerning which answer is equal to the correct one. To annul an answer, more than half of the players must vote for it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">answers</td><td></td></tr>
+    <tr><td class="paramname">votes</td><td>The list of cards to be voted for</td></tr>
   </table>
   </dd>
 </dl>
-<p>votes[j].CorrectVotes &gt; voteLimit <br  />
- </p>
 
 </div>
 </div>
@@ -226,7 +230,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td
       </table>
 </div><div class="memdoc">
 
-<p>This method is to register the player guesses concerning which answer is the correct one. Calls the method GiveOutPoints </p>
+<p>This method is to register the player guesses concerning which answer is the correct one. Calls the method GiveOutPoints. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">answer</td><td>The list of cards to be voted for</td></tr>
+  </table>
+  </dd>
+</dl>
+</p>
 
 </div>
 </div>
@@ -249,10 +259,91 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>numberOfRounds</b></td
 <p>This Method updates all the <a class="el" href="class_player.html">Player</a> Objects in allCards </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">allCards</td><td>The List of cards,which cards contain the playerobjects.</td></tr>
+    <tr><td class="paramname">allCards</td><td>The List of cards which cards contain the playerobjects</td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ade43917fdfb32ef7dd725565023caaf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade43917fdfb32ef7dd725565023caaf3">&#9670;&nbsp;</a></span>numberOfRounds</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GameManager.numberOfRounds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The number of rounds to be played </p>
+
+</div>
+</div>
+<a id="a9e16c77887fb897cab016af97ba9e2ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e16c77887fb897cab016af97ba9e2ea">&#9670;&nbsp;</a></span>playerList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_player.html">Player</a>&gt; GameManager.playerList</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>All players participating in the game </p>
+
+</div>
+</div>
+<a id="af569bf0b4258b79c3cd97e96efb3980c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af569bf0b4258b79c3cd97e96efb3980c">&#9670;&nbsp;</a></span>pm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_player_manager.html">PlayerManager</a> GameManager.pm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_player_manager.html">PlayerManager</a> the <a class="el" href="class_game_manager.html">GameManager</a> communicates with </p>
+
+</div>
+</div>
+<a id="a93e9aacd51d6e1376ef5223b99307f79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93e9aacd51d6e1376ef5223b99307f79">&#9670;&nbsp;</a></span>questionSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_question_set.html">QuestionSet</a> GameManager.questionSet = new <a class="el" href="class_question_set.html">QuestionSet</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The currently used <a class="el" href="class_question_set.html">QuestionSet</a> </p>
+
+</div>
+</div>
+<a id="a5b1eff733348c33da27eae892551c5c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b1eff733348c33da27eae892551c5c4">&#9670;&nbsp;</a></span>questionSetName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string GameManager.questionSetName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The name of the currently used <a class="el" href="class_question_set.html">QuestionSet</a> </p>
 
 </div>
 </div>

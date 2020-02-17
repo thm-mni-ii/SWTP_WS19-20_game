@@ -9,9 +9,8 @@ Inheritance diagram for Player\+Script\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}\label{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}} 
-void {\bfseries Rpc\+Create\+New\+Card} ()
-\item 
+void \mbox{\hyperlink{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}{Rpc\+Create\+New\+Card}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new card \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a0b8d599451f71d52f79fecc7a5345144}{Create\+New\+Card}} ()
 \begin{DoxyCompactList}\small\item\em This Method instantiates a new \mbox{\hyperlink{class_card_script}{Card\+Script}} Object and calls the Initialize\+Question method in \mbox{\hyperlink{class_question_script}{Question\+Script}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}{Rpc\+Display\+Players}} (string player\+List, string player\+Scores)
@@ -23,80 +22,100 @@ void \mbox{\hyperlink{class_player_script_a4a68fcc567d7778a886474196730c7f5}{Sho
 void \mbox{\hyperlink{class_player_script_a511e4966a914defa8dc25eb6dee2cef3}{Rpc\+Update\+Scores}} (string name, string score, int\mbox{[}$\,$\mbox{]} score\+Updates)
 \begin{DoxyCompactList}\small\item\em This method updates the scores and corresponding playernames in scoreboard.\+text and name\+Text.\+text. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a53ab65b3d02425a23efb01395d8cbad8}{Rpc\+Clean\+Up}} ()
-\begin{DoxyCompactList}\small\item\em This method destorys old Card\+Scripts with the Tag answer cards. It sets the corresponding boolean answer\+Phase to false. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method destroys old Card\+Scripts with the Tag answer cards. It sets the corresponding boolean answer\+Phase to false. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_aa24d92ebbf328fb06c2d2bb242c7d697}{Rpc\+Show\+Score\+Board}} (string scoreboard)
 \begin{DoxyCompactList}\small\item\em This method shows the Score\+Board at the end of the game, including which player is placed on which place. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_script_a32043604b9cb1657718da312f32a07d8}{Rpc\+Set\+Player\+Count\+And\+Time}} (int p\+Count)
 \begin{DoxyCompactList}\small\item\em This method sets the player count and the time of the timer according to how high the player count is. For 3 players the time is set to 20, for 4 players to 25 and for 5 players to 30. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_player_script_a2ab9feabbefb205be4ea5f2084489703}\label{class_player_script_a2ab9feabbefb205be4ea5f2084489703}} 
-void {\bfseries Cmd\+Register\+Equal\+Votes} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} vote)
-\item 
-\mbox{\Hypertarget{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}\label{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}} 
-void {\bfseries Rpc\+Receive\+Answers} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} answers)
-\item 
-\mbox{\Hypertarget{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}\label{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}} 
-void {\bfseries Rpc\+Question\+Start} (int count, \mbox{\hyperlink{class_question}{Question}} question)
-\item 
-\mbox{\Hypertarget{class_player_script_aa3d48f7157078e94126babe551def309}\label{class_player_script_aa3d48f7157078e94126babe551def309}} 
-void {\bfseries Cmd\+Answer\+Inc} (\mbox{\hyperlink{class_card}{Card}} card)
-\item 
-\mbox{\Hypertarget{class_player_script_a7941532e6ae40951e04c1729f27904ed}\label{class_player_script_a7941532e6ae40951e04c1729f27904ed}} 
-void {\bfseries Cmd\+Register\+Vote} (\mbox{\hyperlink{class_card}{Card}} vote\+Card, \mbox{\hyperlink{class_player}{Player}} player)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_player_script_a2ab9feabbefb205be4ea5f2084489703}{Cmd\+Register\+Equal\+Votes}} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}{vote}})
+\begin{DoxyCompactList}\small\item\em This command registers equal votes for a card array \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}{Rpc\+Receive\+Answers}} (\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]} answers)
+\begin{DoxyCompactList}\small\item\em This method receives the player answers through a card array \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}{Rpc\+Question\+Start}} (int count, \mbox{\hyperlink{class_question}{Question}} \mbox{\hyperlink{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}{question}})
+\begin{DoxyCompactList}\small\item\em This method initializes a new question for the player \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_script_aa3d48f7157078e94126babe551def309}{Cmd\+Answer\+Inc}} (\mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}{card}})
+\begin{DoxyCompactList}\small\item\em Registers an incoming answer for the player \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_script_a7941532e6ae40951e04c1729f27904ed}{Cmd\+Register\+Vote}} (\mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_player_script_a1d6fe6a41285353868b931208fcd1af3}{vote\+Card}}, \mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_player_script_ad729f088f5d5231025faa1960481a22a}{player}})
+\begin{DoxyCompactList}\small\item\em Registers the voting of this player on a card \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_player_script_a5770a80cde31d29309807aa06de83361}\label{class_player_script_a5770a80cde31d29309807aa06de83361}} 
-float {\bfseries flash\+Speed} = 1f
+bool \mbox{\hyperlink{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}{is\+Local}}
 \item 
-\mbox{\Hypertarget{class_player_script_a3a36cdf989226ba3cfd6aec00686c2b4}\label{class_player_script_a3a36cdf989226ba3cfd6aec00686c2b4}} 
-Color {\bfseries scoreboard\+Update\+Color} = new Color(0.\+078f, 0.\+706f, 0.\+078f, 1f)
-\item 
-\mbox{\Hypertarget{class_player_script_a530b5fa2d0857413b7d250d075072d7f}\label{class_player_script_a530b5fa2d0857413b7d250d075072d7f}} 
-Color {\bfseries scoreboard\+No\+Update\+Color} = new Color(0.\+078f, 0.\+706f, 0.\+078f, 0f)
-\item 
-\mbox{\Hypertarget{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}\label{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}} 
-bool {\bfseries is\+Local}
-\item 
-\mbox{\Hypertarget{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}\label{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}} 
-\mbox{\hyperlink{class_card_script}{Card\+Script}} {\bfseries cs}
-\item 
-\mbox{\Hypertarget{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}\label{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}} 
-\mbox{\hyperlink{class_question_script}{Question\+Script}} {\bfseries question}
-\item 
-\mbox{\Hypertarget{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}\label{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}} 
-\mbox{\hyperlink{class_card_script}{Card\+Script}} {\bfseries card}
-\item 
-\mbox{\Hypertarget{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}\label{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}} 
-\mbox{\hyperlink{class_card_script}{Card\+Script}} {\bfseries player\+Card}
-\item 
-\mbox{\Hypertarget{class_player_script_ad729f088f5d5231025faa1960481a22a}\label{class_player_script_ad729f088f5d5231025faa1960481a22a}} 
-\mbox{\hyperlink{class_player}{Player}} {\bfseries player}
-\item 
-\mbox{\Hypertarget{class_player_script_abc20193eb7967a005367ad13f36ad98c}\label{class_player_script_abc20193eb7967a005367ad13f36ad98c}} 
-Text\+Mesh\+Pro\+U\+G\+UI {\bfseries phase\+Text}
-\item 
-\mbox{\Hypertarget{class_player_script_a2a0593773711850064d2413a959e2ac4}\label{class_player_script_a2a0593773711850064d2413a959e2ac4}} 
-Text\+Mesh\+Pro\+U\+G\+UI {\bfseries name\+Text}
-\item 
-\mbox{\Hypertarget{class_player_script_a2c095f7d22f42a12ad577c7aded99147}\label{class_player_script_a2c095f7d22f42a12ad577c7aded99147}} 
-\mbox{\hyperlink{class_player_manager}{Player\+Manager}} {\bfseries pm}
-\item 
-\mbox{\Hypertarget{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}\label{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}} 
-List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ {\bfseries vote}
-\item 
-\mbox{\Hypertarget{class_player_script_a1d6fe6a41285353868b931208fcd1af3}\label{class_player_script_a1d6fe6a41285353868b931208fcd1af3}} 
-\mbox{\hyperlink{class_card}{Card}} {\bfseries vote\+Card}
-\item 
-\mbox{\Hypertarget{class_player_script_a428af4511825b9b7495b28f2b95b6906}\label{class_player_script_a428af4511825b9b7495b28f2b95b6906}} 
-Boolean {\bfseries start\+Phase} = true
-\item 
-\mbox{\Hypertarget{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}\label{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}} 
-List$<$ \mbox{\hyperlink{class_card_script}{Card\+Script}} $>$ {\bfseries answer\+Cards}
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_card_script}{Card\+Script}} \mbox{\hyperlink{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}{cs}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_question_script}{Question\+Script}} \mbox{\hyperlink{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}{question}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_question_script}{Question\+Script}} to communicate with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card_script}{Card\+Script}} \mbox{\hyperlink{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}{card}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card_script}{Card\+Script}} \mbox{\hyperlink{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}{player\+Card}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_player_script_ad729f088f5d5231025faa1960481a22a}{player}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_player}{Player}} object to communicate with \end{DoxyCompactList}\item 
+Text\+Mesh\+Pro\+U\+G\+UI \mbox{\hyperlink{class_player_script_abc20193eb7967a005367ad13f36ad98c}{phase\+Text}}
+\begin{DoxyCompactList}\small\item\em The text element which displays the current stage of the game \end{DoxyCompactList}\item 
+Text\+Mesh\+Pro\+U\+G\+UI \mbox{\hyperlink{class_player_script_a2a0593773711850064d2413a959e2ac4}{name\+Text}}
+\begin{DoxyCompactList}\small\item\em The names displayed in the scoreboard \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_manager}{Player\+Manager}} \mbox{\hyperlink{class_player_script_a2c095f7d22f42a12ad577c7aded99147}{pm}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} to communicate with \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}{vote}}
+\begin{DoxyCompactList}\small\item\em A list of cards for voting purposes \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_player_script_a1d6fe6a41285353868b931208fcd1af3}{vote\+Card}}
+\begin{DoxyCompactList}\small\item\em A single card for voting purposes \end{DoxyCompactList}\item 
+Boolean \mbox{\hyperlink{class_player_script_a428af4511825b9b7495b28f2b95b6906}{start\+Phase}} = true
+\begin{DoxyCompactList}\small\item\em Bool if the game is currently in the start phase \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_card_script}{Card\+Script}} $>$ \mbox{\hyperlink{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}{answer\+Cards}}
+\begin{DoxyCompactList}\small\item\em List of Card\+Scripts representing the answers given by the players \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_script_aa3d48f7157078e94126babe551def309}\label{class_player_script_aa3d48f7157078e94126babe551def309}} 
+\index{PlayerScript@{PlayerScript}!CmdAnswerInc@{CmdAnswerInc}}
+\index{CmdAnswerInc@{CmdAnswerInc}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{CmdAnswerInc()}{CmdAnswerInc()}}
+{\footnotesize\ttfamily void Player\+Script.\+Cmd\+Answer\+Inc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}}]{card }\end{DoxyParamCaption})}
+
+
+
+Registers an incoming answer for the player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & The incoming answer\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_script_a2ab9feabbefb205be4ea5f2084489703}\label{class_player_script_a2ab9feabbefb205be4ea5f2084489703}} 
+\index{PlayerScript@{PlayerScript}!CmdRegisterEqualVotes@{CmdRegisterEqualVotes}}
+\index{CmdRegisterEqualVotes@{CmdRegisterEqualVotes}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{CmdRegisterEqualVotes()}{CmdRegisterEqualVotes()}}
+{\footnotesize\ttfamily void Player\+Script.\+Cmd\+Register\+Equal\+Votes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]}}]{vote }\end{DoxyParamCaption})}
+
+
+
+This command registers equal votes for a card array 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vote} & The card array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_script_a7941532e6ae40951e04c1729f27904ed}\label{class_player_script_a7941532e6ae40951e04c1729f27904ed}} 
+\index{PlayerScript@{PlayerScript}!CmdRegisterVote@{CmdRegisterVote}}
+\index{CmdRegisterVote@{CmdRegisterVote}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{CmdRegisterVote()}{CmdRegisterVote()}}
+{\footnotesize\ttfamily void Player\+Script.\+Cmd\+Register\+Vote (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}}]{vote\+Card,  }\item[{\mbox{\hyperlink{class_player}{Player}}}]{player }\end{DoxyParamCaption})}
+
+
+
+Registers the voting of this player on a card 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vote\+Card} & The card to vote on\\
+\hline
+{\em player} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_player_script_a0b8d599451f71d52f79fecc7a5345144}\label{class_player_script_a0b8d599451f71d52f79fecc7a5345144}} 
 \index{PlayerScript@{PlayerScript}!CreateNewCard@{CreateNewCard}}
 \index{CreateNewCard@{CreateNewCard}!PlayerScript@{PlayerScript}}
@@ -115,7 +134,17 @@ This Method instantiates a new \mbox{\hyperlink{class_card_script}{Card\+Script}
 
 
 
-This method destorys old Card\+Scripts with the Tag answer cards. It sets the corresponding boolean answer\+Phase to false. 
+This method destroys old Card\+Scripts with the Tag answer cards. It sets the corresponding boolean answer\+Phase to false. 
+
+\mbox{\Hypertarget{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}\label{class_player_script_af8d0a7d47609ea6f9718220e872ee3b6}} 
+\index{PlayerScript@{PlayerScript}!RpcCreateNewCard@{RpcCreateNewCard}}
+\index{RpcCreateNewCard@{RpcCreateNewCard}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{RpcCreateNewCard()}{RpcCreateNewCard()}}
+{\footnotesize\ttfamily void Player\+Script.\+Rpc\+Create\+New\+Card (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new card 
 
 \mbox{\Hypertarget{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}\label{class_player_script_ae8316cb758cd1ca197a6e4908ae2b7bd}} 
 \index{PlayerScript@{PlayerScript}!RpcDisplayPlayers@{RpcDisplayPlayers}}
@@ -132,6 +161,38 @@ This Method displays the players and their starting score of 0 points in name\+T
 {\em player\+List} & A string cotaining the players and a newline after every playername\\
 \hline
 {\em player\+Scores} & A string containing the score and a newline for every player\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}\label{class_player_script_afcd7ee1bea1661413e5acb659f5ccf6d}} 
+\index{PlayerScript@{PlayerScript}!RpcQuestionStart@{RpcQuestionStart}}
+\index{RpcQuestionStart@{RpcQuestionStart}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{RpcQuestionStart()}{RpcQuestionStart()}}
+{\footnotesize\ttfamily void Player\+Script.\+Rpc\+Question\+Start (\begin{DoxyParamCaption}\item[{int}]{count,  }\item[{\mbox{\hyperlink{class_question}{Question}}}]{question }\end{DoxyParamCaption})}
+
+
+
+This method initializes a new question for the player 
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & \\
+\hline
+{\em question} & The question to be set\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}\label{class_player_script_ae4ee033576b9c90e90dd45a23dc3c53e}} 
+\index{PlayerScript@{PlayerScript}!RpcReceiveAnswers@{RpcReceiveAnswers}}
+\index{RpcReceiveAnswers@{RpcReceiveAnswers}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{RpcReceiveAnswers()}{RpcReceiveAnswers()}}
+{\footnotesize\ttfamily void Player\+Script.\+Rpc\+Receive\+Answers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}}\mbox{[}$\,$\mbox{]}}]{answers }\end{DoxyParamCaption})}
+
+
+
+This method receives the player answers through a card array 
+
+
+\begin{DoxyParams}{Parameters}
+{\em answers} & The card array\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_script_a32043604b9cb1657718da312f32a07d8}\label{class_player_script_a32043604b9cb1657718da312f32a07d8}} 
@@ -186,7 +247,11 @@ This method updates the scores and corresponding playernames in scoreboard.\+tex
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & A List of players, used for their score and name field.\\
+{\em name} & A string of player names\\
+\hline
+{\em score} & A string of player scores\\
+\hline
+{\em score\+Updates} & An array of the difference between old and new player scores\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_script_a4a68fcc567d7778a886474196730c7f5}\label{class_player_script_a4a68fcc567d7778a886474196730c7f5}} 
@@ -201,9 +266,142 @@ This method shows all instantiates new Card\+Scripts for the given answers and d
 
 
 \begin{DoxyParams}{Parameters}
-{\em answers} & A list of cards which are used to instaiate new Cardscripts \\
+{\em answers} & A list of cards which are used to instantiate new Cardscripts \\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}\label{class_player_script_ac61f50a49b9990ed23ca6ef0cb186fb4}} 
+\index{PlayerScript@{PlayerScript}!answerCards@{answerCards}}
+\index{answerCards@{answerCards}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{answerCards}{answerCards}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_card_script}{Card\+Script}}$>$ Player\+Script.\+answer\+Cards}
+
+
+
+List of Card\+Scripts representing the answers given by the players 
+
+\mbox{\Hypertarget{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}\label{class_player_script_a2af2238b9880f69dbc99b729e7d6a74f}} 
+\index{PlayerScript@{PlayerScript}!card@{card}}
+\index{card@{card}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{card}{card}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card_script}{Card\+Script}} Player\+Script.\+card}
+
+
+
+A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
+
+\mbox{\Hypertarget{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}\label{class_player_script_a5f3503fd7750cddfd58d6578e945b03d}} 
+\index{PlayerScript@{PlayerScript}!cs@{cs}}
+\index{cs@{cs}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{cs}{cs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card_script}{Card\+Script}} Player\+Script.\+cs}
+
+
+
+A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
+
+\mbox{\Hypertarget{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}\label{class_player_script_acd314aea7ada103376bcbf8317b3dbfa}} 
+\index{PlayerScript@{PlayerScript}!isLocal@{isLocal}}
+\index{isLocal@{isLocal}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{isLocal}{isLocal}}
+{\footnotesize\ttfamily bool Player\+Script.\+is\+Local}
+
+
+
+
+
+\mbox{\Hypertarget{class_player_script_a2a0593773711850064d2413a959e2ac4}\label{class_player_script_a2a0593773711850064d2413a959e2ac4}} 
+\index{PlayerScript@{PlayerScript}!nameText@{nameText}}
+\index{nameText@{nameText}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{nameText}{nameText}}
+{\footnotesize\ttfamily Text\+Mesh\+Pro\+U\+G\+UI Player\+Script.\+name\+Text}
+
+
+
+The names displayed in the scoreboard 
+
+\mbox{\Hypertarget{class_player_script_abc20193eb7967a005367ad13f36ad98c}\label{class_player_script_abc20193eb7967a005367ad13f36ad98c}} 
+\index{PlayerScript@{PlayerScript}!phaseText@{phaseText}}
+\index{phaseText@{phaseText}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{phaseText}{phaseText}}
+{\footnotesize\ttfamily Text\+Mesh\+Pro\+U\+G\+UI Player\+Script.\+phase\+Text}
+
+
+
+The text element which displays the current stage of the game 
+
+\mbox{\Hypertarget{class_player_script_ad729f088f5d5231025faa1960481a22a}\label{class_player_script_ad729f088f5d5231025faa1960481a22a}} 
+\index{PlayerScript@{PlayerScript}!player@{player}}
+\index{player@{player}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} Player\+Script.\+player}
+
+
+
+A \mbox{\hyperlink{class_player}{Player}} object to communicate with 
+
+\mbox{\Hypertarget{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}\label{class_player_script_a8c44873ebd1cc9f188dfea738fca30c1}} 
+\index{PlayerScript@{PlayerScript}!playerCard@{playerCard}}
+\index{playerCard@{playerCard}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{playerCard}{playerCard}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card_script}{Card\+Script}} Player\+Script.\+player\+Card}
+
+
+
+A \mbox{\hyperlink{class_card_script}{Card\+Script}} to communicate with 
+
+\mbox{\Hypertarget{class_player_script_a2c095f7d22f42a12ad577c7aded99147}\label{class_player_script_a2c095f7d22f42a12ad577c7aded99147}} 
+\index{PlayerScript@{PlayerScript}!pm@{pm}}
+\index{pm@{pm}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{pm}{pm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player_manager}{Player\+Manager}} Player\+Script.\+pm}
+
+
+
+The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} to communicate with 
+
+\mbox{\Hypertarget{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}\label{class_player_script_a38406ec736ce36881aa3eb7e9f030a8e}} 
+\index{PlayerScript@{PlayerScript}!question@{question}}
+\index{question@{question}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{question}{question}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_question_script}{Question\+Script}} Player\+Script.\+question}
+
+
+
+A \mbox{\hyperlink{class_question_script}{Question\+Script}} to communicate with 
+
+\mbox{\Hypertarget{class_player_script_a428af4511825b9b7495b28f2b95b6906}\label{class_player_script_a428af4511825b9b7495b28f2b95b6906}} 
+\index{PlayerScript@{PlayerScript}!startPhase@{startPhase}}
+\index{startPhase@{startPhase}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{startPhase}{startPhase}}
+{\footnotesize\ttfamily Boolean Player\+Script.\+start\+Phase = true}
+
+
+
+Bool if the game is currently in the start phase 
+
+\mbox{\Hypertarget{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}\label{class_player_script_a653c0d264ae147d83f4d9cd916d1c7d9}} 
+\index{PlayerScript@{PlayerScript}!vote@{vote}}
+\index{vote@{vote}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{vote}{vote}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_card}{Card}}$>$ Player\+Script.\+vote}
+
+
+
+A list of cards for voting purposes 
+
+\mbox{\Hypertarget{class_player_script_a1d6fe6a41285353868b931208fcd1af3}\label{class_player_script_a1d6fe6a41285353868b931208fcd1af3}} 
+\index{PlayerScript@{PlayerScript}!voteCard@{voteCard}}
+\index{voteCard@{voteCard}!PlayerScript@{PlayerScript}}
+\doxysubsubsection{\texorpdfstring{voteCard}{voteCard}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card}{Card}} Player\+Script.\+vote\+Card}
+
+
+
+A single card for voting purposes 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

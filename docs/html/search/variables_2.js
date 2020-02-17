@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['isallreadyvoted_156',['isAllreadyVoted',['../class_card_script.html#a79ace588d8a2d99ee14796ce80a2584e',1,'CardScript']]],
-  ['iscorrect_157',['isCorrect',['../class_card.html#a37131add738b3953372890b117e259e7',1,'Card']]]
+  ['gm_190',['gm',['../class_player_manager.html#adc10762ecee2ad006e2972ad251269e9',1,'PlayerManager']]]
 ];

@@ -9,8 +9,7 @@ Inheritance diagram for Card\+Script\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_card_script_a1611b0d232d9669588134be072917a98}\label{class_card_script_a1611b0d232d9669588134be072917a98}} 
-void {\bfseries Set\+Card\+From\+Player\+Script} (\mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_card_script_aa0af35d094c775aa22d86d27012ee291}{ps}}, \mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_script_af567a9b37343db3510b578d357695b09}{card}})
+void \mbox{\hyperlink{class_card_script_a1611b0d232d9669588134be072917a98}{Set\+Card\+From\+Player\+Script}} (\mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_card_script_aa0af35d094c775aa22d86d27012ee291}{ps}}, \mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_script_af567a9b37343db3510b578d357695b09}{card}})
 \item 
 void \mbox{\hyperlink{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}{Time\+UP}} ()
 \begin{DoxyCompactList}\small\item\em This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game is neither in the vote\+Phase nor is an answer given by the player, the Set\+Card\+From\+Player\+Script method and the Register\+Answer method are called. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -18,30 +17,47 @@ void \mbox{\hyperlink{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}{Time\
 \begin{DoxyCompactItemize}
 \item 
 List$<$ \mbox{\hyperlink{class_card_script}{Card\+Script}} $>$ \mbox{\hyperlink{class_card_script_a9545b5987c13cfcc3695754dfb4aa5db}{ans\+Cards}}
-\begin{DoxyCompactList}\small\item\em List of answercards. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em List of answer cards. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_script_af567a9b37343db3510b578d357695b09}{card}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_card}{Card}} object to this cardscript. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_card}{Card}} object to this \mbox{\hyperlink{class_card_script}{Card\+Script}}. \end{DoxyCompactList}\item 
 T\+M\+P\+\_\+\+Text \mbox{\hyperlink{class_card_script_a7fb1b5f8c1f15897e038f7825379b758}{text\+Field}}
-\begin{DoxyCompactList}\small\item\em Textfield to display this cards Answe text. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Text field to display this card\textquotesingle{}s answer text. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_card_script_af89b869c70df84d5bb114c6b38f493a5}{answer\+Given}} = false
 \begin{DoxyCompactList}\small\item\em Flag if input is finished. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_card_script_ac02705870f750d731fd80b65541242cb}{vote\+Phase}} = false
-\begin{DoxyCompactList}\small\item\em Flag if the game is in votingphase. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Flag if the game is in voting phase. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_card_script_a67ed090aa16d94ae0b99400da90f922c}{answer\+Phase}} = false
-\begin{DoxyCompactList}\small\item\em Flag if the game is in answerphase. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Flag if the game is in answer phase. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_player_manager}{Player\+Manager}} \mbox{\hyperlink{class_card_script_a96daebe03b2740900cb84e6315df532f}{pm}}
-\begin{DoxyCompactList}\small\item\em Playermanager of the game. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_player_manager}{Player\+Manager}} of the game. \end{DoxyCompactList}\item 
 Boolean \mbox{\hyperlink{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}{is\+Allready\+Voted}} = false
 \begin{DoxyCompactList}\small\item\em Flag if this card was voted by the player. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_card_script_aa0af35d094c775aa22d86d27012ee291}{ps}}
-\begin{DoxyCompactList}\small\item\em Playerscript to the player. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_player_script}{Player\+Script}} to the player. \end{DoxyCompactList}\item 
 Game\+Object \mbox{\hyperlink{class_card_script_a4b463a696c742320e6baa8623257b364}{selection\+Object}}
 \begin{DoxyCompactList}\small\item\em Border for voted cards. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_question_script}{Question\+Script}} \mbox{\hyperlink{class_card_script_ab1ff5ac9d4a7061d7ab31b066b022cc1}{qs}}
-\begin{DoxyCompactList}\small\item\em The question that is asked at the moment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The question that is asked in the current round. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_card_script_a1611b0d232d9669588134be072917a98}\label{class_card_script_a1611b0d232d9669588134be072917a98}} 
+\index{CardScript@{CardScript}!SetCardFromPlayerScript@{SetCardFromPlayerScript}}
+\index{SetCardFromPlayerScript@{SetCardFromPlayerScript}!CardScript@{CardScript}}
+\doxysubsubsection{\texorpdfstring{SetCardFromPlayerScript()}{SetCardFromPlayerScript()}}
+{\footnotesize\ttfamily void Card\+Script.\+Set\+Card\+From\+Player\+Script (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player_script}{Player\+Script}}}]{ps,  }\item[{\mbox{\hyperlink{class_card}{Card}}}]{card }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em ps} & \\
+\hline
+{\em card} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}\label{class_card_script_a7cfc56cf9b72de7bd1fc4141241fec1e}} 
 \index{CardScript@{CardScript}!TimeUP@{TimeUP}}
 \index{TimeUP@{TimeUP}!CardScript@{CardScript}}
@@ -63,7 +79,7 @@ This method destroys a \char`\"{}\+Card\char`\"{} tagged gameobject. If the game
 
 
 
-List of answercards. 
+List of answer cards. 
 
 \mbox{\Hypertarget{class_card_script_af89b869c70df84d5bb114c6b38f493a5}\label{class_card_script_af89b869c70df84d5bb114c6b38f493a5}} 
 \index{CardScript@{CardScript}!answerGiven@{answerGiven}}
@@ -83,7 +99,7 @@ Flag if input is finished.
 
 
 
-Flag if the game is in answerphase. 
+Flag if the game is in answer phase. 
 
 \mbox{\Hypertarget{class_card_script_af567a9b37343db3510b578d357695b09}\label{class_card_script_af567a9b37343db3510b578d357695b09}} 
 \index{CardScript@{CardScript}!card@{card}}
@@ -93,7 +109,7 @@ Flag if the game is in answerphase.
 
 
 
-\mbox{\hyperlink{class_card}{Card}} object to this cardscript. 
+\mbox{\hyperlink{class_card}{Card}} object to this \mbox{\hyperlink{class_card_script}{Card\+Script}}. 
 
 \mbox{\Hypertarget{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}\label{class_card_script_a79ace588d8a2d99ee14796ce80a2584e}} 
 \index{CardScript@{CardScript}!isAllreadyVoted@{isAllreadyVoted}}
@@ -113,7 +129,7 @@ Flag if this card was voted by the player.
 
 
 
-Playermanager of the game. 
+\mbox{\hyperlink{class_player_manager}{Player\+Manager}} of the game. 
 
 \mbox{\Hypertarget{class_card_script_aa0af35d094c775aa22d86d27012ee291}\label{class_card_script_aa0af35d094c775aa22d86d27012ee291}} 
 \index{CardScript@{CardScript}!ps@{ps}}
@@ -123,7 +139,7 @@ Playermanager of the game.
 
 
 
-Playerscript to the player. 
+\mbox{\hyperlink{class_player_script}{Player\+Script}} to the player. 
 
 \mbox{\Hypertarget{class_card_script_ab1ff5ac9d4a7061d7ab31b066b022cc1}\label{class_card_script_ab1ff5ac9d4a7061d7ab31b066b022cc1}} 
 \index{CardScript@{CardScript}!qs@{qs}}
@@ -133,7 +149,7 @@ Playerscript to the player.
 
 
 
-The question that is asked at the moment. 
+The question that is asked in the current round. 
 
 \mbox{\Hypertarget{class_card_script_a4b463a696c742320e6baa8623257b364}\label{class_card_script_a4b463a696c742320e6baa8623257b364}} 
 \index{CardScript@{CardScript}!selectionObject@{selectionObject}}
@@ -153,7 +169,7 @@ Border for voted cards.
 
 
 
-Textfield to display this cards Answe text. 
+Text field to display this card\textquotesingle{}s answer text. 
 
 \mbox{\Hypertarget{class_card_script_ac02705870f750d731fd80b65541242cb}\label{class_card_script_ac02705870f750d731fd80b65541242cb}} 
 \index{CardScript@{CardScript}!votePhase@{votePhase}}
@@ -163,7 +179,7 @@ Textfield to display this cards Answe text.
 
 
 
-Flag if the game is in votingphase. 
+Flag if the game is in voting phase. 
 
 
 

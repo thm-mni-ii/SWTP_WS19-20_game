@@ -1,17 +1,13 @@
 var searchData=
 [
-  ['recieveplayer_58',['RecievePlayer',['../class_player_manager.html#aba44c7fde1e15f0c0b3e957af71769e8',1,'PlayerManager']]],
-  ['registeranswer_59',['RegisterAnswer',['../class_player_manager.html#a5c074190d0d102d80be24cf6e410257f',1,'PlayerManager']]],
-  ['registerequalvote_60',['RegisterEqualVote',['../class_player_manager.html#abfdb782b92c6735e07ded1013eaa399e',1,'PlayerManager']]],
-  ['registerequalvotes_61',['RegisterEqualVotes',['../class_game_manager.html#af1b37890fa0dd4d32fc9b7f1affb12f0',1,'GameManager']]],
-  ['registervote_62',['RegisterVote',['../class_player_manager.html#a8ff247ee6a4c20143d1bf35b32e71a2a',1,'PlayerManager']]],
-  ['registervotes_63',['RegisterVotes',['../class_game_manager.html#a7bb95ad28ad033bbb37842d22a421cc0',1,'GameManager']]],
-  ['removequestionfromset_64',['RemoveQuestionFromSet',['../class_question_set.html#a1e02f77922dbe61317b6644a3241e7cc',1,'QuestionSet']]],
-  ['roomid_65',['RoomID',['../class_player.html#adb3e49f621df02c7d89a781303046d18',1,'Player']]],
-  ['rpccleanup_66',['RpcCleanUp',['../class_player_script.html#a53ab65b3d02425a23efb01395d8cbad8',1,'PlayerScript']]],
-  ['rpcdisplayplayers_67',['RpcDisplayPlayers',['../class_player_script.html#ae8316cb758cd1ca197a6e4908ae2b7bd',1,'PlayerScript']]],
-  ['rpcsetplayercountandtime_68',['RpcSetPlayerCountAndTime',['../class_player_script.html#a32043604b9cb1657718da312f32a07d8',1,'PlayerScript']]],
-  ['rpcshowscoreboard_69',['RpcShowScoreBoard',['../class_player_script.html#aa24d92ebbf328fb06c2d2bb242c7d697',1,'PlayerScript']]],
-  ['rpcstartanswerphase_70',['RpcStartAnswerPhase',['../class_player_script.html#aeab93762563563a8c8c55ab2f3ce63f4',1,'PlayerScript']]],
-  ['rpcupdatescores_71',['RpcUpdateScores',['../class_player_script.html#a511e4966a914defa8dc25eb6dee2cef3',1,'PlayerScript']]]
+  ['qs_63',['qs',['../class_card_script.html#ab1ff5ac9d4a7061d7ab31b066b022cc1',1,'CardScript']]],
+  ['question_64',['Question',['../class_question.html',1,'Question'],['../class_player_script.html#a38406ec736ce36881aa3eb7e9f030a8e',1,'PlayerScript.question()'],['../class_question.html#afa79800493bceb0ca4449a8e258e7ae4',1,'Question.question()'],['../class_question_script.html#ac3e4de43b0ff9aec3c8f7731be17d299',1,'QuestionScript.question()'],['../class_question.html#a096a2011ddd4b5414000f74fd29c86dc',1,'Question.Question()'],['../class_question.html#a307272d9a0d279f26216bdf142a09986',1,'Question.Question(int questionID, string question, string answer)']]],
+  ['questionend_65',['questionEnd',['../class_question_script.html#a47356a70c50e9cbef7132c35fe861f9b',1,'QuestionScript']]],
+  ['questionid_66',['questionID',['../class_question.html#ae74532a8db301985e5ae0dd97a1ff5e6',1,'Question']]],
+  ['questionlist_67',['questionList',['../class_question_set.html#a03fd5c7a52a4f2f9406d8d26480ca23d',1,'QuestionSet.questionList()'],['../class_question_set.html#a6b89441840dc7dabebfa51e960c992b6',1,'QuestionSet.QuestionList()']]],
+  ['questionscript_68',['QuestionScript',['../class_question_script.html',1,'']]],
+  ['questionset_69',['QuestionSet',['../class_question_set.html',1,'QuestionSet'],['../class_question_set.html#aeb8c79cd5f7bad8c933e82e02d2a86a2',1,'QuestionSet.QuestionSet()'],['../class_game_manager.html#a93e9aacd51d6e1376ef5223b99307f79',1,'GameManager.questionSet()']]],
+  ['questionsetid_70',['questionSetID',['../class_question_set.html#a0cf255225ba7d4dc5caa6c628016fd02',1,'QuestionSet']]],
+  ['questionsetname_71',['questionSetName',['../class_game_manager.html#a5b1eff733348c33da27eae892551c5c4',1,'GameManager']]],
+  ['quitapp_72',['QuitApp',['../class_application_closer.html#a152624a9c05eb7f77bd6cb6aada066df',1,'ApplicationCloser']]]
 ];

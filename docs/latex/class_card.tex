@@ -8,22 +8,22 @@
 \mbox{\hyperlink{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}{Card}} (int \mbox{\hyperlink{class_card_ac9a587fc3976a91aba13b5acf410ead9}{card\+ID}})
 \begin{DoxyCompactList}\small\item\em Constructor for a card Object. This Constructor initializes the List player\+Guesses. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_card_a083c578986e5954bee5412ca57a454e7}{Add\+Player\+To\+Player\+Guesses}} (\mbox{\hyperlink{class_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_card_a86e09c2ce78d1a3e3727694fb4693adf}{Card\+To\+Json\+String}} ()
-\begin{DoxyCompactList}\small\item\em A method returns an Object converted to a string in J\+S\+ON format. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method returns an Object converted to a string in J\+S\+ON format. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_card}{Card}} \mbox{\hyperlink{class_card_a8653e7edb7afd3090ba8bc411560410d}{Json\+To\+Card}} (string json)
-\begin{DoxyCompactList}\small\item\em A method that reruns a new \mbox{\hyperlink{class_card}{Card}} from a string in J\+S\+ON format. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A method that returns a new card from a string in J\+S\+ON format. \end{DoxyCompactList}\item 
 List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_card_a01279e8b855a89eaf751f2bb27c64006}{Add\+One\+And\+Shuffle}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ card\+List)
-\begin{DoxyCompactList}\small\item\em This method adds the \mbox{\hyperlink{class_card}{Card}} to card\+List and Shuffles the List. This method should only be called on Cards which are correct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This method adds the card to card\+List and shuffles the list. It should only be called on cards which are correct. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{class_card_ac9a587fc3976a91aba13b5acf410ead9}{card\+ID}}
-\begin{DoxyCompactList}\small\item\em The identifation of the card \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The identification number of the card \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_card_a5f5d07a030bc1d53e6b53f16b2f61da0}{answer}} = \char`\"{}\char`\"{}
-\begin{DoxyCompactList}\small\item\em The answer of the player \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The answer the player give to a certain question \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_card_a5af95d03909ba563e2350c93e8c7becf}{correct\+Votes}}
-\begin{DoxyCompactList}\small\item\em Number of votes, concerning if the given answer is equal to the correct answer. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The number of players who voted this answer to be equal to the correct one \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_card_a37131add738b3953372890b117e259e7}{is\+Correct}}
 \begin{DoxyCompactList}\small\item\em Boolean to show it is the correct answer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
@@ -52,11 +52,6 @@ List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_card_
 
 Constructor for a \mbox{\hyperlink{class_card}{Card}} Object. This Constructor initializes the List player\+Guesses. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em card\+ID} & The identification number of this card.\\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}\label{class_card_a8e6c49d55d081d4c9f173bbf0f6d5d89}} 
 \index{Card@{Card}!Card@{Card}}
 \index{Card@{Card}!Card@{Card}}
@@ -83,15 +78,15 @@ Constructor for a card Object. This Constructor initializes the List player\+Gue
 
 
 
-This method adds the \mbox{\hyperlink{class_card}{Card}} to card\+List and Shuffles the List. This method should only be called on Cards which are correct. 
+This method adds the card to card\+List and shuffles the list. It should only be called on cards which are correct. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em card\+List} & The List to to which the cards will be added.\\
+{\em card\+List} & The List to which the cards will be added\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+The shuffled list containing the new card
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_card_a083c578986e5954bee5412ca57a454e7}\label{class_card_a083c578986e5954bee5412ca57a454e7}} 
 \index{Card@{Card}!AddPlayerToPlayerGuesses@{AddPlayerToPlayerGuesses}}
@@ -101,11 +96,11 @@ This method adds the \mbox{\hyperlink{class_card}{Card}} to card\+List and Shuff
 
 
 
-Method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. 
+A method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+Guesses List of the \mbox{\hyperlink{class_card}{Card}} Object. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & The player that will be added.\\
+{\em player} & The player that will be added to the list.\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_card_a86e09c2ce78d1a3e3727694fb4693adf}\label{class_card_a86e09c2ce78d1a3e3727694fb4693adf}} 
@@ -116,10 +111,10 @@ Method to add a specific \mbox{\hyperlink{class_player}{Player}} to the player\+
 
 
 
-A method returns an Object converted to a string in J\+S\+ON format. 
+This method returns an Object converted to a string in J\+S\+ON format. 
 
 \begin{DoxyReturn}{Returns}
-json as a string
+J\+S\+ON as a string
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_card_a8653e7edb7afd3090ba8bc411560410d}\label{class_card_a8653e7edb7afd3090ba8bc411560410d}} 
 \index{Card@{Card}!JsonToCard@{JsonToCard}}
@@ -129,11 +124,11 @@ json as a string
 
 
 
-A method that reruns a new \mbox{\hyperlink{class_card}{Card}} from a string in J\+S\+ON format. 
+A method that returns a new card from a string in J\+S\+ON format. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em json} & \\
+{\em json} & The string to create the new card\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -150,7 +145,7 @@ A method that reruns a new \mbox{\hyperlink{class_card}{Card}} from a string in 
 
 
 
-The answer of the player 
+The answer the player give to a certain question 
 
 \mbox{\Hypertarget{class_card_ac9a587fc3976a91aba13b5acf410ead9}\label{class_card_ac9a587fc3976a91aba13b5acf410ead9}} 
 \index{Card@{Card}!cardID@{cardID}}
@@ -160,7 +155,7 @@ The answer of the player
 
 
 
-The identifation of the card 
+The identification number of the card 
 
 \mbox{\Hypertarget{class_card_a5af95d03909ba563e2350c93e8c7becf}\label{class_card_a5af95d03909ba563e2350c93e8c7becf}} 
 \index{Card@{Card}!correctVotes@{correctVotes}}
@@ -170,7 +165,7 @@ The identifation of the card
 
 
 
-Number of votes, concerning if the given answer is equal to the correct answer. 
+The number of players who voted this answer to be equal to the correct one 
 
 \mbox{\Hypertarget{class_card_a37131add738b3953372890b117e259e7}\label{class_card_a37131add738b3953372890b117e259e7}} 
 \index{Card@{Card}!isCorrect@{isCorrect}}

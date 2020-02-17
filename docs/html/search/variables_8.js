@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['votephase_172',['votePhase',['../class_card_script.html#ac02705870f750d731fd80b65541242cb',1,'CardScript']]]
+  ['selectionobject_213',['selectionObject',['../class_card_script.html#a4b463a696c742320e6baa8623257b364',1,'CardScript']]],
+  ['startphase_214',['startPhase',['../class_player_script.html#a428af4511825b9b7495b28f2b95b6906',1,'PlayerScript']]]
 ];

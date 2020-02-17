@@ -10,27 +10,30 @@ Inheritance diagram for Player\+Manager\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_player_manager_abdb444060fde7b515c89247b97f5167c}{Start}} ()
-\begin{DoxyCompactList}\small\item\em Adds players to the dictionary. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds players to the dictionary. This method is called once on startup. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_ac68a77b974a6d32da9187d3e86e01303}{Send\+Player\+Count}} ()
-\begin{DoxyCompactList}\small\item\em This method sends the count of players to each playerscript. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}{Recieve\+Player}} (\mbox{\hyperlink{class_player_script}{Player\+Script}} player)
-\begin{DoxyCompactList}\small\item\em Used by player to join the list of players \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method sends the count of players to each \mbox{\hyperlink{class_player_script}{Player\+Script}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}{Recieve\+Player}} (\mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}{player}})
+\begin{DoxyCompactList}\small\item\em Used by player to join the list of players 
+\begin{DoxyParams}{Parameters}
+{\em player} & The player to join the game\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_ad8b4c479d5107597e91303fe3f0ed033}{Broad\+Cast\+Players}} ()
-\begin{DoxyCompactList}\small\item\em Broadcasts all Player\+Names to all all Playscripts in players. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}\label{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}} 
-void {\bfseries Create\+New\+Card\+For\+Players} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Broadcasts all Player\+Names to all Play\+Scripts in players. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}{Create\+New\+Card\+For\+Players}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new card to write on for each player. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_ae3df8938bac857bc990f5f0497d1fbd4}{Broadcast\+Question}} (\mbox{\hyperlink{class_question}{Question}} question, List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ pL)
-\begin{DoxyCompactList}\small\item\em Recieves a question and a timer to send to all Players. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_player_manager_ad324238d2f3996f450fcc4aea600f909}\label{class_player_manager_ad324238d2f3996f450fcc4aea600f909}} 
-void {\bfseries Start\+Answer\+Phase\+For\+All\+Players} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Recieves a question to send to all Players. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_manager_ad324238d2f3996f450fcc4aea600f909}{Start\+Answer\+Phase\+For\+All\+Players}} ()
+\begin{DoxyCompactList}\small\item\em Broadcasts the beginning of the answer phase to all players. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_a5c074190d0d102d80be24cf6e410257f}{Register\+Answer}} (\mbox{\hyperlink{class_card}{Card}} answer)
-\begin{DoxyCompactList}\small\item\em Recieves the Answer from the players and marks them in the dictionary. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_player_manager_a8b4932aeee88ece980511ba8decb2351}{Broadcast\+Answers}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ answers)
+\begin{DoxyCompactList}\small\item\em Receives the Answer from the players and marks them in the dictionary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_manager_a8b4932aeee88ece980511ba8decb2351}{Broadcast\+Answers}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}{answers}})
 \begin{DoxyCompactList}\small\item\em Sends the answers of all players and the system answer to all players. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_a8ff247ee6a4c20143d1bf35b32e71a2a}{Register\+Vote}} (\mbox{\hyperlink{class_card}{Card}} vote, \mbox{\hyperlink{class_player}{Player}} p)
-\begin{DoxyCompactList}\small\item\em ´\+This method adds the player to player\+Guesses if he voted that registers the votes concerning which cards are equal in answers. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method registers a vote for a player. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_abfdb782b92c6735e07ded1013eaa399e}{Register\+Equal\+Vote}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ vote)
 \begin{DoxyCompactList}\small\item\em This method registers which card is voted as an equal answer by the players. It calls the method Register\+Equal\+Votes on the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} if all player have voted. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_manager_acc056785f96d5dd81938b2e0cbb037f9}{Clean\+Up}} ()
@@ -42,21 +45,17 @@ void \mbox{\hyperlink{class_player_manager_a9ea3507fd0b9e0c6b5b1b2762aac1f5d}{Sh
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}\label{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}} 
-\mbox{\hyperlink{class_player_script}{Player\+Script}} {\bfseries player}
-\item 
-\mbox{\Hypertarget{class_player_manager_adc10762ecee2ad006e2972ad251269e9}\label{class_player_manager_adc10762ecee2ad006e2972ad251269e9}} 
-\mbox{\hyperlink{class_game_manager}{Game\+Manager}} {\bfseries gm}
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_player_script}{Player\+Script}} \mbox{\hyperlink{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}{player}}
+\begin{DoxyCompactList}\small\item\em A single Playerscript to communicate with \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_manager}{Game\+Manager}} \mbox{\hyperlink{class_player_manager_adc10762ecee2ad006e2972ad251269e9}{gm}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_game_manager}{Game\+Manager}} to communicate with \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_player_manager_a3c4146396bf16172a63a1731f1f71915}\label{class_player_manager_a3c4146396bf16172a63a1731f1f71915}} 
-static List$<$ \mbox{\hyperlink{class_player_script}{Player\+Script}} $>$ {\bfseries players} = new List$<$\mbox{\hyperlink{class_player_script}{Player\+Script}}$>$()
-\item 
-\mbox{\Hypertarget{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}\label{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}} 
-static List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ {\bfseries answers} = new List$<$\mbox{\hyperlink{class_card}{Card}}$>$()
-\end{DoxyCompactItemize}
+static List$<$ \mbox{\hyperlink{class_player_script}{Player\+Script}} $>$ \mbox{\hyperlink{class_player_manager_a3c4146396bf16172a63a1731f1f71915}{players}} = new List$<$\mbox{\hyperlink{class_player_script}{Player\+Script}}$>$()
+\begin{DoxyCompactList}\small\item\em A list of Player\+Scripts that represents the players \end{DoxyCompactList}\item 
+static List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ \mbox{\hyperlink{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}{answers}} = new List$<$\mbox{\hyperlink{class_card}{Card}}$>$()
+\begin{DoxyCompactList}\small\item\em A list of Cards that represents the given answers \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
@@ -72,7 +71,7 @@ Sends the answers of all players and the system answer to all players.
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & A List of \mbox{\hyperlink{class_card}{Card}} Objects.\\
+{\em answers} & The list of player answers\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_manager_ad8b4c479d5107597e91303fe3f0ed033}\label{class_player_manager_ad8b4c479d5107597e91303fe3f0ed033}} 
@@ -83,7 +82,7 @@ Sends the answers of all players and the system answer to all players.
 
 
 
-Broadcasts all Player\+Names to all all Playscripts in players. 
+Broadcasts all Player\+Names to all Play\+Scripts in players. 
 
 \mbox{\Hypertarget{class_player_manager_ae3df8938bac857bc990f5f0497d1fbd4}\label{class_player_manager_ae3df8938bac857bc990f5f0497d1fbd4}} 
 \index{PlayerManager@{PlayerManager}!BroadcastQuestion@{BroadcastQuestion}}
@@ -93,11 +92,13 @@ Broadcasts all Player\+Names to all all Playscripts in players.
 
 
 
-Recieves a question and a timer to send to all Players. 
+Recieves a question to send to all Players. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & A \mbox{\hyperlink{class_question}{Question}} Object and the time for the timer\\
+{\em question} & The \mbox{\hyperlink{class_question}{Question}} Object to be broadcasted\\
+\hline
+{\em pL} & The list of players to broadcast to\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_manager_a41970d38befac06c3a4c95d826e98424}\label{class_player_manager_a41970d38befac06c3a4c95d826e98424}} 
@@ -125,6 +126,16 @@ Sends the new list of players to the player to update scores.
 
 This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_script}{Player\+Script}} player. 
 
+\mbox{\Hypertarget{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}\label{class_player_manager_acec489f03f4ac7cb7d1be598d6c2b724}} 
+\index{PlayerManager@{PlayerManager}!CreateNewCardForPlayers@{CreateNewCardForPlayers}}
+\index{CreateNewCardForPlayers@{CreateNewCardForPlayers}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{CreateNewCardForPlayers()}{CreateNewCardForPlayers()}}
+{\footnotesize\ttfamily void Player\+Manager.\+Create\+New\+Card\+For\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new card to write on for each player. 
+
 \mbox{\Hypertarget{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}\label{class_player_manager_aba44c7fde1e15f0c0b3e957af71769e8}} 
 \index{PlayerManager@{PlayerManager}!RecievePlayer@{RecievePlayer}}
 \index{RecievePlayer@{RecievePlayer}!PlayerManager@{PlayerManager}}
@@ -134,6 +145,11 @@ This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_script}{
 
 
 Used by player to join the list of players 
+\begin{DoxyParams}{Parameters}
+{\em player} & The player to join the game\\
+\hline
+\end{DoxyParams}
+
 
 \mbox{\Hypertarget{class_player_manager_a5c074190d0d102d80be24cf6e410257f}\label{class_player_manager_a5c074190d0d102d80be24cf6e410257f}} 
 \index{PlayerManager@{PlayerManager}!RegisterAnswer@{RegisterAnswer}}
@@ -143,11 +159,11 @@ Used by player to join the list of players
 
 
 
-Recieves the Answer from the players and marks them in the dictionary. 
+Receives the Answer from the players and marks them in the dictionary. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & The \mbox{\hyperlink{class_card}{Card}} Object from the player.\\
+{\em answer} & The \mbox{\hyperlink{class_card}{Card}} Object from the player.\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_manager_abfdb782b92c6735e07ded1013eaa399e}\label{class_player_manager_abfdb782b92c6735e07ded1013eaa399e}} 
@@ -162,7 +178,7 @@ This method registers which card is voted as an equal answer by the players. It 
 
 
 \begin{DoxyParams}{Parameters}
-{\em vote} & A List of cards from the player, containing the cards, which this player voted as equal.\\
+{\em vote} & A List of cards from the player, containing the cards, which this player voted as equal\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_manager_a8ff247ee6a4c20143d1bf35b32e71a2a}\label{class_player_manager_a8ff247ee6a4c20143d1bf35b32e71a2a}} 
@@ -173,11 +189,13 @@ This method registers which card is voted as an equal answer by the players. It 
 
 
 
-´\+This method adds the player to player\+Guesses if he voted that registers the votes concerning which cards are equal in answers. 
+This method registers a vote for a player. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & The specific \mbox{\hyperlink{class_player}{Player}} Object.\\
+{\em vote} & The card to be voted on\\
+\hline
+{\em p} & The player that voted\\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_player_manager_ac68a77b974a6d32da9187d3e86e01303}\label{class_player_manager_ac68a77b974a6d32da9187d3e86e01303}} 
@@ -188,7 +206,7 @@ This method registers which card is voted as an equal answer by the players. It 
 
 
 
-This method sends the count of players to each playerscript. 
+This method sends the count of players to each \mbox{\hyperlink{class_player_script}{Player\+Script}}. 
 
 \mbox{\Hypertarget{class_player_manager_a9ea3507fd0b9e0c6b5b1b2762aac1f5d}\label{class_player_manager_a9ea3507fd0b9e0c6b5b1b2762aac1f5d}} 
 \index{PlayerManager@{PlayerManager}!ShowScoreBoard@{ShowScoreBoard}}
@@ -213,7 +231,60 @@ This method calls the Show\+Score\+Board method on \mbox{\hyperlink{class_player
 
 
 
-Adds players to the dictionary. 
+Adds players to the dictionary. This method is called once on startup. 
+
+\mbox{\Hypertarget{class_player_manager_ad324238d2f3996f450fcc4aea600f909}\label{class_player_manager_ad324238d2f3996f450fcc4aea600f909}} 
+\index{PlayerManager@{PlayerManager}!StartAnswerPhaseForAllPlayers@{StartAnswerPhaseForAllPlayers}}
+\index{StartAnswerPhaseForAllPlayers@{StartAnswerPhaseForAllPlayers}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{StartAnswerPhaseForAllPlayers()}{StartAnswerPhaseForAllPlayers()}}
+{\footnotesize\ttfamily void Player\+Manager.\+Start\+Answer\+Phase\+For\+All\+Players (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Broadcasts the beginning of the answer phase to all players. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}\label{class_player_manager_af1186d5e8b5cd280701508a2f06c4828}} 
+\index{PlayerManager@{PlayerManager}!answers@{answers}}
+\index{answers@{answers}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{answers}{answers}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_card}{Card}}$>$ Player\+Manager.\+answers = new List$<$\mbox{\hyperlink{class_card}{Card}}$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A list of Cards that represents the given answers 
+
+\mbox{\Hypertarget{class_player_manager_adc10762ecee2ad006e2972ad251269e9}\label{class_player_manager_adc10762ecee2ad006e2972ad251269e9}} 
+\index{PlayerManager@{PlayerManager}!gm@{gm}}
+\index{gm@{gm}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{gm}{gm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_game_manager}{Game\+Manager}} Player\+Manager.\+gm}
+
+
+
+The \mbox{\hyperlink{class_game_manager}{Game\+Manager}} to communicate with 
+
+\mbox{\Hypertarget{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}\label{class_player_manager_ad36b93623a6b747cee5a25be0dd16d00}} 
+\index{PlayerManager@{PlayerManager}!player@{player}}
+\index{player@{player}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player_script}{Player\+Script}} Player\+Manager.\+player}
+
+
+
+A single Playerscript to communicate with 
+
+\mbox{\Hypertarget{class_player_manager_a3c4146396bf16172a63a1731f1f71915}\label{class_player_manager_a3c4146396bf16172a63a1731f1f71915}} 
+\index{PlayerManager@{PlayerManager}!players@{players}}
+\index{players@{players}!PlayerManager@{PlayerManager}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_player_script}{Player\+Script}}$>$ Player\+Manager.\+players = new List$<$\mbox{\hyperlink{class_player_script}{Player\+Script}}$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A list of Player\+Scripts that represents the players 
 
 
 

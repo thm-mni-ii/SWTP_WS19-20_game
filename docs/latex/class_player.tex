@@ -8,7 +8,7 @@
 \mbox{\hyperlink{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}{Player}} (int \mbox{\hyperlink{class_player_a2b1593046a8f0326290f6ff71ed23fe9}{player\+ID}}, int score, int room\+ID, int experience, int level, string player\+Name)
 \begin{DoxyCompactList}\small\item\em A constructor for \mbox{\hyperlink{class_player}{Player}} \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_player_a3b452a7a45efcb60f0a48cd2c1fcde2f}{Load\+Player\+Data}} (string path)
-\begin{DoxyCompactList}\small\item\em A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets its score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets it\textquotesingle{}s score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{class_player_a29d7544a35ba91456852430f6c17ce9d}{Player\+To\+J\+S\+O\+N\+String}} ()
 \begin{DoxyCompactList}\small\item\em A method returns a \mbox{\hyperlink{class_player}{Player}} Object converted to a string in J\+S\+ON format. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_player_a6943e6d8602b5d54b173a9c3fcb22729}{Print\+Out\+Player}} (\mbox{\hyperlink{class_player}{Player}} player)
@@ -17,7 +17,7 @@ void \mbox{\hyperlink{class_player_a6943e6d8602b5d54b173a9c3fcb22729}{Print\+Out
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{class_player_a2b1593046a8f0326290f6ff71ed23fe9}{player\+ID}}
-\begin{DoxyCompactList}\small\item\em The identfication of the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The identfication number of the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
@@ -80,7 +80,7 @@ A constructor for \mbox{\hyperlink{class_player}{Player}}
 
 
 
-A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets its score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. 
+A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets it\textquotesingle{}s score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -101,7 +101,7 @@ Returns a Playerobject repersantion of the J\+S\+ON file.
 A method returns a \mbox{\hyperlink{class_player}{Player}} Object converted to a string in J\+S\+ON format. 
 
 \begin{DoxyReturn}{Returns}
-json as a string
+J\+S\+ON as a string
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_player_a6943e6d8602b5d54b173a9c3fcb22729}\label{class_player_a6943e6d8602b5d54b173a9c3fcb22729}} 
 \index{Player@{Player}!PrintOutPlayer@{PrintOutPlayer}}
@@ -129,7 +129,7 @@ A simple method to print out the a \mbox{\hyperlink{class_player}{Player}} Objec
 
 
 
-The identfication of the player. 
+The identfication number of the player. 
 
 
 

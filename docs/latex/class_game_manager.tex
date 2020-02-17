@@ -12,33 +12,33 @@ Inheritance diagram for Game\+Manager\+:\begin{figure}[H]
 void \mbox{\hyperlink{class_game_manager_af1b37890fa0dd4d32fc9b7f1affb12f0}{Register\+Equal\+Votes}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ votes)
 \begin{DoxyCompactList}\small\item\em This method is to register the player guesses concerning which answer is equal to the correct one. To annul an answer, more than half of the players must vote for it. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_manager_a7bb95ad28ad033bbb37842d22a421cc0}{Register\+Votes}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ answer)
-\begin{DoxyCompactList}\small\item\em This method is to register the player guesses concerning which answer is the correct one. Calls the method Give\+Out\+Points \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method is to register the player guesses concerning which answer is the correct one. Calls the method Give\+Out\+Points. 
+\begin{DoxyParams}{Parameters}
+{\em answer} & The list of cards to be voted for\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_manager_ad9e0475bfbcc10407d59eebaeff137a7}{Update\+Players\+In\+Card\+List}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ all\+Cards)
 \begin{DoxyCompactList}\small\item\em This Method updates all the \mbox{\hyperlink{class_player}{Player}} Objects in all\+Cards \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_manager_aaa3c0f9b0b37d400f8a54f8a5cba5648}{Broad\+Cast\+Scores\+Via\+PM}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Broadcasts the scores to all players via the \mbox{\hyperlink{class_player_manager}{Player\+Manager}}. Calls the Method Round\+End() \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_manager_a06b082eac2e2475899c87d81cbde31cf}{Clean\+Up}} ()
-\begin{DoxyCompactList}\small\item\em This method acalls the Clean\+Up method on \mbox{\hyperlink{class_player_manager}{Player\+Manager}} pm. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_manager}{Player\+Manager}} pm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_game_manager_a2918b3d3edff04860caf69c337c2dbeb}{Handle\+Answers}} (List$<$ \mbox{\hyperlink{class_card}{Card}} $>$ answers)
 \begin{DoxyCompactList}\small\item\em This method recieves all the answers, saves them in all\+Cards, adds the correctcard and broadcasts all\+Cards via Broad\+Cast\+Answers on \mbox{\hyperlink{class_player_manager}{Player\+Manager}} pm. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_game_manager_a5b1eff733348c33da27eae892551c5c4}\label{class_game_manager_a5b1eff733348c33da27eae892551c5c4}} 
-string {\bfseries question\+Set\+Name}
-\item 
-\mbox{\Hypertarget{class_game_manager_a93e9aacd51d6e1376ef5223b99307f79}\label{class_game_manager_a93e9aacd51d6e1376ef5223b99307f79}} 
-\mbox{\hyperlink{class_question_set}{Question\+Set}} {\bfseries question\+Set} = new \mbox{\hyperlink{class_question_set}{Question\+Set}}()
-\item 
-\mbox{\Hypertarget{class_game_manager_af569bf0b4258b79c3cd97e96efb3980c}\label{class_game_manager_af569bf0b4258b79c3cd97e96efb3980c}} 
-\mbox{\hyperlink{class_player_manager}{Player\+Manager}} {\bfseries pm}
-\item 
-\mbox{\Hypertarget{class_game_manager_a9e16c77887fb897cab016af97ba9e2ea}\label{class_game_manager_a9e16c77887fb897cab016af97ba9e2ea}} 
-List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ {\bfseries player\+List}
-\item 
-\mbox{\Hypertarget{class_game_manager_ade43917fdfb32ef7dd725565023caaf3}\label{class_game_manager_ade43917fdfb32ef7dd725565023caaf3}} 
-int {\bfseries number\+Of\+Rounds}
-\end{DoxyCompactItemize}
+string \mbox{\hyperlink{class_game_manager_a5b1eff733348c33da27eae892551c5c4}{question\+Set\+Name}}
+\begin{DoxyCompactList}\small\item\em The name of the currently used \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_question_set}{Question\+Set}} \mbox{\hyperlink{class_game_manager_a93e9aacd51d6e1376ef5223b99307f79}{question\+Set}} = new \mbox{\hyperlink{class_question_set}{Question\+Set}}()
+\begin{DoxyCompactList}\small\item\em The currently used \mbox{\hyperlink{class_question_set}{Question\+Set}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_manager}{Player\+Manager}} \mbox{\hyperlink{class_game_manager_af569bf0b4258b79c3cd97e96efb3980c}{pm}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} communicates with \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_player}{Player}} $>$ \mbox{\hyperlink{class_game_manager_a9e16c77887fb897cab016af97ba9e2ea}{player\+List}}
+\begin{DoxyCompactList}\small\item\em All players participating in the game \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_manager_ade43917fdfb32ef7dd725565023caaf3}{number\+Of\+Rounds}}
+\begin{DoxyCompactList}\small\item\em The number of rounds to be played \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
@@ -50,9 +50,9 @@ int {\bfseries number\+Of\+Rounds}
 
 
 
+Broadcasts the scores to all players via the \mbox{\hyperlink{class_player_manager}{Player\+Manager}}. Calls the Method Round\+End() 
 
-
-Calls the Method Round\+End()\mbox{\Hypertarget{class_game_manager_a06b082eac2e2475899c87d81cbde31cf}\label{class_game_manager_a06b082eac2e2475899c87d81cbde31cf}} 
+\mbox{\Hypertarget{class_game_manager_a06b082eac2e2475899c87d81cbde31cf}\label{class_game_manager_a06b082eac2e2475899c87d81cbde31cf}} 
 \index{GameManager@{GameManager}!CleanUp@{CleanUp}}
 \index{CleanUp@{CleanUp}!GameManager@{GameManager}}
 \doxysubsubsection{\texorpdfstring{CleanUp()}{CleanUp()}}
@@ -60,7 +60,7 @@ Calls the Method Round\+End()\mbox{\Hypertarget{class_game_manager_a06b082eac2e2
 
 
 
-This method acalls the Clean\+Up method on \mbox{\hyperlink{class_player_manager}{Player\+Manager}} pm. 
+This method calls the Clean\+Up method on \mbox{\hyperlink{class_player_manager}{Player\+Manager}} pm. 
 
 \mbox{\Hypertarget{class_game_manager_a2918b3d3edff04860caf69c337c2dbeb}\label{class_game_manager_a2918b3d3edff04860caf69c337c2dbeb}} 
 \index{GameManager@{GameManager}!HandleAnswers@{HandleAnswers}}
@@ -89,11 +89,10 @@ This method is to register the player guesses concerning which answer is equal t
 
 
 \begin{DoxyParams}{Parameters}
-{\em answers} & \\
+{\em votes} & The list of cards to be voted for\\
 \hline
 \end{DoxyParams}
-votes\mbox{[}j\mbox{]}.Correct\+Votes $>$ vote\+Limit ~\newline
- \mbox{\Hypertarget{class_game_manager_a7bb95ad28ad033bbb37842d22a421cc0}\label{class_game_manager_a7bb95ad28ad033bbb37842d22a421cc0}} 
+\mbox{\Hypertarget{class_game_manager_a7bb95ad28ad033bbb37842d22a421cc0}\label{class_game_manager_a7bb95ad28ad033bbb37842d22a421cc0}} 
 \index{GameManager@{GameManager}!RegisterVotes@{RegisterVotes}}
 \index{RegisterVotes@{RegisterVotes}!GameManager@{GameManager}}
 \doxysubsubsection{\texorpdfstring{RegisterVotes()}{RegisterVotes()}}
@@ -101,7 +100,12 @@ votes\mbox{[}j\mbox{]}.Correct\+Votes $>$ vote\+Limit ~\newline
 
 
 
-This method is to register the player guesses concerning which answer is the correct one. Calls the method Give\+Out\+Points 
+This method is to register the player guesses concerning which answer is the correct one. Calls the method Give\+Out\+Points. 
+\begin{DoxyParams}{Parameters}
+{\em answer} & The list of cards to be voted for\\
+\hline
+\end{DoxyParams}
+
 
 \mbox{\Hypertarget{class_game_manager_ad9e0475bfbcc10407d59eebaeff137a7}\label{class_game_manager_ad9e0475bfbcc10407d59eebaeff137a7}} 
 \index{GameManager@{GameManager}!UpdatePlayersInCardList@{UpdatePlayersInCardList}}
@@ -115,9 +119,62 @@ This Method updates all the \mbox{\hyperlink{class_player}{Player}} Objects in a
 
 
 \begin{DoxyParams}{Parameters}
-{\em all\+Cards} & The List of cards,which cards contain the playerobjects.\\
+{\em all\+Cards} & The List of cards which cards contain the playerobjects\\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_manager_ade43917fdfb32ef7dd725565023caaf3}\label{class_game_manager_ade43917fdfb32ef7dd725565023caaf3}} 
+\index{GameManager@{GameManager}!numberOfRounds@{numberOfRounds}}
+\index{numberOfRounds@{numberOfRounds}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{numberOfRounds}{numberOfRounds}}
+{\footnotesize\ttfamily int Game\+Manager.\+number\+Of\+Rounds}
+
+
+
+The number of rounds to be played 
+
+\mbox{\Hypertarget{class_game_manager_a9e16c77887fb897cab016af97ba9e2ea}\label{class_game_manager_a9e16c77887fb897cab016af97ba9e2ea}} 
+\index{GameManager@{GameManager}!playerList@{playerList}}
+\index{playerList@{playerList}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{playerList}{playerList}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_player}{Player}}$>$ Game\+Manager.\+player\+List}
+
+
+
+All players participating in the game 
+
+\mbox{\Hypertarget{class_game_manager_af569bf0b4258b79c3cd97e96efb3980c}\label{class_game_manager_af569bf0b4258b79c3cd97e96efb3980c}} 
+\index{GameManager@{GameManager}!pm@{pm}}
+\index{pm@{pm}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{pm}{pm}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player_manager}{Player\+Manager}} Game\+Manager.\+pm}
+
+
+
+The \mbox{\hyperlink{class_player_manager}{Player\+Manager}} the \mbox{\hyperlink{class_game_manager}{Game\+Manager}} communicates with 
+
+\mbox{\Hypertarget{class_game_manager_a93e9aacd51d6e1376ef5223b99307f79}\label{class_game_manager_a93e9aacd51d6e1376ef5223b99307f79}} 
+\index{GameManager@{GameManager}!questionSet@{questionSet}}
+\index{questionSet@{questionSet}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{questionSet}{questionSet}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_question_set}{Question\+Set}} Game\+Manager.\+question\+Set = new \mbox{\hyperlink{class_question_set}{Question\+Set}}()}
+
+
+
+The currently used \mbox{\hyperlink{class_question_set}{Question\+Set}} 
+
+\mbox{\Hypertarget{class_game_manager_a5b1eff733348c33da27eae892551c5c4}\label{class_game_manager_a5b1eff733348c33da27eae892551c5c4}} 
+\index{GameManager@{GameManager}!questionSetName@{questionSetName}}
+\index{questionSetName@{questionSetName}!GameManager@{GameManager}}
+\doxysubsubsection{\texorpdfstring{questionSetName}{questionSetName}}
+{\footnotesize\ttfamily string Game\+Manager.\+question\+Set\+Name}
+
+
+
+The name of the currently used \mbox{\hyperlink{class_question_set}{Question\+Set}} 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
