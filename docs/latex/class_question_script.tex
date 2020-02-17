@@ -1,0 +1,136 @@
+\hypertarget{class_question_script}{}\doxysection{Question\+Script Class Reference}
+\label{class_question_script}\index{QuestionScript@{QuestionScript}}
+Inheritance diagram for Question\+Script\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_question_script}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_question_script_ac7664d817c0ec936ecfad67db44d5542}{Initialize\+Question}} ()
+\begin{DoxyCompactList}\small\item\em This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_question_script_a86d6d7612d7bceb363e458ef309bacda}{start\+Question}} (float time, string \mbox{\hyperlink{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}{question}})
+\begin{DoxyCompactList}\small\item\em This method starts the question and its corresponding timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_question_script_ac6199d2001cb4602d58f532b805a4a49}{end\+Question}} ()
+\begin{DoxyCompactList}\small\item\em This method sets the timer to null and calls, if not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_question}{Question}} \mbox{\hyperlink{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}{Get\+Question\+From\+Question\+Set}} (\mbox{\hyperlink{class_question_set}{Question\+Set}} question\+Set)
+\begin{DoxyCompactList}\small\item\em This method delivers the next question. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Text \mbox{\hyperlink{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}{question}}
+\begin{DoxyCompactList}\small\item\em Text where the question is displayed \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_timer_script}{Timer\+Script}} \mbox{\hyperlink{class_question_script_aefaf08ee37d36757094d495b82c3da88}{timer}}
+\begin{DoxyCompactList}\small\item\em Timer for the question. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_card_script}{Card\+Script}} \mbox{\hyperlink{class_question_script_a9971949f3e09aa7b2e30ce4e4c38fa19}{cs}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_card}{Card}}, that the player uses to answer the question. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}{question\+End}}
+\begin{DoxyCompactList}\small\item\em Flag that indicates if the question has ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_question_script_ac6199d2001cb4602d58f532b805a4a49}\label{class_question_script_ac6199d2001cb4602d58f532b805a4a49}} 
+\index{QuestionScript@{QuestionScript}!endQuestion@{endQuestion}}
+\index{endQuestion@{endQuestion}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{endQuestion()}{endQuestion()}}
+{\footnotesize\ttfamily void Question\+Script.\+end\+Question (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method sets the timer to null and calls, if not null, the time\+UP method in \mbox{\hyperlink{class_card_script}{Card\+Script}}. 
+
+\mbox{\Hypertarget{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}\label{class_question_script_abdd591ed83c4e5a941315f6a0552b1cd}} 
+\index{QuestionScript@{QuestionScript}!GetQuestionFromQuestionSet@{GetQuestionFromQuestionSet}}
+\index{GetQuestionFromQuestionSet@{GetQuestionFromQuestionSet}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{GetQuestionFromQuestionSet()}{GetQuestionFromQuestionSet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_question}{Question}} Question\+Script.\+Get\+Question\+From\+Question\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_question_set}{Question\+Set}}}]{question\+Set }\end{DoxyParamCaption})}
+
+
+
+This method delivers the next question. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em question\+Set} & The questionset from which the next question is requested.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The next question from the set
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_question_script_ac7664d817c0ec936ecfad67db44d5542}\label{class_question_script_ac7664d817c0ec936ecfad67db44d5542}} 
+\index{QuestionScript@{QuestionScript}!InitializeQuestion@{InitializeQuestion}}
+\index{InitializeQuestion@{InitializeQuestion}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{InitializeQuestion()}{InitializeQuestion()}}
+{\footnotesize\ttfamily void Question\+Script.\+Initialize\+Question (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method sets the \mbox{\hyperlink{class_question_script}{Question\+Script}} object to the same state as it was when awake was called. 
+
+\mbox{\Hypertarget{class_question_script_a86d6d7612d7bceb363e458ef309bacda}\label{class_question_script_a86d6d7612d7bceb363e458ef309bacda}} 
+\index{QuestionScript@{QuestionScript}!startQuestion@{startQuestion}}
+\index{startQuestion@{startQuestion}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{startQuestion()}{startQuestion()}}
+{\footnotesize\ttfamily void Question\+Script.\+start\+Question (\begin{DoxyParamCaption}\item[{float}]{time,  }\item[{string}]{question }\end{DoxyParamCaption})}
+
+
+
+This method starts the question and its corresponding timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The starting time of the timer.\\
+\hline
+{\em question} & the question, which is to be answered.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_question_script_a9971949f3e09aa7b2e30ce4e4c38fa19}\label{class_question_script_a9971949f3e09aa7b2e30ce4e4c38fa19}} 
+\index{QuestionScript@{QuestionScript}!cs@{cs}}
+\index{cs@{cs}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{cs}{cs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_card_script}{Card\+Script}} Question\+Script.\+cs}
+
+
+
+\mbox{\hyperlink{class_card}{Card}}, that the player uses to answer the question. 
+
+\mbox{\Hypertarget{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}\label{class_question_script_ac3e4de43b0ff9aec3c8f7731be17d299}} 
+\index{QuestionScript@{QuestionScript}!question@{question}}
+\index{question@{question}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{question}{question}}
+{\footnotesize\ttfamily Text Question\+Script.\+question}
+
+
+
+Text where the question is displayed 
+
+\mbox{\Hypertarget{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}\label{class_question_script_a47356a70c50e9cbef7132c35fe861f9b}} 
+\index{QuestionScript@{QuestionScript}!questionEnd@{questionEnd}}
+\index{questionEnd@{questionEnd}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{questionEnd}{questionEnd}}
+{\footnotesize\ttfamily bool Question\+Script.\+question\+End}
+
+
+
+Flag that indicates if the question has ended. 
+
+\mbox{\Hypertarget{class_question_script_aefaf08ee37d36757094d495b82c3da88}\label{class_question_script_aefaf08ee37d36757094d495b82c3da88}} 
+\index{QuestionScript@{QuestionScript}!timer@{timer}}
+\index{timer@{timer}!QuestionScript@{QuestionScript}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_timer_script}{Timer\+Script}} Question\+Script.\+timer}
+
+
+
+Timer for the question. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Marc/\+S\+W\+T\+P\+\_\+\+W\+S19-\/20\+\_\+game/\+Dixit/\+Assets/\+Scripts/Question\+Script.\+cs\end{DoxyCompactItemize}

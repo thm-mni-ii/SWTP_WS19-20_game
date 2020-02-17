@@ -1,0 +1,191 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_a712a726b07cf901c040116d6d0c5cc66}{Player}} ()
+\begin{DoxyCompactList}\small\item\em An empty constructor for \mbox{\hyperlink{class_player}{Player}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}{Player}} (int \mbox{\hyperlink{class_player_a2b1593046a8f0326290f6ff71ed23fe9}{player\+ID}}, int score, int room\+ID, int experience, int level, string player\+Name)
+\begin{DoxyCompactList}\small\item\em A constructor for \mbox{\hyperlink{class_player}{Player}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_player}{Player}} \mbox{\hyperlink{class_player_a3b452a7a45efcb60f0a48cd2c1fcde2f}{Load\+Player\+Data}} (string path)
+\begin{DoxyCompactList}\small\item\em A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets its score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_player_a29d7544a35ba91456852430f6c17ce9d}{Player\+To\+J\+S\+O\+N\+String}} ()
+\begin{DoxyCompactList}\small\item\em A method returns a \mbox{\hyperlink{class_player}{Player}} Object converted to a string in J\+S\+ON format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_a6943e6d8602b5d54b173a9c3fcb22729}{Print\+Out\+Player}} (\mbox{\hyperlink{class_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em A simple method to print out the a \mbox{\hyperlink{class_player}{Player}} Object as a string in J\+S\+ON format. This method may be used for debugging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_player_a2b1593046a8f0326290f6ff71ed23fe9}{player\+ID}}
+\begin{DoxyCompactList}\small\item\em The identfication of the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_player_a26d4288e4b37749aed27336ed88688e1}{Score}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for score. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_adb3e49f621df02c7d89a781303046d18}{Room\+ID}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for room\+ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_a52eec3e19497b231bc51c5db5bfe5645}{Experience}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for experience. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_player_ad89cb407e6df206d7a21a714006571c9}{Level}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for level. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_player_adacf1854e9a36d16ab527e6969998e90}{Player\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Getter/\+Setter for player\+Name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_player_a712a726b07cf901c040116d6d0c5cc66}\label{class_player_a712a726b07cf901c040116d6d0c5cc66}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Player.\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+An empty constructor for \mbox{\hyperlink{class_player}{Player}}. 
+
+\mbox{\Hypertarget{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}\label{class_player_aa4b6c62e14cf26bd98bbf0b5ab39a5f9}} 
+\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Player.\+Player (\begin{DoxyParamCaption}\item[{int}]{player\+ID,  }\item[{int}]{score,  }\item[{int}]{room\+ID,  }\item[{int}]{experience,  }\item[{int}]{level,  }\item[{string}]{player\+Name }\end{DoxyParamCaption})}
+
+
+
+A constructor for \mbox{\hyperlink{class_player}{Player}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+ID} & player\+ID\\
+\hline
+{\em score} & score\\
+\hline
+{\em room\+ID} & room\+ID\\
+\hline
+{\em experience} & experience\\
+\hline
+{\em level} & level\\
+\hline
+{\em player\+Name} & player\+Name\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_player_a3b452a7a45efcb60f0a48cd2c1fcde2f}\label{class_player_a3b452a7a45efcb60f0a48cd2c1fcde2f}} 
+\index{Player@{Player}!LoadPlayerData@{LoadPlayerData}}
+\index{LoadPlayerData@{LoadPlayerData}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{LoadPlayerData()}{LoadPlayerData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_player}{Player}} Player.\+Load\+Player\+Data (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+A method that uses a path to a J\+S\+ON File to load the data of a player, create a \mbox{\hyperlink{class_player}{Player}} Object and resets its score. This method will be invoked at the beginning of a game. This method is not final, it will be changed so it can work with mirror and firebase. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the J\+S\+ON File\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Playerobject repersantion of the J\+S\+ON file.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a29d7544a35ba91456852430f6c17ce9d}\label{class_player_a29d7544a35ba91456852430f6c17ce9d}} 
+\index{Player@{Player}!PlayerToJSONString@{PlayerToJSONString}}
+\index{PlayerToJSONString@{PlayerToJSONString}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{PlayerToJSONString()}{PlayerToJSONString()}}
+{\footnotesize\ttfamily string Player.\+Player\+To\+J\+S\+O\+N\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A method returns a \mbox{\hyperlink{class_player}{Player}} Object converted to a string in J\+S\+ON format. 
+
+\begin{DoxyReturn}{Returns}
+json as a string
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_player_a6943e6d8602b5d54b173a9c3fcb22729}\label{class_player_a6943e6d8602b5d54b173a9c3fcb22729}} 
+\index{Player@{Player}!PrintOutPlayer@{PrintOutPlayer}}
+\index{PrintOutPlayer@{PrintOutPlayer}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{PrintOutPlayer()}{PrintOutPlayer()}}
+{\footnotesize\ttfamily void Player.\+Print\+Out\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_player}{Player}}}]{player }\end{DoxyParamCaption})}
+
+
+
+A simple method to print out the a \mbox{\hyperlink{class_player}{Player}} Object as a string in J\+S\+ON format. This method may be used for debugging purposes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & The specific \mbox{\hyperlink{class_player}{Player}} Object.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_player_a2b1593046a8f0326290f6ff71ed23fe9}\label{class_player_a2b1593046a8f0326290f6ff71ed23fe9}} 
+\index{Player@{Player}!playerID@{playerID}}
+\index{playerID@{playerID}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{playerID}{playerID}}
+{\footnotesize\ttfamily int Player.\+player\+ID}
+
+
+
+The identfication of the player. 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_player_a52eec3e19497b231bc51c5db5bfe5645}\label{class_player_a52eec3e19497b231bc51c5db5bfe5645}} 
+\index{Player@{Player}!Experience@{Experience}}
+\index{Experience@{Experience}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Experience}{Experience}}
+{\footnotesize\ttfamily int Player.\+Experience\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for experience. 
+
+\mbox{\Hypertarget{class_player_ad89cb407e6df206d7a21a714006571c9}\label{class_player_ad89cb407e6df206d7a21a714006571c9}} 
+\index{Player@{Player}!Level@{Level}}
+\index{Level@{Level}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Level}{Level}}
+{\footnotesize\ttfamily int Player.\+Level\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for level. 
+
+\mbox{\Hypertarget{class_player_adacf1854e9a36d16ab527e6969998e90}\label{class_player_adacf1854e9a36d16ab527e6969998e90}} 
+\index{Player@{Player}!PlayerName@{PlayerName}}
+\index{PlayerName@{PlayerName}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{PlayerName}{PlayerName}}
+{\footnotesize\ttfamily string Player.\+Player\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for player\+Name. 
+
+\mbox{\Hypertarget{class_player_adb3e49f621df02c7d89a781303046d18}\label{class_player_adb3e49f621df02c7d89a781303046d18}} 
+\index{Player@{Player}!RoomID@{RoomID}}
+\index{RoomID@{RoomID}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{RoomID}{RoomID}}
+{\footnotesize\ttfamily int Player.\+Room\+ID\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for room\+ID. 
+
+\mbox{\Hypertarget{class_player_a26d4288e4b37749aed27336ed88688e1}\label{class_player_a26d4288e4b37749aed27336ed88688e1}} 
+\index{Player@{Player}!Score@{Score}}
+\index{Score@{Score}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{Score}{Score}}
+{\footnotesize\ttfamily int Player.\+Score\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Getter/\+Setter for score. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Marc/\+S\+W\+T\+P\+\_\+\+W\+S19-\/20\+\_\+game/\+Dixit/\+Assets/\+Scripts/Player.\+cs\end{DoxyCompactItemize}
